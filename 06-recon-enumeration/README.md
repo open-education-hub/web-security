@@ -106,14 +106,6 @@ You can read the documentation if you want to specify custom options, like custo
 * [wfuzz](https://github.com/xmendez/wfuzz) - available on GitHub, written in Python, has a lot of options, can be easily installed with pip 
 * [ffuf](https://github.com/ffuf/ffuf) - also on GitHub, written in Go, has the option to mutate the files found
 
-## Other Enumeration Techniques
-
-* Extracting user names using email ID's
-* Extract information using the default password         
-* Extract user names using SNMP
-* Extract user groups from Windows
-* Extract information using DNS Zone transfer
-
 ## Further Reading
 * https://hackr.io/blog/top-10-open-source-security-testing-tools-for-web-applications
 * https://www.knowledgehut.com/blog/security/enumeration-in-ethical-hacking
