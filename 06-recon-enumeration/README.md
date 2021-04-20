@@ -104,7 +104,8 @@ The output lines with the results found (not 404) start with a `+` and give deta
 
 You can read the documentation if you want to specify custom options, like custom file extensions to look for.
 
-## Similar tools
+### Similar tools
+
 * DirBuster [[10]](https://tools.kali.org/web-applications/dirbuster) - Kali built in, written in Java and the only one with a GUI and not a CLI
 * GoBuster [[11]](https://tools.kali.org/web-applications/gobuster) - Kali built in, written in Go, also run in command line, but with more configurable options, like setting cookies or the User-Agent
 * wfuzz [[12]](https://github.com/xmendez/wfuzz) - available on GitHub, written in Python, has a lot of options, can be easily installed with pip 
