@@ -85,7 +85,6 @@ There are many ways in which you can customize this process according to your ne
 
 There are also many different types of payloads you can use [[7]](https://portswigger.net/burp/documentation/desktop/tools/intruder/payloads/types), from specifying your own list of words to generating random bytes. You can find lists of popular credentials online, for instance, here it is a repo with lists of most used passwords [[8]](https://github.com/danielmiessler/SecLists/tree/master/Passwords).
 
-
 ## Brute Force Active Directory
 
 Let's say we have the target server **http://192.168.1.224/** and we want to discover hidden files, directories or other resources there. Manually, we would make multiple requests like _http://192.168.1.224/docs_, _http://192.168.1.224/config.php_ etc. or whatever we imagine might find and see if we get a 404 Not Found response or not. Luckily, there are command line tools and predefined wordlists in Kali (**/usr/share/wordlists/**) doing exactly this for us.
@@ -116,6 +115,8 @@ You can read the documentation if you want to specify custom options, like custo
 * Extract user groups from Windows
 * Extract information using DNS Zone transfer
 
-Read more:
-https://www.knowledgehut.com/blog/security/enumeration-in-ethical-hacking
-https://www.greycampus.com/opencampus/ethical-hacking/enumeration-and-its-types
+## Further Reading
+ * https://www.knowledgehut.com/blog/security/enumeration-in-ethical-hacking
+ * https://www.greycampus.com/opencampus/ethical-hacking/enumeration-and-its-types
+
+## Challenges
