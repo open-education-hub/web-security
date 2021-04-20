@@ -22,8 +22,7 @@ Next, we introduce some popular tools that may help in the first three phases, t
 Reconnaissance is an important first stage in any ethical hacking attempt. Before it is possible to exploit a vulnerability in the target system, it is necessary to find it. By performing reconnaissance on the target, an ethical hacker can learn about the details of the target network and identify potential attack vectors.
 
 ## Nmap
-
-Nmap is probably the most well-known tool for active **network** reconnaissance. It is a network scanner designed to determine details about a system and the programs running on it.
+[[Nmap]](https://insecure.org/) is probably the most well-known tool for active **network** reconnaissance. It is a network scanner designed to determine details about a system and the programs running on it.
 
 Every computer has a total of 65535 available ports; however, many of these are registered as standard ports. For example, a HTTP Webservice can nearly always be found on port 80 of the server. A HTTPS Webservice can be found on port 443. If we do not know which of these ports a server has open, then we do not have a hope of successfully attacking the target; thus, it is crucial that we begin any attack with a port scan. Nmap can be used to perform many different kinds of port scan; the basic theory is this: it will connect to each port of the target in turn. Depending on how the port responds, it can be determined as being _open_, _closed_, or _filtered_ (usually by a firewall). Once we know which ports are open, we can then look at _enumerating_ which services are running on each port – either manually, or more commonly using nmap.
 
@@ -36,7 +35,6 @@ You can see the full example here [[1]](https://nmap.org/book/port-scanning-tuto
 # 2. Scanning
 
 ## OWASP Zap
-
 Developed by OWASP (Open Web Application Security Project), ZAP or Zed Attack Proxy [[3]](https://www.zaproxy.org/) is a multi-platform, open source web application security testing tool. ZAP is used for finding a number of security vulnerabilities in a web app during the development as well as testing phase. Other than its use as a scanner, ZAP can also be used to intercept a proxy for manually testing a webpage. [[4]](https://hackr.io/blog/top-10-open-source-security-testing-tools-for-web-applications)
 ZAP can identify:
 * Application error disclosure
@@ -104,8 +102,7 @@ The output lines with the results found (not 404) start with a `+` and give deta
 
 You can read the documentation if you want to specify custom options, like custom file extensions to look for.
 
-### Similar tools
-
+## Similar tools
 * DirBuster [[10]](https://tools.kali.org/web-applications/dirbuster) - Kali built in, written in Java and the only one with a GUI and not a CLI
 * GoBuster [[11]](https://tools.kali.org/web-applications/gobuster) - Kali built in, written in Go, also run in command line, but with more configurable options, like setting cookies or the User-Agent
 * wfuzz [[12]](https://github.com/xmendez/wfuzz) - available on GitHub, written in Python, has a lot of options, can be easily installed with pip 
