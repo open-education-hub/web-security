@@ -310,7 +310,7 @@ HTTPie is also used to send HTTP requests. It can be used in the terminal, inste
 
 Hoppscotch is a tool that you can use from your browser or as a browser extension to quickly test certain endpoints. It also supports MQTT or GraphQL requests. [[8]](https://hoppscotch.io/)
 
-# Resources
+# Further Reading
 
 * [1] https://skorks.com/2010/05/what-every-developer-should-know-about-urls/ 
 * [2] https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
@@ -321,7 +321,7 @@ Hoppscotch is a tool that you can use from your browser or as a browser extensio
 * [7] https://httpie.io/
 * [8] https://hoppscotch.io/
 
-# Exercises
+# Challenges
 
 **1.** The below image represents a snippet with DevTools containing information about a web application. What can you discover in the next image ? Is there any useful information from a security point of view ? Write the answer to the instructor.
 
