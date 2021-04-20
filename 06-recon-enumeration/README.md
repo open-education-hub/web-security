@@ -22,6 +22,7 @@ Next, we introduce some popular tools that may help in the first three phases, t
 Reconnaissance is an important first stage in any ethical hacking attempt. Before it is possible to exploit a vulnerability in the target system, it is necessary to find it. By performing reconnaissance on the target, an ethical hacker can learn about the details of the target network and identify potential attack vectors.
 
 ## Nmap
+
 Nmap is probably the most well-known tool for active **network** reconnaissance. It is a network scanner designed to determine details about a system and the programs running on it.
 
 Every computer has a total of 65535 available ports; however, many of these are registered as standard ports. For example, a HTTP Webservice can nearly always be found on port 80 of the server. A HTTPS Webservice can be found on port 443. If we do not know which of these ports a server has open, then we do not have a hope of successfully attacking the target; thus, it is crucial that we begin any attack with a port scan. Nmap can be used to perform many different kinds of port scan; the basic theory is this: it will connect to each port of the target in turn. Depending on how the port responds, it can be determined as being _open_, _closed_, or _filtered_ (usually by a firewall). Once we know which ports are open, we can then look at _enumerating_ which services are running on each port – either manually, or more commonly using nmap.
