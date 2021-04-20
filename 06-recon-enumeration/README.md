@@ -108,7 +108,7 @@ You can read the documentation if you want to specify custom options, like custo
 * wfuzz [[12]](https://github.com/xmendez/wfuzz) - available on GitHub, written in Python, has a lot of options, can be easily installed with pip 
 * ffuf [[13]](https://github.com/ffuf/ffuf) - also on GitHub, written in Go, has the option to mutate the files found
 
-## Other techniques
+## Other Techniques
 
 * Extracting user names using email ID's
 * Extract information using the default password         
