@@ -89,7 +89,8 @@ There are also many different types of payloads you can use [[7]](https://portsw
 
 Let's say we have the target server **http://192.168.1.224/** and we want to discover hidden files, directories or other resources there. Manually, we would make multiple requests like _http://192.168.1.224/docs_, _http://192.168.1.224/config.php_ etc. or whatever we imagine might find and see if we get a 404 Not Found response or not. Luckily, there are command line tools and predefined wordlists in Kali (**/usr/share/wordlists/**) doing exactly this for us.
 
-## DIRB
+### DIRB
+
 DIRB [[9]](https://tools.kali.org/web-applications/dirb) is a Web Content Scanner, a Kali built in tool. It looks for existing (and/or hidden) Web Objects. It basically works by launching a dictionary based attack against a web server and analyzing the response.
 DIRB comes with a set of preconfigured attack wordlists for easy usage but you can use your custom wordlists. For each filename, it check the  existence on the webserver and returns the results which do not give a 404 Not Found response.
 
