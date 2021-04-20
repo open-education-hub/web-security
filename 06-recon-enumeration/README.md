@@ -15,7 +15,7 @@ A standard penetration testing flow implies 5 stages:
 
 ![Penetration testing phases](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/pentest_phases.png)
 
-Next, we will introduce some popular tools that may help in the first three phases, to gather information about a target. Exploiting Tools/ Security Testing Tools/ Penetration Testing Tools are used for the discovery of vulnerabilities without attempting to actually exploit them.
+Next, we introduce some popular tools that may help in the first three phases, to gather information about a target. Exploiting Tools/ Security Testing Tools/ Penetration Testing Tools are used for the discovery of vulnerabilities without attempting to actually exploit them.
 
 # 1. Reconnaissance
 
@@ -119,4 +119,3 @@ You can read the documentation if you want to specify custom options, like custo
 Read more:
 https://www.knowledgehut.com/blog/security/enumeration-in-ethical-hacking
 https://www.greycampus.com/opencampus/ethical-hacking/enumeration-and-its-types
-
