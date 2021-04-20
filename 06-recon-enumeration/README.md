@@ -36,6 +36,7 @@ You can see the full example here [[1]](https://nmap.org/book/port-scanning-tuto
 # 2. Scanning
 
 ## OWASP Zap
+
 Developed by OWASP (Open Web Application Security Project), ZAP or Zed Attack Proxy [[3]](https://www.zaproxy.org/) is a multi-platform, open source web application security testing tool. ZAP is used for finding a number of security vulnerabilities in a web app during the development as well as testing phase. Other than its use as a scanner, ZAP can also be used to intercept a proxy for manually testing a webpage. [[4]](https://hackr.io/blog/top-10-open-source-security-testing-tools-for-web-applications)
 ZAP can identify:
 * Application error disclosure
