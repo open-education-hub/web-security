@@ -119,7 +119,7 @@ By doing so, the three types above mentioned will look like this:
 2. **Encode data on output.** At the point where user-controllable data is output in HTTP responses, encode the output to prevent it from being interpreted as active content. Depending on the output context, this might require applying combinations of HTML, URL, JavaScript, and CSS encoding.
 3. **Use appropriate response headers.** To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the `Content-Type` and `X-Content-Type-Options` headers to ensure that browsers interpret the responses in the way you intend.
 4. **Content Security Policy.** Use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.\
-5. **Continuous database scanning."" For stored XSS is common practice to scan the database for 
+5. **Continuous database scanning."" For stored XSS is common practice to scan the database at regulated intervals, although XSS payloads can be written in multiple formats (base64, binary etc.).
 
 ## Other XSS
 ### Self XSS
