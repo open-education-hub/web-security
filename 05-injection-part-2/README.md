@@ -118,7 +118,8 @@ By doing so, the three types above mentioned will look like this:
 1. **Filter input on arrival.** At the point where user input is received, filter as strictly as possible based on what is expected or valid input.
 2. **Encode data on output.** At the point where user-controllable data is output in HTTP responses, encode the output to prevent it from being interpreted as active content. Depending on the output context, this might require applying combinations of HTML, URL, JavaScript, and CSS encoding.
 3. **Use appropriate response headers.** To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the `Content-Type` and `X-Content-Type-Options` headers to ensure that browsers interpret the responses in the way you intend.
-4. **Content Security Policy.** Use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.
+4. **Content Security Policy.** Use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.\
+5. **Continuous database scanning."" For stored XSS is common practice to scan the database for 
 
 ## Other XSS
 ### Self XSS
@@ -148,10 +149,10 @@ With the security level set on **low** you will have to go through each XSS type
 
 Go thgough each on in the following order: Reflected, Stored, DOM
 
-### 2. XSS Challanges
+### 2. XSS Challenges
 You have 6 levels to finish here: https://xss-game.appspot.com/
 
-### 3. Even more XSS Challanges
+### 3. Even more XSS Challenges
 https://alf.nu/alert1
 
 ### 4. If you get here
