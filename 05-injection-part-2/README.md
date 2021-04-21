@@ -119,7 +119,7 @@ By doing so, the three types above mentioned will look like this:
 2. **Encode data on output.** At the point where user-controllable data is output in HTTP responses, encode the output to prevent it from being interpreted as active content. Depending on the output context, this might require applying combinations of HTML, URL, JavaScript, and CSS encoding.
 3. **Use appropriate response headers.** To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the `Content-Type` and `X-Content-Type-Options` headers to ensure that browsers interpret the responses in the way you intend.
 4. **Content Security Policy.** Use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.\
-5. **Continuous database scanning."" For stored XSS is common practice to scan the database at regulated intervals, although XSS payloads can be written in multiple formats (base64, binary etc.).
+5. **Continuous database scanning.** For stored XSS is common practice to scan the database at regulated intervals, although XSS payloads can be written in multiple formats (base64, binary etc.).
 
 ## Other XSS
 ### Self XSS
@@ -129,7 +129,7 @@ This is not a code injection vulnerability as each website is vulnerable to this
 ![Self XSS](https://github.com/hexcellents/sss-web/blob/master/05-injection-2/support/self-xss.png)
 
 ### Mutated XSS
-Mutated XSS happens when the browser tries to fix and rewrite invaild HTML but fails doing so thus executing attacker's code. Because it depends from browser to browser, is extremely hard to detect or sanitize within the websites application logic. At the end of this page you will find a video explaining a mXSS on Google Search.
+Mutated XSS happens when the browser tries to fix and rewrite invaild HTML but fails doing so thus executing attacker's code. Because it depends from browser to browser, is extremely hard to detect or sanitize within the websites application logic. At the end of this page you will find a video explaining a mXSS on Google Search, and also check the link for one of the first papers describing mXSS attacks.
 
 ## Tasks
 ### 1. DVWA
@@ -172,6 +172,7 @@ Those should be enough to suck the soul out of you.
 * [XSS Cheat Sheet 1](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
 * [XSS Cheat Sheet 2](https://owasp.org/www-community/xss-filter-evasion-cheatsheet)
 * [Mutated XSS on Google Search](https://www.youtube.com/watch?v=lG7U3fuNw3A)
+* [mXSS paper](https://cure53.de/fp170.pdf)
 
 ---
 
