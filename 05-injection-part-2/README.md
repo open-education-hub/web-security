@@ -226,6 +226,7 @@ With these conditions in place, the attacker can construct a web page containing
 * Add a CSRF token for each request that changes the state of the application (e.g. changing password, sending messages) and validate it on backend
 * Use user interaction based CSRF defense for sensitive actions such as changing credentials: re-authentication, one-time token, captcha
 * Use Cross-origin resource sharing (CORS) headers to prevent CSRF from your website
+* GET methods should not change the state of the application. Use appropriate HTTP methods for their intention.
 * in-depth list [here](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)
 
 If you find an action/request to have a CSRF token don't give up to that so easily, there are a number of ways that improper validation of the token will still result in a CSRF vulnerability:
