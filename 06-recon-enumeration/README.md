@@ -7,11 +7,11 @@ When it comes to hacking, knowledge is power. The more knowledge you have about 
 Penetration testing is an authorized simulated cyber attack on a computer system, performed to evaluate its security.
 
 A standard penetration testing flow implies 5 stages:
-* reconnaissance - gathering information about the target system: website technologies, subdomains, open ports, Google hacking
-* scanning - manually or automatically (using tools) discovering vulnerabilities in the system, like SQL injection, XSS etc.
-* gaining access using enumeration - exploiting the vulnerabilities found before to collect sensitive information: usernames, machine names, network information, service settings
-* maintaining access - planting hidden programs (like Trojan horses) that make a future attack easier
-* covering tracks - cleaning up all the signs that may lead to thinking that an attack happened 
+1. **reconnaissance** - gathering information about the target system: website technologies, subdomains, open ports, Google hacking
+1. **scanning** - manually or automatically (using tools) discovering vulnerabilities in the system, like SQL injection, XSS etc.
+1. **gaining access** using enumeration - exploiting the vulnerabilities found before to collect sensitive information: usernames, machine names, network information, service settings
+1. **maintaining access** - planting hidden programs (like Trojan horses) that make a future attack easier
+1. **covering tracks** - cleaning up all the signs that may lead to thinking that an attack happened 
 
 ![Penetration testing phases](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/pentest_phases.png)
 
@@ -54,7 +54,7 @@ You can read about other active recon tools [here](https://resources.infosecinst
 You were introduced to Burp Proxy in earlier session. Now we'll see an example of how to use Intruder in order to enumerate passwords.
 With Burp Intruder, customized attacks can be automated against web applications. Customizing attacks requires that we specify one or more payloads and the position where the payloads will be placed in the website.
 
-* I have opened Burp and the built-in Chromium browser, having my intercept off.
+* I opened Burp and the built-in Chromium browser (or your browser of choice, but pay attention to the setting up the proxy), having the intercept **off**.
 * I navigated to https://sss-ctf.security.cs.pub.ro/home and tried to log in using the email **a@a.com** and the password **abc123**.
 * The POST request can be found in HTTP history. Right click on it to send it to Intruder.
 
@@ -66,13 +66,13 @@ With Burp Intruder, customized attacks can be automated against web applications
 
 ![Set payload position](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/payload_position.png)
 
-* Our payload type (wordlist) is a sequence of numbers which can be automatically generated in Burp. Go to the **Payloads** tab and select **Numbers** as the **Payload type**.
-* Fill in the Payload options to generate all the numbers from 1 to 100, with the step 2 (1, 3, 5...).
-* Finally, launch the attack.
+1. Our payload type (wordlist) is a sequence of numbers which can be automatically generated in Burp. Go to the **Payloads** tab and select **Numbers** as the **Payload type**.
+1. Fill in the Payload options to generate all the numbers from 1 to 100, with the step 2 (1, 3, 5...).
+1. Finally, launch the attack.
 
 ![Set payload type](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/payload_type.png)
 
-* A new window opens and you can see all the requests Burp is making, with the payloads you specified. For example, you can check the request corresponding to the payload 7, with the resulting password being **abc7**, and you can observe the response, its status code, or even open it in the browser.
+ A new window opens and you can see all the requests Burp is making, with the payloads you specified. For example, you can check the request corresponding to the payload 7, with the resulting password being **abc7**, and you can observe the response, its status code, or even open it in the browser.
 
 ![Attack example](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/attack_example.png)
 
