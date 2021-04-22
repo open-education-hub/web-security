@@ -12,7 +12,7 @@ Sessions are:
   * [Session 03: Broken Access Control](03-broken-access-control/README.md)
   * [Session 04: Injection (part 1)](04-injection-part-1/README.md)
   * [Session 05: Injection (part 2)](05-injection-part-2/README.md)
-  * [Session 06: Reconnaissance & Exploiting Tools](06-exploiting/README.md)
+  * [Session 06: Reconnaissance & Enumeration & Exploiting Tools](06-recon-enumeration/README.md)
   * [Session 07: Framework & API Vulnerabilities](07-api/README.md)
   * [Session 08: Securing Communication](08-secure-communication/README.md)
   * [Session 09: Exotic Attacks](09-exotic/README.md)
