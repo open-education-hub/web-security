@@ -18,7 +18,7 @@ The design of web applications, and their security in particular is influenced b
 
 While the client is provided with HTML, JavaScript, CSS pages, modern web applications are implemented using general-purpose scripting or programming languages, e.g. PHP, Java, Python, Ruby, etc. and centralize their data using database systems such as MySQL. Faulty back-end code can in itself provide a more dangerous attack surface to potentially malicious clients.
 
-![Client - Server](https://drive.google.com/uc?export=view&id=1S43yL535en6KitX6NZ06kTOube4-pkw_)
+![Client - Server](./support/Session_01_Web_Basics_Diagram_01.jpg)
 
 # Web Applications Today
 
@@ -48,9 +48,9 @@ Communication between clients and servers is done by requests and responses:
 * The server returns an HTTP response (output) to the browser
 * The client (the browser) receives the response
 
-![HTTP - Request](https://drive.google.com/uc?export=view&id=1g62ylxoatBomcgcKNqm1EwiiF_KPBCqI)
+![HTTP - Request](./support/http-request.png)
 
-![HTTP - Response](https://drive.google.com/uc?export=view&id=1YR9TqYFtgaVBDrTyHFRS2CTA01fKyNT4)
+![HTTP - Response](./support/http-response.png)
 
 ### Basic format of the request:
 
@@ -99,7 +99,7 @@ The XHR Object is a Web Developers Dream, because you can:
 
 The XHR Object is the underlying concept of AJAX and JSON:
 
-![XMLHttpRequest](https://drive.google.com/uc?export=view&id=12-9YOQSo48wVitih4r6wQqlQoRssEj7V)
+![XMLHttpRequest](./support/xml_http_request.png)
 
 ### HTTP Response Codes
 
@@ -119,7 +119,7 @@ URL stands for Uniform Resource Locator. A URL is nothing more than the address 
 
 A URL incorporates the domain name, along with other detailed information, to create a complete address (or “web address”) to direct a browser to a specific page online called a web page. In essence, it’s a set of directions and every web page has a unique one.
 
-![URL](https://drive.google.com/uc?export=view&id=1ZrRZywT2lVitOI4Nq3Jx6cwlW-tPiTCU)
+![URL](./support/url.png)
 
 Special characters are encoded as hex:
 * **%0A** = newline
@@ -142,7 +142,7 @@ Each browser windows or frame:
     * Rendering: OnLoad, OnBeforeUnload
     * Timing: setTimeout(), clearTimeout()
 
-![browser-analogy](https://drive.google.com/uc?export=view&id=1BKTl3hD1MAWFfIVCBkfFbsu2RGnVar94)
+![browser-analogy](./support/browser-analogy.png)
 
 
 Examples of browser vulnerabilities:
@@ -169,7 +169,7 @@ Nodes can also have event handlers attached to them. Once an event is triggered,
 
 Every element within your document is an object: \<head\> tag, \<body\> tag, etc. In javascript  we can call methods on objects, we can call properties on objects in order to change the objects.
 
-![DOM](https://drive.google.com/uc?export=view&id=1vXTZt-mJEM5rDUYjNLUflKWBZMCBOi9Y)
+![DOM](./support/dom.png)
 
 We can introduce nodes, all objects are nodes. We can change the nodes, we can interact with them, create Animations, validations, etc.
 
@@ -213,7 +213,7 @@ if you can see this, you browser doesn't understand IFRAME.
 </iframe>
 ```
 
-![BrowserSecurityMechanism](https://drive.google.com/uc?export=view&id=1R-Q0SmpiS0ulbkcT7V3cq4dOR47EkjnZ)
+![BrowserSecurityMechanism](./support/browser-security-mechanism.png)
 
 
 Why use frames?
@@ -228,7 +228,7 @@ In order to play a little bit with iframes follow the next instructions:
 4. Access the browser as http://localhost
 5. Solve the problem in order to see the iframe 
 
-![ComponentsBrowserSecurityPolicy](https://drive.google.com/uc?export=view&id=1L6qROHKPMnUay-TfhDev5jFUIMUTQBiv)
+![ComponentsBrowserSecurityPolicy](./support/components-browser-security-policy.png)
 
 ### HTML Sandboxing
 
