@@ -118,7 +118,7 @@ By doing so, the three types above mentioned will look like this:
 1. **Filter input on arrival.** At the point where user input is received, filter as strictly as possible based on what is expected or valid input.
 2. **Encode data on output.** At the point where user-controllable data is output in HTTP responses, encode the output to prevent it from being interpreted as active content. Depending on the output context, this might require applying combinations of HTML, URL, JavaScript, and CSS encoding.
 3. **Use appropriate response headers.** To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the `Content-Type` and `X-Content-Type-Options` headers to ensure that browsers interpret the responses in the way you intend.
-4. **Content Security Policy.** Use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.\
+4. **Content Security Policy.** Use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.
 5. **Continuous database scanning.** For stored XSS is common practice to scan the database at regulated intervals, although XSS payloads can be written in multiple formats (base64, binary etc.).
 
 ## Other XSS
@@ -131,7 +131,7 @@ This is not a code injection vulnerability as each website is vulnerable to this
 ### Mutated XSS
 Mutated XSS happens when the browser tries to fix and rewrite invaild HTML but fails doing so thus executing attacker's code. Because it depends from browser to browser, is extremely hard to detect or sanitize within the websites application logic. At the end of this page you will find a video explaining a mXSS on Google Search, and also check the link for one of the first papers describing mXSS attacks.
 
-## Tasks
+## Challenges
 ### 1. DVWA
 We will use Damn Vulnerable Web Application (DVWA) for this one. You may install it however you want, just to work, but a simple way to do it is by using Docker. Once you [installed](https://docs.docker.com/engine/install/) docker you must run
 ```bash
@@ -140,9 +140,9 @@ $ docker run --rm -it -p 8080:80 vulnerables/web-dvwa
 To access the app, go to http://localhost:8080/setup.php and click on `Create/Reset Database`. Login with username `admin` and password `password`.
 
 DVWA has multipe vulnerable components, but today we will use the XSS related ones. The app has 4 levels of security that can be changed from 'DVWA Security' section.
-All the DVWA tasks allow you to view the PHP source of the page to get additional info about the back-end script. However, in a real-world scenario you won't have that kind of access, so please use this functionality only after you have finished the task.
+All the DVWA challenges allow you to view the PHP source of the page to get additional info about the back-end script. However, in a real-world scenario you won't have that kind of access, so please use this functionality only after you have finished the challenge.
 
-The goal of this tasks is to rise an `alert(1)` from JavaScript like this:
+The goal of this challenges is to rise an `alert(1)` from JavaScript like this:
 ![DVWA Alert 1](https://github.com/hexcellents/sss-web/blob/master/05-injection-2/support/dvwa-alert-1.png)
 
 With the security level set on **low** you will have to go through each XSS type. Raise the alert, then change the security level to **medium** and then **high**. After you are done with this, change on **impossible** and click on `View Source`. Why an exploit is not possible in this case? Check the PHP documentation to understand why.
@@ -239,12 +239,12 @@ If you find an action/request to have a CSRF token don't give up to that so easi
 ## Note
 You can combine XSS with CSRF :). If you have two websites that share a part of their user base, you can use a XSS vulnerability in one to abuse a CSRF vulnerability in the other one. For example if a company provides two related services (e.g. email and calendar) you can assume that there is a high probability that a user might have accounts on both of the services, making a Stored XSS in one app a great way to exploit a CSRF in the other one.
 
-## Tasks
+## Challenges
 ### 1. DVWA
-Using the same setup as for XSS tasks, go to the CSRF page of DVWA and craft URLs that will change the password for the user accessing it for each security level: **low**, **medium**, **hard**. Why a CSRF is not possible for **impossible**?
+Using the same setup as for XSS challenges, go to the CSRF page of DVWA and craft URLs that will change the password for the user accessing it for each security level: **low**, **medium**, **hard**. Why a CSRF is not possible for **impossible**?
 
 ### 2. PortSwigger Academy
-You have 8 tasks here: https://portswigger.net/web-security/all-labs#cross-site-request-forgery-csrf
+You have 8 challenges here: https://portswigger.net/web-security/all-labs#cross-site-request-forgery-csrf
 
 ## Further reading
 * https://portswigger.net/web-security/csrf
