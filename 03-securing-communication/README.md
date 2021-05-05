@@ -1,3 +1,9 @@
+# Securing Communication
+
+## Introduction
+
+## SSL, TLS, HTTPS
+
 http connections are plain text
 
 attackers controlling the middleboxes can intercept traffic (man-in-the-middle, MitM attack)
@@ -13,6 +19,8 @@ TLS: certificates (identity) + encryption (confidentiality)
 certificates: identity + symmetric key generation for encryption
 
 SSL1.0, SSL2.0, SSL3.0, TLS1.0, TLS1.1, TLS1.2, TLS1.3: https://maulwuff.de/research/ssl-debugging.html
+
+## Tutorials
 
 use wget + https (google.com)
 
@@ -71,7 +79,7 @@ TODO: Create a CA self-signed certificate, create new certificate, sign it with 
 Resources
 * https://tlseminar.github.io/class1/
 
-## Commands
+## Summary of Commands
 
 ```
 razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl s_client -connect www.upb.ro:443 -servername www.upb.ro
@@ -173,3 +181,64 @@ razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl x509 -noout -text -in 
 razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl verify -CAfile local/ssl.crt/awesome-ca.com.crt local/ssl.crt/bucuresti.ro.crt 
 local/ssl.crt/bucuresti.ro.crt: OK
 ```
+
+## Challenges
+
+### Investigate SSL/TLS-enabled Websites
+
+Use [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/).
+
+[testssl.sh](https://testssl.sh/)
+
+### Investigate SSL/TLS Certificates
+
+[openssl s_client](https://www.misterpki.com/openssl-s-client/)
+
+### Inspect HTTPS Configuration (Let's Encrypt)
+
+[Let's Encrypt](https://letsencrypt.org/)
+
+### Create HTTPS Configuration (Let's Encrypt)
+
+[Let's Encrypt](https://letsencrypt.org/)
+
+### Inspect HTTPS Traffic
+
+Capture and decrypt HTTPS traffic when you have the private key.
+
+Use [tcpdump](https://www.tcpdump.org/) or [Wireshark](https://www.wireshark.org/).
+
+### Self-Signed Certificates
+
+Create a self-signed certificate with [openssl](https://www.openssl.org/).
+
+### mitmproxy
+
+Use [mitmproxy](https://mitmproxy.org/) to capture HTTPS traffic.
+
+### HTTPS Attack
+
+Attack SSLv1, SSLv2
+
+[TLSSled](https://tools.kali.org/information-gathering/tlssled)
+
+Use [sslstrip](https://tools.kali.org/information-gathering/sslstrip)
+
+## Resources and Tools
+
+* [testssl.sh](https://testssl.sh/)
+* [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/)
+* [Let's Encrypt](https://letsencrypt.org/)
+* [tcpdump](https://www.tcpdump.org/)
+* [Wireshark](https://www.wireshark.org/)
+* [HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
+* [sslstrip](https://tools.kali.org/information-gathering/sslstrip)
+* [openssl](https://www.openssl.org/)
+* [mitmproxy](https://mitmproxy.org/)
+* [TLSSled](https://tools.kali.org/information-gathering/tlssled)
+* [sslstrip](https://tools.kali.org/information-gathering/sslstrip)
+
+## Further Reading
+
+* https://geekflare.com/ssl-test-certificate/
+* https://www.feistyduck.com/library/openssl-cookbook/
