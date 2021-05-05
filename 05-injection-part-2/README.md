@@ -26,7 +26,7 @@ Reflected XSS or non-persistent is the simplest form of XSS and occurs when user
 
 ![Reflected XSS Steps](../05-injection-2/support/reflected-xss.png)
 
-![Reflected XSS steps](../05-injection-2\support\XSS_reflected.gif)
+![Reflected XSS steps](../05-injection-2/support/XSS_reflected.gif)
 
 1. The attacker crafts a URL containing a malicious string and sends it to the victim.
 2. The victim is tricked by the attacker into requesting the URL from the website.
@@ -79,7 +79,7 @@ The difference between this example and the one at Reflected XSS is that the att
 DOM vulnerabilities usually arise when JavaScript code uses data from the user to construct the DOM / HTML page.
 
 ![DOM XSS Steps](../05-injection-2/support/dom-based-xss.png)
-![XSS DOM Steps](../05-injection-2\support\XSS_dom.gif)
+![XSS DOM Steps](../05-injection-2/support/XSS_dom.gif)
 
 1. The attacker crafts a URL containing a malicious string and sends it to the victim.
 2. The victim is tricked by the attacker into requesting the URL from the website.
