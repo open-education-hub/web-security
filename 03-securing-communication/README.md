@@ -186,13 +186,53 @@ local/ssl.crt/bucuresti.ro.crt: OK
 
 ### Investigate SSL/TLS-enabled Websites
 
-Use [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/).
+Investigate the SSL/TLS configuration strength for different websites.
+Use:
+* [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/) in a web browser
+* [testssl.sh](https://testssl.sh/) in the command line
 
-[testssl.sh](https://testssl.sh/)
+Investigate the following websites:
+* https://curs.upb.ro/
+* https://ing.ro/
+* https://senat.ro/
+* https://republica.ro/
+* https://www.emag.ro/
+
+Look for the following:
+* the overall grade
+* reasons for not getting the maximum grade
+* certificate expiration date
+* certification authority (CA)
+* SSL/TLS version supported
+
+Fill the information above in a Google spreadsheet, a copy of [this one](https://docs.google.com/spreadsheets/d/1ufpcQcwSL3LEziqg5tjBK-e7B2xVq0N5xiRcq9yeRHY/edit?usp=sharing).
 
 ### Investigate SSL/TLS Certificates
 
-[openssl s_client](https://www.misterpki.com/openssl-s-client/)
+Download and investigate locally remote certificates.
+Use [openssl s_client](https://www.misterpki.com/openssl-s-client/) to download a certificate.
+Use [openssl x509](https://serverfault.com/a/215617/410841) to investigate the downloaded certificate.
+
+Investigate the following websites:
+* https://koala.cs.pub.ro
+* https://security.cs.pub.ro
+* https://wiki.cs.pub.ro
+
+These websites are colocated on the same IP address:
+```
+$ host security.cs.pub.ro
+security.cs.pub.ro has address 141.85.227.114
+security.cs.pub.ro mail is handled by 5 security.cs.pub.ro.
+
+$ host koala.cs.pub.ro
+koala.cs.pub.ro has address 141.85.227.114
+
+$ host wiki.cs.pub.ro
+wiki.cs.pub.ro is an alias for koala.cs.pub.ro.
+koala.cs.pub.ro has address 141.85.227.114
+```
+
+So be sure to use SNI (*Server Name Indication*) support for the `openssl s_client` command to download the correct certificate.
 
 ### Inspect HTTPS Configuration (Let's Encrypt)
 
@@ -237,6 +277,9 @@ Use [sslstrip](https://tools.kali.org/information-gathering/sslstrip)
 * [mitmproxy](https://mitmproxy.org/)
 * [TLSSled](https://tools.kali.org/information-gathering/tlssled)
 * [sslstrip](https://tools.kali.org/information-gathering/sslstrip)
+* [OpenSSL Essentials](https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs)
+* [The Most Common OpenSSL Commands](https://www.sslshopper.com/article-most-common-openssl-commands.html)
+* [OpenSSL Examples](https://geekflare.com/openssl-commands-certificates/)
 
 ## Further Reading
 
