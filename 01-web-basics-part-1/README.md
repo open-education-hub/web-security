@@ -334,7 +334,14 @@ https://imgur.com/a/47j3r5Y
 **4.** [Surprise](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
 **5.** [My Special Name](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
 **6.** [Lame Login](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
-**7.** You can play with other challenges on the same platform [here](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**7.** [Eyes](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**8.**  [Name](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**9.**  [Readme](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**10.**  [King-Kong](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**11.**  [Give to Get](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**12.**  [Give to Post](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**13.**  [One by One](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**13.**  [Produce-consume](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
 
 ***
 
