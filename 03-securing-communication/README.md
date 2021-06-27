@@ -236,17 +236,89 @@ So be sure to use SNI (*Server Name Indication*) support for the `openssl s_clie
 
 ### Inspect HTTPS Configuration (Let's Encrypt)
 
-[Let's Encrypt](https://letsencrypt.org/)
+You are given access via SSH to an Nginx setup using SSL/TLS.
+You are provided the hostname that you can use to connect via SSH and that exposes HTTPS.
+
+**In this section and others we will use `<hostname>` as a placeholder for the hostname you will be provided.
+We will also use `<server_IP_address>` for the IP address of the server identified by `<hostname>`.**
+
+Inspect the Nginx configuration in `/etc/nginx/sites-enbled/<hostname>`.
+SSL is enabled with [Let's Encrypt](https://letsencrypt.org/), a free service providing HTTPS certificates.
+The Let's Encrypt configuration is located in `/etc/letsencrypt/live/<hostname>`, as seen in the Nginx configuration:
+```
+        ssl_certificate /etc/letsencrypt/live/<hostname>/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/<hostname>/privkey.pem;
+```
+
+Investigate the HTTPS connection with the [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/) and with [testssl.sh](https://testssl.sh/).
+
+Obtain the certificate via `openssl s_client` and inspect it locally.
+Identify the certification authority (CA), the expiration date, the contact person and the subject name.
 
 ### Create HTTPS Configuration (Let's Encrypt)
 
-[Let's Encrypt](https://letsencrypt.org/)
+You are given access via SSH to an Nginx setup that isn't yet using SSL/TLS.
+You are provided the hostname that you can use to connect via SSH and that exposes HTTPS.
+
+Install the `certbot` package and create a [Let's Encrypt](https://letsencrypt.org/) via the `certbot` command.
+
+Configure Nginx with SSL/TLS using the Let's Encrypt certificate.
+Use the configuration from the previous challenge as a starting point.
+
+Validate the correct HTTPS configuration with the [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/) and with [testssl.sh](https://testssl.sh/).
 
 ### Inspect HTTPS Traffic
 
-Capture and decrypt HTTPS traffic when you have the private key.
+In this tutorial challenge, we capture and aim to decrypt HTTPS traffic.
+We use Wireshark to capture traffic.
 
-Use [tcpdump](https://www.tcpdump.org/) or [Wireshark](https://www.wireshark.org/).
+To decrypt traffic, we need to have access to the private key of the server.
+Copy the contents of the private key from the Nginx server set up above, from the `/etc/letsencrypt/live/<hostname>/privkey.pem` into a local file.
+
+Start Wireshark (as `root`).
+Load the private key in Wireshark using instructions [here](https://accedian.com/blog/how-to-decrypt-an-https-exchange-with-wireshark/).
+
+Start packet capture in Wireshark and filter packets to / from the IP address of the server.
+Use a string such as `ip.addr = <server_IP_address>` in the filter line in Wireshark.
+
+Use `curl` to request the index page from the server:
+```
+curl https://<hostname>
+```
+
+Packet capture in Wireshark will not show decrypted content, similar to the image below.
+
+![HTTPS not decrypted](https-capture-decrypt/wireshark-not-decrypt.png)
+
+This is because, by default, the connection uses SSL / TLS ciphers with [PFS](https://en.wikipedia.org/wiki/Forward_secrecy) (*Perfect Forward Secrecy*) usually enabled with DHE (*Diffie-Hellman Exchange*).
+Don't bother with the acronyms and their significance, we use them to let you know the terms and maybe look for additional information later on.
+
+However, we can request `curl` to not use PFS, by choosing a simpler cipher.
+This simple cipher will use the private key that we are in possession of (and that we loaded into Wireshark) to encrypt traffic.
+This is also explained [here](https://accedian.com/blog/how-to-decrypt-an-https-exchange-with-wireshark/).
+
+Use `curl` to request the index page from the server with a simpler cipher that does not use DHE:
+```
+curl --ciphers AES256-SHA https://<hostname>
+```
+
+Now, the packet capture shows actual decrypted HTTP content, similar to the image below.
+
+![HTTPS decrypted](https-capture-decrypt/wireshark-decrypt.png)
+
+You can use `Right click` -> `Follow` -> `HTTP stream` to extract the HTTP traffic only.
+
+In summary, with access to the private key, if the cipher used in the HTTPS connection (HTTP + SSL / TLS) doesn't use DHE, we can decrypt the traffic.
+Of course, this requires access to the private key.
+In an actual attack this is another part of the attack vector where some server-side vulnerability allows the extraction of the private key.
+
+### Secure Ciphers
+
+In order to prevent attacks such as those above, we need to configure secure ciphers to be used by the server.
+When an SSL / TLS handshake occurs, the server will present the available cipher suites.
+
+Follow instructions [here](https://medium.com/@mvuksano/how-to-properly-configure-your-nginx-for-tls-564651438fe0) and [here](https://graspingtech.com/nginx-lets-encrypt-ssl-labs-aplus/) to configure secure cipher suites.
+Your goal is to get an an A (or maybe even A+) rating on [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/).
 
 ### Self-Signed Certificates
 
