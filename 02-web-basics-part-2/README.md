@@ -308,6 +308,25 @@ Some browser extensions can make your life easier when interacting with the webs
 * **Hasher**: An extension to quickly generate most common **hashes** (_MD5_, _SHA-1_, _SHA-224_, _SHA-256_, _SHA-384_, _SHA-512_, etc), **ciphers** (_AES-256_, _DES_, _Triple-DES_, _RC4_, etc), **ROT13**, **HMAC**, **CRC** (_CRC-8_, _CRC 16_), for a given input. You can also convert timestamps to human readable formats, convert numbers from different bases (hex, binary, dec), encode or decode strings and convert between _ASCII_, _HEX_, _UTF-8_, etc.
     * Google Chrome link: https://chrome.google.com/webstore/detail/hasher/kignjplbjlocolcfldfhbonmbblpfbjb
 
+# Further Reading
+
+* [1] Metropolia University of Applied Sciences - Applied Web Application Security Course
+* [2] https://en.wikipedia.org/wiki/HTTP_cookie
+* [3] https://stackoverflow.com/questions/11142882/what-are-cookies-and-sessions-and-how-do-they-relate-to-each-other
+* [4] https://docs.python-requests.org/en/master/user/advanced/
+* [5] https://stackoverflow.com/questions/11142882/what-are-cookies-and-sessions-and-how-do-they-relate-to-each-other  
+* [6] https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg  
+* [7] https://danielmiessler.com/study/encoding-encryption-hashing-obfuscation/  
+* [8] https://searchsecurity.techtarget.com/tip/How-to-encrypt-and-secure-a-website-using-HTTPS  
+* [9] https://www.linkedin.com/learning/asp-dot-net-core-identity-authentication-management
+* [10] https://techterms.com/definition/authentication
+* [11] https://www.bugcrowd.com/blog/how-to-find-idor-insecure-direct-object-reference-vulnerabilities-for-large-bounty-rewards/
+* [12] https://portswigger.net/web-security/file-path-traversal
+* [13] https://www.amazon.com/Google-Hacking-Penetration-Testers-1/dp/1931836361
+* [14] https://securitytrails.com/blog/google-hacking-techniques
+* [15] https://www.acunetix.com/websitesecurity/google-hacking/
+* [16] https://www.sciencedirect.com/science/article/pii/B9781931836364500087
+
 # Exercises
 
 1. Nobody loves me
@@ -316,24 +335,6 @@ Some browser extensions can make your life easier when interacting with the webs
 4. Do you need glasses?
 5. Santa
 6. How's the weather
-
-# References
-* Metropolia University of Applied Sciences - Applied Web Application Security Course
-* https://en.wikipedia.org/wiki/HTTP_cookie
-* https://stackoverflow.com/questions/11142882/what-are-cookies-and-sessions-and-how-do-they-relate-to-each-other
-* https://docs.python-requests.org/en/master/user/advanced/
-* https://stackoverflow.com/questions/11142882/what-are-cookies-and-sessions-and-how-do-they-relate-to-each-other  
-* https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg  
-* https://danielmiessler.com/study/encoding-encryption-hashing-obfuscation/  
-* https://searchsecurity.techtarget.com/tip/How-to-encrypt-and-secure-a-website-using-HTTPS  
-* https://www.linkedin.com/learning/asp-dot-net-core-identity-authentication-management
-* https://techterms.com/definition/authentication
-* https://www.bugcrowd.com/blog/how-to-find-idor-insecure-direct-object-reference-vulnerabilities-for-large-bounty-rewards/
-* https://portswigger.net/web-security/file-path-traversal
-* https://www.amazon.com/Google-Hacking-Penetration-Testers-1/dp/1931836361
-* https://securitytrails.com/blog/google-hacking-techniques
-* https://www.acunetix.com/websitesecurity/google-hacking/
-* https://www.sciencedirect.com/science/article/pii/B9781931836364500087
 
 
 
