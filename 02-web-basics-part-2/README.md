@@ -329,14 +329,15 @@ Some browser extensions can make your life easier when interacting with the webs
 
 # Exercises
 
-1. Nobody loves me
-2. Chef hacky mchack
-3. Chocolate
-4. Do you need glasses?
-5. Santa
-6. How's the weather
-
-
+**1.** [Nobody loves me](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**2.** [Do you need glasses?](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**3.** [Chef hacky mchack](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**4.** [Santa](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**5.** [Great Names](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**6.** [Mind your own business](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**7.**  [Beep Beep Boop](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**8.**  [Let's traverse the universe](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
+**9.**  [Color](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
 
 
 
