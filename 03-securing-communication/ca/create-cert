@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if test $# -ne 1; then
+    echo "Usage: $0 <subject_name>" 1>&2
+    exit 1
+fi
+
+name="$1"
+
+rm index.*
+touch index.txt
+touch index.txt.attr
+
+# Create key.
+openssl genrsa -out private/"$name".key 2048
+
+# Create certificate request.
+openssl req -config openssl.cnf -key private/"$name".key -subj "/C=RO/ST=Bucharest/L=Bucharest/O=University POLITEHNICA of Bucharest/OU=Computer Science and Engineering Department/CN=$name" -new -sha256 -out csr/"$name".csr
+
+# Create certificate (with CA).
+yes y | openssl ca -config openssl.cnf -passin pass:sss-web-ca -days 375 -notext -md sha256 -in csr/"$name".csr -out certs/"$name".crt
+
+# Verify certificate.
+openssl verify -CAfile certs/ca.crt certs/"$name".crt
