@@ -288,7 +288,7 @@ curl https://<hostname>
 
 Packet capture in Wireshark will not show decrypted content, similar to the image below.
 
-![HTTPS not decrypted](https-capture-decrypt/wireshark-not-decrypt.png)
+![HTTPS not decrypted](https-capture-decrypt/wireshark-no-decrypt.png)
 
 This is because, by default, the connection uses SSL / TLS ciphers with [PFS](https://en.wikipedia.org/wiki/Forward_secrecy) (*Perfect Forward Secrecy*) usually enabled with DHE (*Diffie-Hellman Exchange*).
 Don't bother with the acronyms and their significance, we use them to let you know the terms and maybe look for additional information later on.
