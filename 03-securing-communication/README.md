@@ -184,7 +184,7 @@ local/ssl.crt/bucuresti.ro.crt: OK
 
 ## Challenges
 
-### Investigate SSL/TLS-enabled Websites
+### 01. Investigate SSL/TLS-enabled Websites
 
 Investigate the SSL/TLS configuration strength for different websites.
 Use:
@@ -207,7 +207,7 @@ Look for the following:
 
 Fill the information above in a Google spreadsheet, a copy of [this one](https://docs.google.com/spreadsheets/d/1ufpcQcwSL3LEziqg5tjBK-e7B2xVq0N5xiRcq9yeRHY/edit?usp=sharing).
 
-### Investigate SSL/TLS Certificates
+### 02. Investigate SSL/TLS Certificates
 
 Download and investigate locally remote certificates.
 Use [openssl s_client](https://www.misterpki.com/openssl-s-client/) to download a certificate.
@@ -234,7 +234,7 @@ koala.cs.pub.ro has address 141.85.227.114
 
 So be sure to use SNI (*Server Name Indication*) support for the `openssl s_client` command to download the correct certificate.
 
-### Inspect HTTPS Configuration (Let's Encrypt)
+### 03. Inspect HTTPS Configuration (Let's Encrypt)
 
 You are given access via SSH to an Nginx setup using SSL/TLS.
 You are provided the hostname that you can use to connect via SSH and that exposes HTTPS.
@@ -255,7 +255,7 @@ Investigate the HTTPS connection with the [SSL Server Test from SSL Labs](https:
 Obtain the certificate via `openssl s_client` and inspect it locally.
 Identify the certification authority (CA), the expiration date, the contact person and the subject name.
 
-### Create HTTPS Configuration (Let's Encrypt)
+### 04. Create HTTPS Configuration (Let's Encrypt)
 
 You are given access via SSH to an Nginx setup that isn't yet using SSL/TLS.
 You are provided the hostname that you can use to connect via SSH and that exposes HTTPS.
@@ -267,7 +267,7 @@ Use the configuration from the previous challenge as a starting point.
 
 Validate the correct HTTPS configuration with the [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/) and with [testssl.sh](https://testssl.sh/).
 
-### Inspect HTTPS Traffic
+### 05. Inspect HTTPS Traffic
 
 In this tutorial challenge, we capture and aim to decrypt HTTPS traffic.
 We use Wireshark to capture traffic.
@@ -312,7 +312,7 @@ In summary, with access to the private key, if the cipher used in the HTTPS conn
 Of course, this requires access to the private key.
 In an actual attack this is another part of the attack vector where some server-side vulnerability allows the extraction of the private key.
 
-### Secure Ciphers
+### 06. Secure Ciphers
 
 In order to prevent attacks such as those above, we need to configure secure ciphers to be used by the server.
 When an SSL / TLS handshake occurs, the server will present the available cipher suites.
@@ -320,21 +320,29 @@ When an SSL / TLS handshake occurs, the server will present the available cipher
 Follow instructions [here](https://medium.com/@mvuksano/how-to-properly-configure-your-nginx-for-tls-564651438fe0) and [here](https://graspingtech.com/nginx-lets-encrypt-ssl-labs-aplus/) to configure secure cipher suites.
 Your goal is to get an an A (or maybe even A+) rating on [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/).
 
-### Self-Signed Certificates
+### 07. Self-Signed Certificates
 
-Create a self-signed certificate with [openssl](https://www.openssl.org/).
+You are given access via SSH to an Nginx setup.
+You are provided the hostname that you can use to connect via SSH and that exposes HTTPS.
 
-### mitmproxy
+Use [openssl](https://www.openssl.org/) to create a self-signed certificate.
+Configure that certificate for the hostname you were provided.
 
-Use [mitmproxy](https://mitmproxy.org/) to capture HTTPS traffic.
+Investigate the HTTPS connection with the [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/) and with [testssl.sh](https://testssl.sh/).
 
-### HTTPS Attack
+Obtain the certificate via `openssl s_client` and inspect it locally.
+Identify the certification authority (CA), the expiration date, the contact person and the subject name.
+Confirm they match the configuration provided at creation time.
 
-Attack SSLv1, SSLv2
+### 08. Use Client Certificate Authentication
 
-[TLSSled](https://tools.kali.org/information-gathering/tlssled)
+Connect via HTTPS to a https://ctf-10.security.cs.pub.ro:31443.
+Use client certificate authentication to retrieve the flag.
 
-Use [sslstrip](https://tools.kali.org/information-gathering/sslstrip)
+The client certificate needs to be signed by the same certification authority as that of the server.
+See the files and scripts in the `03-securing-communication/ca/` folder in the repository.
+
+Challenge 03: Certificate Authentication: https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions
 
 ## Resources and Tools
 
@@ -352,6 +360,7 @@ Use [sslstrip](https://tools.kali.org/information-gathering/sslstrip)
 * [OpenSSL Essentials](https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs)
 * [The Most Common OpenSSL Commands](https://www.sslshopper.com/article-most-common-openssl-commands.html)
 * [OpenSSL Examples](https://geekflare.com/openssl-commands-certificates/)
+* [OpenSSL Certificate Authority](https://jamielinux.com/docs/openssl-certificate-authority/index.html)
 
 ## Further Reading
 
