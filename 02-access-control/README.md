@@ -111,7 +111,7 @@ An example of accessing system files:
   
 `http://example.com/view.php?file=../../../../etc/passwd`  
   
-![Path Traversal](https://github.com/hexcellents/sss-web/blob/master/03-broken-access-control/support/path_traversal.png)  
+![Path Traversal](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/path_traversal.png)  
 
 ## Path Traversal Prevention
 
@@ -141,7 +141,7 @@ Now, by changing the invoice number the user might be able to access other invoi
   
 When performing penetration tests, the application parameters should certainly be investigated by iterating through possible values and observing the responses.  
   
-![Insecure Direct Object References](https://github.com/hexcellents/sss-web/blob/master/03-broken-access-control/support/insecure_direct_object_references.png)  
+![Insecure Direct Object References](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/insecure_direct_object_references.png)  
 
 ## Insecure Direct Object References Prevention
 
@@ -190,7 +190,7 @@ Google’s cache feature is very useful. If Google crawls a page or document, yo
   
 Take, for example, the following google query: **cache:phrack.org**  
 
-![Cache](https://github.com/hexcellents/sss-web/blob/master/03-broken-access-control/support/cache.png)
+![Cache](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/cache.png)
   
 Some folks use the cache link as an anonymizer, thinking the content comes from Google.  
   
@@ -270,7 +270,7 @@ Alternatively, you can see the entire HTML code of a web page by selecting View 
   
 Next, some of the core functionalities of these tools will be detailed (some names may vary slightly across browsers, but the functionality is mainly the same, so we will focus in Google Chrome here):
 
-* **Elements**: In this tab you can see the HTML structure of the page. On the right panel, you can see the styles applied to each element when selected and add, remove or edit the properties directly from there. This kind of inspection could lead to the discovery of hidden elements which can be toggled into view by altering the CSS code or could lead to the discovery of commented pieces of code which could contain sensitive data. Also, the [DOM](https://github.com/hexcellents/sss-web/wiki/Session-01:-access-control-&-Browser-Security-Model#dom-document-object-model) (Document Object Model) structure of the page can be altered, and elements can be added or removed, such as scripts, input fields, etc. (any element in fact), which means that any JavaScript code used to sanitize user input or perform other functions can be bypassed.
+* **Elements**: In this tab you can see the HTML structure of the page. On the right panel, you can see the styles applied to each element when selected and add, remove or edit the properties directly from there. This kind of inspection could lead to the discovery of hidden elements which can be toggled into view by altering the CSS code or could lead to the discovery of commented pieces of code which could contain sensitive data. Also, the [DOM](https://github.com/hexcellents/sss-web/wiki/Session-01:-Web-Basics-&-Browser-Security-Model#dom-document-object-model) (Document Object Model) structure of the page can be altered, and elements can be added or removed, such as scripts, input fields, etc. (any element in fact), which means that any JavaScript code used to sanitize user input or perform other functions can be bypassed.
 
 ![Elements - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/devtools-1.png)  
 
