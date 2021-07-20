@@ -8,7 +8,7 @@ As we mentioned in the previous session, HTTP is a stateless protocol used to co
 
 An HTTP cookie (also called web cookie, Internet cookie, browser cookie, or simply cookie) is a small piece of data sent from a website and stored on the user's computer by the user's web browser while the user is browsing. Cookies were designed to be a reliable mechanism for websites to remember stateful information (such as items added in the shopping cart in an online store) or to record the user's browsing activity (including clicking particular buttons, logging in, or recording which pages were visited in the past). They can also be used to remember pieces of information that the user previously entered into form fields, such as names, addresses, passwords, and credit-card numbers.  
   
-![Cookies](https://github.com/hexcellents/sss-web/blob/master/02-web-basics/support/cookies.png)
+![Cookies](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/cookies.png)
 
 ## What is a cookie?
 A cookie is a _key=value_ pair stored in a text file on the user’s computer. This file can be found, for example, at the following path on a Windows 10 using Chrome:  
@@ -49,7 +49,7 @@ The basic workflow is:
 6. If the server finds a match, it reads the stored variables. For PHP, these variables will become available in the superglobal variable `$_SESSION`.
 7. If the server doesn’t find a match, it will create a new session and repeat the steps 1-6.
   
-![Session lifecycle](https://github.com/hexcellents/sss-web/blob/master/02-web-basics/support/session.jpg)
+![Session lifecycle](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/session.jpg)
   
 Example of a session in PHP:  
 `<?php`  
@@ -270,29 +270,29 @@ Alternatively, you can see the entire HTML code of a web page by selecting View 
   
 Next, some of the core functionalities of these tools will be detailed (some names may vary slightly across browsers, but the functionality is mainly the same, so we will focus in Google Chrome here):
 
-* **Elements**: In this tab you can see the HTML structure of the page. On the right panel, you can see the styles applied to each element when selected and add, remove or edit the properties directly from there. This kind of inspection could lead to the discovery of hidden elements which can be toggled into view by altering the CSS code or could lead to the discovery of commented pieces of code which could contain sensitive data. Also, the [DOM](https://github.com/hexcellents/sss-web/wiki/Session-01:-Web-Basics-&-Browser-Security-Model#dom-document-object-model) (Document Object Model) structure of the page can be altered, and elements can be added or removed, such as scripts, input fields, etc. (any element in fact), which means that any JavaScript code used to sanitize user input or perform other functions can be bypassed.
+* **Elements**: In this tab you can see the HTML structure of the page. On the right panel, you can see the styles applied to each element when selected and add, remove or edit the properties directly from there. This kind of inspection could lead to the discovery of hidden elements which can be toggled into view by altering the CSS code or could lead to the discovery of commented pieces of code which could contain sensitive data. Also, the [DOM](https://github.com/hexcellents/sss-web/wiki/Session-01:-access-control-&-Browser-Security-Model#dom-document-object-model) (Document Object Model) structure of the page can be altered, and elements can be added or removed, such as scripts, input fields, etc. (any element in fact), which means that any JavaScript code used to sanitize user input or perform other functions can be bypassed.
 
-![Elements - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-web-basics/support/devtools-1.png)  
+![Elements - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/devtools-1.png)  
 
 * **Console**: The console prints errors which occurred during page rendering or during any action performed on the page, such as, but not limited to, error loading an image not found, error while performing an asynchronous request to fetch data, missing included file (such as CSS or Javascript files), errors in Javascript code from the included scripts, debug messages left by the developer, etc. The console also has the ability to run any Javascript code by typing it directly there and interacting with the page.  
 
-![Console - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-web-basics/support/devtools-2.png)  
+![Console - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/devtools-2.png)  
 
 * **Sources**: This tab lets you see any file from the loaded in the front-end, such as images, JS, CSS, etc. in an arborescent way. This could be a good tool to inspect the JS scripts included in the current page. They could reveal possibly valuable information, such as hidden paths or resources, or even critical pieces of functionality, which, if understood, could lead to successful exploits.  
 
-![Sources - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-web-basics/support/devtools-3.png)  
+![Sources - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/devtools-3.png)  
 
-* **Network**: The network tab shows detailed information about every file loaded and every request and response made by the page. You can find in-depth info about the [HTTP requests](https://github.com/hexcellents/sss-web/wiki/Session-01:-Web-Basics-&-Browser-Security-Model#http-hypertext-transfer-protocol), such as HTTP parameters, HTTP methods (GET, POST), HTTP status codes (200, 404, 500, etc.), loading time and size of each loaded element (image, script, etc). Furthermore, clicking on one of the requests there, you can see the headers, the preview, the response (as raw content) and others. This is useful for listing all the resources needed by a page, such as if there are any requests to APIs, additional scripts loaded, etc.  
+* **Network**: The network tab shows detailed information about every file loaded and every request and response made by the page. You can find in-depth info about the [HTTP requests](https://github.com/hexcellents/sss-web/wiki/Session-01:-access-control-&-Browser-Security-Model#http-hypertext-transfer-protocol), such as HTTP parameters, HTTP methods (GET, POST), HTTP status codes (200, 404, 500, etc.), loading time and size of each loaded element (image, script, etc). Furthermore, clicking on one of the requests there, you can see the headers, the preview, the response (as raw content) and others. This is useful for listing all the resources needed by a page, such as if there are any requests to APIs, additional scripts loaded, etc.  
 
-![Network - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-web-basics/support/devtools-4.png)  
+![Network - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/devtools-4.png)  
 
 * **Application**: This tab lets you see some specific data about the page, such as cookies (which will be covered in depth in the next section), local storage, session storage, cache, etc. This can be useful to see which data is stored on the client-side and it may contain useful values.  
 
-![Application - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-web-basics/support/devtools-5.png)  
+![Application - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/devtools-5.png)  
 
 * **Security**: Detailed information about the protocol used (HTTP or HTTPS) and the website certificates. Insecure websites can be vulnerable because HTTP sends data in plain text across the connection, which may be intercepted (e.g. Man in the Middle).  
 
-![Security - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-web-basics/support/devtools-6.png)  
+![Security - Developer Tools](https://github.com/hexcellents/sss-web/blob/master/02-access-control/support/devtools-6.png)  
 
 # Browser Extensions
 

@@ -24,7 +24,7 @@ There are mainly three types of XSS:
 ### Reflected XSS
 Reflected XSS or non-persistent is the simplest form of XSS and occurs when user input is immediately returned by the web application in the HTTP response.
 
-![Reflected XSS Steps](https://github.com/hexcellents/sss-web/blob/master/05-injection-2/support/reflected-xss.png)
+![Reflected XSS Steps](https://github.com/hexcellents/sss-web/blob/master/05-cross-site-scripting/support/reflected-xss.png)
 
 1. The attacker crafts a URL containing a malicious string and sends it to the victim.
 2. The victim is tricked by the attacker into requesting the URL from the website.
@@ -50,7 +50,7 @@ The attacker now has control to the JavaScript code using a parameter stored in 
 ### Stored XSS
 Stored XSS or persistent XSS happens when user input is stored in the database and it is used non-sanitized in the response HTML pages.
 
-![Persistent XSS Steps](https://github.com/hexcellents/sss-web/blob/master/05-injection-2/support/persistent-xss.png)
+![Persistent XSS Steps](https://github.com/hexcellents/sss-web/blob/master/05-cross-site-scripting/support/persistent-xss.png)
 
 1. The attacker uses one of the website's forms to insert a malicious string into the website's database.
 2. The victim requests a page from the website.
@@ -73,7 +73,7 @@ The difference between this example and the one at Reflected XSS is that the att
 ### DOM XSS
 DOM vulnerabilities usually arise when JavaScript code uses data from the user to construct the DOM / HTML page.
 
-![DOM XSS Steps](https://github.com/hexcellents/sss-web/blob/master/05-injection-2/support/dom-based-xss.png)
+![DOM XSS Steps](https://github.com/hexcellents/sss-web/blob/master/05-cross-site-scripting/support/dom-based-xss.png)
 
 1. The attacker crafts a URL containing a malicious string and sends it to the victim.
 2. The victim is tricked by the attacker into requesting the URL from the website.
@@ -111,7 +111,7 @@ The three types of XSS presented above are the ones that historically speaking w
 * Client XSS
 
 By doing so, the three types above mentioned will look like this:
-![Server vs Client XSS](https://github.com/hexcellents/sss-web/blob/master/05-injection-2/support/server-client-xss.png)
+![Server vs Client XSS](https://github.com/hexcellents/sss-web/blob/master/05-cross-site-scripting/support/server-client-xss.png)
 
 
 ## Defense Mechanisms
@@ -125,7 +125,7 @@ By doing so, the three types above mentioned will look like this:
 Self XSS is a social engineering attack used to gain access to victim's web accounts. The victim is tricked into running malicious JavaScript code into their own browser, in web developer console, which can either exfiltrate data or perform actions on behalf of the user.
 This is not a code injection vulnerability as each website is vulnerable to this type of attack. In order to prevent this, websites add warning messages in console. In the image below, there are two examples, from Google Meet and Facebook.
 
-![Self XSS](https://github.com/hexcellents/sss-web/blob/master/05-injection-2/support/self-xss.png)
+![Self XSS](https://github.com/hexcellents/sss-web/blob/master/05-cross-site-scripting/support/self-xss.png)
 
 ### Mutated XSS
 Mutated XSS happens when the browser tries to fix and rewrite invaild HTML but fails doing so thus executing attacker's code. Because it depends from browser to browser, is extremely hard to detect or sanitize within the websites application logic. At the end of this page you will find a video explaining a mXSS on Google Search.
@@ -142,7 +142,7 @@ DVWA has multipe vulnerable components, but today we will use the XSS related on
 All the DVWA tasks allow you to view the PHP source of the page to get additional info about the back-end script. However, in a real-world scenario you won't have that kind of access, so please use this functionality only after you have finished the task.
 
 The goal of this tasks is to rise an `alert(1)` from JavaScript like this:
-![DVWA Alert 1](https://github.com/hexcellents/sss-web/blob/master/05-injection-2/support/dvwa-alert-1.png)
+![DVWA Alert 1](https://github.com/hexcellents/sss-web/blob/master/05-cross-site-scripting/support/dvwa-alert-1.png)
 
 With the security level set on **low** you will have to go through each XSS type. Raise the alert, then change the security level to **medium** and then **high**. After you are done with this, change on **impossible** and click on `View Source`. Why an exploit is not possible in this case? Check the PHP documentation to understand why.
 
