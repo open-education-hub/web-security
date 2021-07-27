@@ -55,7 +55,6 @@ First of all, let's talk about how an attacker could perform a privilege escalat
 
 2. **Session Hijacking** - when a user steals another user / administrator session cookies and impersonates him.
 > **Example:** The attacker found an XSS vulnerability / performed a Man in the Middle Attack and stole the session cookie of another user. Now he is able to impersonate that user in any request by using their cookies. If the compromised account is a normal user, it's called horizontal privilege escalation. If it's an administrator account, it's called vertical privilege escalation.
-3. ****
 
 ### System Vectors
 
