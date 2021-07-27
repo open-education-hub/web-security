@@ -46,7 +46,8 @@ Let's say that an attacker managed to find an **RCE vulnerability** (Remote Code
 
 ## Privilege Escalation Vectors
 
-## Application Vectors
+### Application Vectors
+
 First of all, let's talk about how an attacker could perform a privilege escalation attack on the web application.
 
 1. **Broken Access Control** - when a user can in fact access some resource or perform some action that they are not supposed to be able to access.
