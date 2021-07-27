@@ -36,7 +36,7 @@ In the context of Web Security, we can also speak of another way of categorizing
 
 We have already given a few examples of application privilege escalations in thre previous section, so now we will focus on system privilege escalation.
 
-## System Privilege Escalation
+### System Privilege Escalation
 
 Security best practices suggest a very useful principle, called the **Principle of Least Privilege**, in which a user is given the minimum levels of access – or permissions – needed to perform his/her job functions.
 
