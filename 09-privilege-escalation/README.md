@@ -44,7 +44,7 @@ Following this principle, web servers should always be run by an unprivileged us
 
 Let's say that an attacker managed to find an **RCE vulnerability** (Remote Code Execution) on the web application. If the application is run by `root`, the attacker will be able to perform any command on the system with the same privileges as `root`. If, however, the application is run as `www-data`, the attacker will only have access to a small part of the system and will have to find another vulnerability to elevate his privileges.
 
-# Privilege Escalation Vectors
+## Privilege Escalation Vectors
 
 ## Application Vectors
 First of all, let's talk about how an attacker could perform a privilege escalation attack on the web application.
