@@ -121,7 +121,7 @@ There are countless methods to elevate privileges on a Linux system. The key in 
 ### Tools
 There are many tools that automated the process of enumeration and could help you save a lot of time when looking for privilege escalation vectors. The best tool for Linux is [LinPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS).
 
-# Preventing Privilege Escalation
+## Preventing Privilege Escalation
 When it comes to OS-level privilege escalation vulnerabilities, it's vital to install security patches as soon as possible, not only for the OS, but for all third-party applications used on the system.
 
 Application whitelisting technologies can be used to restrict which programs may run on a system, enabling organizations to reduce a machine's attack surface. Making sure that unneeded services are turned off and that unused hardware components and drivers are disabled is also very important.
