@@ -56,7 +56,8 @@ First of all, let's talk about how an attacker could perform a privilege escalat
 > **Example:** The attacker found an XSS vulnerability / performed a Man in the Middle Attack and stole the session cookie of another user. Now he is able to impersonate that user in any request by using their cookies. If the compromised account is a normal user, it's called horizontal privilege escalation. If it's an administrator account, it's called vertical privilege escalation.
 3. ****
 
-## System Vectors
+### System Vectors
+
 Finally, let's analyze a few methods where an attacker could gain elevated privileges once he has a foothold of the system (is able to execute commands on the underlying system).
 
 There are countless methods to elevate privileges on a Linux system. The key in finding them is to **enumerate** the host for potential vectors.
