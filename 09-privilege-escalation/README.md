@@ -119,6 +119,7 @@ There are countless methods to elevate privileges on a Linux system. The key in 
 		- `/etc/httpd/logs/access_log`
 
 ### Tools
+
 There are many tools that automated the process of enumeration and could help you save a lot of time when looking for privilege escalation vectors. The best tool for Linux is [LinPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS).
 
 ## Preventing Privilege Escalation
