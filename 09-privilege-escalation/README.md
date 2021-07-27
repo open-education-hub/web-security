@@ -17,7 +17,7 @@ Gaining access to a user account with the same level of privileges as the malici
 
 > Bob and Alice both have their own accounts at the same bank. Bob has malicious intents and exploits a misconfiguration to gain access to Alice's account. Even though they have the same level of access to the application's functionality, Bob can now access Alice's personal information, and is able to alter her account, transfer money on her behalf and many other things.
 
-## Vertical Privilege Escalation
+### Vertical Privilege Escalation
 Generally, when someone attempts to hack into a system, it’s because they want to perform some action on the system. This could be damaging the system or stealing information. Oftentimes, this requires a privilege level the attacker does not possess. This is where vertical privilege escalation comes in.
 
 The attacker exploits a flaw in the system, abuses a misconfiguration, or uses another vector to elevate his privileges from a normal user to an administrator.
