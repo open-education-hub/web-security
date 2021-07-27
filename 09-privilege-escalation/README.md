@@ -28,7 +28,7 @@ An actual scenario to better understand the potential damage:
 
 > The attacker managed to capture the admin's session cookies and takes over his session. Once logged in using the admin's cookies, he has access to the administration panel of the web application. From here, he can steal sensitive information (such as users data), perform a Denial of Service (DoS) attack (by deleting website's data), and create persistence (by locking out the actual administrators of the website).
 
-# Application vs System PrivEsc
+## Application vs System PrivEsc
 
 In the context of Web Security, we can also speak of another way of categorizing privilege escalation:
 1. **Application Privilege Escalation** is when the attacker uses the application accounts to gain further access to application functionality.
