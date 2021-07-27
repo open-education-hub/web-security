@@ -2,7 +2,7 @@
 
 When performing an attack on a target, the last step of a malicious actor, before achieving full system compromise, is to elevate his or her privileges to an administrative account. Once the attacker reached this phase and successully escalated his access rights, he can do anything with the vulnerable application or computer system.
 
-# What is privilege escalation?
+## What is privilege escalation?
 
 Privilege escalation vulnerabilities are security issues that allow users to gain more permissions and a higher level of access to systems or applications than their administrators intended. These types of flaws are valuable for attackers because they're needed for full exploit chains but can be overlooked by defenders or developers because of their lower severity scores.
 
