@@ -126,7 +126,7 @@ When it comes to OS-level privilege escalation vulnerabilities, it's vital to in
 
 Application whitelisting technologies can be used to restrict which programs may run on a system, enabling organizations to reduce a machine's attack surface. Making sure that unneeded services are turned off and that unused hardware components and drivers are disabled is also very important.
 
-# Further reading
+## Further reading
 - https://www.csoonline.com/article/3564726/privilege-escalation-explained-why-these-flaws-are-so-valuable-to-hackers.html
 - https://portswigger.net/web-security/access-control
 - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md
