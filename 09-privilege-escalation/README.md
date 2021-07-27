@@ -12,7 +12,7 @@ There are two main types of privilege escalation:
 1. **Horizontal Privilege Escalation** is when a user gains the access rights of another user who has the same access level as he or she does.
 3. **Vertical Privilege Escalation** is when an attacker uses a flaw in the system to gain access above what was intended for him or her.
 
-## Horizontal Privilege Escalation
+### Horizontal Privilege Escalation
 Gaining access to a user account with the same level of privileges as the malicious actor might sound a little weird, but there are legitimate use-cases for this. Think about the following scenario:
 
 > Bob and Alice both have their own accounts at the same bank. Bob has malicious intents and exploits a misconfiguration to gain access to Alice's account. Even though they have the same level of access to the application's functionality, Bob can now access Alice's personal information, and is able to alter her account, transfer money on her behalf and many other things.
