@@ -138,5 +138,7 @@ Application whitelisting technologies can be used to restrict which programs may
 - https://betterprogramming.pub/escaping-docker-privileged-containers-a7ae7d17f5a1
 - https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
 - https://app.hackthebox.eu/machines
-# Challenges
+
+## Challenges
+
 - Escalation
