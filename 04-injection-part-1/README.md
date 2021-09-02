@@ -2,10 +2,9 @@
 
 In this session, we'll explain what SQL injection is, describe some common examples, explain how to find and exploit various kinds of SQL injection vulnerabilities, and summarize how to prevent SQL injection.
 
-**NOTE:** _**For this session you'll need to use [Burp Suite][1] so please follow the links in the [Further Reading](#further-reading) section to set it up if you haven't done so yet.
-[[2]](https://portswigger.net/support/configuring-your-browser-to-work-with-burp)
-[[3]](https://portswigger.net/support/checking-your-browser-proxy-configuration)
-[[4]](https://portswigger.net/support/installing-burp-suites-ca-certificate-in-your-browser)**_
+**NOTE:**
+
+For this session you'll need to use [Burp Suite](https://portswigger.net/burp) so please follow the links in the [Further Reading](#further-reading) section to set it up if you haven't done so yet.[[2](https://portswigger.net/support/configuring-your-browser-to-work-with-burp),[3](https://portswigger.net/support/checking-your-browser-proxy-configuration),[4](https://portswigger.net/support/installing-burp-suites-ca-certificate-in-your-browser)]
 
 ## What is SQL injection
 
@@ -396,21 +395,21 @@ For a parameterized query to be effective in preventing SQL injection, the strin
 # Tools
 
 ## Burp Suite
-[Burp Suite][1] is one of the most popular penetration testing and vulnerability finder tools, and is often used for checking web application security. With this tool you can see all the requests that are executed when interacting with a web application. You can change the requests to see different behaviors and you can set automatic requests with different parameters. [[1]]
+[Burp Suite](https://portswigger.net/burp) is one of the most popular penetration testing and vulnerability finder tools, and is often used for checking web application security. With this tool you can see all the requests that are executed when interacting with a web application. You can change the requests to see different behaviors and you can set automatic requests with different parameters.
 
 ## SQLmap
-[SQLmap][7] is an open source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking over of database servers. It comes with a powerful detection engine, many niche features for the ultimate penetration tester and a broad range of switches lasting from database fingerprinting, over data fetching from the database, to accessing the underlying file system and executing commands on the operating system via out-of-band connections. You can see some of the features in this recording. [[7]]
+[SQLmap](https://sqlmap.org/) is an open source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking over of database servers. It comes with a powerful detection engine, many niche features for the ultimate penetration tester and a broad range of switches lasting from database fingerprinting, over data fetching from the database, to accessing the underlying file system and executing commands on the operating system via out-of-band connections. You can see some of the features in this recording.
 [![asciicast](https://asciinema.cs.pub.ro/a/N1r0DeFboLW4GXj0rZb4jsYeU.png)](https://asciinema.cs.pub.ro/a/N1r0DeFboLW4GXj0rZb4jsYeU)
 
 # Further Reading
 
-* \[1] https://portswigger.net/burp
-* [2] https://portswigger.net/support/configuring-your-browser-to-work-with-burp
-* [3] https://portswigger.net/support/checking-your-browser-proxy-configuration
-* [4] https://portswigger.net/support/installing-burp-suites-ca-certificate-in-your-browser
-* [5] https://portswigger.net/web-security/sql-injection/cheat-sheet
-* [6] https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
-* \[7] https://sqlmap.org/
+**1.** [Burp](https://portswigger.net/burp)     
+**2.** [Burp Browser Configuration](https://portswigger.net/support/configuring-your-browser-to-work-with-burp)         
+**3.** [Burp Proxy Configuration](https://portswigger.net/support/checking-your-browser-proxy-configuration)    
+**4.** [Burp Certificate](https://portswigger.net/support/installing-burp-suites-ca-certificate-in-your-browser)        
+**5.** [SQL Cheat Sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)        
+**6.** [SQL Payloads](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection)  
+**7.** [SQLmap](https://sqlmap.org/)
 
 # Challenges
 
@@ -426,8 +425,3 @@ For a parameterized query to be effective in preventing SQL injection, the strin
 **10.** [Conditional errors](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-errors)  
 **11.** [Time delays](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays)  
 **12.** [Out-of-band Application Security Testing](https://portswigger.net/web-security/sql-injection/blind/lab-out-of-band)  
-
-
-<!-- Hidden hyperlinks -->
-[1]: <https://portswigger.net/burp> "Burp Suite"
-[7]: <https://sqlmap.org/> "SQLmap"
