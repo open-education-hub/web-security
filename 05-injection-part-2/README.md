@@ -1,7 +1,7 @@
 # Cross-site Scripting (XSS)
 
 ## Intro
-Cross-site Scripting (XSS) is a web security vulnerability that allows an attacker to inject malicious code, usually JavaScript, in the web browser of the victim. This implies that the attacker can do a lot of damage from stealing data to perform actions on behalf of the user. This type of vulnerability implies that the web application uses the user input in the HTML page that it serves. As oposed to other type of code injections, the malicious code in a XSS will always run on the client side shifting the target from the server hosting the application to the users of the application.
+Cross-site Scripting (XSS) is a web security vulnerability that allows an attacker to inject malicious code, usually JavaScript, in the web browser of the victim. This implies that the attacker can do a lot of damage from stealing data to perform actions on behalf of the user. This type of vulnerability implies that the web application uses the user input in the HTML page that it serves. As opposed to other types of code injections, the malicious code in an XSS will always run on the client-side shifting the target from the server hosting the application to the users of the application.
 
 ## Impact
 The impact of the vulnerability is linked with the functionality that the web application provides. If the app is doesn't have much functionality (e.g. a news website) the attacker might not obtain much, but if it's a banking app, there is certainly something to obtain.
@@ -12,7 +12,7 @@ Cross-site Scripting can be used to achieve a lot of things:
 * track user movements - keylogging, taking screenshots of the page
 * perform actions on behalf of the user - sending payments to attacker's account
 * alter the looks of the HTML page (virtual defacement) - fake the balance of the account while the attacker steals the money
-* mining - placing a cryptocurency miner in the page while the user reads a long article
+* mining - placing a cryptocurrency miner in the page while the user reads a long article
 * if that's not enough, you may find more ideas [here](http://www.xss-payloads.com/payloads.html).
 
 ## Types
