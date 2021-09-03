@@ -13,7 +13,7 @@ A standard penetration testing flow implies 5 stages:
 1. **maintaining access** - planting hidden programs (like Trojan horses) that make a future attack easier
 1. **covering tracks** - cleaning up all the signs that may lead to thinking that an attack happened 
 
-![Penetration testing phases](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/pentest_phases.png)
+![Penetration testing phases](./support/pentest_phases.png)
 
 Next, we introduce some popular tools that may help in the first three phases, to gather information about a target. Exploiting Tools/ Security Testing Tools/ Penetration Testing Tools are used for the discovery of vulnerabilities without attempting to actually exploit them.
 
@@ -28,7 +28,7 @@ Every computer has a total of 65535 available ports; however, many of these are 
 
 Typing the simple command `nmap` will display all of its options for scanning, while `nmap <target>` will convert the hostname to an IP address and scan the top 1000 TCP ports, displaying their state and the service running on it:
 
-![Nmap output](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/nmap_output.png)
+![Nmap output](./support/nmap_output.png)
 
 You can see the full example [here](https://nmap.org/book/port-scanning-tutorial.html) and practice more Nmap options [here](https://tryhackme.com/room/rpnmap).
 
@@ -58,23 +58,23 @@ With Burp Intruder, customized attacks can be automated against web applications
 * I navigated to https://sss-ctf.security.cs.pub.ro/home and tried to log in using the email **a@a.com** and the password **abc123**.
 * The POST request can be found in HTTP history. Right click on it to send it to Intruder.
 
-![Send request to Burp Intruder](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/send_to_intruder.png)
+![Send request to Burp Intruder](./support/send_to_intruder.png)
 
 * Let's say we want to try all the passwords from **abc1**, **abc3**, **abc5**... to **abc100**. Navigate to the **Positions** tab - the payload position is specified with a pair of these characters: **§** called **payload markers**.
 
 **Note!** By default, Burp surrounds by default some parameter values which might be candidates for enumeration, such as cookie values, or POST data values. Remove the extra **§** characters, leaving it like in the picture below.
 
-![Set payload position](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/payload_position.png)
+![Set payload position](./support/payload_position.png)
 
 1. Our payload type (wordlist) is a sequence of numbers which can be automatically generated in Burp. Go to the **Payloads** tab and select **Numbers** as the **Payload type**.
 1. Fill in the Payload options to generate all the numbers from 1 to 100, with the step 2 (1, 3, 5...).
 1. Finally, launch the attack.
 
-![Set payload type](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/payload_type.png)
+![Set payload type](./support/payload_type.png)
 
  A new window opens and you can see all the requests Burp is making, with the payloads you specified. For example, you can check the request corresponding to the payload 7, with the resulting password being **abc7**, and you can observe the response, its status code, or even open it in the browser.
 
-![Attack example](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/attack_example.png)
+![Attack example](./support/attack_example.png)
 
 There are many ways in which you can customize this process according to your needs. You can have multiple payload positions and select from four attack types, specifying how to insert the payloads (one different wordlist for each position, or combinations of them). Find more details [here](https://portswigger.net/burp/documentation/desktop/tools/intruder/positions).
 * **Sniper** - This uses a single set of payloads. It targets each payload position in turn, and places each payload into that position in turn. Positions that are not targeted for a given request are not affected - the position markers are removed and any enclosed text that appears between them in the template remains unchanged. This attack type is useful for fuzzing a number of request parameters individually for common vulnerabilities. The total number of requests generated in the attack is the product of the number of positions and the number of payloads in the payload set.
@@ -94,7 +94,7 @@ DIRB comes with a set of preconfigured attack wordlists for easy usage but you c
 
 Usage example: `./dirb <url_base> [<wordlist_file(s)>] [options]`
 
-![DIRB example](https://github.com/hexcellents/sss-web/blob/master/06-recon-enumeration/support/dirb_example.png)
+![DIRB example](./support/dirb_example.png)
 
 The output lines with the results found (not 404) start with a `+` and give details about status code and page size.
 
