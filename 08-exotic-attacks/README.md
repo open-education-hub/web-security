@@ -4,13 +4,13 @@ As a web developer, you need to pay attention to the quirks of your chosen progr
 
 The most common server-side language on the web today is still **PHP**. There are lots of legacy websites which used this language to begin with, and a complete refactor is just not worth it. Today, even if there are better options for the server-side choice, PHP is still pretty popular.
 
-![Server Side Languages Popularity](https://github.com/hexcellents/sss-web/blob/master/09-exotic-attacks/support/language-stats.png)
-Source: [here](https://w3techs.com/technologies/overview/programming_language)
+![Server Side Languages Popularity](./assets/language-stats.png)
+Source [here](https://w3techs.com/technologies/overview/programming_language)
 
 There are also lots of different PHP versions, each with its own vulnerabilities. The latest version now is **PHP v7.4.7**. A small insight into the distribution of versions across the web is:
 
-![PHP Versions Popularity](https://github.com/hexcellents/sss-web/blob/master/09-exotic-attacks/support/version-stats.png)
-Sources: [here](https://w3techs.com/technologies/details/pl-php)
+![PHP Versions Popularity](./assets/version-stats.png)
+Source [here](https://w3techs.com/technologies/details/pl-php)
 
 In this session we will focus on some exotic attacks against specific PHP functions and functionalities, as well as a quick overview of other interesting quirks.
 
@@ -22,7 +22,7 @@ Dynamic typing allows developers to be more flexible when using PHP. But this ki
 
 In this section we will discuss **PHP type juggling** and how this can lead to authentication bypass vulnerabilities.
 
-![Type Juggling examples](https://github.com/hexcellents/sss-web/blob/master/09-exotic-attacks/support/type-juggling.png)
+![Type Juggling examples](./assets/type-juggling.png)
 
 ## How PHP compares values
 PHP has a feature called “_type juggling_”, or “_type coercion_”. This means that during the comparison of variables of different types, PHP will first convert them to a common, comparable type.
@@ -51,7 +51,7 @@ But what if the string that is being compared does not contain an integer? The s
 
 `(“Puppies” == 0) -> True`
 
-You can try this yourself using an online PHP sandbox, such as this one: [http://www.writephponline.com/](http://www.writephponline.com/)
+You can try this yourself using an online PHP sandbox, such as [this one](http://www.writephponline.com/).
 
 ## Loose Comparison vs. Strict Comparison (`==` vs `===`)
 The `==` and `!=` are the default comparison operators in other languages. But PHP has two main comparison modes, let’s call them **loose** (`==` and `!=`) and **strict** (`===` and `!==`).
@@ -62,7 +62,7 @@ The following tables showcase the difference between the two comparison modes:
 
 | Loose comparison    | Strict comparison   |
 | ------------------- | ------------------- |
-| ![Loose comparison](https://github.com/hexcellents/sss-web/blob/master/09-exotic-attacks/support/loose-comparison.png) | ![Strict comparison](https://github.com/hexcellents/sss-web/blob/master/09-exotic-attacks/support/strict-comparison.png) |
+| ![Loose comparison](./assets/loose-comparison.png) | ![Strict comparison](./assets/strict-comparison.png) |
 
 However, loose type comparison behavior like the one presented above is pretty common in PHP and many built-in functions work in the same way. You can probably already see how this can be very problematic, but how exactly can hackers exploit this behavior?
 
@@ -226,7 +226,7 @@ It has been **deprecated** since **PHP 5.5.0**, and **removed completely** in **
 
 # PHP Object Injection / PHP Insecure Object Deserialization
 
-**PHP Object Injection** is an application level vulnerability that could allow an attacker to perform different kinds of malicious attacks, such as [Code Injection](https://github.com/hexcellents/sss-web/wiki/Session-03:-Broken-Access-Control#command-injection), [SQL Injection](https://github.com/hexcellents/sss-web/wiki/Session-04:-Injection-Part-1), [Path Traversal](https://github.com/hexcellents/sss-web/wiki/Session-03:-Broken-Access-Control#path-traversal) and Application Denial of Service, depending on the context.
+**PHP Object Injection** is an application level vulnerability that could allow an attacker to perform different kinds of malicious attacks, such as Code Injection, SQL Injection, Path Traversal and Application Denial of Service, depending on the context.
 The vulnerability occurs when user-supplied input is not properly sanitized before being passed to the `unserialize()` PHP function. Since PHP allows object serialization, attackers could pass ad-hoc serialized strings to a vulnerable `unserialize()` call, resulting in an arbitrary PHP object(s) injection into the application scope.
 
 In order to go further, we need to know some things about **PHP magic methods**. The "magic" methods are nothing more than a set of special named functions, starting with two underscores, which denote methods that will be triggered in response to particular PHP events. A well known example, which you should be familiar with from other programming languages, is the `__construct()` method, which is a class constructor.
@@ -318,15 +318,15 @@ Payload: `a:2:{s:8:"username";b:1;s:8:"password";b:1;}`
 
 # Local File Inclusion (LFI) / Remote File Inclusion (RFI)
 
-An attacker can use **Local File Inclusion (LFI)** to trick the web application into exposing or running files on the web server. An **LFI** attack may lead to **Information Disclosure**, **Remote Code Execution (RCE)**, or even **[Cross-site Scripting (XSS)](https://github.com/hexcellents/sss-web/wiki/Session-05:-Injection-Part-2#cross-site-scripting-xss)**.
+An attacker can use **Local File Inclusion (LFI)** to trick the web application into exposing or running files on the web server. An **LFI** attack may lead to **Information Disclosure**, **Remote Code Execution (RCE)**, or even **Cross-site Scripting (XSS)**.
 
 Typically, **LFI** occurs when an application uses the path to a file as input. If the application treats this input as trusted, a local file may be used in the include statement.
 
-Using **Remote File Inclusion (RFI)**, an attacker can cause the web application to include a remote file. This is possible for web applications that dynamically include external files or scripts. Potential web security consequences of a successful **RFI** attack range from **Sensitive Information Disclosure** and **[Cross-site Scripting (XSS)](https://github.com/hexcellents/sss-web/wiki/Session-05:-Injection-Part-2#cross-site-scripting-xss)** to **Remote Code Execution (RCE)** and, as a final result, **full system compromise**.
+Using **Remote File Inclusion (RFI)**, an attacker can cause the web application to include a remote file. This is possible for web applications that dynamically include external files or scripts. Potential web security consequences of a successful **RFI** attack range from **Sensitive Information Disclosure** and **Cross-site Scripting (XSS)** to **Remote Code Execution (RCE)** and, as a final result, **full system compromise**.
 
 **Remote file inclusion** attacks usually occur when an application receives a path to a file as input for a web page and does not properly sanitize it. This allows an external URL to be supplied to the include function.
 
-![RFI Attack](https://github.com/hexcellents/sss-web/blob/master/09-exotic-attacks/support/what-is-rfi-attack.png)
+![RFI Attack](./assets/what-is-rfi-attack.png)
 
 The above definitions are very similar, so what is the exact difference between the two of them and how does an exploit affect the web application in each case?
 
@@ -334,7 +334,7 @@ The above definitions are very similar, so what is the exact difference between 
 
 **Local File Inclusion** can be divided into subcategories based on the end target of the attack.
 
-1. **[Path Traversal](https://github.com/hexcellents/sss-web/wiki/Session-03:-Broken-Access-Control#path-traversal)** - which we have studied in a previous session. It uses a local file path and enables the attacker to access the contents of arbitrary files. The outcome of this attack is to read sensitive data and expose confidential information.
+1. **Path Traversal** - which we have studied in a previous session. It uses a local file path and enables the attacker to access the contents of arbitrary files. The outcome of this attack is to read sensitive data and expose confidential information.
 
 2. **Remote Code Execution (RCE)** - which is a **very dangerous vulnerability**. It could be present in web applications that offer the possibility of uploading arbitrary files without proper checks. Once a malicious file was uploaded (such as a reverse shell), the attacker can compromise the entire system.
 
