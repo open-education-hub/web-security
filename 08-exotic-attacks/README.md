@@ -466,25 +466,25 @@ The most important aspect we kept talking about during all the sessions is to ne
 
 # Further Reading
 
-https://owasp.org/www-pdf-archive/PHPMagicTricks-TypeJuggling.pdf
-https://www.netsparker.com/blog/web-security/php-type-juggling-vulnerabilities/
-https://foxglovesecurity.com/2017/02/07/type-juggling-and-php-object-injection-and-sqli-oh-my/
-https://hydrasky.com/network-security/php-string-comparison-vulnerabilities/
-https://medium.com/swlh/php-type-juggling-vulnerabilities-3e28c4ed5c09
-https://nitesculucian.github.io/2018/10/05/php-object-injection-cheat-sheet/
-https://www.imperva.com/learn/application-security/rfi-remote-file-inclusion/
-https://www.acunetix.com/blog/articles/remote-file-inclusion-rfi/
-https://www.acunetix.com/blog/articles/local-file-inclusion-lfi/
-https://bitquark.co.uk/blog/2013/07/23/the_unexpected_dangers_of_preg_replace
-https://www.whitehatsec.com/blog/magic-hashes/
-https://davidhamann.de/2020/04/05/exploiting-python-pickle/
+* https://owasp.org/www-pdf-archive/PHPMagicTricks-TypeJuggling.pdf
+* https://www.netsparker.com/blog/web-security/php-type-juggling-vulnerabilities/
+* https://foxglovesecurity.com/2017/02/07/type-juggling-and-php-object-injection-and-sqli-oh-my/
+* https://hydrasky.com/network-security/php-string-comparison-vulnerabilities/
+* https://medium.com/swlh/php-type-juggling-vulnerabilities-3e28c4ed5c09
+* https://nitesculucian.github.io/2018/10/05/php-object-injection-cheat-sheet/
+* https://www.imperva.com/learn/application-security/rfi-remote-file-inclusion/
+* https://www.acunetix.com/blog/articles/remote-file-inclusion-rfi/
+* https://www.acunetix.com/blog/articles/local-file-inclusion-lfi/
+* https://bitquark.co.uk/blog/2013/07/23/the_unexpected_dangers_of_preg_replace
+* https://www.whitehatsec.com/blog/magic-hashes/
+* https://davidhamann.de/2020/04/05/exploiting-python-pickle/
 
 # Activities
 
-[Breaking Hashes](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-[Defaced Website](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-[Handy Tool](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-[Jar of Pickles](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-[Meme Uploader](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-[Pro Replacer](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-[TODO App](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**1.** [Breaking Hashes](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**2.** [Defaced Website](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**3.** [Handy Tool](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**4.** [Jar of Pickles](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**5.** [Meme Uploader](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**6.** [Pro Replacer](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**7.** [TODO App](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
