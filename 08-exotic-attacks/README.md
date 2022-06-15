@@ -481,10 +481,10 @@ The most important aspect we kept talking about during all the sessions is to ne
 
 # Activities
 
-**1.** [Breaking Hashes](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-**2.** [Defaced Website](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-**3.** [Handy Tool](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-**4.** [Jar of Pickles](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-**5.** [Meme Uploader](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-**6.** [Pro Replacer](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-**7.** [TODO App](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+* [Breaking Hashes](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+* [Defaced Website](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+* [Handy Tool](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+* [Jar of Pickles](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+* [Meme Uploader](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+* [Pro Replacer](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+* [TODO App](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
