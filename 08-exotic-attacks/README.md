@@ -479,7 +479,7 @@ https://bitquark.co.uk/blog/2013/07/23/the_unexpected_dangers_of_preg_replace
 https://www.whitehatsec.com/blog/magic-hashes/
 https://davidhamann.de/2020/04/05/exploiting-python-pickle/
 
-# Challenges
+# Activities
 
 [Breaking Hashes](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
 [Defaced Website](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
