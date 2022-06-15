@@ -231,7 +231,7 @@ He continued to explore the source code of WordPress and discovered that there i
 
 # Activities
 
-[Clean up](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-[High Score](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-[Snoop Doggy Dogg](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-[The Accountant](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**1.** [Clean up](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**2.** [High Score](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**3.** [Snoop Doggy Dogg](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+**4.** [The Accountant](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
