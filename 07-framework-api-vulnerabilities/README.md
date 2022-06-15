@@ -10,7 +10,7 @@ By nature, APIs expose application logic and sensitive data such as Personally I
 
 ## Broken Object Level Authorization
 
-An object refers to a data source that is associated with an authenticated entity. Object-level authorization is all about controlling access based on the scope of permissible user data and object access. A simple physical world example is a hotel room key which is coded to only open the room you paid for, as opposed to a master key used by a maid that opens all the rooms on the floor.  
+An object refers to a data source that is associated with an authenticated entity. Object-level authorization is all about controlling access based on the scope of permissible user data and object access. A simple physical world example is a hotel room key which is coded to only open the room you paid for, as opposed to a master key used by a maid that opens all the rooms on the floor.
 Attackers can exploit API endpoints that are vulnerable to broken object level authorization by manipulating the ID of an object that is sent within the client request. What this means is that the client can request information from an API endpoint that they are not supposed to have access to. This attack normally leads to unauthorized information disclosure, modification, or destruction of data.
 
 **Example Attack Scenario:**
@@ -19,7 +19,7 @@ Say for instance there is an e-commerce platform that provides financial and hos
 
 ## Broken Authentication
 
-Being different than Authorization discussed above, Authentication on the other hand is a complex and confusing mechanism concerning APIs. Since authentication endpoints are exposed to anyone by design, the endpoints that are responsible for user-authentication must be treated differently from regular API endpoints and implement extra layers of protection for credential stuffing attempts, in addition to brute force password and token guessing attacks.
+Being different from Authorization discussed above, Authentication on the other hand is a complex and confusing mechanism concerning APIs. Since authentication endpoints are exposed to anyone by design, the endpoints that are responsible for user-authentication must be treated differently from regular API endpoints and implement extra layers of protection for credential stuffing attempts, in addition to brute force password and token guessing attacks.
 
 **Example Attack Scenario:**
 
@@ -43,7 +43,7 @@ Let’s say that an attacker wants to cause a denial-of-service outage to a cert
 
 ## Broken Function Level Authorization
 
-Although different than Broken Object Level Authorization (described above), exploitation of this issue requires the attacker to send API requests to endpoints that they should not have access to, yet are exposed to anonymous users or regular, non-privileged users. These types of flaws are often easy to find and can allow attackers to access unauthorized functionality. For example, administrative functions are prime targets for this type of attack.
+Although different from Broken Object Level Authorization (described above), exploitation of this issue requires the attacker to send API requests to endpoints that they should not have access to, yet are exposed to anonymous users or regular, non-privileged users. These types of flaws are often easy to find and can allow attackers to access unauthorized functionality. For example, administrative functions are prime targets for this type of attack.
 
 **Example Attack Scenario:**
 
@@ -141,8 +141,8 @@ For example, if you want to sort the articles by title:
 
 You may use the following code to automatically sort by the package:
 
-`use Spatie\QueryBuilder\QueryBuilder;` 
- 
+`use Spatie\QueryBuilder\QueryBuilder;`
+
 `$articles = QueryBuilder::for(Article::class)->get();`
 
 This will be translated into:
@@ -151,17 +151,17 @@ This will be translated into:
 
 And the underlined SQL query will be:
 
-`select * from 'articles' order by 'title' asc`
+`SELECT * FROM 'articles' ORDER BY 'title' ASC`
 
 The attacker can take advantage of this transformation to perform an SQL Injection attack, by changing the URL to:
 
 `https://example.com/articles?sort=title->"%27))injectedSQL`
 
-Since Laravel supports queries in JSON fields, it will guess that you want to query json `title->` so it replaces `->` with JSON MySQL functions. The attacker closes the functions brackets `))` and adds his injected SQL.
+Since Laravel supports queries in JSON fields, it will guess that you want to query json `title->` so it replaces `->` with JSON MySQL functions. The attacker closes the function brackets `))` and adds his injected SQL.
 
 The final command:
 
-`select * from articles order by json_unquote(json_extract(title, '$.""'))`**`injectedSQL`**`"')) asc`
+`SELECT * FROM articles ORDER BY json_unquote(json_extract(title, '$.""'))`**`injectedSQL`**`"')) ASC`
 
 **Vulnerable versions:**
 
@@ -176,13 +176,13 @@ Drupal introduced a Form API in Drupal 6 which allowed alteration of the form da
 
 The vulnerability was found in the forms. The user registration form which requires no authentication and can be accessed anonymously contains multiple input fields and can be exploited.
 
-![Form Fields](https://github.com/hexcellents/sss-web/blob/master/07-framework-api-vulnerabilities/support/drupal1.png)
+![Form Fields](./assets/drupal1.png)
 
 It was highly probable that injecting a renderable array would exploit the vulnerability, the question was where?
 
 As it turns out, the “Email Address” field doesn’t sanitize the type of input it receives which allows hackers to inject the renderable array to the form array structure. Renderable arrays contain metadata that is used in the rendering process.
 
-![Injected Array](https://github.com/hexcellents/sss-web/blob/master/07-framework-api-vulnerabilities/support/drupal2.png)
+![Injected Array](./assets/drupal2.png)
 
 Since Drupal treats the injected array as a value and not as an element, attackers need to trick Drupal into rendering it. Drupal renders an array on page load events or via Drupal AJAX API.
 
@@ -192,7 +192,7 @@ What's more important about this attack is that a Russian Security Researcher po
 
 **Vulnerable versions:**
 
-Drupal < 8.3.9 / < 8.4.6 / < 8.5.1 ~ user/register URL, attacking account/mail & #post_render parameter, using PHP's passthru function  
+Drupal < 8.3.9 / < 8.4.6 / < 8.5.1 ~ user/register URL, attacking account/mail & #post_render parameter, using PHP's passthru function
 Drupal < 7.58 ~ user/password URL, attacking triggering_element_name form & #post_render parameter, using PHP's passthru function
 
 ## WordPress
@@ -209,13 +209,13 @@ Barak first noticed the problem when he saw an unusual URL that was loading when
 
 He noticed that the load-scripts.php file was receiving a parameter called load[]. This parameter is an array that was receiving the names of the JS files that needed to be loaded. In this case, it was receiving jQuery UI Core, which is the name of one of the Javascript files used by the WordPress login page.
 
-Because WordPress is an open source platform, it was simple for Barak to review the application’s code and determine precisely how WordPress loaded these files. He discovered that load-scripts.php file was designed to economise the loading of external JS files. Another file, called load-styles.php, was doing the same thing for Cascading Style Sheet (CSS) files.
+Because WordPress is an open source platform, it was simple for Barak to review the application’s code and determine precisely how WordPress loaded these files. He discovered that load-scripts.php file was designed to economize the loading of external JS files. Another file, called load-styles.php, was doing the same thing for Cascading Style Sheet (CSS) files.
 
 This feature allowed the browser to receive multiple files with a single request, dramatically improving the load time of each admin page. Although it was only designed for use on admin pages, it was also being used on the login page — before the user had been authenticated. This oversight is responsible for the vulnerability.
 
 He continued to explore the source code of WordPress and discovered that there is a variable that contains a defined list of scripts that can be loaded. If one of the names in the load[] array matches one of these script names, the server will perform an I/O read action to load it. The list of scripts that are available is defined in a file called script-loader.php. It includes 181 different scripts. The server took ~2.2 seconds to gather the files, merge them into one file, and send them to the browser. After performing 500 requests, the server was overloaded and became unable to respond to subsequent requests. He posted a [video](https://www.youtube.com/watch?v=nNDsGTalXS0&feature=youtu.be) showing how quickly it could be used to take down a WordPress website.
 
-# Resources
+# Further Reading
 
 * Metropolia University of Applied Sciences
 * https://blog.papertrailapp.com/common-api-vulnerabilities-and-how-to-secure-them/
@@ -228,3 +228,10 @@ He continued to explore the source code of WordPress and discovered that there i
 * https://www.secpod.com/blog/drupalgeddon-2/
 * https://blog.threatpress.com/wordpress-vulnerability-dos/
 * https://freek.dev/1317-an-important-security-release-for-laravel-query-builder
+
+# Activities
+
+[Clean up](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+[High Score](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+[Snoop Doggy Dogg](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+[The Accountant](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
