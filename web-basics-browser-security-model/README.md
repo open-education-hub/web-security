@@ -14,7 +14,7 @@ The design of web applications, and their security in particular is influenced b
 
 - **Addressing:** resources on the web are located using the URI/URL addressing scheme. Possible vulnerabilities here include a misconfigured web server that allows viewing application-specific files, or worse, that allows accessing other files on the host machine. While this information leakage is not very dangerous by itself, it may be used as an intermediary stage for other attacks. You can read more about URLs here [[1]](https://skorks.com/2010/05/what-every-developer-should-know-about-urls/).
 
-- **Request methods:** HTTP communication is done by using methods, also called HTTP verbs. The most used methods are GET, POST, PUT and DELETE. GET method is read-only and is used to retrieve data from the server. DELETE request is used to remove the specified resource from the server. PUT method is used to modify an entire resource. POST requests are used to create new resources. You can find more information about all methods here [[2]](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
+- **Request methods:** HTTP communication is done by using methods, also called HTTP verbs. The most used methods are GET, POST, PUT and DELETE. The GET method is read-only and is used to retrieve data from the server. A DELETE request is used to remove the specified resource from the server. The PUT method is used to modify an entire resource. POST requests are used to create new resources. You can find more information about all methods here [[2]](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
 
 While the client is provided with HTML, JavaScript, CSS pages, modern web applications are implemented using general-purpose scripting or programming languages, e.g. PHP, Java, Python, Ruby, etc. and centralize their data using database systems such as MySQL. Faulty back-end code can in itself provide a more dangerous attack surface to potentially malicious clients.
 
@@ -81,7 +81,7 @@ A typical HTTP request / response circle:
 4. The browser requests JavaScript code. The server returns a JS file
 5. The browser requests data. The server returns data (in XML or JSON).
 
-### XHR - XML Http Request
+### XHR - XMLHttpRequest
 
 All browsers have a built-in XMLHttpRequest Object (XHR).
 XHR is a JavaScript object that is used to transfer data between a web browser and a web server.
@@ -176,7 +176,7 @@ Next, some of the core functionalities of these tools will be detailed (some nam
 
 ![Console - Developer Tools](./assets/devtools-2.png)
 
-- **Sources**: This tab lets you see any file from the loaded in the front-end, such as images, JS, CSS, etc. in an arborescent way.
+- **Sources**: This tab lets you see any file loaded in the front-end, such as images, JS, CSS etc. in an arborescent way.
   This could be a good tool to inspect the JS scripts included in the current page.
   They could reveal possibly valuable information, such as hidden paths or resources, or even critical pieces of functionality, which, if understood, could lead to successful exploits.
 
@@ -262,7 +262,7 @@ iFrame example:
 
 ```
 <iframe src="simple_iframe.html" width=450 height=100>
-if you can see this, you browser doesn't understand IFRAME.
+if you can see this, your browser doesn't understand IFRAME.
 </iframe>
 ```
 
@@ -303,19 +303,19 @@ Add the below HTML code in the same index.html as above:
 
 ```
 <iframe src="sandbox_iframe.html" sandbox width=450 height=100>
-if you can see this, you browser doesn't understand SANDBOX IFRAME.
+if you can see this, your browser doesn't understand SANDBOX IFRAME.
 </iframe>
 ```
 
 Access the page via browser http://localhost.
 
-The value of the sandbox attribute can either be just sandbox (then all restrictions are applied), or a space-separated list of pre-defined values that will REMOVE the particular restrictions.
+The value of the sandbox attribute can either be just sandbox (then all restrictions are applied), or a space-separated list of predefined values that will REMOVE the particular restrictions.
 
 # Same-Origin Policy
 
 The same-origin policy is a web browser security mechanism that aims to prevent websites from attacking each other. The same-origin policy restricts scripts on one origin from accessing data from another origin.
 
-## Why we need Same-Origin Policy?
+## Why do we need Same-Origin Policy?
 
 When a browser sends an HTTP request from one origin to another, any cookies, including authentication session cookies, relevant to the other domain are also sent as part of the request. This means that the response will be generated within the user's session, and include any relevant data that is specific to the user. Without the same-origin policy, if you visited a malicious website, it would be able to read your emails from Gmail and private messages from Facebook. You can read more about SOP here. [[5]](https://portswigger.net/web-security/cors/same-origin-policy)
 
@@ -380,7 +380,7 @@ Hoppscotch is a tool that you can use from your browser or as a browser extensio
 - [7] https://httpie.io/
 - [8] https://hoppscotch.io/
 
-# Challenges
+# Activities
 
 **1.** The below image represents a snippet with DevTools containing information about a web application. What can you discover in the next image ? Is there any useful information from a security point of view ? Write the answer to the instructor.
 
