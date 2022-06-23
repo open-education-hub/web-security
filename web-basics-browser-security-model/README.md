@@ -1,6 +1,5 @@
 # Introduction
 
-[Session 01 slides](https://docs.google.com/presentation/d/19ntegcXmtk2DGBfr-FMBvEVTitvqaxaOROKlDUnNhEM/edit?usp=sharing)
 
 ---
 
@@ -367,7 +366,7 @@ HTTPie is also used to send HTTP requests. It can be used in the terminal, inste
 
 ## Hoppscotch
 
-Hoppscotch is a tool that you can use from your browser or as a browser extension to quickly test certain endpoints. It also assetss MQTT or GraphQL requests. [[8]](https://hoppscotch.io/)
+Hoppscotch is a tool that you can use from your browser or as a browser extension to quickly test certain endpoints. It also supports MQTT or GraphQL requests. [[8]](https://hoppscotch.io/)
 
 # Further Reading
 
@@ -384,9 +383,7 @@ Hoppscotch is a tool that you can use from your browser or as a browser extensio
 
 **1.** The below image represents a snippet with DevTools containing information about a web application. What can you discover in the next image ? Is there any useful information from a security point of view ? Write the answer to the instructor.
 
-![inspect-element](https://drive.google.com/uc?export=view&id=17xxCWiNyMQtCec5tRYU-lNOk4vwr9EUV)
-
-https://imgur.com/a/47j3r5Y
+![FirstActivity](./assets/first-activity.png)
 
 **2.** [Cockroach](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
 **3.** [Gimme](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
