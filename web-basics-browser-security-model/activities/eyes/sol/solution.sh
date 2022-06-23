@@ -3,17 +3,17 @@ PORT=8081
 
 if [[ $1 == "local" ]]
 then
-    remote='http://127.0.0.1:'$PORT
+    url='http://127.0.0.1:'$PORT
 elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
 then
-    remote='http://141.85.224.118:'$PORT
+    url='http://141.85.224.118:'$PORT
 else
-    remote=$1':'$2
+    url=$1':'$2
 fi
 
 # Eyes
 echo "Start exploit for Eyes"
-remote=$remote'/eyes/'
-flag=$(curl -s $remote | grep -o "SSS{.*}")
+url=$url'/eyes/'
+flag=$(curl -s $url | grep -o "SSS{.*}")
 echo "Flag is $flag"
 echo "----------------------------"
