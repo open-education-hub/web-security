@@ -83,20 +83,24 @@ The basic workflow is:
 ![Session lifecycle](./assets/session.jpg)
 
 Example of a session in PHP:  
-`<?php`  
-`session_start(); // Start the session`  
-`$_SESSION['username'] = "John Doe";`  
-`$_SESSION['is_admin'] = true;`  
-`echo "Hello " . $_SESSION['username'];`  
-`?>`
+```php
+<?php
+session_start(); // Start the session
+$_SESSION['username'] = "John Doe"; 
+$_SESSION['is_admin'] = true;
+echo "Hello " . $_SESSION['username'];
+?>
+```
 
 Example of a session in Python:  
-`s = requests.Session()`  
-`s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')`  
-`r = s.get('https://httpbin.org/cookies')`
+```python
+s = requests.Session()
+s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')
+r = s.get('https://httpbin.org/cookies')
 
-`print(r.text)`  
-`# '{"cookies": {"sessioncookie": "123456789"}}'`
+print(r.text)
+# '{"cookies": {"sessioncookie": "123456789"}}'
+```
 
 One might consider that sessions are pretty secure.
 However, they won’t stop an attacker to intercept the cookie with the session ID, for example using a [Man-in-the-Middle attack](https://www.imperva.com/learn/application-security/man-in-the-middle-attack-mitm/) over an insecure Wi-Fi connection, and steal the session ID to use it.
@@ -181,10 +185,12 @@ If it is considered unavoidable to pass user-supplied input to filesystem APIs, 
 
 Below is an example of some simple Java code to validate the canonical path of a file based on user input:
 
-`File file = new File(BASE_DIRECTORY, userInput);`  
-`if (file.getCanonicalPath().startsWith(BASE_DIRECTORY)) {`  
-`// process file`  
-`}`
+```java
+File file = new File(BASE_DIRECTORY, userInput);` 
+if (file.getCanonicalPath().startsWith(BASE_DIRECTORY)) {` 
+// process file
+}
+```
 
 # Insecure Direct Object References
 
@@ -246,6 +252,10 @@ The sitemap.xml is a simple XML page which could be available on some websites a
 It’s a SEO (Search Engine Optimization) tool to help with the visibility of your website on the internet, but it could also be useful for a hacker, serving basically the same purpose: to give him a roadmap to every page.
 
 ## Examples of Google Dorking
+
+### Google Hacking tool from [Pentest-Tools](https://pentest-tools.com/information-gathering/google-hacking)
+
+### Passive Google Dork [Pagodo](https://github.com/opsdisk/pagodo)
 
 ### Explore LOG Files For Login Credentials
 
