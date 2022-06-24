@@ -3,36 +3,62 @@
 
 ---
 
-As the World Wide Web's high-level topology consists mainly of personal computing devices (e.g. desktops, laptops, mobile devices) making HTTP requests to web servers, the general field of web security consists of three main sub-fields: client-side security (i.e. browser security), communications security and server-side security, or web application security. This lab and the following will focus on the first sub-field, although they might provide some general information on the former two.
+As the World Wide Web's high-level topology consists mainly of personal computing devices (e.g. desktops, laptops, mobile devices) making HTTP requests to web servers, the general field of web security consists of three main sub-fields: client-side security (i.e. browser security), communications security and server-side security, or web application security.
+This lab and the following will focus on the first sub-field, although they might provide some general information on the former two.
 
 The design of web applications, and their security in particular is influenced by the following characteristics:
 
-- **Statelessness:** by default HTTP is a simple request-response protocol maintaining no state between successive communications. This shortcoming led to the design of cookies, which are small pieces of information exchanged between the client and the web application. The type of information exchanged using cookies needs to be carefully chosen, as a malicious client could possibly attempt to send back a malformed or forged cookie; additionally, cookies most often (but not always) represent confidential data, which means that they should only be transferred over a secure channel (i.e. HTTPS).
+- **Statelessness:** by default HTTP is a simple request-response protocol maintaining no state between successive communications.
+This shortcoming led to the design of cookies, which are small pieces of information exchanged between the client and the web application.
+The type of information exchanged using cookies needs to be carefully chosen, as a malicious client could possibly attempt to send back a malformed or forged cookie; additionally, cookies most often (but not always) represent confidential data, which means that they should only be transferred over a secure channel (i.e. HTTPS).
 
-- **Message format:** HTTP requests have a specific format, namely they comprise plain-text header and data (although newer improvements also implement a binary protocol). The header contains various information about the client or the server (e.g. a user-agent, page caching information, text encoding information), while the payload is very often (but not always) an HTML page.
+- **Message format:** HTTP requests have a specific format, namely they comprise plain-text header and data (although newer improvements also implement a binary protocol).
+The header contains various information about the client or the server (e.g. a user-agent, page caching information, text encoding information), while the payload is very often (but not always) an HTML page.
 
-- **Addressing:** resources on the web are located using the URI/URL addressing scheme. Possible vulnerabilities here include a misconfigured web server that allows viewing application-specific files, or worse, that allows accessing other files on the host machine. While this information leakage is not very dangerous by itself, it may be used as an intermediary stage for other attacks. You can read more about URLs here [[1]](https://skorks.com/2010/05/what-every-developer-should-know-about-urls/).
+- **Addressing:** resources on the web are located using the URI/URL addressing scheme.
+Possible vulnerabilities here include a misconfigured web server that allows viewing application-specific files, or worse, that allows accessing other files on the host machine.
+While this information leakage is not very dangerous by itself, it may be used as an intermediary stage for other attacks.
+You can read more about URLs here [[1]](https://skorks.com/2010/05/what-every-developer-should-know-about-urls/).
 
-- **Request methods:** HTTP communication is done by using methods, also called HTTP verbs. The most used methods are GET, POST, PUT and DELETE. The GET method is read-only and is used to retrieve data from the server. A DELETE request is used to remove the specified resource from the server. The PUT method is used to modify an entire resource. POST requests are used to create new resources. You can find more information about all methods here [[2]](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
+- **Request methods:** HTTP communication is done by using methods, also called HTTP verbs.
+The most used methods are GET, POST, PUT and DELETE.
+The GET method is read-only and is used to retrieve data from the server.
+A DELETE request is used to remove the specified resource from the server.
+The PUT method is used to modify an entire resource.
+POST requests are used to create new resources.
+You can find more information about all methods here [[2]](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
 
-While the client is provided with HTML, JavaScript, CSS pages, modern web applications are implemented using general-purpose scripting or programming languages, e.g. PHP, Java, Python, Ruby, etc. and centralize their data using database systems such as MySQL. Faulty back-end code can in itself provide a more dangerous attack surface to potentially malicious clients.
+While the client is provided with HTML, JavaScript, CSS pages, modern web applications are implemented using general-purpose scripting or programming languages, e.g. PHP, Java, Python, Ruby, etc. and centralize their data using database systems such as MySQL.
+Faulty back-end code can in itself provide a more dangerous attack surface to potentially malicious clients.
 
 ![Client - Server](./assets/Session_01_Web_Basics_Diagram_01.jpg)
 
 # Web Applications Today
 
-Dynamic websites provide tailored user experiences based on information known or given by the user. The user usually has to authenticate to access the website and is authorized to use the services it provides. In this case, the dynamic website contains information about the user, and there is therefore a great deal more for the attacker to steal. The fundamental difference to static web pages is that a dynamic webpage/website contains functionality that can be compromised. Breaching the security of the server itself is no longer necessary. It is sufficient to discover the security hole in the dynamic website functionality. We, therefore, need to look at the security of a web application itself. A dynamic website can be considered to be a web application.
+Dynamic websites provide tailored user experiences based on information known or given by the user.
+The user usually has to authenticate to access the website and is authorized to use the services it provides.
+In this case, the dynamic website contains information about the user, and there is therefore a great deal more for the attacker to steal.
+The fundamental difference to static web pages is that a dynamic webpage/website contains functionality that can be compromised.
+Breaching the security of the server itself is no longer necessary. It is sufficient to discover the security hole in the dynamic website functionality.
+We, therefore, need to look at the security of a web application itself. A dynamic website can be considered to be a web application.
 
-Web applications introduce a new range of threats, or a new security perimeter, to put it another way. Depending on the setup, web applications are commonly located in an internal network or in the demilitarized zone, which therefore renders network level defenses ineffective. Network, services and operating system level defenses may have been perfectly set in place, but the system would still be vulnerable to a break-in. Web applications commonly interact with internal systems, such as database servers. The network level firewall could be blocking all traffic, but for web applications, it will have to allow HTTP and HTTPS traffic. An attacker might therefore be able to bypass all network-level defenses.
+Web applications introduce a new range of threats, or a new security perimeter, to put it another way.
+Depending on the setup, web applications are commonly located in an internal network or in the demilitarized zone, which therefore renders network level defenses ineffective.
+Network, services and operating system level defenses may have been perfectly set in place, but the system would still be vulnerable to a break-in.
+Web applications commonly interact with internal systems, such as database servers.
+The network level firewall could be blocking all traffic, but for web applications, it will have to allow HTTP and HTTPS traffic.
+An attacker might therefore be able to bypass all network-level defenses.
 
 # Types of Vulnerabilities
 
-These days, web applications are very complex being composed of multiple libraries, frameworks and using multiple external services. Each component can have vulnerabilities.
+These days, web applications are very complex being composed of multiple libraries, frameworks and using multiple external services.
+Each component can have vulnerabilities.
 Types of vulnerabilities:
 
 - System vulnerabilities - applications or services that run inside an Operating System or an Operating System vulnerability
 - Runtime vulnerabilities - when one of the components (frameworks such as PHP, Java, Python, WordPress, etc.) of the web application is vulnerable leads to a risk.
-- Browser vulnerabilities - occasionally attackers will discover a vulnerability in the browser itself that allows execution of arbitrary binary code when a user simply visits a compromised site. Browsers are complex pieces of machinery with many subsystems (HTML rendering, JavaScript engine, CSS parser, image parsers, etc.), and a small coding mistake in any of these systems could offer malicious code just enough of a foothold to get running.
+- Browser vulnerabilities - occasionally attackers will discover a vulnerability in the browser itself that allows execution of arbitrary binary code when a user simply visits a compromised site.
+Browsers are complex pieces of machinery with many subsystems (HTML rendering, JavaScript engine, CSS parser, image parsers, etc.), and a small coding mistake in any of these systems could offer malicious code just enough of a foothold to get running.
 - Vulnerabilities in web application implementation - here we can talk about OWASP Top Ten vulnerabilities [[3]](https://owasp.org/www-project-top-ten/).
 
 # HTTP (Hypertext Transfer Protocol)
@@ -110,11 +136,18 @@ xx = [00, 01 … 99]
 
 ### URL (Uniform Resource Locator)
 
-With Hypertext and HTTP, URL is one of the key concepts of the Web. It is the mechanism used by browsers to retrieve any published resource on the web.
+With Hypertext and HTTP, URL is one of the key concepts of the Web.
+It is the mechanism used by browsers to retrieve any published resource on the web.
 
-URL stands for Uniform Resource Locator. A URL is nothing more than the address of a given unique resource on the Web. In theory, each valid URL points to a unique resource. Such resources can be an HTML page, a CSS document, an image, etc. In practice, there are some exceptions, the most common being a URL pointing to a resource that no longer exists or that has moved. As the resource represented by the URL and the URL itself are handled by the Web server, it is up to the owner of the web server to carefully manage that resource and its associated URL.
+URL stands for Uniform Resource Locator.
+A URL is nothing more than the address of a given unique resource on the Web.
+In theory, each valid URL points to a unique resource.
+Such resources can be an HTML page, a CSS document, an image, etc.
+In practice, there are some exceptions, the most common being a URL pointing to a resource that no longer exists or that has moved.
+As the resource represented by the URL and the URL itself are handled by the Web server, it is up to the owner of the web server to carefully manage that resource and its associated URL.
 
-A URL incorporates the domain name, along with other detailed information, to create a complete address (or “web address”) to direct a browser to a specific page online called a web page. In essence, it’s a set of directions and every web page has a unique one.
+A URL incorporates the domain name, along with other detailed information, to create a complete address (or “web address”) to direct a browser to a specific page online called a web page.
+In essence, it’s a set of directions and every web page has a unique one.
 
 ![URL](./assets/url.png)
 
@@ -125,7 +158,8 @@ Special characters are encoded as hex:
 
 # Browser
 
-A web browser (commonly referred to as a browser) is a software application for accessing the information on the World Wide Web. When a user requests a web page from a particular website, the web browser retrieves the necessary content from a web server and then displays the page on the screen.
+A web browser (commonly referred to as a browser) is a software application for accessing the information on the World Wide Web.
+When a user requests a web page from a particular website, the web browser retrieves the necessary content from a web server and then displays the page on the screen.
 
 A list of Web Browsers: Google Chrome, Mozilla Firefox, Edge, Internet Explorer, Safari, Opera, Netscape, etc.
 
@@ -158,7 +192,8 @@ Anyone can use these tools to look at the internals of a web page.
 As a security professional, or even a hobbyist, these instruments provide you with insightful information about the inner workings of any web application out there.
 Even if it can only show the front-end code, it can create an overview of the structure and maybe reveal valuable details, such as the traffic sent from and received by the client.
 
-In order to open these tools, you can press _F12_ while navigating a web page in any browser mentioned, or by using _Mouse Right Click_ and selecting the Inspect Element option. The latter lets you select which part of the page should be in focus when inspected.
+In order to open these tools, you can press _F12_ while navigating a web page in any browser mentioned, or by using _Mouse Right Click_ and selecting the Inspect Element option.
+The latter lets you select which part of the page should be in focus when inspected.
 
 Alternatively, you can see the entire HTML code of a web page by selecting View Page Source in the Mouse Right Click context menu.
 
@@ -166,7 +201,7 @@ Next, some of the core functionalities of these tools will be detailed (some nam
 
 - **Elements**: In this tab you can see the HTML structure of the page. On the right panel, you can see the styles applied to each element when selected and add, remove or edit the properties directly from there.
   This kind of inspection could lead to the discovery of hidden elements which can be toggled into view by altering the CSS code or could lead to the discovery of commented pieces of code which could contain sensitive data.
-  Also, the [DOM](https://github.com/hexcellents/sss-web/wiki/Session-01:-Web-Basics-&-Browser-Security-Model#dom-document-object-model) (Document Object Model) structure of the page can be altered, and elements can be added or removed, such as scripts, input fields, etc. (any element in fact), which means that any JavaScript code used to sanitize user input or perform other functions can be bypassed.
+  Also, the [DOM](#dom-document-object-model) (Document Object Model) structure of the page can be altered, and elements can be added or removed, such as scripts, input fields, etc. (any element in fact), which means that any JavaScript code used to sanitize user input or perform other functions can be bypassed.
 
 ![Elements - Developer Tools](./assets/devtools-1.png)
 
@@ -181,7 +216,8 @@ Next, some of the core functionalities of these tools will be detailed (some nam
 
 ![Sources - Developer Tools](./assets/devtools-3.png)
 
-- **Network**: The network tab shows detailed information about every file loaded and every request and response made by the page. You can find in-depth info about the [HTTP requests](https://github.com/hexcellents/sss-web/wiki/Session-01:-Web-Basics-&-Browser-Security-Model#http-hypertext-transfer-protocol), such as HTTP parameters, HTTP methods (GET, POST), HTTP status codes (200, 404, 500, etc.), loading time and size of each loaded element (image, script, etc).
+- **Network**: The network tab shows detailed information about every file loaded and every request and response made by the page.
+  You can find in-depth info about the [HTTP requests](#http-hypertext-transfer-protocol), such as HTTP parameters, HTTP methods (GET, POST), HTTP status codes (200, 404, 500, etc.), loading time and size of each loaded element (image, script, etc).
   Furthermore, clicking on one of the requests there, you can see the headers, the preview, the response (as raw content) and others.
   This is useful for listing all the resources needed by a page, such as if there are any requests to APIs, additional scripts loaded, etc.
 
@@ -199,28 +235,36 @@ Next, some of the core functionalities of these tools will be detailed (some nam
 
 # DOM (Document Object Model)
 
-The Document Object Model connects web pages to scripts or programming languages by representing the structure of a document, such as the HTML representing a web page, in memory. Usually, that means JavaScript, although modeling HTML, SVG, or XML documents as objects are not part of the core JavaScript language, as such.
+The Document Object Model connects web pages to scripts or programming languages by representing the structure of a document, such as the HTML representing a web page, in memory.
+Usually, that means JavaScript, although modeling HTML, SVG, or XML documents as objects are not part of the core JavaScript language, as such.
 
 Object-oriented interface used to read and write docs
 
 - Web page in HTML in structured data
 - DOM provides a representation of this hierarchy
 
-The DOM represents a document with a logical tree. Each branch of the tree ends in a node, and each node contains objects. DOM methods allow programmatic access to the tree. With them, you can change the document's structure, style, or content.
+The DOM represents a document with a logical tree. Each branch of the tree ends in a node, and each node contains objects.
+DOM methods allow programmatic access to the tree. With them, you can change the document's structure, style, or content.
 
-Nodes can also have event handlers attached to them. Once an event is triggered, the event handlers get executed. DOM is an application programming interface. Use the DOM when we interact with web pages.
+Nodes can also have event handlers attached to them. Once an event is triggered, the event handlers get executed.
+DOM is an application programming interface.
+Use the DOM when we interact with web pages.
 
 - Add content to a HTML document
 - Delete content from a HTML document
 - Change Content on a HTML document
 
-Every element within your document is an object: \<head\> tag, \<body\> tag, etc. In javascript we can call methods on objects, we can call properties on objects in order to change the objects.
+Every element within your document is an object: \<head\> tag, \<body\> tag, etc.
+In javascript we can call methods on objects, we can call properties on objects in order to change the objects.
 
 ![DOM](./assets/dom.png)
 
-We can introduce nodes, all objects are nodes. We can change the nodes, we can interact with them, create Animations, validations, etc.
+We can introduce nodes, all objects are nodes.
+We can change the nodes, we can interact with them, create Animations, validations, etc.
 
-The Document interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree. The DOM tree includes elements such as body and table, among many others. It provides functionality globally to the document, like how to obtain the page's URL and create new elements in the document.
+The Document interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.
+The DOM tree includes elements such as body and table, among many others.
+It provides functionality globally to the document, like how to obtain the page's URL and create new elements in the document.
 
 **DOM**
 
@@ -240,11 +284,19 @@ The Document interface represents any web page loaded in the browser and serves 
 
 # MIME (Multipurpose Internet Mail Extensions)
 
-MIME is a specification for the format of non-text e-mail attachments that allows the attachment to be sent over the Internet. MIME allows your mail client or Web browser to send and receive things like spreadsheets and audio, video and graphics files via Internet mail. By default, many web servers are configured to report a MIME type of text/plain or application/octet-stream for unknown content types. As new content types are invented or added to web servers, web administrators may fail to add the new MIME types to their web server's configuration. This is a major source of problems for users of Gecko-based browsers, which respect the MIME types as reported by web servers and web applications. Here you can find an example for this type of vulnerability. [[4]](https://github.com/denimgroup/denimgroup-vulnerability-examples)
+MIME is a specification for the format of non-text e-mail attachments that allows the attachment to be sent over the Internet.
+MIME allows your mail client or Web browser to send and receive things like spreadsheets and audio, video and graphics files via Internet mail.
+By default, many web servers are configured to report a MIME type of text/plain or application/octet-stream for unknown content types.
+As new content types are invented or added to web servers, web administrators may fail to add the new MIME types to their web server's configuration.
+This is a major source of problems for users of Gecko-based browsers, which respect the MIME types as reported by web servers and web applications.
+Here you can find an example for this type of vulnerability. [[4]](https://github.com/denimgroup/denimgroup-vulnerability-examples)
 
-**MIME Sniffing** - The browser will often not just look at the Content-Type header that the server is passing, but also the contents of the page. If it looks enough like HTML, it’ll be parsed as HTML. => This led to IE 6/7-era bugs where image and text files containing HTML tags would execute as HTML (not so common anymore).
+**MIME Sniffing** - The browser will often not just look at the Content-Type header that the server is passing, but also the contents of the page.
+  If it looks enough like HTML, it’ll be parsed as HTML. => This led to IE 6/7-era bugs where image and text files containing HTML tags would execute as HTML (not so common anymore).
 
-**Encoding Sniffing** - the encoding used on a document will be sniffed by browsers. If you don’t specify an encoding for an HTML document, the browser will apply heuristics to determine it. If you are able to control the way the browser decodes text, you may be able to alter the parsing.
+**Encoding Sniffing** - the encoding used on a document will be sniffed by browsers.
+  If you don’t specify an encoding for an HTML document, the browser will apply heuristics to determine it.
+  If you are able to control the way the browser decodes text, you may be able to alter the parsing.
 
 # Security Mechanism
 
@@ -310,13 +362,74 @@ Access the page via browser http://localhost.
 
 The value of the sandbox attribute can either be just sandbox (then all restrictions are applied), or a space-separated list of predefined values that will REMOVE the particular restrictions.
 
-# Same-Origin Policy
+# Same-origin Policy
 
-The same-origin policy is a web browser security mechanism that aims to prevent websites from attacking each other. The same-origin policy restricts scripts on one origin from accessing data from another origin.
+The same-origin policy is a critical security mechanism that restricts how a document or script loaded from one origin can interact with a resource from another origin.
+It helps isolate potentially malicious documents, reducing possible attack vectors.  
 
-## Why do we need Same-Origin Policy?
+In order to understand how the policy works, you also need to understand what is an origin.
+Two URLs have the same origin if the protocol, port (if specified), and host are the same for both.
+To better understand this, follow the table below:
 
-When a browser sends an HTTP request from one origin to another, any cookies, including authentication session cookies, relevant to the other domain are also sent as part of the request. This means that the response will be generated within the user's session, and include any relevant data that is specific to the user. Without the same-origin policy, if you visited a malicious website, it would be able to read your emails from Gmail and private messages from Facebook. You can read more about SOP here. [[5]](https://portswigger.net/web-security/cors/same-origin-policy)
+| URL                                              | Outcome     | Reason                                         |
+| ------------------------------------------------ | ----------- | ---------------------------------------------- |
+| http://store.company.com/dir2/other.html         | Same origin | Only the path differs                          |
+| http://store.company.com/dir/inner/another.html  | Same origin | Only the path differs                          |
+| https://store.company.com/page.html	           | Failure     | Different protocol                             |
+| http://store.company.com:81/dir/page.html        | Failure     | Different port (http:// is port 80 by default) |
+| http://news.company.com/dir/page.html            | Failure     | Different host                                 |
+  
+## Why is this important?
+
+Assume you are logged into Facebook and visit a malicious website in another browser tab.
+Without the same origin policy JavaScript on that website could do anything to your Facebook account that you are allowed to do.
+For example read private messages, post status updates, analyse the HTML DOM-tree after you entered your password before submitting the form.  
+  
+But of course Facebook wants to use JavaScript to enhance the user experience.
+So it is important that the browser can detect that this JavaScript is trusted to access Facebook resources.
+That's where the same origin policy comes into play: If the JavaScript is included from a HTML page on facebook.com, it may access facebook.com resources.  
+  
+Now replace Facebook with your online banking website, and it will be obvious that this is an issue.  
+
+## Is this always the case, to access only resources on the same origin?
+
+The most prevalent myth about Same-origin Policy is that it plainly forbids a browser to load a resource from a different origin.
+Though we know that the thing that makes today's web technologies so rich and colorful is the content loaded from different origins.
+The presence of a huge content delivery network (CDN) ecosystem proves this is not true.  
+  
+Another prevalent myth is that an origin cannot send information to another one.
+That is also not true.
+Again we know that an origin can make a request to another one.
+The information of the forms in one origin can be reached from another origin.
+If we think of cloud payment systems integrated into a business workflow, these often operate by sending requests to another origin. 
+Even one of the most common web vulnerabilities, Cross-Site Request Forgery (CSRF), arises from that point.
+CSRF is possible because of the ability of sites to make requests to each other.
+This topic will be covered in a separate session more in-depth.  
+
+# CORS
+
+Cross-Origin Resource Sharing (CORS) is a mechanism that uses additional HTTP headers to tell browsers to give a web application running at one origin, access to selected resources from a different origin.
+A web application executes a cross-origin HTTP request when it requests a resource that has a different origin (domain, protocol, or port) from its own.  
+  
+An example of a cross-origin request: the front-end JavaScript code served from https://domain-a.com uses XMLHttpRequest (AJAX) to make a request for https://domain-b.com/data.json.  
+  
+For security reasons, browsers restrict cross-origin HTTP requests initiated from scripts.
+For example, XMLHttpRequest follows the same-origin policy.
+This means that a web application using those APIs can only request resources from the same origin the application was loaded from unless the response from other origins includes the right CORS headers.  
+  
+The CORS mechanism supports secure cross-origin requests and data transfers between browsers and servers.
+Modern browsers use CORS in APIs such as XMLHttpRequest to mitigate the risks of cross-origin HTTP requests.
+The CORS header is added by the server to the response.  
+  
+**CORS Header Syntax:**  
+`Access-Control-Allow-Origin: *`  
+`Access-Control-Allow-Origin: <origin>`  
+`Access-Control-Allow-Origin: null`  
+`Access-Control-Allow-Origin: https://developer.mozilla.org`  
+  
+  
+![CORS](./assets/CORS.jpg)  
+
 
 # Talking to web sites
 
@@ -326,7 +439,8 @@ Let's go through the basics of how HTTP requests are made, using telnet to form 
 user@hostname~#: telnet 141.85.224.157 80
 ```
 
-Now let's issue a simple GET. The request is composed of:
+Now let's issue a simple GET.
+The request is composed of:
 
 - GET <path> <http-version>
 - followed by other header contents
@@ -358,15 +472,21 @@ The server's response contains:
 
 ## Postman
 
-Postman is a tool through which you can send HTTP requests. It can automate tests and integrate them into CI/CD pipeline. You can simulate endpoints to test without having to set up a backend. It can also monitor certain endpoints to check their health and performance. [[6]](https://www.postman.com/)
+Postman is a tool through which you can send HTTP requests.
+It can automate tests and integrate them into CI/CD pipeline.
+You can simulate endpoints to test without having to set up a backend.
+It can also monitor certain endpoints to check their health and performance. [[6]](https://www.postman.com/)
 
 ## HTTPie
 
-HTTPie is also used to send HTTP requests. It can be used in the terminal, instead of utilities such as **curl** and **wget**. It has an easy syntax, comes with highlighting and JSON assets. [[7]](https://httpie.io/)
+HTTPie is also used to send HTTP requests.
+It can be used in the terminal, instead of utilities such as **curl** and **wget**.
+It has an easy syntax, comes with highlighting and JSON assets. [[7]](https://httpie.io/)
 
 ## Hoppscotch
 
-Hoppscotch is a tool that you can use from your browser or as a browser extension to quickly test certain endpoints. It also supports MQTT or GraphQL requests. [[8]](https://hoppscotch.io/)
+Hoppscotch is a tool that you can use from your browser or as a browser extension to quickly test certain endpoints.
+It also supports MQTT or GraphQL requests. [[8]](https://hoppscotch.io/)
 
 # Further Reading
 
@@ -381,7 +501,10 @@ Hoppscotch is a tool that you can use from your browser or as a browser extensio
 
 # Activities
 
-**1.** The below image represents a snippet with DevTools containing information about a web application. What can you discover in the next image ? Is there any useful information from a security point of view ? Write the answer to the instructor.
+**1.** The below image represents a snippet with DevTools containing information about a web application. 
+What can you discover in the next image ?
+Is there any useful information from a security point of view ?
+Write the answer to the instructor.
 
 ![FirstActivity](./assets/first-activity.png)
 
