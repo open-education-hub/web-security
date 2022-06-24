@@ -3,16 +3,16 @@ PORT=8084
 
 if [[ $1 == "local" ]]
 then
-    remote='http://127.0.0.1:'$PORT
+    url='http://127.0.0.1:'$PORT
 elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
 then
-    remote='http://141.85.224.115:'$PORT
+    url='http://141.85.224.115:'$PORT
 else
-    remote=$1':'$2
+    url=$1':'$2
 fi
 
 # Traverse universe
 echo "Start exploit for Traverse universe"
-remote=$remote
-wget $remote'/earth/moon/NASA/flag.php'
+url=$url
+wget $url'/earth/moon/NASA/flag.php'
 echo "----------------------------"

