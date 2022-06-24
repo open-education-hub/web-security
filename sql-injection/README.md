@@ -178,11 +178,11 @@ Worst case, the response might be indistinguishable from that which is caused by
 
 - The reason for using `NULL` as the values returned from the injected `SELECT` query is that the data types in each column must be compatible between the original and the injected queries.
   Since `NULL` is convertible to every commonly used data type, using `NULL` maximizes the chance that the payload will succeed when the column count is correct.
-- On Oracle, every `SELECT` query must use the FROM keyword and specify a valid table.
-  There is a built-in table on Oracle called `DUAL` which can be used for this purpose.
-  So the injected queries on Oracle would need to look like: `' UNION SELECT NULL FROM DUAL--`.
+- In Oracle, every `SELECT` query must use the FROM keyword and specify a valid table.
+  There is a built-in table in Oracle called `DUAL` which can be used for this purpose.
+  So the injected queries in Oracle would need to look like: `' UNION SELECT NULL FROM DUAL--`.
 - The payloads described use the double-dash comment sequence `--` to comment out the remainder of the original query following the injection point.
-  On MySQL, the double-dash sequence must be followed by a space. Alternatively, the hash character `#` can be used to identify a comment.
+  In MySQL, the double-dash sequence must be followed by a space. Alternatively, the hash character `#` can be used to identify a comment.
 
 For more details of database-specific syntax, see the [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
@@ -228,11 +228,11 @@ In fact, all modern databases provide ways of examining the database structure, 
 In the preceding example, suppose instead that the query only returns a single column.
 
 You can easily retrieve multiple values together within this single column by concatenating the values together, ideally including a suitable separator to let you distinguish the combined values.
-For example, on Oracle you could submit the input:
+For example, in Oracle you could submit the input:
 
 `' UNION SELECT username || '~' || password FROM users--`
 
-This uses the double-pipe sequence `||` which is a string concatenation operator on Oracle.
+This uses the double-pipe sequence `||` which is a string concatenation operator in Oracle.
 The injected query concatenates together the values of the `username` and `password` fields, separated by the `~` character.
 
 The results from the query will let you read all of the usernames and passwords, for example:
@@ -255,7 +255,7 @@ This information can often pave the way for further exploitation.
 
 You can query the version details for the database.
 The way that this is done depends on the database type, so you can infer the database type from whichever technique works.
-For example, on Oracle you can execute:
+For example, in Oracle you can execute:
 
 `SELECT * FROM v$version`
 
@@ -349,7 +349,7 @@ We can continue this process to systematically determine the full password for t
 
 **NOTE:**
 
-The `SUBSTRING` function is called `SUBSTR` on some types of database.
+The `SUBSTRING` function is called `SUBSTR` on some types of databases.
 For more details, see the [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet).
 
 ### Inducing conditional responses by triggering SQL errors
@@ -401,7 +401,7 @@ Using this technique, we can retrieve data in the way already described, by syst
 
 A Second Order Injection is the same as a traditional injection attack but the payload is already stored in the database intentionally placed so that it can be triggered in another area of code.
 
-Let’s look at an example and see how easy it to exploit this vulnerability.
+Let’s look at an example and see how easy it is to exploit this vulnerability.
 This is a form of registration that uses parameterization, meaning that a vicious input will not affect the database.
 
 ```php
@@ -475,7 +475,7 @@ You can change the requests to see different behaviors and you can set automatic
 
 ## SQLmap
 
-[SQLmap](https://sqlmap.org/) is an open source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking over of database servers.
+[SQLmap](https://sqlmap.org/) is an open source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking over database servers.
 It comes with a powerful detection engine, many niche features for the ultimate penetration tester and a broad range of switches lasting from database fingerprinting, over data fetching from the database, to accessing the underlying file system and executing commands on the operating system via out-of-band connections.
 You can see some of the features in this recording.
 [![asciicast](https://asciinema.org/a/434673.svg)](https://asciinema.org/a/434673)
