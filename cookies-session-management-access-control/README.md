@@ -212,7 +212,7 @@ Or can a non-admin user access and create API tokens that should only be created
 So, in order to test all the possible IDOR vulnerabilities, you should think like a hacker.
 
 You can provide permissions on your application for all endpoints.
-If your “privatesection” endpoint includes the API requests such as “/api/privatesection/admins”, “/api/privatesection/console”, “/api/privatesection/tokens”, you can block the endpoint for non-admin users.
+If your `privatesection` endpoint includes the API requests such as `/api/privatesection/admins`, `/api/privatesection/console`, `/api/privatesection/tokens`, you can block the endpoint for non-admin users.
 
 Moreover, to make the attacker’s job harder or prevent it altogether, you can use hash functions and hashed values instead of regular numbers and strings.
 
@@ -270,10 +270,9 @@ If you click into any of the exposed .env files, you will notice unencrypted use
 
 ## Wayback Machine
 
-The Wayback Machine is a digital archive of the entire internet.
+The [Wayback Machine](https://archive.org/web/) is a digital archive of the entire internet.
 It allows the user to go “back in time” and see what websites looked like in the past.
 For a hacker, it can be useful to see what information was displayed on a website a few months ago or even a few years ago.  
-The Wayback Machine can be found at [https://archive.org/web/](https://archive.org/web/).
 
 # Wrap-up
 
@@ -295,7 +294,7 @@ Some browser extensions can make your life easier when interacting with the webs
   - Google Chrome link: https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg
   - Mozilla Firefox link: https://addons.mozilla.org/en-US/firefox/addon/etc2/
 
-- **ModHeader**: Lets you to add, modify and remove request headers and response headers. You can use this extension to set **X-Forwarded-For**, **Authorization**, **Access-Control-Allow-Origin** and other headers and remember your settings across your account.
+- **ModHeader**: Lets you add, modify and remove request headers and response headers. You can use this extension to set **X-Forwarded-For**, **Authorization**, **Access-Control-Allow-Origin** and other headers and remember your settings across your account.
 
   - Google Chrome link: https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj
   - Mozilla Firefox link: https://addons.mozilla.org/en-US/firefox/addon/modheader-firefox/
@@ -322,7 +321,7 @@ Some browser extensions can make your life easier when interacting with the webs
 - [15] https://www.acunetix.com/websitesecurity/google-hacking/
 - [16] https://www.sciencedirect.com/science/article/pii/B9781931836364500087
 
-# Exercises
+# Activities
 
 **1.** [Nobody loves me](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
 **2.** [Do you need glasses?](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
