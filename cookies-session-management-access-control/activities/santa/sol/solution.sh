@@ -3,18 +3,18 @@ PORT=8083
 
 if [[ $1 == "local" ]]
 then
-    remote='http://127.0.0.1:'$PORT
+    url='http://127.0.0.1:'$PORT
 elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
 then
-    remote='http://141.85.224.115:'$PORT
+    url='http://141.85.224.115:'$PORT
 else
-    remote=$1':'$2
+    url=$1':'$2
 fi
 
 # Santa
 echo "Start exploit for Santa"
-remote=$remote'/santa/'
-flag=$(curl -s $remote'assets/js/main.js' | grep -o "atob(".*")")
+url=$url'/santa/'
+flag=$(curl -s $url'assets/js/main.js' | grep -o "atob(".*")")
 flag=$(echo -n ${flag:6:48} | base64 -d)
 echo "Flag is $flag"
 echo "----------------------------"
