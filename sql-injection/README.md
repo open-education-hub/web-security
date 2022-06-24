@@ -490,17 +490,25 @@ You can see some of the features in this recording.
 **6.** [SQL Payloads](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection)  
 **7.** [SQLmap](https://sqlmap.org/)
 
-# Challenges
+# Activities
 
-**1.** [Retrieve hidden data](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)  
-**2.** [Login bypass](https://portswigger.net/web-security/sql-injection/lab-login-bypass)  
-**3.** [Determine number of columns](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)  
-**4.** [Find column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text)  
-**5.** [Retrieve data from other tables](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)  
-**6.** [Single column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)  
-**7.** [What version?](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)  
-**8.** [More versions](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)  
-**9.** [Conditional responses](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses)  
-**10.** [Conditional errors](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-errors)  
-**11.** [Time delays](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays)  
-**12.** [Out-of-band Application Security Testing](https://portswigger.net/web-security/sql-injection/blind/lab-out-of-band)
+**1.** [Demo SQL Injection](https://sss-ctf.security.cs.pub.ro/challenges)
+**2.** [Blacklist](https://sss-ctf.security.cs.pub.ro/challenges)
+**3.** [Nightmare Store](https://sss-ctf.security.cs.pub.ro/challenges)
+**4.** [One by one](https://sss-ctf.security.cs.pub.ro/challenges)
+**5.** [T0p S3cr3t](https://sss-ctf.security.cs.pub.ro/challenges)
+
+# Other Activities
+
+**6.** [Retrieve hidden data](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)  
+**7.** [Login bypass](https://portswigger.net/web-security/sql-injection/lab-login-bypass)  
+**8.** [Determine number of columns](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)  
+**9.** [Find column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text)  
+**10.** [Retrieve data from other tables](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)  
+**11.** [Single column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)  
+**12.** [What version?](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)  
+**13.** [More versions](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)  
+**14.** [Conditional responses](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses)  
+**15.** [Conditional errors](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-errors)  
+**16.** [Time delays](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays)  
+**17.** [Out-of-band Application Security Testing](https://portswigger.net/web-security/sql-injection/blind/lab-out-of-band)
