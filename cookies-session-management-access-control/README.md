@@ -253,9 +253,9 @@ It’s a SEO (Search Engine Optimization) tool to help with the visibility of yo
 
 ## Examples of Google Dorking
 
-### Google Hacking tool from [Pentest-Tools](https://pentest-tools.com/information-gathering/google-hacking)
+- Google Hacking tool from [Pentest-Tools](https://pentest-tools.com/information-gathering/google-hacking)
 
-### Passive Google Dork [Pagodo](https://github.com/opsdisk/pagodo)
+- Passive Google Dork [Pagodo](https://github.com/opsdisk/pagodo)
 
 ### Explore LOG Files For Login Credentials
 
