@@ -497,9 +497,6 @@ You can see some of the features in this recording.
 **3.** [Nightmare Store](https://sss-ctf.security.cs.pub.ro/challenges)
 **4.** [One by one](https://sss-ctf.security.cs.pub.ro/challenges)
 **5.** [T0p S3cr3t](https://sss-ctf.security.cs.pub.ro/challenges)
-
-# Other Activities
-
 **6.** [Retrieve hidden data](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)  
 **7.** [Login bypass](https://portswigger.net/web-security/sql-injection/lab-login-bypass)  
 **8.** [Determine number of columns](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)  
