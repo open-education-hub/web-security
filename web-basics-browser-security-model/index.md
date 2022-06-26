@@ -1,5 +1,10 @@
-# Introduction
+---
+linkTitle: 01. Web Basics & Browser Security Model
+type: docs
+weight: 10
+---
 
+# Introduction
 
 ---
 
