@@ -1,3 +1,9 @@
+---
+linkTitle: 02. Cookies & Session Management & Access Control
+type: docs
+weight: 10
+---
+
 # Introduction
 
 In order to understand how to protect a web application, you need to understand how an attacker thinks.
