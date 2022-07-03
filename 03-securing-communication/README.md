@@ -2,6 +2,118 @@
 
 ## Introduction
 
+As part of this session, we look into how HTTP connections can be made secure, to prevent attacks that capture traffic, also called man-in-the-middle (MitM) attacks.
+The session is focused on understanding certificates and HTTPS and investigating configurations of existing setups.
+
+## Reminders and Prerequisites
+
+HTTP (*Hypertext Transfer Protocol*) is the main protocol of the web.
+It has several characteristics:
+* it is plain text
+* it doesn't maintain an active connection
+* it's a request-response protocol
+* it provides a series of codes to mark the type of request and replies
+* HTTP requests consists of paths (routes) that are mapped to resources
+
+The lack of an active connection session is compensated by the use of cookies.
+Similarly, the plain text nature of the protocol means that anyone could read contents in HTTP network packets.
+This is alleviated by the use of HTTPS.
+Nowadays, most connections use HTTPS precisely because of the need for confidentiality.
+
+In the previous session, you used web browsers and the [Developer Tools](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools) feature of modern browsers to inspect traffic, update cookies, inspect rendered pages.
+GUI web browsers (such as Firefox, Chrome, Edge, Safari) provide the appealing interface for users to surf the web.
+For quick and dirty tasks such as testing connections, making requests and downloading large files, we use CLI web clients such as `curl` and `wget`.
+We will be using these in this session as well.
+
+## Confidentiality
+
+Confidentiality is a security property that prevents captured data from being understood by an attacker.
+If an attacker captures data with confidentiality ensured, the attacher must not be able to extract actual information from it.
+Confidentiality is generally provided with encryption.
+
+For example, a classical HTTP connection is plain text and thus non-confidential.
+Let's exemplify this.
+On one terminal, start a `tcpdump` capture session for HTTP connections:
+
+```
+$ sudo tcpdump -A tcp port 80
+```
+
+On another terminal, make an HTTP connection using `curl`:
+
+```
+$ curl http://elf.cs.pub.ro
+```
+
+As the connection is HTTP, you will see plain text messages as part of the `tcpdump` output:
+
+```
+Host: elf.cs.pub.ro
+User-Agent: curl/7.58.0
+Accept: */*
+
+[...]
+Date: Sun, 03 Jul 2022 15:51:46 GMT
+Server: Apache/2.4.38 (Debian)
+Last-Modified: Mon, 02 Aug 2010 17:58:06 GMT
+ETag: "a8-48cdaf14da780"
+Accept-Ranges: bytes
+Content-Length: 168
+Vary: Accept-Encoding
+Content-Type: text/html
+
+<html>
+	<head>
+		<meta name="google-site-verification" content="gTsIxyV43HSJraRPl6X1A5jzGFgQ3N__hKAcuL2QsO8" />
+	</head>
+
+	<body>
+		<h1>It works!</h1>
+	</body>
+</html>
+```
+
+However, if we used `curl` and an HTTPS connection:
+
+```
+$ curl https://elf.cs.pub.ro
+```
+
+there would be no plain text output, because the connection is using a confidential (encrypted) channel.
+
+The same traffic inspection can be done in a more visual manner using Wireshark.
+
+As long as traffic is not encrypted, an attacker able to capture packets (either fooling someone to get the data or simply accessing a networking equipment along the way) will read the traffic contents.
+HTTPS uses public key cryptography to ensure the confidentiality of network traffic.
+
+## Public Key Cryptography. Certificates
+
+There are mainly two types of encryption: symmetric and public-key encryption, as shown in TODO Figure.
+
+In symmetric encryption, a key is shared among the two ends in the communication.
+That same key is used for both encrypting and decrypting data.
+AES (*Advanced Encryption Standard*) is the standard symmetric encryption algorithm.
+The main benefit of symmetric encryption algorithms is their relative simplicity and speed: they are easy to implement and are fast, with the option of having hardware support.
+The downside is related to the shared key.
+If the key is captured by an attacker or if it is lost by one of the ends, confidentiality is compromised.
+
+So, the goal is that each connection should use a temporary shared key.
+After the connection ends, the shared key is discarded.
+A new connection will generate a new key.
+Of course, that shared key must be known only by the two ends.
+For this two happen, key exchange algorithms, such as [Diffie Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) are used.
+
+Diffie-Hellman (often abbreviated as DH) is based on public-key encryption.
+In short we use public-key encryption to set up a temporary shared key for the actual communication.
+
+Public-key encryption, as its name implies, relies on a pair of private and public keys that are connected mathematically.
+The private key is generated as a random set of bytes and the public key is generated from it, via a mathematical algorithm.
+The private key is only available to the owner, whereas the public key is available to everyone.
+Anyone can encrypt a message using the public key, but only the owner can decrypt the message using the private key.
+Because of this, public-key encryption is considered more secure than symmetric encryption, as it doesn't require the passing of a shared key between parties, an act that may be intercepted.
+At the same time, public-key encryption is much slower than symmetric encryption.
+Because of this, public-key encryption is only use to set up an initial session and enable a key exchange algorithm (such as Diffie-Hellman) to generate a temporary session-specific shared key.
+
 ## SSL, TLS, HTTPS
 
 http connections are plain text
