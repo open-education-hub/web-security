@@ -114,6 +114,34 @@ Because of this, public-key encryption is considered more secure than symmetric 
 At the same time, public-key encryption is much slower than symmetric encryption.
 Because of this, public-key encryption is only use to set up an initial session and enable a key exchange algorithm (such as Diffie-Hellman) to generate a temporary session-specific shared key.
 
+### Identity Management. Certificates
+
+A public-private key pair is not only used for encryption.
+It's also used for identity management.
+
+Identity management means making sure a give entity is who they claim they are.
+In HTTPS that means that if we connect to `google.com` there needs to be a way to make sure the server we connect to is indeed `google.com`.
+Otherwise, another server could impersonate the target server and capture all traffic.
+
+Identity management relies on signing and verifying messages using public-private keys.
+The private key is used to sign a message.
+The signed message is provided publicly.
+Then, the public key is used to verify the message.
+
+In HTTPS, this means that the web server will sign the message with its private key and web clients will verify the message with the public key.
+
+In order for this to work, the public key has to be attached the identity, the name of the server.
+This is done via a **certificate**.
+A certificate is a file that consists of a public key and an identity.
+A certificate itself is also signed to ensure its validity.
+This means that a certificate will also be verified using a public key, found as part of another certificate.
+This dependency between certificates creates a **public-key infrastructure** (PKI), on top of which self-signed root certificates are located.
+
+A browser stores root certificates as part of its default installation.
+Each connection to the server will get the server to provide the certificate: identity and public key.
+The browser uses the root certificate and intermediary certificates to verify the certificate.
+After its verification the public key is used to create the actual HTTPS (secure) connection.
+
 ## SSL, TLS, HTTPS
 
 http connections are plain text
