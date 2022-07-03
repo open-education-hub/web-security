@@ -1,3 +1,9 @@
+---
+linkTitle: 03. Securing Communication
+type: docs
+weight: 30
+---
+
 # Securing Communication
 
 ## Introduction
