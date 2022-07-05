@@ -782,37 +782,35 @@ This means using the `-servername` option.
 
 ### 04. Inspect Me PEM
 
-Get the flag from the certificate.
+Get the flag from the certificate: https://sss-web.cyberedu.ro/challenge/25d5c870-fc5a-11ec-bf6f-33097481169b
 
 ### 05. Inspect Me DER
 
-Get the flag from the certificate.
+Get the flag from the certificate: https://sss-web.cyberedu.ro/challenge/82120dc0-fc5a-11ec-8907-a767cfc56b45
 
 ### 06. The Chosen One
 
-Find the correct certificate and get the flag from it.
+Find the correct certificate and get the flag from it: https://sss-web.cyberedu.ro/challenge/38b30e80-fc68-11ec-9c1f-6177b11a278c
 
 ### 07. Proper Naming
 
-Connect to https://TODO and get the flag.
+Get the flag from http://141.85.224.117:3280
+Submit the flag to: https://sss-web.cyberedu.ro/challenge/32215080-fc7b-11ec-940b-ad7b1c8e700c
 
 ### 08. Inside
 
-Connect to https:// and get the flag.
+Get the flag from http://141.85.224.117:3380
+Submit the flag to: https://sss-web.cyberedu.ro/challenge/298a4d30-fc85-11ec-9624-c3b4658b387a
 
 ### 09. Only for Members
 
-Connect via HTTPS to a https://ctf-10.security.cs.pub.ro:31443.
+Connect via HTTPS to a https://141.85.224.117:31443.
 Use client certificate authentication to retrieve the flag.
 
 The client certificate needs to be signed by the same certification authority as that of the server.
-See the files and scripts in the `securing-communication/ca/` folder in the repository.
+See the files and scripts in the `securing-communication/assets/ca/` folder in the repository.
 
-### 10. Tell Me Your Name
-
-Connect via HTTPS to a https://ctf-10.security.cs.pub.ro:31443.
-Use client certificate authentication to retrieve the flag.
-Use specific certificate attributes.
+Submit flag to: https://sss-web.cyberedu.ro/challenge/c8d977d0-fc9c-11ec-80d9-0de38261593f
 
 ### Extra: Tutorial: Inspect HTTPS Traffic
 
