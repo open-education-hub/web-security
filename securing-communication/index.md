@@ -717,8 +717,6 @@ $ ./testssl.sh security.cs.pub.ro
 
 ## Challenges
 
-TODO: rework
-
 ### 01. Investigate SSL/TLS-enabled Websites
 
 Investigate the SSL/TLS configuration strength for different websites.
@@ -742,11 +740,23 @@ Look for the following:
 
 Fill the information above in a Google spreadsheet, a copy of [this one](https://docs.google.com/spreadsheets/d/1ufpcQcwSL3LEziqg5tjBK-e7B2xVq0N5xiRcq9yeRHY/edit?usp=sharing).
 
-### 02. Investigate SSL/TLS Certificates
+### 02. Investigate Remote SSL/TLS Certificates
 
-Download and investigate locally remote certificates.
-Use [openssl s_client](https://www.misterpki.com/openssl-s-client/) to download a certificate.
-Use [openssl x509](https://serverfault.com/a/215617/410841) to investigate the downloaded certificate.
+Download, inspect and verify remote certificates.
+Use `openssl s_client` to download a certificate.
+Use `openssl x509` to investigate the downloaded certificate.
+Use the Certificate Manager-like interface in you browser to extract the corresponding root certificates.
+Use `openssl verify` to verify a certificate;
+use the extracted root certificate.
+
+Investigate the following websites:
+* https://slack.com/
+* https://www.pornhub.com/
+* https://www.emag.ro/
+
+### 03. Investigate Remote SSL/TLS Certificates with SNI
+
+Download, inspect and verify remote certificates.
 
 Investigate the following websites:
 * https://koala.cs.pub.ro
@@ -767,42 +777,44 @@ wiki.cs.pub.ro is an alias for koala.cs.pub.ro.
 koala.cs.pub.ro has address 141.85.227.114
 ```
 
-So be sure to use SNI (*Server Name Indication*) support for the `openssl s_client` command to download the correct certificate.
+So be sure to use [SNI support](https://major.io/2012/02/07/using-openssls-s_client-command-with-web-servers-using-server-name-indication-sni/) (*Server Name Indication*) for the `openssl s_client` command to download the correct certificate.
+This means using the `-servername` option.
 
-### 03. Inspect HTTPS Configuration (Let's Encrypt)
+### 04. Inspect Me PEM
 
-You are given access via SSH to an Nginx setup using SSL/TLS.
-You are provided the hostname that you can use to connect via SSH and that exposes HTTPS.
+Get the flag from the certificate.
 
-**In this section and others we will use `<hostname>` as a placeholder for the hostname you will be provided.
-We will also use `<server_IP_address>` for the IP address of the server identified by `<hostname>`.**
+### 05. Inspect Me DER
 
-Inspect the Nginx configuration in `/etc/nginx/sites-enbled/<hostname>`.
-SSL is enabled with [Let's Encrypt](https://letsencrypt.org/), a free service providing HTTPS certificates.
-The Let's Encrypt configuration is located in `/etc/letsencrypt/live/<hostname>`, as seen in the Nginx configuration:
-```
-        ssl_certificate /etc/letsencrypt/live/<hostname>/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/<hostname>/privkey.pem;
-```
+Get the flag from the certificate.
 
-Investigate the HTTPS connection with the [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/) and with [testssl.sh](https://testssl.sh/).
+### 06. The Chosen One
 
-Obtain the certificate via `openssl s_client` and inspect it locally.
-Identify the certification authority (CA), the expiration date, the contact person and the subject name.
+Find the correct certificate and get the flag from it.
 
-### 04. Create HTTPS Configuration (Let's Encrypt)
+### 07. Proper Naming
 
-You are given access via SSH to an Nginx setup that isn't yet using SSL/TLS.
-You are provided the hostname that you can use to connect via SSH and that exposes HTTPS.
+Connect to https://TODO and get the flag.
 
-Install the `certbot` package and create a [Let's Encrypt](https://letsencrypt.org/) via the `certbot` command.
+### 08. Inside
 
-Configure Nginx with SSL/TLS using the Let's Encrypt certificate.
-Use the configuration from the previous challenge as a starting point.
+Connect to https:// and get the flag.
 
-Validate the correct HTTPS configuration with the [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/) and with [testssl.sh](https://testssl.sh/).
+### 09. Only for Members
 
-### 05. Inspect HTTPS Traffic
+Connect via HTTPS to a https://ctf-10.security.cs.pub.ro:31443.
+Use client certificate authentication to retrieve the flag.
+
+The client certificate needs to be signed by the same certification authority as that of the server.
+See the files and scripts in the `securing-communication/ca/` folder in the repository.
+
+### 10. Tell Me Your Name
+
+Connect via HTTPS to a https://ctf-10.security.cs.pub.ro:31443.
+Use client certificate authentication to retrieve the flag.
+Use specific certificate attributes.
+
+### Extra: Tutorial: Inspect HTTPS Traffic
 
 In this tutorial challenge, we capture and aim to decrypt HTTPS traffic.
 We use Wireshark to capture traffic.
@@ -847,55 +859,17 @@ In summary, with access to the private key, if the cipher used in the HTTPS conn
 Of course, this requires access to the private key.
 In an actual attack this is another part of the attack vector where some server-side vulnerability allows the extraction of the private key.
 
-### 06. Secure Ciphers
-
-In order to prevent attacks such as those above, we need to configure secure ciphers to be used by the server.
-When an SSL / TLS handshake occurs, the server will present the available cipher suites.
-
-Follow instructions [here](https://medium.com/@mvuksano/how-to-properly-configure-your-nginx-for-tls-564651438fe0) and [here](https://graspingtech.com/nginx-lets-encrypt-ssl-labs-aplus/) to configure secure cipher suites.
-Your goal is to get an an A (or maybe even A+) rating on [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/).
-
-### 07. Self-Signed Certificates
-
-You are given access via SSH to an Nginx setup.
-You are provided the hostname that you can use to connect via SSH and that exposes HTTPS.
-
-Use [openssl](https://www.openssl.org/) to create a self-signed certificate.
-Configure that certificate for the hostname you were provided.
-
-Investigate the HTTPS connection with the [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/) and with [testssl.sh](https://testssl.sh/).
-
-Obtain the certificate via `openssl s_client` and inspect it locally.
-Identify the certification authority (CA), the expiration date, the contact person and the subject name.
-Confirm they match the configuration provided at creation time.
-
-### 08. Use Client Certificate Authentication
-
-Connect via HTTPS to a https://ctf-10.security.cs.pub.ro:31443.
-Use client certificate authentication to retrieve the flag.
-
-The client certificate needs to be signed by the same certification authority as that of the server.
-See the files and scripts in the `03-securing-communication/ca/` folder in the repository.
-
-Challenge 03: Certificate Authentication: https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions
-
 ## Resources and Tools
 
-* [testssl.sh](https://testssl.sh/)
-* [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/)
-* [Let's Encrypt](https://letsencrypt.org/)
 * [tcpdump](https://www.tcpdump.org/)
 * [Wireshark](https://www.wireshark.org/)
-* [HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
-* [sslstrip](https://tools.kali.org/information-gathering/sslstrip)
 * [openssl](https://www.openssl.org/)
-* [mitmproxy](https://mitmproxy.org/)
-* [TLSSled](https://tools.kali.org/information-gathering/tlssled)
-* [sslstrip](https://tools.kali.org/information-gathering/sslstrip)
 * [OpenSSL Essentials](https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs)
 * [The Most Common OpenSSL Commands](https://www.sslshopper.com/article-most-common-openssl-commands.html)
 * [OpenSSL Examples](https://geekflare.com/openssl-commands-certificates/)
 * [OpenSSL Certificate Authority](https://jamielinux.com/docs/openssl-certificate-authority/index.html)
+* [testssl.sh](https://testssl.sh/)
+* [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/)
 
 ## Further Reading
 
