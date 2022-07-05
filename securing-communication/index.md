@@ -15,10 +15,11 @@ The session is focused on understanding certificates and HTTPS and investigating
 
 HTTP (*Hypertext Transfer Protocol*) is the main protocol of the web.
 It has several characteristics:
+
 * it is plain text
 * it doesn't maintain an active connection
 * it's a request-response protocol
-* it provides a series of codes to mark the type of request and replies
+* it provides a series of codes to mark the types of requests and replies
 * HTTP requests consists of paths (routes) that are mapped to resources
 
 The lack of an active connection session is compensated by the use of cookies.
@@ -34,7 +35,7 @@ We will be using these in this session as well.
 ## Confidentiality
 
 Confidentiality is a security property that prevents captured data from being understood by an attacker.
-If an attacker captures data with confidentiality ensured, the attacher must not be able to extract actual information from it.
+If an attacker captures data with confidentiality ensured, the attacker must not be able to extract actual information from it.
 Confidentiality is generally provided with encryption.
 
 For example, a classical HTTP connection is plain text and thus non-confidential.
@@ -85,7 +86,7 @@ However, if we used `curl` and an HTTPS connection:
 $ curl https://elf.cs.pub.ro
 ```
 
-there would be no plain text output, because the connection is using a confidential (encrypted) channel.
+there would be no plain text output on the `tcpdump` console, because the connection is using a confidential (encrypted) channel.
 
 The same traffic inspection can be done in a more visual manner using Wireshark.
 
@@ -94,9 +95,12 @@ HTTPS uses public key cryptography to ensure the confidentiality of network traf
 
 ## Public Key Cryptography. Certificates
 
-There are mainly two types of encryption: symmetric and public-key encryption, as shown in TODO Figure.
+There are mainly two types of encryption: symmetric and public-key encryption.
 
 In symmetric encryption, a key is shared among the two ends in the communication.
+
+![symmetric encryption](assets/symmetric-encryption.svg)
+
 That same key is used for both encrypting and decrypting data.
 AES (*Advanced Encryption Standard*) is the standard symmetric encryption algorithm.
 The main benefit of symmetric encryption algorithms is their relative simplicity and speed: they are easy to implement and are fast, with the option of having hardware support.
@@ -113,34 +117,44 @@ Diffie-Hellman (often abbreviated as DH) is based on public-key encryption.
 In short we use public-key encryption to set up a temporary shared key for the actual communication.
 
 Public-key encryption, as its name implies, relies on a pair of private and public keys that are connected mathematically.
+RSA (*Rivest Shamir Adleman* - named after its inventors) is the classical public key cryptographic algorithm.
 The private key is generated as a random set of bytes and the public key is generated from it, via a mathematical algorithm.
 The private key is only available to the owner, whereas the public key is available to everyone.
-Anyone can encrypt a message using the public key, but only the owner can decrypt the message using the private key.
+Anyone can encrypt a message using the public key, but only the owner can decrypt the message using the private key, as shown below.
+
+![public-key encryption](assets/public-key-encryption.svg)
+
 Because of this, public-key encryption is considered more secure than symmetric encryption, as it doesn't require the passing of a shared key between parties, an act that may be intercepted.
 At the same time, public-key encryption is much slower than symmetric encryption.
-Because of this, public-key encryption is only use to set up an initial session and enable a key exchange algorithm (such as Diffie-Hellman) to generate a temporary session-specific shared key.
+Because of this, public-key encryption is only used to set up an initial session and enable a key exchange algorithm (such as Diffie-Hellman) to generate a temporary session-specific shared key.
 
 ### Identity Management. Certificates
 
 A public-private key pair is not only used for encryption.
 It's also used for identity management.
 
-Identity management means making sure a give entity is who they claim they are.
-In HTTPS that means that if we connect to `google.com` there needs to be a way to make sure the server we connect to is indeed `google.com`.
+Identity management means making sure a given entity is who they claim they are.
+In HTTPS that means that if we connect to `google.com` we are offered guarantees that the server we connect to is indeed `google.com`.
 Otherwise, another server could impersonate the target server and capture all traffic.
 
 Identity management relies on signing and verifying messages using public-private keys.
 The private key is used to sign a message.
 The signed message is provided publicly.
 Then, the public key is used to verify the message.
+This is called a **digital signature**, as shown below:
+
+![digital signature](assets/digital-signature.svg)
 
 In HTTPS, this means that the web server will sign the message with its private key and web clients will verify the message with the public key.
 
-In order for this to work, the public key has to be attached the identity, the name of the server.
-This is done via a **certificate**.
+In order for this to work, the public key has to be attached the identity: the name of the server.
+This is done via a **digital certificate**.
 A certificate is a file that consists of a public key and an identity.
 A certificate itself is also signed to ensure its validity.
-This means that a certificate will also be verified using a public key, found as part of another certificate.
+This means that a certificate will also be verified using a public key, found as part of another certificate, as shown below:
+
+![digital certificate](assets/digital-certificate.png)
+
 This dependency between certificates creates a **public-key infrastructure** (PKI), on top of which self-signed root certificates are located.
 Self-signed root certificates part of **Certification Authorities**.
 These are entities that sign other certificates to validate the binding of a public key to an identity.
@@ -154,8 +168,10 @@ After its verification the public key is used to create the actual HTTPS (secure
 
 To get a better understanding of how certificates work, let's take a look at one.
 
-It is easiest to export a root certificate from a browser to inspect one.
-In Firefox, we can use the Certificate Manager, as shown in the image below to export a certificate.
+In order to get a certificate to inspect, it is easiest to export a root certificate from a browser.
+In Firefox, we can use the Certificate Manager, as shown in the image below to export a certificate:
+
+![Firefox Certificate Manager](assets/firefox-certificate-manager.png)
 
 The CA (root) certificate from Verisign is located in `assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt`.
 The certificate, as most certificates, is exported in PEM (*Privacy Enhanced Mail*) format, a Base64 encoding:
@@ -190,7 +206,7 @@ E1Z5T21Q6huwtVexN2ZYI/PcD98Kh8TvhgXVOBRgmaNL3gaWcSzy27YfpO8/7g==
 
 In its basic format, the certificate is a binary file.
 The PEM format is used to make it printable.
-The PEM format is the one used for storing private and public SSH keys, so it may seem familiar.
+The PEM format is also used for storing private and public SSH keys, so it may seem familiar.
 
 We can inspect the certificate with `openssl`:
 
@@ -268,16 +284,16 @@ There are two other important items:
 * the validity of the certificate, in this case it's `July 16, 2036`
 
 Generally, a certificate is only valid for one year and then it will have to be renewed.
-Renewing will mean a new public key is generated and, together with the same identity information, a new certificate.
+Renewing means a new public key is generated and, together with the same identity information, a new certificate.
 
 The `openssl` utility has command-line options to only print parts of the certificate.
 For example, to only print the issuer or the public key, we would use the `-issuer` or `-pubkey` options:
 
 ```
-$ openssl x509 -noout -issuer -in assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt 
+$ openssl x509 -noout -issuer -in assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
 issuer=C = US, O = "VeriSign, Inc.", OU = VeriSign Trust Network, OU = "(c) 1999 VeriSign, Inc. - For authorized use only", CN = VeriSign Class 1 Public Primary Certification Authority - G3
 
-$ openssl x509 -noout -pubkey -in assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt 
+$ openssl x509 -noout -pubkey -in assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
 -----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3YTUubT5p9jzBHic3j3c
 bBMW2XrdJFFmwMcmWQ2sBgjClNEzH/CDNR9uG8jeqm4VTlQn78RtGuwL4w7wRKVX
@@ -308,10 +324,10 @@ HTTPS relies on at least the HTTP server providing a certificate that validates 
 The client can also do that, as part of [client certificate authentication](https://comodosslstore.com/blog/what-is-ssl-tls-client-authentication-how-does-it-work.html).
 
 After validating the identity of the server, the client-server pair create a secure channel by agreeing on a per-session shared symmetric encryption key.
-This is negociated via a key-exchange algorithm such as Diffie-Hellman.
+This is negotiated via a key-exchange algorithm such as Diffie-Hellman.
 Then, all traffic between client and server will be encrypted.
 
-This entire process is facilited by the use of SSL (*Secure Sockets Layer*) or TLS (*Transport Layer Security*).
+This entire process is facilitated by the use of SSL (*Secure Sockets Layer*) or TLS (*Transport Layer Security*).
 We say that HTTPS is HTTP plus SSL / TLS support.
 Note that this is the case with other secure protocol variants such as SMTPS, IMAPS, LDAPS.
 
@@ -322,16 +338,17 @@ Each newer version comes with fixes and extra security guarantees.
 Nowadays (2022) all SSL versions and TLS1.0 are considered insecure.
 This is due both to internal design issues and to weak cryptographic algorithms or the allowing cryptographic keys of insufficient size.
 
-TODO: expand in paragraphs on attacks
+A summary of attacks on SSL / TLS is summarized as part of [RFC 7457](https://tools.ietf.org/html/rfc7457).
+Additional information can be found [here](https://www.acunetix.com/blog/articles/tls-vulnerabilities-attacks-final-part/) and [here](https://www.cloudinsidr.com/content/known-attack-vectors-against-tls-implementation-vulnerabilities/).
+Well known SSL / TLS attacks are:
 
-TLS / SSL attacks: https://tools.ietf.org/html/rfc7457, https://www.acunetix.com/blog/articles/tls-vulnerabilities-attacks-final-part/, https://www.cloudinsidr.com/content/known-attack-vectors-against-tls-implementation-vulnerabilities/
-* Logjam: https://weakdh.org/logjam.html
-* BACKRONYM: http://backronym.fail/
-* DROWN: https://drownattack.com/
+* [Logjam](https://weakdh.org/logjam.html)
+* [BACKRONYM](http://backronym.fail/)
+* [DROWN](https://drownattack.com/)
 
-connection downgrade
-
-protocol downgrade: https://www.venafi.com/blog/preventing-downgrade-attacks
+A typical target of the attacker is downgrading the connection from HTTPS to HTTP.
+Or downgrading the SSL / TLS protocol version to a less secure variant.
+Read more on protocol downgrade [here](https://www.venafi.com/blog/preventing-downgrade-attacks).
 
 ### Capturing, Inspecting and Verifying HTTPS Certificates
 
@@ -570,7 +587,7 @@ d0lIKO2d1xozclOzgjXPYovJJIultzkMu34qQb9Sz/yilrbCgj8=
 
 There are three certificates.
 This is because the server is using a certificate chain.
-A certificate chain is when the CA signs and intermediate certificate which will then sign the actual certificate.
+A **certificate chain** is when the CA signs and intermediate certificate which will then sign the actual certificate.
 Or multiple intermediate certificates.
 This is used to decentralize the certificate signing process, creating the hierarchical public key infrastructure with self signed root CAs at the top.
 
@@ -601,13 +618,14 @@ issuer=C = BE, O = GlobalSign nv-sa, OU = Root CA, CN = GlobalSign Root CA
 ```
 
 To verify the entire security chain we use:
+
 ```
 $ cat google.crt google_interm2.crt google_interm1.crt > google_chain.crt
 $ openssl verify -CAfile google_interm2.crt google_chain.crt
 google_chain.crt: OK
 ```
 
-The first command creates the `google_chain.crt` file with the chain of certificates, the most specific one first.
+The first command creates the `google_chain.crt` file with the chain of certificates, the most specific certificate first.
 The we use `openssl verify` to successfully verify the certificate chain.
 
 ### Validation and Assessment of Remote Certificates
@@ -615,113 +633,86 @@ The we use `openssl verify` to successfully verify the certificate chain.
 Mostly for testing purposes, we want to know whether a given HTTPS server setup is valid and whether it is secure (i.e. it uses strong TLS parameters).
 For this we can use the [SSLTest Web App](https://www.ssllabs.com/ssltest/) or the [`testssl.sh` CLI tool](https://testssl.sh/).
 
-use ssllabs
+**SSLTest**
 
-use testssl.sh
+Using [SSLTest](https://www.ssllabs.com/ssltest/) is quite easy.
+Enter the URL of the target web server and then wait for the results.
+Results come in a grade summary, that's an average of several criteria, and a detailed analysis of the HTTPS security features.
+
+Generally, it is advised to aim for a higher score.
+Note that a higher score may mean using certain security features that some browsers don't support.
+So there needs to be a trade-off between security and browser support.
+
+**testssl.sh**
+
+Installing `testssl.sh` is as simple as cloning [the repository](https://github.com/drwetter/testssl.sh) and changing to a stable branch:
+
+```
+$ git clone https://github.com/drwetter/testssl.sh
+[...]
+
+$ cd testssl.sh/
+
+$ git checkout -b v3.0.7 v3.0.7
+```
+
+Now just pass an URL to the `testssl.sh` script:
+
+```
+$ ./testssl.sh security.cs.pub.ro
+```
+
+If that doesn't work, you can use Docker as detailed in [the repository](https://github.com/drwetter/testssl.sh).
+
+The output is similar to the one from SSLTest.
+The benefit of using `testssl.sh` is it allows automation and it doesn't require a GUI browser to do the test.
 
 ## Summary of Commands
 
-TODO: rework this
+See below a summary of commands useful for working with HTTPS and digital certificates.
+
+Capture HTTP packets and print their contents (ash human-readable ASCII characters):
 
 ```
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl s_client -connect www.upb.ro:443 -servername www.upb.ro
+$ sudo tcpdump -A tcp port 80
+```
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl s_client -connect swarm.cs.pub.ro:443 -servername swarm.cs.pub.ro
+Get remote web page:
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl s_client -connect facebook.com:443 -servername facebook.com
+```
+$ wget http://www.google.com
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl x509 -in facebook.crt -noout -text
+$ wget https://www.google.com
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl s_client -show-certs -connect facebook.com:443 -servername facebook.com
+$ curl http://www.google.com
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl s_client -show_certs -connect facebook.com:443 -servername facebook.com
+$ curl https://www.google.com
+```
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl verify -CAfile intermediary.crt facebook.crt
+Inspect certificate file:
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl verify -CApath /etc/ssl/certs/ intermediary.crt
+```
+$ openssl x509 -noout -text -in certificate.crt
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl verify -CAfile /etc/ssl/certs/DigiCert_High_Assurance_EV_Root_CA.pem intermediary.crt
+$ openssl x509 -noout -subject -issuer -in certificate.crt
+```
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ wget --no-check-certificate security.cs.pub.ro/summer-school/
+Verify certificate:
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ telnet security.cs.pub.ro 80
-Trying 141.85.227.114...
-Connected to koala.cs.pub.ro.
-Escape character is '^]'.
-GET / HTTP/1.0
+```
+$ openssl verify -CAfile CA.crt certificate.crt
+```
 
-HTTP/1.1 200 OK
-[...]
+Extract certificate(s) from remote end:
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ telnet 141.85.227.114 80
-Trying 141.85.227.114...
-Connected to 141.85.227.114.
-Escape character is '^]'.
-GET / HTTP/1.1
-Host: security.cs.pub.ro
+```
+$ openssl s_client -showcerts -connect www.google.com:443 -servername www.google.com < /dev/null 2> /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+```
 
-[...]
+Assess remote HTTPS and certificate security:
 
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl x509 -in local/ssl.crt/awesome-ca.com.crt -noout -text
-
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl genrsa -out local/ssl.key/bucuresti.ro.key 4096
-
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl rsa -in local/ssl.key/bucuresti.ro.key -noout -text
-
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl req -new -key local/ssl.key/bucuresti.ro.key -out local/ssl.csr/bucuresti.ro.csr
-
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl req -noout -text -in local/ssl.csr/bucuresti.ro.csr
-
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ cat local/ca.conf 
-[ ca ]
-default_ca = ca_default
-[ ca_default ]
-dir = ./local/
-certs = $dir
-new_certs_dir = $dir/ssl.crt
-database = $dir/ca.db.index
-serial = $dir/ca.db.serial
-RANDFILE = $dir/ca.db.rand
-certificate = $dir/ssl.crt/awesome-ca.com.crt
-private_key = $dir/ssl.key/awesome-ca.com.key
-default_days = 365
-default_crl_days = 30
-default_md = sha256
-preserve = no
-policy = generic_policy
-[ generic_policy ]
-countryName = optional
-stateOrProvinceName = optional
-localityName = optional
-organizationName = optional
-organizationalUnitName = optional
-commonName = optional
-emailAddress = optional
-
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ echo "1234" > local/ca.db.serial
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ touch local/ca.db.index
-
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl ca -config local/ca.conf -out local/ssl.crt/bucuresti.ro.crt -infiles local/ssl.csr/bucuresti.ro.csr
-Using configuration from local/ca.conf
-Check that the request matches the signature
-Signature ok
-The Subject's Distinguished Name is as follows
-countryName           :PRINTABLE:'RO'
-stateOrProvinceName   :ASN.1 12:'Bucharest'
-organizationName      :ASN.1 12:'Internet Widgits Pty Ltd'
-commonName            :ASN.1 12:'bucuresti.ro'
-Certificate is to be certified until Jul 16 15:19:40 2021 GMT (365 days)
-Sign the certificate? [y/n]:y
-
-
-1 out of 1 certificate requests certified, commit? [y/n]y
-Write out database with 1 new entries
-Data Base Updated
-
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl x509 -noout -text -in local/ssl.crt/bucuresti.ro.crt
-
-razvan@yggdrasil:~/.../admin/admin.git/certs-ssl$ openssl verify -CAfile local/ssl.crt/awesome-ca.com.crt local/ssl.crt/bucuresti.ro.crt 
-local/ssl.crt/bucuresti.ro.crt: OK
+```
+$ ./testssl.sh security.cs.pub.ro
 ```
 
 ## Challenges
