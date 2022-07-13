@@ -66,7 +66,8 @@ The [Open Web Application Security Project](https://owasp.org/) (OWASP) is a non
 The [OWASP Top 10](https://owasp.org/www-project-top-ten/) is a standard awareness document for developers and web application security.
 It represents a broad consensus about the most critical security risks to web applications and is updated every 3 years.
 
-Developed by OWASP, [ZAP](https://www.zaproxy.org/) or Zed Attack Proxy is a multi-platform, open source web application security testing tool. ZAP is used for finding a number of security vulnerabilities in a web app during the development as well as testing phase. Other than its use as a scanner, ZAP can also be used to intercept a proxy for manually testing a web page.
+Developed by OWASP, [ZAP](https://www.zaproxy.org/) or Zed Attack Proxy is a multi-platform, open source web application security testing tool. ZAP is used for finding a number of security vulnerabilities in a web app during the development as well as testing phase.
+Other than its use as a scanner, ZAP can also be used to intercept a proxy for manually testing a web page.
 ZAP can identify:
 * Application error disclosure
 * Cookie not marked with the HttpOnly flag
@@ -95,7 +96,8 @@ Customizing attacks requires that we specify one or more payloads and the positi
 
 * Let's say we want to try all the passwords from **abc1**, **abc3**, **abc5**... to **abc100**. Navigate to the **Positions** tab - the payload position is specified with a pair of these characters: **§** called **payload markers**.
 
-**Note!** By default, Burp surrounds by default some parameter values which might be candidates for enumeration, such as cookie values, or POST data values. Remove the extra **§** characters, leaving it like in the picture below.
+**Note!** By default, Burp surrounds by default some parameter values which might be candidates for enumeration, such as cookie values, or POST data values.
+Remove the extra **§** characters, leaving it like in the picture below.
 
 ![Set payload position](./support/payload_position.png)
 
@@ -134,7 +136,8 @@ The attack iterates through each payload set in turn, so that all permutations o
 This attack type is useful where an attack requires different and unrelated or unknown input to be inserted in multiple places within the request (e.g. when guessing credentials, a username in one parameter, and a password in another parameter).
 The total number of requests generated in the attack is the product of the number of payloads in all defined payload sets - this may be extremely large.
 
-There are also many different types of payloads you can use ([here](https://portswigger.net/burp/documentation/desktop/tools/intruder/payloads/types) is the entire list), from specifying your own list of words to generating random bytes. You can find lists of popular credentials online, for instance, [here](https://github.com/danielmiessler/SecLists/tree/master/Passwords) is a repo with lists of most used passwords.
+There are also many different types of payloads you can use ([here](https://portswigger.net/burp/documentation/desktop/tools/intruder/payloads/types) is the entire list), from specifying your own list of words to generating random bytes.
+You can find lists of popular credentials online, for instance, [here](https://github.com/danielmiessler/SecLists/tree/master/Passwords) is a repo with lists of most used passwords.
 
 ## Web Content Enumeration/ Web Content Discovery/ Dirbusting
 

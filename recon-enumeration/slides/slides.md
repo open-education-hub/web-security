@@ -23,7 +23,7 @@ penetration testing / pentester
 
 ----
 
-## 1. Reconnaissance
+## Reconnaissance
 
 Nmap
 
@@ -60,7 +60,7 @@ OWASP ZAP
 
 ----
 
-## 3. Gaining access through enumeration
+## Gaining access through enumeration
 
 Brute forcing the login form
 
