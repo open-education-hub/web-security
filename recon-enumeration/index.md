@@ -141,8 +141,8 @@ You can find lists of popular credentials online, for instance, [here](https://g
 
 ## Web Content Enumeration/ Web Content Discovery/ Dirbusting
 
-Let's say we have the target server **http://192.168.1.224/** and we want to discover hidden files, directories or other resources there.
-Manually, we would make multiple requests like _http://192.168.1.224/docs_, _http://192.168.1.224/config.php_ etc. or whatever we imagine might find and see if we get a 404 Not Found response or not.
+Let's say we have the target server **https://security.cs.pub.ro/** and we want to discover hidden files, directories or other resources there.
+Manually, we would make multiple requests like _https://security.cs.pub.ro/docs_, _https://security.cs.pub.ro/config.php_ etc. or whatever we imagine might find and see if we get a 404 Not Found response or not.
 Luckily, there are command line tools and predefined wordlists in Kali (**/usr/share/wordlists/**) doing exactly this for us.
 
 ### DIRB
