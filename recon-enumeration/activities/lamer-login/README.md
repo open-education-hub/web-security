@@ -4,7 +4,7 @@
 
 Get the flag from [url]http://ctf-06.security.cs.pub.ro:8001/[/url].
 
-Score: 100
+Score: 150
 
 ## Vulnerability
 
