@@ -87,7 +87,7 @@ Now we'll see an example of how to use Intruder in order to enumerate passwords.
 With Burp Intruder, customized attacks can be automated against web applications.
 Customizing attacks requires that we specify one or more payloads and the position where the payloads will be placed in the website.
 
-* I opened Burp and the built-in Chromium browser (or your browser of choice, but pay attention to the setting up the proxy), having the intercept **off**.
+* I opened Burp and the built-in Chromium browser (or your browser of choice, but pay attention to setting up the proxy), having the intercept **off**.
 * I navigated to https://sss-ctf.security.cs.pub.ro/home and tried to log in using the email **a@a.com** and the password **abc123**.
 * The POST request can be found in HTTP history. Right click on it to send it to Intruder.
 
@@ -193,6 +193,11 @@ After running it, you can simply access it in your browser at http://127.0.0.1:8
 * https://hackr.io/blog/top-10-open-source-security-testing-tools-for-web-applications
 * https://www.knowledgehut.com/blog/security/enumeration-in-ethical-hacking
 * https://www.greycampus.com/opencampus/ethical-hacking/enumeration-and-its-types
+
+### Wordlists
+* https://github.com/Bo0oM/fuzz.txt
+* https://github.com/aels/subdirectories-discover
+* https://github.com/danielmiessler/SecLists
 
 ### Bug Bounty Program Lists
 * https://github.com/projectdiscovery/public-bugbounty-programs/blob/master/chaos-bugbounty-list.json
