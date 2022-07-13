@@ -2,7 +2,7 @@
 
 ## Description
 
-Get the flag from [url]http://141.85.224.103:8001/[/url].
+Get the flag from [url]http://ctf-06.security.cs.pub.ro:8001/[/url].
 
 Score: 100
 
