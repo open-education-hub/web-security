@@ -158,7 +158,7 @@ The output lines with the results found (not 404) start with a `+` and give deta
 You can read the documentation if you want to specify custom options, like custom file extensions to look for.
 
 ### Similar tools
-* [DirBuster](https://tools.kali.org/web-applications/dirbuster) - deprecated, Kali built in, written in Java.
+* [DirBuster](https://tools.kali.org/web-applications/dirbuster) - not maintained anymore, Kali built in, written in Java.
 The only one with a GUI and not a CLI.
 * [DirSearch](https://www.kali.org/tools/dirsearch/) - Kali built in & on [GitHub]((https://github.com/maurosoria/dirsearch)), written in Python.
 * [GoBuster](https://tools.kali.org/web-applications/gobuster) - Kali built in & on [GitHub](https://github.com/OJ/gobuster), written in Go.
