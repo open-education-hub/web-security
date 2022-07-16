@@ -1,15 +1,3 @@
-Name
-----
-
-Web: Exotic Attacks: Breaking Hashes
-
-Description
------------
-
-Get the flag from [url]141.85.224.101:8000[/url].
-
-Score: 50
-
 Vulnerability
 -------------
 
@@ -39,3 +27,5 @@ We can pass the parameters as arrays and make one of the values a string, and th
 A possible payload in POST data is:
 
 `username[]="8"&password[]=8&submit=Login`
+
+Exploit in `../sol/solution.sh`.

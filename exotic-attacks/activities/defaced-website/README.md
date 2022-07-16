@@ -1,15 +1,3 @@
-Name
-----
-
-Web: Exotic Attacks: Defaced Website
-
-Description
------------
-
-Try to correct something on the website, then get the flag: [url]141.85.224.101:8005/[/url].
-
-Score: 100
-
 Vulnerability
 -------------
 
@@ -30,3 +18,5 @@ From the table in the session content, we know that the md5 hash of the string `
 
 The final payload in POST data is:
 `username=QNKCDZO&password=&submit=Login`
+
+Exploit in `../sol/solution.sh`.

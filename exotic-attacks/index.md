@@ -11,7 +11,6 @@ Today, even if there are better options for the server-side choice, PHP is still
 Source [here](https://w3techs.com/technologies/overview/programming_language)
 
 There are also lots of different PHP versions, each with its own vulnerabilities.
-The latest version now is **PHP v7.4.7**.
 A small insight into the distribution of versions across the web is:
 
 ![PHP Versions Popularity](./assets/version-stats.png)
@@ -50,7 +49,8 @@ For example, when the program is comparing the string `“7”` and the integer 
 ?>
 ```
 
-The code will run without errors and output _“PHP can compare ints and strings._” This behavior is very helpful when you want your program to be flexible in dealing with different types of user input.
+The code will run without errors and output _“PHP can compare ints and strings._”.
+This behavior is very helpful when you want your program to be flexible in dealing with different types of user input.
 
 However, it is also important to note that this behavior is also a major source of bugs and security vulnerabilities.
 

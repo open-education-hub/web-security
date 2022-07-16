@@ -8,8 +8,15 @@ then
 elif [[ $1 == "remote" ]] && [[ -z $2 ]]
 then
     URL='http://141.85.224.101:'$PORT
+elif [[ $# -ne 2 ]]
+then
+    echo "Usage:"
+    echo $0" {local,remote}"
+    echo "or"
+    echo $0" <ip> <port>"
+    exit 1
 else
-    URL='http://'$1':'$2
+    URL=$1':'$2
 fi
 
 # Meme Uploader
@@ -29,8 +36,8 @@ echo "Extracting the new filename (hashed)"
 NEW_FILENAME=$(echo $OUTPUT | sed 's/.*Your file \([^ ]*\).*/\1/')
 
 echo "Deleting locally generated file"
-rm $FILENAME
+rm "$FILENAME"
 
 echo "Accessing the file on the server"
 echo "Flag is"
-curl $URL'/uploads/'$NEW_FILENAME
+curl "$URL"'/uploads/'"$NEW_FILENAME"

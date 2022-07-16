@@ -1,15 +1,3 @@
-Name
-----
-
-Web: Exotic Attacks: PRO Replacer
-
-Description
------------
-
-Get the flag from: [url]141.85.224.101:8001/[/url].
-
-Score: 50
-
 Vulnerability
 -------------
 
@@ -43,3 +31,5 @@ Haystack: `m`
 
 
 Output: the flag
+
+Exploit in `../sol/solution.sh`.
