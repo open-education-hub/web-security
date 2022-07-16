@@ -1,15 +1,3 @@
-Name
-----
-
-Web: Framework & API Vulnerabilities: The Accountant
-
-Description
------------
-
-Get the flag from [url]http://141.85.224.114:7005/[/url].
-
-Score: 100
-
 Vulnerability
 -------------
 
