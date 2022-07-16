@@ -8,11 +8,18 @@ then
 elif [[ $1 == "remote" ]] && [[ -z $2 ]]
 then
     URL='http://141.85.224.114:'$PORT
+elif [[ $# -ne 2 ]]
+then
+    echo "Usage:"
+    echo $0" {local,remote}"
+    echo "or"
+    echo $0" <ip> <port>"
+    exit 1
 else
-    URL=$1':'$2
+    url=$1':'$2
 fi
 
 # Snoop Doggy Dog
 echo "Starting exploit for Snoop Doggy Dog"
 echo "Downloading the image that contains the flag..."
-wget $URL'/images/running-dogs-flag.jpg'
+wget "$URL"'/images/running-dogs-flag.jpg'

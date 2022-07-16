@@ -16,4 +16,4 @@ The flag is retrieved if you guess and make a request for the `altex` retailer.
 
 (CTRL-F in the response text)
 
-Exploit in `solution.py`.
+Exploit in `../sol/solution.py`.

@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
 	print("Getting the max score from the leaderboard...")
 	res = session.get(URL + "/leaderboard.php")
-	max_score = int(res.text.split("<li> - ")[1].split(" points</li>")[0])
+	max_score = int(res.text.split(f"<li>{random_string} - ")[1].split(" points</li>")[0])
 
 	print("Modifying our score to max_score + 1...")
 	edit_data = {

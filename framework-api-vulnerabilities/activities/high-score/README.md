@@ -12,4 +12,4 @@ Moreover, we see a cookie named `isAdmin` with value `false`, and we decide to s
 
 In the end, we visit the leaderboard page and see the flag.
 
-Exploit in `solution.py`.
+Exploit in `../sol/solution.py`.

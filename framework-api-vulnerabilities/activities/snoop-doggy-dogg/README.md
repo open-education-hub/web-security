@@ -14,4 +14,4 @@ Here, there is a hardcoded hex string which, echoed in the browser console, says
 
 Here, there is a link to `/ya6sb1bfhfyacuyt.html`, where there is a link to an image, `images/running-dogs-flag.jpg`, which displays the flag.
 
-Exploit in `solution.sh`.
+Exploit in `../sol/solution.sh`.
