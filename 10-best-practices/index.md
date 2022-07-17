@@ -132,7 +132,7 @@ if (request.getParameter("cmd") != null) {
 
 Let's modify the request and send a new request containing the web shell file having the name ```sss.jsp```. This file will be uploaded at the ```authenticationendpoint/sss.jsp``` endpoint.
 
-<img src="./assets/crafted_request.png" width=800 height=400>
+<img src="./assets/crafted_request.png" width=900 height=500>
 
 
 # Further reading
