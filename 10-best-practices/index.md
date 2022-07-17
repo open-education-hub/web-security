@@ -92,11 +92,11 @@ We know that one of the vulnerable endpoint is the ```../../../../repository/dep
 
 First, turn on the Intercept and catch a request to the ```/carbon``` endpoint, using the Chromium browser. 
 
-<img src="./assets/browser_access.png" width=500 height=150>
+<img src="./assets/browser_access.png" width=800 height=400>
 
-<img src="./assets/burp_intercept.png" width=500 height=150>
+<img src="./assets/burp_intercept.png" width=800 height=400>
 
 Now, send the caught request to Repeater, using the **Ctrl+R** keyboard shortcut; this allows us to modify the request, trying to replicate the request that will succeed to our exploitation.
 
-<img src="./assets/burp_repeater.png" width=500 height=150>
+<img src="./assets/burp_repeater.png" width=800 height=400>
 
