@@ -335,7 +335,7 @@ He posted a [video](https://www.youtube.com/watch?v=nNDsGTalXS0&feature=youtu.be
 
 # Activities
 
-* [Clean up](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-* [High Score](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-* [Snoop Doggy Dogg](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-* [The Accountant](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+* [Clean up](https://sss-web.cyberedu.ro/challenge/ca1512a0-0616-11ed-be56-0fec9572decd)
+* [High Score](https://sss-web.cyberedu.ro/challenge/f2efab30-0616-11ed-bb34-19a4ff512c6d)
+* [Snoop Doggy Dogg](https://sss-web.cyberedu.ro/challenge/0cb44c00-0617-11ed-80ab-4758bca0c77e)
+* [The Accountant](https://sss-web.cyberedu.ro/challenge/2026cea0-0617-11ed-8d3f-19288a331f73)
