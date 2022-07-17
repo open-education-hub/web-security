@@ -54,6 +54,16 @@ gzip -d targets.json.gz
 shodan parse targets.json --fields=ip_str,port > targets.txt
 ```
 
+### Get nuclei in action
+
+Now, having the targets inside the ```targets.txt``` file, we can start using nuclei. The first step is to install the tool from the [public github page](https://github.com/projectdiscovery/nuclei). After the installation is completed, as we said, we will choose to scan targets vulnerable to the CVE-2022-29464, so we will download the specific [```CVE-2022-29464.yaml```](https://github.com/projectdiscovery/nuclei-templates/blob/master/cves/2022/CVE-2022-29464.yaml) file.
+
+```nuclei -t CVE-2022-29464.yaml -l targets.txt```
+
+We can see that our target was found vulnerable by nuclei.
+
+<img src="./assets/nuclei_run.png">
+
 ### Short CVE-2022-29464 explanation
 
 We didn't talk at all about how this vulnerability works; the main idea is that the vulnerable WSO2 products allow unrestricted file upload which results in remote code execution. The main approach to succeed the vulnerability inside the WSO2 is to do a POST request which tries to upload a [web shell file](https://www.upguard.com/blog/what-are-web-shell-attacks) in JSP format on the target system.
@@ -78,12 +88,15 @@ requests:
         Host: {{Hostname}}
 ```
 
-### Get nuclei in action
+We know that one of the vulnerable endpoint is the ```../../../../repository/deployment/server/webapps/authenticationendpoint/``` endpoint. So, the main idea is to send a **POST** request containing a web shell, which let us to send commands on the system: to craft a request like the one inside the ```.yaml``` file we will use Burp Suite. 
 
-Now, having the targets inside the ```targets.txt``` file, we can start using nuclei. The first step is to install the tool from the [public github page](https://github.com/projectdiscovery/nuclei). After the installation is completed, as we said, we will choose to scan targets vulnerable to the CVE-2022-29464, so we will download the specific [```CVE-2022-29464.yaml```](https://github.com/projectdiscovery/nuclei-templates/blob/master/cves/2022/CVE-2022-29464.yaml) file.
+First, turn on the Intercept and catch a request to the ```/carbon``` endpoint, using the Chromium browser. 
 
-```nuclei -t CVE-2022-29464.yaml -l targets.txt```
+<img src="./assets/browser_access.png">
 
-We can see that our target was found vulnerable by nuclei.
+<img src="./assets/burp_intercept.png">
 
-<img src="./assets/nuclei_run.png">
+Now, send the caught request to Repeater, using the **Ctrl+R** keyboard shortcut; this allows us to modify the request, trying to replicate the request that will succeed to our exploitation.
+
+<img src="./assets/burp_repeater.png">
+
