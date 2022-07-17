@@ -1,11 +1,5 @@
 # Name: Lamer Login
 
-## Description
-
-Get the flag from [url]http://ctf-06.security.cs.pub.ro:8001/[/url].
-
-Score: 150
-
 ## Vulnerability
 
 Weak credentials, the server tells you if only the username is correct, allowing username enumeration.

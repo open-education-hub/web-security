@@ -1,14 +1,8 @@
 # Name: Not So Random
 
-## Description
-
-Get the flag from [url]http://ctf-06.security.cs.pub.ro:8000/[/url].
-
-Score: 150
-
 ## Hints
 
-1. Try to find the source code of the application.
+Try to find the source code of the application.
 
 ## Vulnerability
 
