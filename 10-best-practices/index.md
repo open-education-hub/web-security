@@ -4,11 +4,11 @@
 ### Find targets using shodan.io
 As presented to you in another session, **[shodan.io](https://www.shodan.io/dashboard)** is a powerful search engine that can help you to find vulnerable targets on the internet, using different search queries. A search query can contain, for example, the name of the product like a simple ```weblogic``` which represents the name of the WebLogic server developed by Oracle.
 
-<img src="./shodan_finding_1-2.png" width=800 height=400>
+<img src="./assets/shodan_finding_1-2.png" width=800 height=400>
 
 But we can also use more specific queries to find targets that interest us. You can also specify the port numbers inside the shodan query, using the ```port:``` filter. Knowing that [WSO2](https://wso2.com) the default HTTP and HTTPS ports of a WSO2 product are 9763 and 9443 respectively, we can try to use the ```WSO2 port:9443,9763``` query, you can find some [WSO2](https://wso2.com) targets across the internet.
 
-<img src="./shodan_finding_2-2.png" width=800 height=400>
+<img src="./assets/shodan_finding_2-2.png" width=800 height=400>
 
 ### Find targets using Google Dorks
 
@@ -22,7 +22,7 @@ intitle:"API Publisher- Login"
 intitle:"WSO2 Management Console"
 ```
 
-<img src="./google_dorks.png" width=800 height=500>
+<img src="./assets/google_dorks.png" width=800 height=500>
 
 ## Use automation to find vulnerable targets with Nuclei
 
@@ -34,9 +34,9 @@ intitle:"WSO2 Management Console"
 
 Taking the same previous CVE-2022-29464 as example, we can use our shodan.io results to find if the targets found in the wild are vulnerable. First we need to download the results of the [shodan search used for the WSO2 targets](https://www.shodan.io/search?query=WSO2+port%3A9443%2C9763): just press the Download Results button and wait for the ```.json.gz``` file to be downloaded then unzip it using ```gzip -d <finding>.json.gz```
 
-<img src="./shodan_download.png" width=800 height=150>
+<img src="./assets/shodan_download.png" width=800 height=150>
 
-<img src="./shodan_download_2.png" width=800 height=150>
+<img src="./assets/shodan_download_2.png" width=800 height=150>
 
 Our main interests of the ```<finding>.json.gz``` are the IP:PORT fields of every resulted information of the target; so the first approach is to extract these two fields, using [jq](https://stedolan.github.io/jq/) Linux utillitary - a sed for JSON data. Using the following command, we will have a list with an IP associated with a PORT.
 
@@ -86,4 +86,4 @@ Now, having the targets inside the ```targets.txt``` file, we can start using nu
 
 We can see that our target was found vulnerable by nuclei.
 
-<img src="./nuclei_run.png">
+<img src="./assets/nuclei_run.png">
