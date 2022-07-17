@@ -101,6 +101,8 @@ Now, send the caught request to Repeater, using the **Ctrl+R** keyboard shortcut
 <img src="./assets/burp_repeater_dark.png" width=800 height=400>
 
 
-## Further reading
+# Further reading
 
 [How WSO2 CVE-2022-29464 works](https://github.com/tufanturhan/wso2-rce-cve-2022-29464)
+
+# Activities 
