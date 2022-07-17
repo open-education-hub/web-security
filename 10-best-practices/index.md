@@ -130,10 +130,13 @@ if (request.getParameter("cmd") != null) {
 </BODY></HTML>
 ```
 
-Let's modify the request and send a new request containing the web shell file having the name ```sss.jsp```. This file will be uploaded at the ```authenticationendpoint/sss.jsp``` endpoint.
+Let's modify the request and send a new request containing the web shell file having the name ```sss.jsp```. This file will be uploaded at the ```/authenticationendpoint/sss.jsp``` endpoint.
 
 <img src="./assets/crafted_request.png" width=900 height=500>
 
+Right now we have an uploaded file situated on the ```https://<IP>:9443/authenticationendpoint/sss.jsp```. Accessing that web-page, we can see that we have a prompted form where we can insert commands.
+
+<img src="./assets/passwd_file.png" width=600 height=300>
 
 # Further reading
 
