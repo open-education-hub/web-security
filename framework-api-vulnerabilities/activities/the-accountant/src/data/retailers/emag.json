@@ -1,0 +1,702 @@
+[
+ {
+   "transaction": 25817721299,
+   "date": "Apr 25, 2017",
+   "amount": "193,781€",
+   "overdue": 161,
+   "billed": "No"
+ },
+ {
+   "transaction": 40714269699,
+   "date": "May 28, 2021",
+   "amount": "192,215€",
+   "overdue": 30,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 33315703499,
+   "date": "Sep 6, 2017",
+   "amount": "51,154€",
+   "overdue": 100,
+   "billed": "No"
+ },
+ {
+   "transaction": 28983772199,
+   "date": "Nov 5, 2013",
+   "amount": "62,678€",
+   "overdue": 346,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 21261263699,
+   "date": "Apr 24, 2021",
+   "amount": "147,568€",
+   "overdue": 474,
+   "billed": "No"
+ },
+ {
+   "transaction": 93956556799,
+   "date": "Nov 14, 2013",
+   "amount": "48,864€",
+   "overdue": 199,
+   "billed": "No"
+ },
+ {
+   "transaction": 64993762999,
+   "date": "Feb 28, 2019",
+   "amount": "71,288€",
+   "overdue": 338,
+   "billed": "No"
+ },
+ {
+   "transaction": 21376772399,
+   "date": "Jul 22, 2015",
+   "amount": "114,293€",
+   "overdue": 362,
+   "billed": "No"
+ },
+ {
+   "transaction": 72881021999,
+   "date": "Oct 29, 2017",
+   "amount": "120,898€",
+   "overdue": 499,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 4999683799,
+   "date": "Aug 16, 2019",
+   "amount": "2,286€",
+   "overdue": 122,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 71379659199,
+   "date": "Nov 16, 2017",
+   "amount": "186,469€",
+   "overdue": 117,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 83255915199,
+   "date": "Sep 25, 2019",
+   "amount": "82,367€",
+   "overdue": 434,
+   "billed": "No"
+ },
+ {
+   "transaction": 51535863899,
+   "date": "Sep 19, 2015",
+   "amount": "14,980€",
+   "overdue": 298,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 16278208699,
+   "date": "Feb 13, 2020",
+   "amount": "86,550€",
+   "overdue": 489,
+   "billed": "No"
+ },
+ {
+   "transaction": 10822640699,
+   "date": "Dec 4, 2012",
+   "amount": "183,106€",
+   "overdue": 303,
+   "billed": "No"
+ },
+ {
+   "transaction": 46661045599,
+   "date": "Oct 23, 2014",
+   "amount": "185,486€",
+   "overdue": 420,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 80969900899,
+   "date": "Mar 18, 2018",
+   "amount": "51,590€",
+   "overdue": 463,
+   "billed": "No"
+ },
+ {
+   "transaction": 39478105399,
+   "date": "Jun 24, 2019",
+   "amount": "97,604€",
+   "overdue": 328,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 10528680099,
+   "date": "May 24, 2010",
+   "amount": "125,096€",
+   "overdue": 61,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 1316378299,
+   "date": "Nov 30, 2010",
+   "amount": "12,772€",
+   "overdue": 6,
+   "billed": "No"
+ },
+ {
+   "transaction": 96444410199,
+   "date": "Aug 27, 2017",
+   "amount": "107,753€",
+   "overdue": 95,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 69367459999,
+   "date": "Jun 23, 2016",
+   "amount": "42,742€",
+   "overdue": 134,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 91446512299,
+   "date": "Oct 27, 2012",
+   "amount": "136,611€",
+   "overdue": 96,
+   "billed": "No"
+ },
+ {
+   "transaction": 21912869299,
+   "date": "Nov 6, 2019",
+   "amount": "119,150€",
+   "overdue": 45,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 1461452599,
+   "date": "Feb 28, 2015",
+   "amount": "90,052€",
+   "overdue": 415,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 80382828599,
+   "date": "Jul 17, 2016",
+   "amount": "90,197€",
+   "overdue": 444,
+   "billed": "No"
+ },
+ {
+   "transaction": 16295816399,
+   "date": "Jun 5, 2018",
+   "amount": "58,720€",
+   "overdue": 55,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 13860237099,
+   "date": "Sep 9, 2019",
+   "amount": "146,795€",
+   "overdue": 333,
+   "billed": "No"
+ },
+ {
+   "transaction": 47765173299,
+   "date": "Mar 8, 2013",
+   "amount": "10,029€",
+   "overdue": 67,
+   "billed": "No"
+ },
+ {
+   "transaction": 95766804699,
+   "date": "Jul 1, 2018",
+   "amount": "95,197€",
+   "overdue": 228,
+   "billed": "No"
+ },
+ {
+   "transaction": 84686486099,
+   "date": "Feb 13, 2021",
+   "amount": "65,630€",
+   "overdue": 306,
+   "billed": "No"
+ },
+ {
+   "transaction": 32278016199,
+   "date": "May 5, 2016",
+   "amount": "95,879€",
+   "overdue": 279,
+   "billed": "No"
+ },
+ {
+   "transaction": 90323702699,
+   "date": "Feb 11, 2020",
+   "amount": "0,366€",
+   "overdue": 82,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 19744571899,
+   "date": "Jul 8, 2018",
+   "amount": "184,853€",
+   "overdue": 141,
+   "billed": "No"
+ },
+ {
+   "transaction": 30551887899,
+   "date": "Sep 18, 2017",
+   "amount": "139,669€",
+   "overdue": 300,
+   "billed": "No"
+ },
+ {
+   "transaction": 4301921399,
+   "date": "Feb 7, 2019",
+   "amount": "19,808€",
+   "overdue": 118,
+   "billed": "No"
+ },
+ {
+   "transaction": 46970723799,
+   "date": "Dec 26, 2010",
+   "amount": "104,086€",
+   "overdue": 51,
+   "billed": "No"
+ },
+ {
+   "transaction": 60288247499,
+   "date": "Sep 18, 2010",
+   "amount": "68,747€",
+   "overdue": 293,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 86250291799,
+   "date": "Jul 28, 2014",
+   "amount": "73,066€",
+   "overdue": 254,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 47577187399,
+   "date": "Apr 2, 2010",
+   "amount": "41,816€",
+   "overdue": 267,
+   "billed": "No"
+ },
+ {
+   "transaction": 64712774699,
+   "date": "Mar 20, 2016",
+   "amount": "103,819€",
+   "overdue": 68,
+   "billed": "No"
+ },
+ {
+   "transaction": 15368756199,
+   "date": "Dec 26, 2011",
+   "amount": "1,935€",
+   "overdue": 392,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 24904995799,
+   "date": "Jul 1, 2015",
+   "amount": "199,029€",
+   "overdue": 444,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 70517712699,
+   "date": "Feb 13, 2015",
+   "amount": "43,581€",
+   "overdue": 144,
+   "billed": "No"
+ },
+ {
+   "transaction": 50218631199,
+   "date": "Mar 20, 2013",
+   "amount": "74,982€",
+   "overdue": 72,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 32450353799,
+   "date": "Jun 25, 2013",
+   "amount": "1,704€",
+   "overdue": 319,
+   "billed": "No"
+ },
+ {
+   "transaction": 93724818099,
+   "date": "Jun 22, 2019",
+   "amount": "103,115€",
+   "overdue": 12,
+   "billed": "No"
+ },
+ {
+   "transaction": 55399728299,
+   "date": "Jun 2, 2011",
+   "amount": "68,147€",
+   "overdue": 45,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 35954513799,
+   "date": "Oct 22, 2012",
+   "amount": "134,717€",
+   "overdue": 400,
+   "billed": "No"
+ },
+ {
+   "transaction": 50317393199,
+   "date": "Oct 13, 2012",
+   "amount": "114,166€",
+   "overdue": 127,
+   "billed": "No"
+ },
+ {
+   "transaction": 24894826299,
+   "date": "Jan 3, 2014",
+   "amount": "14,237€",
+   "overdue": 59,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 18535222699,
+   "date": "Dec 7, 2019",
+   "amount": "116,103€",
+   "overdue": 227,
+   "billed": "No"
+ },
+ {
+   "transaction": 70496972599,
+   "date": "Jul 29, 2010",
+   "amount": "119,374€",
+   "overdue": 49,
+   "billed": "No"
+ },
+ {
+   "transaction": 7838505899,
+   "date": "Jan 22, 2016",
+   "amount": "121,058€",
+   "overdue": 349,
+   "billed": "No"
+ },
+ {
+   "transaction": 10880613099,
+   "date": "Sep 7, 2011",
+   "amount": "19,382€",
+   "overdue": 70,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 26204644699,
+   "date": "Dec 8, 2019",
+   "amount": "172,782€",
+   "overdue": 249,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 36703102099,
+   "date": "Apr 22, 2015",
+   "amount": "122,710€",
+   "overdue": 87,
+   "billed": "No"
+ },
+ {
+   "transaction": 36368606399,
+   "date": "Aug 25, 2011",
+   "amount": "43,104€",
+   "overdue": 494,
+   "billed": "No"
+ },
+ {
+   "transaction": 53896782899,
+   "date": "Dec 2, 2020",
+   "amount": "197,463€",
+   "overdue": 456,
+   "billed": "No"
+ },
+ {
+   "transaction": 49851712499,
+   "date": "Oct 8, 2019",
+   "amount": "28,423€",
+   "overdue": 140,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 81336720799,
+   "date": "Mar 19, 2020",
+   "amount": "179,523€",
+   "overdue": 450,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 85504385299,
+   "date": "Oct 7, 2014",
+   "amount": "16,230€",
+   "overdue": 309,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 64684033899,
+   "date": "Dec 11, 2016",
+   "amount": "158,211€",
+   "overdue": 268,
+   "billed": "No"
+ },
+ {
+   "transaction": 76672696499,
+   "date": "Jun 7, 2014",
+   "amount": "138,297€",
+   "overdue": 2,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 99864894199,
+   "date": "Mar 4, 2020",
+   "amount": "115,346€",
+   "overdue": 47,
+   "billed": "No"
+ },
+ {
+   "transaction": 51352326099,
+   "date": "Mar 5, 2020",
+   "amount": "83,493€",
+   "overdue": 7,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 64519864699,
+   "date": "Nov 23, 2013",
+   "amount": "160,316€",
+   "overdue": 468,
+   "billed": "No"
+ },
+ {
+   "transaction": 65760323699,
+   "date": "Dec 2, 2012",
+   "amount": "193,761€",
+   "overdue": 202,
+   "billed": "No"
+ },
+ {
+   "transaction": 99221194399,
+   "date": "May 7, 2020",
+   "amount": "166,553€",
+   "overdue": 388,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 70932347799,
+   "date": "Oct 19, 2011",
+   "amount": "120,955€",
+   "overdue": 26,
+   "billed": "No"
+ },
+ {
+   "transaction": 58976188699,
+   "date": "Apr 17, 2019",
+   "amount": "7,862€",
+   "overdue": 307,
+   "billed": "No"
+ },
+ {
+   "transaction": 45824679599,
+   "date": "Jul 7, 2014",
+   "amount": "66,363€",
+   "overdue": 34,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 50901694499,
+   "date": "Mar 13, 2011",
+   "amount": "175,952€",
+   "overdue": 184,
+   "billed": "No"
+ },
+ {
+   "transaction": 27619245799,
+   "date": "Dec 2, 2016",
+   "amount": "199,781€",
+   "overdue": 447,
+   "billed": "No"
+ },
+ {
+   "transaction": 84475588499,
+   "date": "Jul 30, 2017",
+   "amount": "174,133€",
+   "overdue": 77,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 69574116599,
+   "date": "Aug 28, 2017",
+   "amount": "165,998€",
+   "overdue": 299,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 19431138199,
+   "date": "Mar 29, 2011",
+   "amount": "171,456€",
+   "overdue": 196,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 31698405199,
+   "date": "Feb 2, 2015",
+   "amount": "159,678€",
+   "overdue": 250,
+   "billed": "No"
+ },
+ {
+   "transaction": 73835532299,
+   "date": "Dec 5, 2020",
+   "amount": "58,346€",
+   "overdue": 191,
+   "billed": "No"
+ },
+ {
+   "transaction": 74474058899,
+   "date": "Feb 15, 2014",
+   "amount": "13,800€",
+   "overdue": 78,
+   "billed": "No"
+ },
+ {
+   "transaction": 82479279099,
+   "date": "Jan 31, 2016",
+   "amount": "7,267€",
+   "overdue": 34,
+   "billed": "No"
+ },
+ {
+   "transaction": 44669961099,
+   "date": "Mar 14, 2010",
+   "amount": "180,871€",
+   "overdue": 265,
+   "billed": "No"
+ },
+ {
+   "transaction": 28778042499,
+   "date": "Oct 16, 2018",
+   "amount": "95,192€",
+   "overdue": 319,
+   "billed": "No"
+ },
+ {
+   "transaction": 35982706699,
+   "date": "Jan 12, 2020",
+   "amount": "147,201€",
+   "overdue": 338,
+   "billed": "No"
+ },
+ {
+   "transaction": 20539821699,
+   "date": "Aug 17, 2015",
+   "amount": "152,527€",
+   "overdue": 110,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 34840455599,
+   "date": "Mar 29, 2012",
+   "amount": "147,717€",
+   "overdue": 444,
+   "billed": "No"
+ },
+ {
+   "transaction": 14915523599,
+   "date": "Sep 26, 2019",
+   "amount": "57,029€",
+   "overdue": 445,
+   "billed": "No"
+ },
+ {
+   "transaction": 26309934699,
+   "date": "Mar 23, 2020",
+   "amount": "29,084€",
+   "overdue": 459,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 75369132099,
+   "date": "Aug 7, 2013",
+   "amount": "57,044€",
+   "overdue": 30,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 77399403599,
+   "date": "Aug 9, 2016",
+   "amount": "174,710€",
+   "overdue": 158,
+   "billed": "No"
+ },
+ {
+   "transaction": 95251028699,
+   "date": "Dec 29, 2011",
+   "amount": "140,432€",
+   "overdue": 368,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 5646383199,
+   "date": "Jan 23, 2016",
+   "amount": "165,697€",
+   "overdue": 217,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 92608584799,
+   "date": "Apr 5, 2021",
+   "amount": "8,512€",
+   "overdue": 65,
+   "billed": "No"
+ },
+ {
+   "transaction": 3797793299,
+   "date": "Nov 6, 2011",
+   "amount": "25,826€",
+   "overdue": 363,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 59348908799,
+   "date": "Sep 30, 2012",
+   "amount": "110,651€",
+   "overdue": 242,
+   "billed": "No"
+ },
+ {
+   "transaction": 67557016699,
+   "date": "Apr 10, 2020",
+   "amount": "38,217€",
+   "overdue": 170,
+   "billed": "No"
+ },
+ {
+   "transaction": 3411901699,
+   "date": "Apr 6, 2010",
+   "amount": "36,311€",
+   "overdue": 223,
+   "billed": "No"
+ },
+ {
+   "transaction": 27882775399,
+   "date": "Oct 24, 2015",
+   "amount": "67,628€",
+   "overdue": 145,
+   "billed": "Yes"
+ },
+ {
+   "transaction": 76356220699,
+   "date": "Apr 30, 2016",
+   "amount": "150,704€",
+   "overdue": 96,
+   "billed": "No"
+ },
+ {
+   "transaction": 13246807699,
+   "date": "Oct 28, 2017",
+   "amount": "173,364€",
+   "overdue": 278,
+   "billed": "Yes"
+ }
+]

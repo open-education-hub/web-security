@@ -1,3 +1,8 @@
+Name
+----
+
+Web: Framework & API Vulnerabilities: High Score
+
 Vulnerability
 -------------
 

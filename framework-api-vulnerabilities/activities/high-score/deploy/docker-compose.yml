@@ -1,0 +1,31 @@
+version: '3'
+services:
+    mysql:
+        container_name: mysql
+        hostname: mysql
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: secure-password
+            MYSQL_USER: rootsss
+            MYSQL_PASSWORD: secure-password
+            MYSQL_DATABASE: db
+        networks:
+            - db-network
+        ports:
+          - "9906:3306"
+        volumes:
+            - ./mysql-init.sql:/docker-entrypoint-initdb.d/mysql-init.sql
+    php:
+        container_name: sss-web-07_high-score
+        depends_on:
+            - mysql
+        build:
+            context: ..
+            dockerfile: ./deploy/Dockerfile
+        ports:
+            - "7001:80"
+        networks:
+            - db-network
+
+networks:
+    db-network:
