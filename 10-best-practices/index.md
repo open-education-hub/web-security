@@ -64,7 +64,7 @@ We can see that our target was found vulnerable by nuclei.
 
 <img src="./assets/nuclei_run.png">
 
-### Short CVE-2022-29464 explanation
+## Further CVE-2022-29464 exploitation
 
 We didn't talk at all about how this vulnerability works; the main idea is that the vulnerable WSO2 products allow unrestricted file upload which results in remote code execution. The main approach to succeed the vulnerability inside the WSO2 is to do a POST request which tries to upload a [web shell file](https://www.upguard.com/blog/what-are-web-shell-attacks) in JSP format on the target system.
 
