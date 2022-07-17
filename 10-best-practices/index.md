@@ -92,7 +92,7 @@ We know that one of the vulnerable endpoint is the ```../../../../repository/dep
 
 First, turn on the Intercept and catch a request to the ```/carbon``` endpoint, using the Chromium browser. 
 
-<img src="./assets/browser_access.png" width=800 height=400>
+<img src="./assets/browser_access.png" width=600 height=200>
 
 <img src="./assets/burp_intercept.png" width=800 height=400>
 
