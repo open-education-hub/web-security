@@ -90,7 +90,7 @@ requests:
 
 We know that one of the vulnerable endpoint is the ```../../../../repository/deployment/server/webapps/authenticationendpoint/``` endpoint. So, the main idea is to send a **POST** request containing a web shell, which let us to send commands on the system: to craft a request like the one inside the ```.yaml``` file we will use Burp Suite. 
 
-First, turn on the Intercept and catch a request to the ```/carbon``` endpoint, using the Chromium browser. 
+First, turn on the Intercept and catch a request to the ```/carbon``` endpoint, using the Chromium browser. Access the ```https://<IP>:9443/carbon``` from the Chromium Browser.
 
 <img src="./assets/browser_access.png" width=400 height=200>
 
