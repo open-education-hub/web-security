@@ -94,9 +94,9 @@ First, turn on the Intercept and catch a request to the ```/carbon``` endpoint, 
 
 <img src="./assets/browser_access.png" width=400 height=200>
 
-<img src="./assets/burp_intercept.png" width=800 height=400>
+<img src="./assets/burp_intercept_dark.png" width=800 height=400>
 
 Now, send the caught request to Repeater, using the **Ctrl+R** keyboard shortcut; this allows us to modify the request, trying to replicate the request that will succeed to our exploitation.
 
-<img src="./assets/burp_repeater.png" width=800 height=400>
+<img src="./assets/burp_repeater_dark.png" width=800 height=400>
 
