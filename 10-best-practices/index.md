@@ -140,7 +140,10 @@ Right now we have an uploaded file situated on the ```https://<IP>:9443/authenti
 
 # Further reading
 
-[Shodan API](https://developer.shodan.io/api/clients)
-[How WSO2 CVE-2022-29464 works](https://github.com/tufanturhan/wso2-rce-cve-2022-29464)
+1. [Shodan API](https://developer.shodan.io/api/clients)
+
+2. [Web Shells](https://www.acunetix.com/blog/articles/introduction-web-shells-part-1/)
+
+3. [How WSO2 CVE-2022-29464 works](https://github.com/tufanturhan/wso2-rce-cve-2022-29464)
 
 # Activities 
