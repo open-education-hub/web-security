@@ -1,5 +1,6 @@
-Vulnerability
--------------
+# Name: Breaking Hashes
+
+## Vulnerability
 
 LFI + loose comparison in PHP
 
@@ -11,8 +12,7 @@ The server does not properly check the username and password (loose PHP comparis
 
 If you input the correct combination of username and password that matches the condition, you get the flag.
 
-Exploit
--------
+## Exploit
 
 Inspect the source page and see this comment: `<!-- TODO: Remove source.phar -->`.
 

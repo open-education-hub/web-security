@@ -1,14 +1,15 @@
-Vulnerability
--------------
+# Name: Meme Uploader
+
+## Vulnerability
 
 Unrestricted file upload
 
-Exploit
--------
+## Exploit
 
 You can upload basically any file, the server only checks its size and if there already exists a file with the same name.
 
-It saves it in the `uploads/` folder (you have to guess this), hashing its name with md5, but leaving its extension intact. In the success message, it tells you its resulting name.
+It saves it in the `uploads/` folder (you have to guess this), hashing its name with md5, but leaving its extension intact.
+In the success message, it tells you its resulting name.
 
 You can for instance create a file with PHP code that reads the `flag.php` file containing the flag (you also have to guess that this file exists):
 

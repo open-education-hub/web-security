@@ -1,0 +1,16 @@
+<?php
+class PHPClass {
+	public $condition;
+	public $prop;
+
+	function __construct() {
+
+	}
+
+	function __wakeup() {
+		if (isset($this->prop) && isset($this->condition) && $this->condition == true) {
+			eval($this->prop);
+		}
+	}
+}
+?>

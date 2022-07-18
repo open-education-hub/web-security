@@ -1,0 +1,9 @@
+if (isset($_POST['username']) && isset($_POST['password'])) {
+	if ($_POST['username'] == $_POST['password']) {
+		$error = 'Your password can not be your username!';
+	} else if (hash('sha256', $_POST['username']) === hash('sha256', $_POST['password'])) {
+		die($flag);
+	} else {
+		$error = 'Invalid credentials!';
+	}
+}

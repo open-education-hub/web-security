@@ -1,14 +1,15 @@
-Vulnerability
--------------
+# Name: Pro Replacer
 
-Use of preg_replace() function in PHP 5.5 that leads to command injection
+## Vulnerability
 
-Exploit
--------
+Use of `preg_replace()` function in PHP 5.5 that leads to command injection.
+
+## Exploit
 
 The server executes the `preg_replace()` function with unsanitized parameters from the user.
 
-If you use the `/e` modifier at the end of the regex, the next of the command will be treated as PHP code. In this way you can execute shell commands.
+If you use the `/e` modifier at the end of the regex, the next of the command will be treated as PHP code.
+In this way you can execute shell commands.
 
 **Payload 1**
 
