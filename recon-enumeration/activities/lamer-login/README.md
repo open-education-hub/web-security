@@ -1,10 +1,4 @@
-# Name: Lamer Login
-
-## Description
-
-Get the flag from [url]http://ctf-06.security.cs.pub.ro:8001/[/url].
-
-Score: 150
+# Name: Web: Recon & Enumeration: Lamer Login
 
 ## Vulnerability
 

@@ -1,15 +1,10 @@
-Name
-----
+# Name: Web: Framework & API Vulnerabilities: High Score
 
-Web: Framework & API Vulnerabilities: High Score
-
-Vulnerability
--------------
+## Vulnerability
 
 Broken authorization on endpoints accessible for both admins and standard users.
 
-Exploit
--------
+## Exploit
 
 After creating an account and logging in, we notice that there is an endpoint for editing our account data (username and email). We wonder what if we can also update the other fields, such as the score, to be the first in the leaderboard. So we send a request to update our score to the current max + 1, also paying attention that the data is hex encoded.
 
