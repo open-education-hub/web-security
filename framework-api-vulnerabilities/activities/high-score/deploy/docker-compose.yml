@@ -11,8 +11,6 @@ services:
             MYSQL_DATABASE: db
         networks:
             - db-network
-        ports:
-          - "9906:3306"
         volumes:
             - ./mysql-init.sql:/docker-entrypoint-initdb.d/mysql-init.sql
     php:
