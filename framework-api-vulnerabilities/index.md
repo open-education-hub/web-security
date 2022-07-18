@@ -339,4 +339,4 @@ He posted a [video](https://www.youtube.com/watch?v=nNDsGTalXS0&feature=youtu.be
 * [High Score](https://sss-web.cyberedu.ro/challenge/f2efab30-0616-11ed-bb34-19a4ff512c6d)
 * [Snoop Doggy Dogg](https://sss-web.cyberedu.ro/challenge/0cb44c00-0617-11ed-80ab-4758bca0c77e)
 * [The Accountant](https://sss-web.cyberedu.ro/challenge/2026cea0-0617-11ed-8d3f-19288a331f73)
-* <https://github.com/vavkamil/dvwp>
+* [Damn Vulnerable WordPress] (https://github.com/vavkamil/dvwp)
