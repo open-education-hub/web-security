@@ -6,7 +6,6 @@ run: generate build
 
 build: generate
 	docker build -f Dockerfile -t sss-web-07_the-accountant ..
-	rm ../src/data/retailers/altex.json
 
 generate:
 	sed 's/__TEMPLATE__/$(FLAG)/g' ../src/data/retailers/altex-template.json > ../src/data/retailers/altex.json
@@ -16,5 +15,6 @@ stop:
 
 clean: stop
 	docker rm sss-web-07_the-accountant
+	rm ../src/data/retailers/altex.json
 
 .PHONY: build run stop clean

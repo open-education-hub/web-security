@@ -6,7 +6,6 @@ run: generate build
 
 build: generate
 	docker build -f Dockerfile -t sss-web-07_clean-up ..
-	rm ../src/data/users/user-information-expanded.json
 
 generate:
 	sed 's/__TEMPLATE__/$(FLAG)/g' ../src/data/users/user-information-expanded-template.json > ../src/data/users/user-information-expanded.json
@@ -16,5 +15,6 @@ stop:
 
 clean: stop
 	docker rm sss-web-07_clean-up
+	rm ../src/data/users/user-information-expanded.json
 
 .PHONY: build run stop clean
