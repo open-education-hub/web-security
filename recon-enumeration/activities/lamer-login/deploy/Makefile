@@ -6,7 +6,6 @@ run: generate build
 
 build: generate
 	docker build -f Dockerfile -t sss-web-06_lamer-login ..
-	rm ../src/index.php
 
 generate:
 	sed 's/__TEMPLATE__/$(FLAG)/g' ../src/index-template.php > ../src/index.php
@@ -16,5 +15,6 @@ stop:
 
 clean: stop
 	docker rm sss-web-06_lamer-login
+	rm ../src/index.php
 
 .PHONY: build run stop clean
