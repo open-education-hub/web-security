@@ -1,5 +1,1 @@
-Dockerfile
-Makefile
-docker-compose.yml
-mysql-init.sql
 leaderboard-template.php
