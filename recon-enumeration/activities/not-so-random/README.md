@@ -1,8 +1,8 @@
-# Name: Not So Random
+# Name: Web: Recon & Enumeration: Not So Random
 
 ## Hints
 
-Try to find the source code of the application.
+1. Try to find the source code of the application.
 
 ## Vulnerability
 

@@ -1,4 +1,4 @@
-# Name: Lamer Login
+# Name: Web: Recon & Enumeration: Lamer Login
 
 ## Vulnerability
 

@@ -1,15 +1,10 @@
-Name
-----
+# Name: Web: Framework & API Vulnerabilities: Clean up
 
-Web: Framework & API Vulnerabilities: Clean up
-
-Vulnerability
--------------
+## Vulnerability
 
 Another API version with broken authorization.
 
-Exploit
--------
+## Exploit
 
 View the page source. Notice the ajax request made to `/api-v3/get-user-records.php`.
 Repeat it in the browser, then also request `/api-v1/get-user-records.php`.

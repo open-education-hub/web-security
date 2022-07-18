@@ -1,15 +1,10 @@
-Name
-----
+# Name: Web: Framework & API Vulnerabilities: The Accountant
 
-Web: Framework & API Vulnerabilities: The Accountant
-
-Vulnerability
--------------
+## Vulnerability
 
 Broken access control
 
-Exploit
--------
+## Exploit
 
 View the request that is being made when you select a retailer from the dropdown:
 

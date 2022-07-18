@@ -1,15 +1,10 @@
-Name
-----
+# Name: Web: Framework & API Vulnerabilities: Snoop Doggy Dog
 
-Web: Framework & API Vulnerabilities: Snoop Doggy Dog
-
-Vulnerability
--------------
+## Vulnerability
 
 Another API version with broken authorization.
 
-Exploit
--------
+## Exploit
 
 By clicking the third `Buy now` button on the homepage, it leads to `/dronewalkv125.html`.
 
