@@ -319,6 +319,11 @@ The server took ~2.2 seconds to gather the files, merge them into one file, and 
 After performing 500 requests, the server was overloaded and became unable to respond to subsequent requests.
 He posted a [video](https://www.youtube.com/watch?v=nNDsGTalXS0&feature=youtu.be) showing how quickly it could be used to take down a WordPress website.
 
+### WPScan
+
+The [WPScan](https://wpscan.com/wordpress-security-scanner) CLI tool is a free, for non-commercial use, black box WordPress security scanner written for security professionals and blog maintainers to test the security of their sites.
+The WPScan CLI tool uses a database of WordPress vulnerabilities - from WordPress versions, plugins, themes etc.
+
 # Further Reading
 
 * Metropolia University of Applied Sciences
@@ -339,4 +344,4 @@ He posted a [video](https://www.youtube.com/watch?v=nNDsGTalXS0&feature=youtu.be
 * [High Score](https://sss-web.cyberedu.ro/challenge/f2efab30-0616-11ed-bb34-19a4ff512c6d)
 * [Snoop Doggy Dogg](https://sss-web.cyberedu.ro/challenge/0cb44c00-0617-11ed-80ab-4758bca0c77e)
 * [The Accountant](https://sss-web.cyberedu.ro/challenge/2026cea0-0617-11ed-8d3f-19288a331f73)
-* [Damn Vulnerable WordPress] (https://github.com/vavkamil/dvwp)
+* [Damn Vulnerable WordPress](https://github.com/vavkamil/dvwp)

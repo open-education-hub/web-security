@@ -80,13 +80,3 @@ Security Summer School
 * Deciding to use a certain framework implies relying on its security
 
 * A new vulnerability may be discovered at some point, therefore regular updates are a good practice
-
----
-
-## Log4Shell (CVE-2021-44228)
-
-* a software vulnerability in Apache Log4j 2, a popular Java library for logging error messages in applications
-
-* 10/10 CVSS score
-
-* https://apkash8.medium.com/exploiting-the-log4j-vulnerability-cve-2021-44228-4b8d9d5133f6
