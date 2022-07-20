@@ -2,7 +2,7 @@
 
 ## Vulnerability
 
-Broken access control
+Broken access control.
 
 ## Exploit
 
