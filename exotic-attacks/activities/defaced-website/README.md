@@ -1,4 +1,4 @@
-# Name: Defaced Werbsite
+# Name: Defaced Website
 
 ## Vulnerability
 
@@ -18,6 +18,7 @@ If it is equal (using loose comparison) to `0e413229387827631581229643338212`, i
 From the table in the session content, we know that the md5 hash of the string `QNKCDZO` is `0e830400451993494058024219903391`, which would equal to `0e413229387827631581229643338212`.
 
 The final payload in POST data is:
+
 `username=QNKCDZO&password=&submit=Login`
 
 Exploit in `../sol/solution.sh`.

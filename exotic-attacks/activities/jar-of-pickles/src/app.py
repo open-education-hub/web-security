@@ -13,19 +13,11 @@ def index():
 def jar():
     cookie = request.cookies.get("pickles")
 
-    # Quick fix in case of any env errors that require not using pickle module anymore
-    # if cookie and cookie == "gASVLQAAAAAAAACMBXBvc2l4lIwGc3lzdGVtlJOUjBJjYXQgL2hvbWUvY3RmL2ZsYWeUhZRSlC4=":
-    #     return <FLAG>
-
     if cookie:
         data = base64.urlsafe_b64decode(cookie)
         deserialized = pickle.loads(data)
+
         return make_response(json.dumps(deserialized))
-
-    cookie = {"jars": "pickles"}
-
-    pickle_payload = pickle.dumps(cookie)
-    encodedPayloadCookie = base64.b64encode(pickle_payload)
 
     response = make_response(json.dumps("Pickle"))
     response.set_cookie("pickles", "")
