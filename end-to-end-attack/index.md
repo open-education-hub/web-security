@@ -156,8 +156,9 @@ Right now we have an uploaded file situated on the ```https://<IP>:9443/authenti
 Past week, there was found a new vulnerability inside the Apache Spark Web UI component: a shell command injection vulnerability. This vulnerability affects the ```?doAs``` parameter, allowing an unauthenticated attacker to execute commands on the target system. The command injection occurs because Spark checks the group membership of the user passed in the ```?doAs``` parameter by using a raw Linux command.
 
 The payload is pretty simple, you need to specify a command to run between the '`' characters, using the ```doAs``` parameter.
+
 ```
-http://<IP>:8080/?doAs=`<command_to_execute>`
+curl -X "GET" http://<IP>:8080/?doAs=`<command_to_execute>`
 ```
 
 # Further reading
