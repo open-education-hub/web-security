@@ -86,3 +86,9 @@ In the meantime, the Flask server on your machine won't support this reverse she
 You need to close it and open a simple netcat connection to your internal port before you access the backdoor:
 
 `nc -nlvk 1234`
+
+Now access `/backdoor.php` in the browser and you should have a shell in the `nc` terminal.
+
+Find the flag file and perform a `cat` on it; it should be in `home/ctf/`: `cat /home/ctf/flag.txt`.
+
+Exploit in `../sol/solution.sh`.
