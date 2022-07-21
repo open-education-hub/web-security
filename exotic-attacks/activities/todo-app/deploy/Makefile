@@ -6,7 +6,6 @@ run: generate build
 
 build: generate
 	docker build -f Dockerfile -t sss-web-08_todo-app ..
-	rm ../src/flag.php
 
 generate:
 	sed 's/__TEMPLATE__/$(FLAG)/g' ../src/flag-template.php > ../src/flag.php
@@ -16,5 +15,6 @@ stop:
 
 clean: stop
 	docker rm sss-web-08_todo-app
+	rm ../src/flag.php
 
 .PHONY: build run stop clean

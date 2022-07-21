@@ -565,10 +565,10 @@ In conclusion, the code should be properly tested before being put in production
 
 # Activities
 
-* [Breaking Hashes](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-* [Defaced Website](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-* [Handy Tool](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-* [Jar of Pickles](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-* [Meme Uploader](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-* [Pro Replacer](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
-* [TODO App](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)
+* [Breaking Hashes](https://sss-web.cyberedu.ro/challenge/5eb0b460-0849-11ed-bb4d-935fa24b7bf2)
+* [Defaced Website](https://sss-web.cyberedu.ro/challenge/9f845f10-0849-11ed-8fc0-2d7dcc866b21)
+* [Handy Tool](https://sss-web.cyberedu.ro/challenge/bb9ee7b0-0849-11ed-a68c-f70dace328dc)
+* [Jar of Pickles](https://sss-web.cyberedu.ro/challenge/d3a9cb70-0849-11ed-8436-9bcd29625f3f)
+* [Meme Uploader](https://sss-web.cyberedu.ro/challenge/ee04f8d0-0849-11ed-851c-af7641b8a719)
+* [Pro Replacer](https://sss-web.cyberedu.ro/challenge/06d17960-084a-11ed-95a0-a9f50e1b83e7)
+* [TODO App](https://sss-web.cyberedu.ro/challenge/1cb64670-084a-11ed-8430-29d0d2a909b5)

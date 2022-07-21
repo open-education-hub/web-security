@@ -1,4 +1,4 @@
-# Name: Breaking Hashes
+# Name: Web: Exotic Attacks: Breaking Hashes
 
 ## Vulnerability
 

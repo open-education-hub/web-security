@@ -1,4 +1,4 @@
-# Name: Pro Replacer
+# Name: Web: Exotic Attacks: Pro Replacer
 
 ## Vulnerability
 

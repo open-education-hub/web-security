@@ -1,4 +1,4 @@
-# Name: Meme Uploader
+# Name: Web: Exotic Attacks: Meme Uploader
 
 ## Vulnerability
 
