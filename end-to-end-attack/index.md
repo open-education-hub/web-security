@@ -248,3 +248,17 @@ curl http://<IP>:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/etc/passwd
 5. [Apache CVE-2021-41773](https://www.picussecurity.com/resource/blog/simulate-apache-cve-2021-41773-exploits-vulnerability)
 
 # Activities
+
+1. [Brooklyn Nine Nine](https://tryhackme.com/room/brooklynninenine)
+
+2. [Bounty Hacker](https://tryhackme.com/room/cowboyhacker)
+
+3. [Dav](https://tryhackme.com/room/bsidesgtdav
+
+4. [Jack of All Trades](https://tryhackme.com/room/jackofalltrades)
+
+5. [Smag Grotto](https://tryhackme.com/room/smaggrotto)
+
+6. [Overpass](https://tryhackme.com/room/overpass)
+
+7. [Madness](https://tryhackme.com/room/madness)
