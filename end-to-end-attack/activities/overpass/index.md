@@ -10,7 +10,7 @@
 
 + **We can clearly see 2 ports open, ssh and a http, configured on default ports**
 
-# ![1](images/nmap_scan_ov(1).jpg?raw=true "nmap_scan")
+# ![1](images/nmap_scan_ov_1.jpg?raw=true "nmap_scan")
 
 + **Visiting the http web-site, we are welcomed by a page which contains info about a specific password-manager app built by some developers. We also see a download link button**
 
@@ -72,7 +72,7 @@ async function login() {
 
 **Using our password for the ssh we are in! There's two files into user's home directory: one of them is our user's flag and the other seems to be an update of their encryption app**
 
-# ![8](images/userflag(1).jpg?raw=true "userfl")
+# ![8](images/userflag.jpg?raw=true "userfl")
 
 ## Root escalation
 
