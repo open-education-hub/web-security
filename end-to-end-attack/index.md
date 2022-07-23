@@ -23,7 +23,7 @@ Another way to find vulnerable targets is the **favicon hash**. Favicon is the s
 
 You can find the favicon hash of an website, using the [FaviconHash website](https://faviconhash.com). For example, let's find out the favicon hash of the github.com website.
 
-<img src="./assets/favicon.png" width=600 height=300>
+<img src="./assets/favicon_website.png" width=700 height=350>
 
 Now, we can use the ```http.favicon.hash:1848946384``` filter to find some GitHub based web-sites.
 
