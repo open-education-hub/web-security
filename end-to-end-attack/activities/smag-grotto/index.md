@@ -44,7 +44,7 @@
 
 + **Now, let's try to access the development.smag.thm/login.php page so we can use our credentials**
 
-![7](images/login1.jpg?raw=true "login")
+![7](images/login_1.jpg?raw=true "login")
 
 + **We are welcomed by a big title 'Enter a command' with a box below. I tried some several linux commands like ls, whoami, etc, but i can't see no output. So i've tried to download a file on the box machine with the wget, hosting a simple python server on mine, just to check if the commands are available and if it's worth trying a reverse shell.**
 
@@ -61,7 +61,7 @@
 
 ``python3 -c 'import pty; pty.spawn("/bin/bash")'``
 
-![9](images/entered(2).jpg?raw=true "shell")
+![9](images/entered_2.jpg?raw=true "shell")
 
 + **Let's look into the crontab file and understand it. We have a cron which tells us that the root user is making an overwriting action every minute through the cat command from the** jake_id_rsa.pub.backup **file to the** authorized_keys **file of the jake user. This means that if we can modify the jake_id_rsa.pub.backup content, we can connect with the jake user on the ssh service.**
 
@@ -96,6 +96,6 @@
 
 ``sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/bash``
 
- ![15](images/root_flag(1).jpg?raw=true "root_flag")
+ ![15](images/root_flag_1.jpg?raw=true "root_flag")
 
  **So here we got the root flag. It was a funny box with an interesting vulnerability based on apt tool, a very useful box for beginners**
