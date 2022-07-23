@@ -7,8 +7,8 @@ weight: 10
 
 TODO
 
-## How to find targets in the wild
-### Find targets using shodan.io
+# How to find targets in the wild
+## Find targets using shodan.io
 As presented to you in another session, **[shodan.io](https://www.shodan.io/dashboard)** is a powerful search engine that can help you to find vulnerable targets on the internet, using different search queries. A search query can contain, for example, the name of the product like a simple ```weblogic``` which represents the name of the WebLogic server developed by Oracle.
 
 <img src="./assets/shodan_finding_1-2.png" width=800 height=400>
@@ -31,7 +31,7 @@ Now, we can use the ```http.favicon.hash:1848946384``` filter to find some GitHu
 
 As you can see, we now have more than 700 results of potential vulnerable applications. Note that in order to use Shodan filters (http.favicon.hash) you must be logged in.
 
-### Find targets using Google Dorks
+## Find targets using Google Dorks
 
 Google Dorks involves using advanced operators in the Google search engine to locate specific errors of text within search results. Common cases of using Google Dorks are finding specific versions of vulnerable Web applications. Taking the previous example, we want to find some vulnerable versions of the WSO2 product after the release of the [CVE-2022-29464](https://www.trendmicro.com/en_us/research/22/e/patch-your-wso2-cve-2022-29464-exploited-to-install-linux-compatible-cobalt-strike-beacons-other-malware.html) so we will use Google Dorks, knowing the vulnerable endpoints of the vulnerable product.
 
@@ -85,9 +85,9 @@ We can see that our target was found vulnerable by nuclei.
 
 <img src="./assets/nuclei_run.png">
 
-## CVEs exploitation
+# CVEs exploitation
 
-### CVE-2022-29464
+## CVE-2022-29464
 
 We didn't talk at all about how this vulnerability works; the main idea is that the vulnerable WSO2 products allow unrestricted file upload which results in remote code execution. This means that we can upload any file on the server. The main approach to succeed the vulnerability inside the WSO2 is to do a POST request which tries to upload a [web shell file](https://www.upguard.com/blog/what-are-web-shell-attacks) in JSP format on the target system.
 
@@ -161,7 +161,7 @@ Right now we have an uploaded file situated on the ```https://<IP>:9443/authenti
 
 <img src="./assets/passwd_file.png" width=600 height=300>
 
-### CVE-2022-33891
+## CVE-2022-33891
 
 [Apache Spark](https://spark.apache.org) is an open-source, distributed processing system used for big data workloads and it utilizes in-memory caching, and optimized query execution for fast analytic queries. Apache Spark also provides a suite of web user interfaces (UI) that you can use to monitor the status and resource consumption of your Spark cluster.
 
@@ -223,7 +223,7 @@ We can see that we have got two GET requests in our Request Bin logger. One of t
 
 <img src="./assets/username.png" width=850 height=400>
 
-### CVE-2021-41773
+## CVE-2021-41773
 
 An attacker could use a path traversal attack to map URLs to files outside the expected document root. We discussed about path traversal in [Session 2](https://github.com/security-summer-school/web/blob/master/cookies-session-management-access-control/index.md). In Apache, if files outside of the document root are not protected by "require all denied" these requests can succeed. Additionally this flaw could leak the source of interpreted files like CGI scripts. The affected versions of Apache were Apache 2.4.49 & 2.4.50.
 
