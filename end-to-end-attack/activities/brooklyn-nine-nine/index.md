@@ -39,7 +39,7 @@
 
 ``sudo less /home/holt/user.txt``
 
-# ![6](images/user_flag(1).jpg?raw=true "user")
+# ![6](images/user_flag_1.jpg?raw=true "user")
 
 ## Root escalation
 
@@ -53,4 +53,4 @@
 
 # ![7](images/binsh.jpg?raw=true "binsh")
 
-# ![8](images/root_flag(2).jpg?raw=true "root")
+# ![8](images/root_flag_2.jpg?raw=true "root")
