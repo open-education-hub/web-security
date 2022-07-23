@@ -253,7 +253,7 @@ curl http://<IP>:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/etc/passwd
 
 2. [Bounty Hacker](https://tryhackme.com/room/cowboyhacker)
 
-3. [Dav](https://tryhackme.com/room/bsidesgtdav
+3. [Dav](https://tryhackme.com/room/bsidesgtdav)
 
 4. [Jack of All Trades](https://tryhackme.com/room/jackofalltrades)
 
