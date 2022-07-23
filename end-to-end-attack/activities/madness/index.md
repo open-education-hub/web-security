@@ -1,7 +1,7 @@
 # 'Madness' box writeup
 ## Madness is a CTF box created by optional and available on the [TryHackMe platform](https://tryhackme.com).
 ## Read about [JPG Signature Format: Documentation & Recovery Example](https://www.file-recovery.com/jpg-signature-format.htm), [GNU Screen escalation](https://seclists.org/oss-sec/2017/q1/184), [ld.so man page](https://man7.org/linux/man-pages/man8/ld.so.8.html) and [ld.so.preload](https://superuser.com/questions/1183037/what-is-does-ld-so-preload-do)
-# ![bg](images/5iW7kC8.jpg_Min.png?raw=true "Title")
+# ![bg](images/banner.png?raw=true "Title")
 
 ## Foothold
 + **We deploy the machine and start with a nmap scan for open ports**
@@ -50,17 +50,17 @@
 
 + **Let's take a look into that directory and see what's going on**
 
-# ![7](images/webhid(1).jpg?raw=true "webbed")
+# ![7](images/webhid.jpg?raw=true "webbed")
 
 **It seems like our mad friend wants to guess his secret .. But since i'm not a good guesser, let's take a look into the source code of the page**
 
-# ![8](images/guess(1).jpg?raw=true "secret")
+# ![8](images/guess_1.jpg?raw=true "secret")
 
 **He left some unwanted text inside. We know now, that the secret is between 0 and 99, but in the same time, looking into the page we see that there was already a secret entered. Maybe it's a parameter of the page we could enter; let's go on:  + !! don't forget to modify the url and include the hidden found directory**
 
 ``http://10.10.94.80/x/?secret=2``
 
-# ![9](images/secreted(1).jpg?raw=true "secret")
+# ![9](images/secreted_1.jpg?raw=true "secret")
 
 **Our secret seems to be entered and read inside the page, so let's go ahead and create a mini brute-force script to check 100 possible variants.**
 
@@ -199,6 +199,6 @@ void libshell(void)
 
 **And we are root!**
 
-# ![17](images/root_flag(4).jpg?raw=true "root_flag")
+# ![17](images/root_flag_4.jpg?raw=true "root_flag")
 
 + **This was a very nice box, we learnt about .JPG corrupted files, a GNU Screen vulnerability, some ld.so.preload file overwriting to gain the desired shell and I encourage you hardly to read the [ld.so man page](https://man7.org/linux/man-pages/man8/ld.so.8.html).**
