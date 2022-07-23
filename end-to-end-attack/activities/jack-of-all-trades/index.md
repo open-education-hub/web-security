@@ -105,7 +105,7 @@
 
 ``hydra -s 80 -v -V -l jack -P jacks_password_list -t 8 10.10.252.248  ssh``
 
-![13](images/hydra(1).jpg?raw=true "hydra")
+![13](images/hydra.jpg?raw=true "hydra")
 
 **Let's connect into the ssh server with our credentials on the 80 port**
 
