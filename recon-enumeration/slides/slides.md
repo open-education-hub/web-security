@@ -7,7 +7,7 @@ revealOptions:
 
 # Recon & Enumeration & Recap
 
-SSSv9
+Security Summer School
 
 ---
 

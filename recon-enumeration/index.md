@@ -209,6 +209,6 @@ After running it, you can simply access it in your browser at http://127.0.0.1:8
 
 # Activities
 
-1. [Not So Random](https://sss-web.cyberedu.ro)
-2. [Lamer Login](https://sss-web.cyberedu.ro)
+1. [Not So Random](https://sss-web.cyberedu.ro/challenge/268a2910-02d8-11ed-9675-abf36c35783f)
+2. [Lamer Login](https://sss-web.cyberedu.ro/challenge/7ba65330-02d8-11ed-9270-29119375f24f)
 3. [DVWA](https://hub.docker.com/r/vulnerables/web-dvwa/)
