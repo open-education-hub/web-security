@@ -23,11 +23,11 @@ Another way to find vulnerable targets is the **favicon hash**. Favicon is the s
 
 You can find the favicon hash of an website, using the [FaviconHash website](https://faviconhash.com). For example, let's find out the favicon hash of the github.com website.
 
-<img src="./assets/favicon_website.png" width=700 height=350>
+<img src="./assets/favicon_website.png" width=700 height=200>
 
 Now, we can use the ```http.favicon.hash:1848946384``` filter to find some GitHub based web-sites.
 
-<img src="./assets/github_favicon.png" width=800 height=400>
+<img src="./assets/github_favicon.png" width=900 height=450>
 
 As you can see, we now have more than 700 results of potential vulnerable applications. Note that in order to use Shodan filters (http.favicon.hash) you must be logged in.
 
