@@ -120,7 +120,14 @@ There are countless methods to elevate privileges on a Linux system. The key in 
 
 ### Tools
 
-There are many tools that automated the process of enumeration and could help you save a lot of time when looking for privilege escalation vectors. The best tool for Linux is [LinPEAS](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS).
+There are many tools that automated the process of enumeration and could help you save a lot of time when looking for privilege escalation vectors.
+
+A good enumeration tool is [PEASS-ng](https://github.com/carlospolop/PEASS-ng) which comes with a [Linux version](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) and a [Windows version](https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS).
+
+[Traitor](https://github.com/liamg/traitor) is an automatic exploiting tool which tries to pop a root shell using methods like:
++ [GTFOBins](https://gtfobins.github.io)
++ CVE-2022-0847 (Dirty pipe)
++ CVE-2021-3560
 
 ## Preventing Privilege Escalation
 When it comes to OS-level privilege escalation vulnerabilities, it's vital to install security patches as soon as possible, not only for the OS, but for all third-party applications used on the system.
