@@ -129,10 +129,23 @@ A good enumeration tool is [PEASS-ng](https://github.com/carlospolop/PEASS-ng) w
 + CVE-2022-0847 (Dirty pipe)
 + CVE-2021-3560
 
-## Preventing Privilege Escalation
+# Preventing Privilege Escalation
 When it comes to OS-level privilege escalation vulnerabilities, it's vital to install security patches as soon as possible, not only for the OS, but for all third-party applications used on the system.
 
 Application whitelisting technologies can be used to restrict which programs may run on a system, enabling organizations to reduce a machine's attack surface. Making sure that unneeded services are turned off and that unused hardware components and drivers are disabled is also very important.
+
+## Principle of Least Privilege
+Always follow the Principle of Least Privilege: give the minimum levels of access to an user that he needs to perform his job. If a subject does not need an access right, the subject should not have that right.
+
+## Limit the number of privileged accounts
+System administrators have unlimited privileges so usually attackers frequently target those accounts. If you limit administrators to the lowest number necessary, you also lower the attack surface. Any more than that increases both the risk and the amount of work required to oversee and monitor logs.
+
+## Unnecessary components
+When configuring new systems or applications, remove or disable all unnecessary services, which are often enabled and running by default at start-up. If someone discover vulnerabilities in those components in the future, you
+are at a very high risk.
+
+## Changing default credentials
+Be sure to remove or rename default and unused user accounts on every device. Change the default login credentials for any device, including routers, and also IoT devices. If a device with an open port have a default credentials, it could be represent an initial access point for an attacker leading to a privilege escalation attack. Also, the privileged account should have different credentials than one with lower privileges. Also regularly reevaluate accounts and privileges for every user.
 
 ## Further reading
 - https://www.csoonline.com/article/3564726/privilege-escalation-explained-why-these-flaws-are-so-valuable-to-hackers.html
