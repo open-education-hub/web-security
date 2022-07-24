@@ -47,25 +47,33 @@ intitle:"WSO2 Management Console"
 
 ## Use automation to find vulnerable targets with Nuclei
 
-[Nuclei](https://github.com/projectdiscovery/nuclei) is an important open-source tool used to find vulnerable targets, based on flexible templates written in yaml, which offers to scan for multiple protocols (HTTP, TCP, DNS, ...). The templates can be found inside the [nuclei-templates](https://github.com/projectdiscovery/nuclei-templates/tree/master/cves) github page, sorted by the CVE release year.
+[Nuclei](https://github.com/projectdiscovery/nuclei) is an important open-source tool used to find vulnerable targets, based on flexible templates written in yaml, which offers to scan for multiple protocols (HTTP, TCP, DNS, ...).
+
+The templates can be found inside the [nuclei-templates](https://github.com/projectdiscovery/nuclei-templates/tree/master/cves) github page, sorted by the CVE release year.
 
 ### Download shodan findings
 
 #### Manually download data
 
-Taking the same previous CVE-2022-29464 as example, we can use our shodan.io results to find if the targets found in the wild are vulnerable. First we need to download the results of the [shodan search used for the WSO2 targets](https://www.shodan.io/search?query=WSO2+port%3A9443%2C9763): just press the Download Results button and wait for the ```.json.gz``` file to be downloaded then unzip it using ```gzip -d <finding>.json.gz```
+Taking the same previous CVE-2022-29464 as an example, we can use our shodan.io results to find if the targets found in the wild are vulnerable.
+
+First we need to download the results of the [shodan search used for the WSO2 targets](https://www.shodan.io/search?query=WSO2+port%3A9443%2C9763): just press the Download Results button and wait for the ```.json.gz``` file to be downloaded then unzip it using ```gzip -d <finding>.json.gz```
 
 <img src="./assets/shodan_download.png" width=800 height=150>
 
 <img src="./assets/shodan_download_2.png" width=800 height=150>
 
-Our main interests of the ```<finding>.json.gz``` are the IP:PORT fields of every resulted information of the target; so the first approach is to extract these two fields, using [jq](https://stedolan.github.io/jq/) Linux utillitary - a sed for JSON data. Using the following command, we will have a list with an IP associated with a PORT.
+Our main interests of the ```<finding>.json.gz``` are the IP:PORT fields of every resulted information of the target; so the first approach is to extract these two fields, using [jq](https://stedolan.github.io/jq/) Linux utility - a sed for JSON data.
+
+Using the following command, we will have a list with an IP associated with a PORT.
 
 ```cat <extracted_finding>.json | jq -r '. | "\(.ip_str):\(.port)"' && sed -i -e 's/^/https:\/\//' targets.txt```
 
 #### Download data using the API
 
-Another approach is to use the shodan [API](https://help.shodan.io/guides/how-to-download-data-with-api), which helps you to download data. You can use the following commands to download the data:
+Another approach is to use the shodan [API](https://help.shodan.io/guides/how-to-download-data-with-api), which helps you to download data.
+
+You can use the following commands to download the data:
 
 ```
 shodan init <API_KEY>
@@ -77,7 +85,11 @@ shodan parse targets.json --fields=ip_str,port > targets.txt
 
 ### Get nuclei in action
 
-Now, having the targets inside the ```targets.txt``` file, we can start using nuclei. The first step is to install the tool from the [public github page](https://github.com/projectdiscovery/nuclei). After the installation is completed, as we said, we will choose to scan targets vulnerable to the CVE-2022-29464, so we will download the specific [```CVE-2022-29464.yaml```](https://github.com/projectdiscovery/nuclei-templates/blob/master/cves/2022/CVE-2022-29464.yaml) file.
+Now, having the targets inside the ```targets.txt``` file, we can start using nuclei.
+
+The first step is to install the tool from the [public github page](https://github.com/projectdiscovery/nuclei).
+
+After the installation is completed, as we said, we will choose to scan targets vulnerable to the CVE-2022-29464, so we will download the specific [```CVE-2022-29464.yaml```](https://github.com/projectdiscovery/nuclei-templates/blob/master/cves/2022/CVE-2022-29464.yaml) file.
 
 ```nuclei -t CVE-2022-29464.yaml -l targets.txt```
 
