@@ -14,7 +14,7 @@ If you look at the ```/etc/passwd``` file we can see that our user account has r
 
 ```ls -la /etc/passwd```
 
-What we can do is to generate a new password using openssl:
+What we can do is to generate a new password using one of the following commands:
 
 ```openssl passwd -1 -salt sparrow sparrow```
 
