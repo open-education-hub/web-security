@@ -2,11 +2,14 @@
 
 ## Vulnerability
 
-Cron job are programs or scripts that are scheduled to run automatically at specific times or intervals by script or command. The system-wide crontab is located at /etc/crontab.
+Cron job are programs or scripts that are scheduled to run automatically at specific times or intervals by script or command.
+The system-wide crontab is located at /etc/crontab.
 
 One of the PATH directories is writable by our user, we may be able to create a program/script with the same name as the cron job.
 
 ## Exploit
+
+Connect with ssh to user ```time:EDBVCjNFAAzYedCX```, port 2022.
 
 ### First escalation
 
@@ -21,7 +24,8 @@ User time may run the following commands on time:
     (wormhole) /usr/bin/multitime
 ```
 
-We can see that user ```time``` can run the ```multitime``` util as wormhole user.  It can be used to break out from restricted environments by spawning an interactive system shell if the binary is allowed to run as superuser by sudo.
+We can see that user ```time``` can run the ```multitime``` util as wormhole user.
+It can be used to break out from restricted environments by spawning an interactive system shell if the binary is allowed to run as superuser by sudo.
 
 ```sudo multitime /bin/sh```
 
