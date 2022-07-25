@@ -1,1 +1,1 @@
-FROM cataiovita/sss_writable:v0.1
+FROM cataiovita/sss_maverick:v0.1
