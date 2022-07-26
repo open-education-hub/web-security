@@ -16,6 +16,8 @@ If you look at the ```/etc/passwd``` file we can see that our user account has r
 
 What we can do is to generate a new password using one of the following commands:
 
+```openssl passwd -1 -salt sparrow sparrow```
+
 ```mkpasswd -m SHA-512 sparrow```
 
 ```python2 -c 'import crypt; print crypt.crypt("sparrow", "$6$salt")'```
