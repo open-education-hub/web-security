@@ -5,7 +5,68 @@ weight: 10
 ---
 # Introduction
 
-TODO
+There are multiple stages of a cyber attack: many of them contains five common stages used by a hacker to break into a system and also control it.
+In the last time, cyber-attacks to critical infrastructure are becoming more common, complex and creative.
+
+## Phase one: Reconnaissance and Research
+
+Also called the 'footprinting' stage, this phase consists of the research made by the attacker to obtain as much information as possible about the target.
+The main objective is to understand the technologies that the target is using, what types of mechanisms the target has in place, and also where the target is located.
+
+### Passive Reconnaissance
+
+This type of reconnaissance collects open source information without engaging the target directly.
+Types of Information used:
+
++ Search Engine queries: Shodan, Google Dorks, Censys.io, PublicWWW, Zoomeye
+
++ Social Media: Twitter, Facebook and Linkedin (information about employees, their roles and daily habits)
+
++ WHOIS lookup: collect domain registration info and IP addresses
+
+### Active Reconnaissance
+
+This type of reconnaissance is used to collect information about the target network architecture, firewall, or intrusion detection software and is very useful to develop attack vectors and information about the operating system of the target or configurations.
+
+Mainly, the tool used are:
+
++ [nmap](https://nmap.org) - reveal how data flows through the network by mapping the topology of the various hosts, servers, routers,
+
++ [gobuster](https://github.com/OJ/gobuster) - bruteforce URLs, DNS subdomains, virtual host names
+
++ [wfuzz](https://github.com/xmendez/wfuzz) - bruteforce Web Applications, used to find resources like directories, servlets, scripts.
+It can also bruteforce GET and POST parameters for checking different kind of injections (SQL, XSS, etc)
+
++ [openvas-scanner](https://github.com/greenbone/openvas-scanner) - vulnerability scanner
+
+## Phase two: Weaponization
+
+After the reconnaissance step, the attackers start to develop various techniques to penetrate the target defense: this includes phishing techniques, creating fake websites, developing software and hardware exploits, and creating or acquiring new malware.
+
+## Phase three: Gaining Access
+
+The gaining access step could include an employee who fell into a phishing attack or it could be the attack based on a new vulnerability that appeared and is unpatched.
+Also, an attacker could find some access pages like a login page on a website and starts to brute force the credentials.
+This phase includes the sending of a malicious payload to the application through the network trying to trigger the vulnerability using buffer overflows attacks, injection attacks abusing components with known vulnerabilities.
+
+## Phase four: Maintaining access
+
+This involves the processes used to ensure the attacker can access the application for future use.
+Once an attacker has access to a system, his objectives are to escalate privileges and maintain the access.
+The ability to run privileged commands allows attackers to maintain their presence using a variety of methods:
+
++ Creating new user accounts
+
++ Editing firewall settings
+
++ Turning on remote desktop access (RDP)
+
++ Installing a backdoor via [rootkits](https://en.wikipedia.org/wiki/Rootkit)
+
+## Phase five: Clearing Tracks
+
+This includes the step of by uninstalling the programs used during the attack and deleting any created folders, modifying the timestamps, deleting and modifying the logs files.
+The attacker would change their MAC address and run the attacking machine through at least one VPN to help cover their identity.
 
 # How to find targets in the wild
 ## Find targets using shodan.io
