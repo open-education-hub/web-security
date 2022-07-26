@@ -1,6 +1,6 @@
 #!/bin/bash
 
-generated_passwd=$(openssl passwd -1 -salt sparrow sparrow)
+generated_passwd=$(python2 -c 'import crypt; print crypt.crypt("sparrow", "$6$salt")')
 passwd="sparrow:$generated_passwd:0:0:Sparrow:/root:/bin/bash"
 
 if [ -z "$1" ]
