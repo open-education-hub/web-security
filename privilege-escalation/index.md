@@ -201,3 +201,7 @@ Also, the privileged account should have different credentials than one with low
 2. Maverick
 
 3. Time
+
+4. (Linux Privesc)[https://tryhackme.com/room/linprivesc]
+
+5. (Linux Privesc 2)[https://tryhackme.com/room/linuxprivesc]
