@@ -6,11 +6,11 @@ weight: 10
 # Introduction
 
 There are multiple stages of a cyber attack: many of them contains five common stages used by a hacker to break into a system and also control it.
-In the last time, cyber-attacks to critical infrastructure are becoming more common, complex and creative.
+In the last time, cyber-attacks on critical infrastructure are becoming more common, complex and creative.
 
 ## Phase one: Reconnaissance and Research
 
-Also called the 'footprinting' stage, this phase consists of the research made by the attacker to obtain as much information as possible about the target.
+Also called the `footprinting` stage, this phase consists of the research made by the attacker to obtain as much information as possible about the target.
 The main objective is to understand the technologies that the target is using, what types of mechanisms the target has in place, and also where the target is located.
 
 ### Passive Reconnaissance
@@ -35,7 +35,7 @@ Mainly, the tool used are:
 + [gobuster](https://github.com/OJ/gobuster) - bruteforce URLs, DNS subdomains, virtual host names
 
 + [wfuzz](https://github.com/xmendez/wfuzz) - bruteforce Web Applications, used to find resources like directories, servlets, scripts.
-It can also bruteforce GET and POST parameters for checking different kind of injections (SQL, XSS, etc)
+It can also bruteforce GET and POST parameters for checking different kinds of injections (SQL, XSS, etc)
 
 + [openvas-scanner](https://github.com/greenbone/openvas-scanner) - vulnerability scanner
 
@@ -65,7 +65,7 @@ The ability to run privileged commands allows attackers to maintain their presen
 
 ## Phase five: Clearing Tracks
 
-This includes the step of by uninstalling the programs used during the attack and deleting any created folders, modifying the timestamps, deleting and modifying the logs files.
+This includes the step of uninstalling the programs used during the attack and deleting any created folders, modifying the timestamps and deleting and modifying the logs files.
 The attacker would change their MAC address and run the attacking machine through at least one VPN to help cover their identity.
 
 # How to find targets in the wild
@@ -115,7 +115,7 @@ intitle:"WSO2 Management Console"
 
 ## Use automation to find vulnerable targets with Nuclei
 
-[Nuclei](https://github.com/projectdiscovery/nuclei) is an important open-source tool used to find vulnerable targets, based on flexible templates written in yaml, which offers to scan for multiple protocols (HTTP, TCP, DNS, ...).
+[Nuclei](https://github.com/projectdiscovery/nuclei) is an important open-source tools used to find vulnerable targets, based on flexible templates written in yaml, which offers to scan for multiple protocols (HTTP, TCP, DNS, ...).
 
 The templates can be found inside the [nuclei-templates](https://github.com/projectdiscovery/nuclei-templates/tree/master/cves) github page, sorted by the CVE release year.
 
