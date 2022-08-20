@@ -16,7 +16,7 @@ Make sure that activities / challenges are of good quality:
 ## Assets
 
 Check if all of them are used and mentioned in the content.
-If the assets are not original, make sure their license is compatible with [ours](./COPYING.md) and that their source is properly cited.
+If the assets are not original, make sure their license is compatible with [ours](COPYING.md) and that their source is properly cited.
 Verify that their names are appropriate and respect the following rules:
 
 - Use dash between words (e.g. `image-name.png`).
