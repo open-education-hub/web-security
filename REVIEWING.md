@@ -16,7 +16,7 @@ Make sure that activities / challenges are of good quality:
 ## Assets
 
 Check if all of them are used and mentioned in the content.
-If the assets are not original, make sure their license is compatible to [ours](./COPYING.md) and that their source is properly cited.
+If the assets are not original, make sure their license is compatible with [ours](./COPYING.md) and that their source is properly cited.
 Verify that their names are appropriate and respect the following rules:
 
 - Use dash between words (e.g. `image-name.png`).
@@ -28,7 +28,7 @@ Make sure that the content is of good quality:
 
 - It follows the general structure of a [session](https://github.com/security-summer-school/template-public/tree/master/session-name-1).
 - Assets are displayed well.
-- The content has at most one sentence per line.
+- Each sentence is on a separate line.
 - The content is easy to understand.
 - Wording and general spelling are correct.
 - Proper formatting is used (such as bold, italic, typewriter formats).
