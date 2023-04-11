@@ -185,7 +185,7 @@ Web application framework is a collection of pieces of software designed to ease
 Web application frameworks provide common solutions for a wide variety of tasks such as database access, input filtering for security purposes, authentication, session handling and templates for website development.
 
 There are several different types of web application frameworks:
-* General purpose website frameworks (Ruby On Rails)
+* General purpose website frameworks (Ruby On Rails, ExpressJS, Django, Flask)
 * Discussion forums, wikis and weblogs (WikiBase/WikiWikiWeb)
 * Organizational portals (JBoss Portal)
 * Content Management Systems (CMS) (Joomla, Drupal, Wordpress)
@@ -256,7 +256,7 @@ According to builtwith.com, 473 of the Quantcast top 10,000 websites use Drupal,
 
 Drupal introduced a Form API in Drupal 6 which allowed alteration of the form data during the form rendering process.
 In 2018, Drupal released a patch adding just a single class, _RequestSanitizer_, with a _stripDangerousValues_ method that resets all the items in an input array for keys that start with a hash sign.
-This method sanitizes input data in $_GET, $_POST & $_COOKIES during the very early stages of Drupal’s bootstrap (immediately after loading the site configurations).
+This method sanitizes input data in `$_GET`, `$_POST` and `$_COOKIES` during the very early stages of Drupal’s bootstrap (immediately after loading the site configurations).
 It can be assumed that the reason why the patch was released is to make an existing vulnerability harder to find.
 
 The vulnerability was found in the forms.
