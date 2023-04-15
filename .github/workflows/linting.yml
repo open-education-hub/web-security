@@ -1,4 +1,4 @@
-name: super-linter
+name: Linting Workflow
 
 on:
   pull_request:
@@ -6,24 +6,20 @@ on:
       - master
 
 jobs:
-  super-linter:
-    name: Super Linter Runner
+  checkpatch:
+    name: Checkpatch
     runs-on: ubuntu-latest
     steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: 📥 Checkpatch
+        uses: security-summer-school/actions/checkpatch@main
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 0
-      ################################
-      # Run Linter against code base #
-      ################################
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  super-linter:
+    name: Super Linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Super Linter
+        uses: security-summer-school/actions/super-linter@main
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
