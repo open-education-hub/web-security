@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /73656372657420666f72204153494d4f.php
