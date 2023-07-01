@@ -1,0 +1,70 @@
+body{
+    background-color: rgb(42, 109, 80)
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.button{
+    background-color: rgb(42, 109, 80)
+    color: white;
+    border: none;
+    height: 25px;
+    width: 100px;
+    font-weight: bold;
+}
+
+#content{
+    margin: auto;
+    width: 1000px;
+    text-align: center;
+    background-color: white;
+    border: 2px solid rgb(42, 109, 80);
+    padding-bottom: 30px;
+    border-radius: 25px;
+}
+
+table{
+    margin-left: center;
+    margin-right: center;
+    width: 100%;
+}
+
+#navbar
+{
+    position: relative;
+}
+
+#navbar ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(42, 109, 80)
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#navbar ul li
+{
+    float: left;
+}
+
+#navbar ul li a
+{
+    display: block;
+    color: white;
+    border-radius: 5px 5px;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
