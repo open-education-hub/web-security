@@ -3,4 +3,4 @@ IMG_NAME := sss-web-01_give-to-get
 FILE_TEMPLATE := ../src/index.template.php
 FILE_SRC := ../src/index.php
 
-include ../../../../common/activity.mk
+include activity.mk
