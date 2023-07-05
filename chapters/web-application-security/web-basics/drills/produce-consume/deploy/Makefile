@@ -3,4 +3,4 @@ IMG_NAME := sss-web-01_produce-consume
 FILE_TEMPLATE := ../src/consume.template.php
 FILE_SRC := ../src/consume.php
 
-include ../../../../common/activity.mk
+include activity.mk
