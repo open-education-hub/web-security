@@ -11,11 +11,11 @@ Security Summer School
 
 ---
 
-* API
-
-* Framework (Django, Laravel, ASP.NET)
+* Library vs Framework (Django, Laravel, ASP.NET)
 
 * CMS (WordPress, Drupal, Joomla, Shopify)
+
+* API
 
 ---
 
@@ -23,7 +23,7 @@ Security Summer School
 
 * Broken Object Level Authorization
 
-* Can request information from an endpoint that you are not supposed to have access to
+* Can request information about an object that you are not supposed to have access to
 
 ---
 
@@ -31,7 +31,7 @@ Security Summer School
 
 * Broken Function Level Authorization
 
-* Can send requests to endpoints that you should not have access to
+* Can request information from an endpoint that you are not supposed to have access to
 
 ---
 
@@ -80,3 +80,11 @@ Security Summer School
 * Deciding to use a certain framework implies relying on its security
 
 * A new vulnerability may be discovered at some point, therefore regular updates are a good practice
+
+---
+
+## CVEs
+
+---
+
+## WPScan
