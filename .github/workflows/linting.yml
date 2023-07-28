@@ -23,3 +23,12 @@ jobs:
         uses: security-summer-school/actions/super-linter@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  spellcheck:
+    name: Spellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Spellcheck
+        uses: security-summer-school/actions/spellcheck@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
