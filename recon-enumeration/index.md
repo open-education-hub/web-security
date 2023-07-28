@@ -139,7 +139,65 @@ The total number of requests generated in the attack is the product of the numbe
 There are also many different types of payloads you can use ([here](https://portswigger.net/burp/documentation/desktop/tools/intruder/payloads/types) is the entire list), from specifying your own list of words to generating random bytes.
 You can find lists of popular credentials online, for instance, [here](https://github.com/danielmiessler/SecLists/tree/master/Passwords) is a repo with lists of most used passwords.
 
-## Web Content Enumeration/ Web Content Discovery/ Dirbusting
+## Testing for default credentials
+
+Using the system's default credentials is a relatively easy and popular technique to gain first access.
+The default non-random passwords that come with many devices (especially those in the Internet of Things) are frequently left untouched.
+
+You can read more about this [here](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/02-Testing_for_Default_Credentials).
+You can also find wordlists that have all the default credentials for most known vendors in one place, such as [this one](https://github.com/ihebski/DefaultCreds-cheat-sheet).
+
+## Types of brute force attacks
+
+There are many different types of performing a brute force attack, but we will mention just three.
+
+### Dictionary attack
+
+This is a straighforward technique and maybe the default one that comes to mind when trying to discover a set of (username, password) credentials.
+Given a wordlist of usernames and a wordlist of passwords, for all the usernames, all the passwords are tried.
+
+Example:
+```
+usernames = [user1, user2]
+passwords = [pass1, pass2]
+We try, in this order: (user1, pass1), (user1, pass2), (user2, pass1), (user2, pass2)
+```
+
+### Password-spray attack
+
+This technique is a bit more complicated, but it is suitable for situations where we want to avoid username lockout.
+That is, when the target blocks us after a number of wrong attempts for a username and, for a certain period of time, we can't make any more attempts.
+
+Taking this into account, the process is as follows:
+- We take one password at a time and try all usernames for it (instead of taking a username and trying all passwords, like for Dictionary attack).
+- At the beginning we define a constant representing the _maximum number of attempts to try the same username_ in a period.
+- After this limit is reached, we introduce a _delay_ (which can be viewed as the lockout period) and perform a "sleep".
+- After this, we resume the attack.
+
+Example:
+```
+usernames = [user1, user2]
+passwords = [pass1, pass2]
+username_attempts_per_period = 1
+lockout_period = 5
+We try, in this order: (pass1, user1), (pass2, user2), sleep(5), (pass1, user2), (pass2, user2)
+```
+
+### Credential Stuffing attack
+
+Given a wordlist of usernames and a wordlist of passwords, this technique involves trying them in pairs.
+For each username, we try it with the password on the corresponding position.
+This usually implies that the wordlists are of the same length.
+The technique is suitable when using the default credentials wordlists, for example.
+
+Example:
+```
+usernames = [user1, user2]
+passwords = [pass1, pass2]
+We try, in this order: (user1, pass1), (user2, pass2)
+```
+
+## Web Content Discovery
 
 Let's say we have the target server **https://security.cs.pub.ro/** and we want to discover hidden files, directories or other resources there.
 Manually, we would make multiple requests like _https://security.cs.pub.ro/docs_, _https://security.cs.pub.ro/config.php_ etc. or whatever we imagine might find and see if we get a 404 Not Found response or not.
@@ -169,10 +227,59 @@ Can do DNS and VHost busting, S3 buckets enumeration.
 * [wfuzz](https://github.com/xmendez/wfuzz) - on GitHub, written in Python, can be easily installed with pip.
 * [ffuf](https://github.com/ffuf/ffuf) - on GitHub, written in Go, has the option to mutate the files found.
 Can do VHost discovery.
+* Burp Intruder - also on the Commercial side.
 
 You can find a detailed comparison [here](https://blog.sec-it.fr/en/2021/02/16/fuzz-dir-tools/).
 We don't recommend DirBuster and DirSearch since the others are newer, improved and better-maintained tools.
 DIRB is also not maintained anymore, but can come in handy if you want to do a quick content discovery, with not many options to configure.
+
+## Web Content Discovery vs Web Fuzzing
+
+While these terms are interchangeable because the techniques and the goals are similar, let's also break them down and establish some particularities.
+
+### Web Content Enumeration / Web Content Discovery / Web Content Scanning / Dirbusting / Directory brute forcing
+
+All these synonyms indicate a clear purpose: discovering (hidden/juicy) files on a web server.
+They usually involve sending GET requests (or even HEAD, since it is faster and we are mainly interested in the returned status code).
+An input wordlist might usually sound like _Common config filenames_.
+Also, watch out for common filename extensions, such as **.log** for log files, **.bak** for backup files.
+
+### Web Fuzzing (Dirbusting++)
+
+As a general term, _fuzzing_ means sending random, unexpected payloads, to try to trigger unexpected behaviors, so we can add this to the attack goals.
+A web fuzzer tool generally allows for more customization:
+- we can try any HTTP method
+- we can insert the payload in more various location, even in the headers or POST body
+- the wordlist may include weird characters (e.g. non UTF-8, foreign languages), very long words etc.
+
+## Hard 404 vs Soft 404
+
+You might be used to think that, when you make a request to a web server for a filename that doesn't exist, it should return 404 Not Found.
+In reality, it is not always the case.
+Let's see some different behaviors of websites when we try to make such a request.
+For starters: how do we know how to make a request with a filename that doesn't exist?
+Well, this one is easy: we could just make a request with a very random filename, such as: `http://example.com/jf31yrf7ugfr`.
+
+### Hard 404
+
+We call a **hard 404** a non-existent page that returns the 404 Not Found HTTP code **OR** [410 Gone](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410) - this is also included, because it denotes a resource that is no longer available.
+
+### Soft 404
+
+A **soft 404** is a non-existent page that, when requested, returns... basically anything else besides 404 or 410.
+Some examples of what can be returned:
+- 200 OK and a custom 404 page
+- 3xx redirect to a login page / home page / other 200 OK page
+- 5xx server error
+- a WAF response may be triggered (e.g. by requesting some specific config files, such as **.htaccess**)
+
+But we should also distinguish the situations where the page exists, but it redirects to the login page because you just have to be logged in to see it.
+But this usually happens for common pages, such as **my-account**, while the real website behavior can be determined by requesting a random filename, as mentioned earlier.
+
+A takeaway from here is that real-world websites are very unpredictible and you can expect anything. :)
+
+Also note that an enumeration / brute force / fuzzing attack implies sending many requests to a server, usually in parallel (using threads), in a short period of time.
+This stresses the server and it might become unresponsive, reply slower, trigger the WAF (sometimes in the middle of the attack) or even cause DoS.
 
 ## Recap with DVWA
 
@@ -196,11 +303,14 @@ After running it, you can simply access it in your browser at http://127.0.0.1:8
 * https://hackr.io/blog/top-10-open-source-security-testing-tools-for-web-applications
 * https://www.knowledgehut.com/blog/security/enumeration-in-ethical-hacking
 * https://www.greycampus.com/opencampus/ethical-hacking/enumeration-and-its-types
+* https://www.searchenginejournal.com/technical-seo/404-vs-soft-404-errors/#close
+* https://blog.sec-it.fr/en/2021/02/16/fuzz-dir-tools/
 
 ### Wordlists
 * https://github.com/Bo0oM/fuzz.txt
 * https://github.com/aels/subdirectories-discover
 * https://github.com/danielmiessler/SecLists
+* https://github.com/ihebski/DefaultCreds-cheat-sheet
 
 ### Bug Bounty Program Lists
 * https://github.com/projectdiscovery/public-bugbounty-programs/blob/master/chaos-bugbounty-list.json
@@ -209,6 +319,7 @@ After running it, you can simply access it in your browser at http://127.0.0.1:8
 
 # Activities
 
-1. [Not So Random](https://sss-web.cyberedu.ro/challenge/268a2910-02d8-11ed-9675-abf36c35783f)
-2. [Lamer Login](https://sss-web.cyberedu.ro/challenge/7ba65330-02d8-11ed-9270-29119375f24f)
+1. Not So Random
+2. Lamer Login
 3. [DVWA](https://hub.docker.com/r/vulnerables/web-dvwa/)
+4. [Gin & Juice Shop](https://ginandjuice.shop/)
