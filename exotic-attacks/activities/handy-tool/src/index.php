@@ -8,11 +8,36 @@ class PHPClass {
     }
 
     function __wakeup() {
-        if (isset($this->prop) && isset($this->condition) && $this->condition == true) {
-            if (strpos($this->prop, "cat") === false && strpos($this->prop, "head") === false && strpos($this->prop, "grep") === false && strpos($this->prop, "tail") === false && strpos($this->prop, "tac") === false && strpos($this->prop, "rev") === false && strpos($this->prop, "awk") === false && strpos($this->prop, "sed") === false && strpos($this->prop, "more") === false && strpos($this->prop, "cut") === false && strpos($this->prop, "nl") === false && strpos($this->prop, "less") === false && strpos($this->prop, "sort") === false && strpos($this->prop, "python") === false && strpos($this->prop, "perl") === false) {
-                eval($this->prop);
+        $forbbiden_commands = [
+            "cat",
+            "head",
+            "grep",
+            "tail",
+            "tac",
+            "rev",
+            "awk",
+            "sed",
+            "more",
+            "cut",
+            "nl",
+            "less",
+            "sort",
+            "python",
+            "perl",
+            "m4", // similar to `cat`
+        ];
+
+        if (!isset($this->prop) or !isset($this->condition) or !$this->condition == true) {
+            return;
+        }
+
+        foreach ($forbbiden_commands as $cmd) {
+            if (strpos($this->prop, $cmd) !== false) {
+                return;
             }
         }
+
+        eval($this->prop);
     }
 }
 ?>
