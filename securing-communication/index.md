@@ -1,7 +1,7 @@
 ---
 linkTitle: 03. Securing Communication
 type: docs
-weight: 30
+weight: 10
 ---
 
 # Securing Communication
