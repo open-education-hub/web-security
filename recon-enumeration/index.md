@@ -180,7 +180,7 @@ usernames = [user1, user2]
 passwords = [pass1, pass2]
 username_attempts_per_period = 1
 lockout_period = 5
-We try, in this order: (pass1, user1), (pass2, user2), sleep(5), (pass1, user2), (pass2, user2)
+We try, in this order: (pass1, user1), (pass1, user2), sleep(5), (pass2, user1), (pass2, user2)
 ```
 
 ### Credential Stuffing attack
