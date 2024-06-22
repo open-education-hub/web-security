@@ -1,0 +1,34 @@
+area/reading:
+  - "**/reading/*"
+  - "**/reading/**/*"
+
+area/media:
+  - "**/media/*"
+  - "**/media/**/*"
+
+area/slides:
+  - "**/slides/*"
+  - "**/slides/**/*"
+
+area/guides:
+  - "**/guides/*"
+  - "**/guides/**/*"
+
+area/drills:
+  - "**/drills/*"
+  - "**/drills/**/*"
+
+area/projects:
+  - "**/projects/*"
+  - "**/projects/**/*"
+
+area/infra:
+  - "common/*"
+  - "common/**/*"
+  - "scripts/*"
+  - "scripts/**/*"
+  - ".github/*"
+  - ".github/**/*"
+  - "Dockerfile"
+  - "Makefile"
+  - "config.yaml"
