@@ -26,7 +26,7 @@ jobs:
           file: ./repo/Dockerfile
           push: false
           load: true
-          tags: essentials-security/docusaurus:latest
+          tags: web-security/docusaurus:latest
           cache-from: type=gha
           cache-to: type=gha
 
