@@ -1,17 +1,13 @@
----
-linkTitle: 02. Cookies & Session Management & Access Control
-type: docs
-weight: 10
----
+# Cookies and Session Management
 
-# Introduction
+## Introduction
 
 In order to understand how to protect a web application, you need to understand how an attacker thinks.
 And in order to do that, you need to understand how a platform is built and what techniques are used to ensure minimum usability.
 As a first step, you can analyze web applications using readily available tools, such as the browser’s built-in Developer Tools.
 Further on, you can attempt to find more information about the basic mechanisms that enable the server to identify its clients and keep tabs on who they are (authentication) and what they are allowed to do (authorization), through the use of cookies and sessions.
 
-# Stateful HTTP: Cookies
+## Stateful HTTP: Cookies
 
 As we mentioned in the previous session, HTTP is a stateless protocol used to communicate over the internet.
 This means that a request is not aware of any of the previous ones, and each request is executed independently.
@@ -21,9 +17,9 @@ An HTTP cookie (also called web cookie, Internet cookie, browser cookie, or simp
 Cookies were designed to be a reliable mechanism for websites to remember stateful information (such as items added in the shopping cart in an online store) or to record the user's browsing activity (including clicking particular buttons, logging in, or recording which pages were visited in the past).
 They can also be used to remember pieces of information that the user previously entered into form fields, such as names, addresses, passwords, and credit card numbers.
 
-![Cookies](./assets/cookies.png)
+![Cookies](../media/cookies.png)
 
-## What is a cookie?
+### What is a cookie?
 
 A cookie is a _key=value_ pair stored in a text file on the user’s computer.
 This file can be found, for example, at the following path on a Windows 10 using Chrome:
@@ -57,7 +53,7 @@ Additionally, the cookie can have zero or more attributes, such as:
   This means that the cookies with this attribute cannot be accessed via client-side scripting or other methods.
   This is a defense mechanism against [some attacks](https://owasp.org/www-community/HttpOnly).
 
-# Stateful HTTP: Sessions
+## Stateful HTTP: Sessions
 
 As previously stated, HTTP is stateless.
 Therefore, it needs a mechanism to remember information from previous requests and associate it with a user for authentication purposes.
@@ -67,7 +63,7 @@ We cannot directly use them for authentication and other sensitive data.
 The solution to this problem is the session, which stores the data on the server, rather than the client.
 The session ID can be used as a means of communication.
 
-## How does a session work?
+### How does a session work?
 
 When accessing a website that uses sessions, each user is assigned a session ID.
 They are more secure than the previously mentioned method mainly because the data never leaves the server, so an attacker cannot alter it.
@@ -86,19 +82,21 @@ The basic workflow is:
 6. If the server finds a match, it reads the stored variables. For PHP, these variables will become available in the superglobal variable `$_SESSION`.
 7. If the server doesn’t find a match, it will create a new session and repeat steps 1-6.
 
-![Session lifecycle](./assets/session.jpg)
+![Session lifecycle](../media/session.jpg)
 
-Example of a session in PHP:  
+Example of a session in PHP:
+
 ```php
 <?php
 session_start(); // Start the session
-$_SESSION['username'] = "John Doe"; 
+$_SESSION['username'] = "John Doe";
 $_SESSION['is_admin'] = true;
 echo "Hello " . $_SESSION['username'];
 ?>
 ```
 
-Example of a session in Python:  
+Example of a session in Python:
+
 ```python
 s = requests.Session()
 s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')
@@ -114,7 +112,7 @@ This won’t give them access to the values that are stored on the server, but t
 This is known as session hijacking.
 You can read more on this subject [here](https://owasp.org/www-community/attacks/Session_hijacking_attack) and [here](https://www.netsparker.com/blog/web-security/session-hijacking/).
 
-# Authentication vs Authorization
+## Authentication vs Authorization
 
 Two concepts that usually make people confused are authentication and authorization.
 Both terms are often used in conjunction with each other when it comes to security and gaining access to the system.
@@ -134,7 +132,7 @@ We won’t insist too much on these other methods, but it’s good to know they 
 **Authorization** is a security mechanism to determine access levels or user/client privileges related to system resources including files, services, computer programs, data and application features.
 This is the process of granting or denying access to a network resource that allows the user access to various resources based on the user's identity.
 
-## Real-life scenarios
+### Real-life scenarios
 
 Now imagine what would happen if someone obtains access to your Facebook account.
 Besides the previously public information, such as your name and your birthday, they can now view your friend lists, private conversations, or even impersonate you through a post.
@@ -146,7 +144,7 @@ This would be a really nefarious incident that would destroy the institution’s
 
 This is why authentication and authorization are very important and their security is crucial.
 
-# Path Traversal
+## Path Traversal
 
 In many web applications, resources are accessed using a filename as a parameter.
 This file is processed and displayed to the client by the application.
@@ -173,9 +171,9 @@ An example of accessing system files:
 
 `http://example.com/view.php?file=../../../../etc/passwd`
 
-![Path Traversal](./assets/path_traversal.png)
+![Path Traversal](../media/path_traversal.png)
 
-## Path Traversal Prevention
+### Path Traversal Prevention
 
 The application should not allow directory traversal or the accessing of arbitrary files.
 If the files to be accessed are known, the application should implement a mapping between the file and application-specific identifier.
@@ -192,13 +190,13 @@ If it is considered unavoidable to pass user-supplied input to filesystem APIs, 
 Below is an example of some simple Java code to validate the canonical path of a file based on user input:
 
 ```java
-File file = new File(BASE_DIRECTORY, userInput);` 
-if (file.getCanonicalPath().startsWith(BASE_DIRECTORY)) {` 
+File file = new File(BASE_DIRECTORY, userInput);`
+if (file.getCanonicalPath().startsWith(BASE_DIRECTORY)) {`
 // process file
 }
 ```
 
-# Insecure Direct Object References
+## Insecure Direct Object References
 
 Insecure direct object reference vulnerability is similar to path traversal vulnerability.
 The application allows access to resources using an identifier that is controllable by the user.
@@ -214,9 +212,9 @@ If the application fails to do so, this would be a case of insecure direct objec
 
 When performing penetration tests, the application parameters should certainly be investigated by iterating through possible values and observing the responses.
 
-![Insecure Direct Object References](./assets/insecure_direct_object_references.png)
+![Insecure Direct Object References](../media/insecure_direct_object_references.png)
 
-## Insecure Direct Object References Prevention
+### Insecure Direct Object References Prevention
 
 First, you should control all normal, ajax and API requests when creating an application.
 For example, can a read-only user write anything in the app?
@@ -228,7 +226,7 @@ If your `privatesection` endpoint includes the API requests such as `/api/privat
 
 Moreover, to make the attacker’s job harder or prevent it altogether, you can use hash functions and hashed values instead of regular numbers and strings.
 
-## robots.txt: Preventing Caching
+### robots.txt: Preventing Caching
 
 The **robots.txt** file provides a list of instructions for automated Web crawlers, also called robots or bots.
 Standardized at [robotstxt](http://www.robotstxt.org/robotstxt.html), this file allows you to define, with a great deal of precision, which files and directories are off-limits to Web robots.
@@ -252,12 +250,12 @@ One fairly common hacker trick is to view a site’s robots.txt file first to ge
 In fact a quick Google query can reveal lots of sites that have had their robots.txt files crawled.
 This, of course, is a misconfiguration, because the robots.txt file is meant to stay behind the scenes.
 
-## Sitemap.xml
+### Sitemap.xml
 
 The sitemap.xml is a simple XML page which could be available on some websites and provide a “roadmap” for Google to the important pages that need to be crawled.
 It’s a SEO (Search Engine Optimization) tool to help with the visibility of your website on the internet, but it could also be useful for a hacker, serving basically the same purpose: to give him a roadmap to every page.
 
-## Examples of Google Dorking
+### Examples of Google Dorking
 
 - Google Hacking tool from [Pentest-Tools](https://pentest-tools.com/information-gathering/google-hacking)
 
@@ -288,9 +286,9 @@ If you click into any of the exposed .env files, you will notice unencrypted use
 
 The [Wayback Machine](https://archive.org/web/) is a digital archive of the entire internet.
 It allows the user to go “back in time” and see what websites looked like in the past.
-For a hacker, it can be useful to see what information was displayed on a website a few months ago or even a few years ago.  
+For a hacker, it can be useful to see what information was displayed on a website a few months ago or even a few years ago.
 
-# Wrap-up
+## Wrap-up
 
 In this rapidly evolving world, the technologies we use change at a very fast pace.
 We need to constantly implement new systems to help solve the issues that arise.
@@ -300,7 +298,7 @@ It’s very important to understand the difference between authentication and au
 Almost every web application on the internet today has one form or another of authentication and authorization.
 Many [frameworks](https://techterms.com/definition/framework#:~:text=A%20framework%2C%20or%20software%20framework,programs%20for%20a%20specific%20platform) and [Content Management Systems](https://techterms.com/definition/cms) provide built-in implementations of authorization and authentication to make the job of web developers easier.
 
-# Browser Extensions
+## Browser Extensions
 
 Some browser extensions can make your life easier when interacting with the websites. Some examples would be:
 
@@ -317,34 +315,3 @@ Some browser extensions can make your life easier when interacting with the webs
 
 - **Hasher**: An extension to quickly generate most common **hashes** (_MD5_, _SHA-1_, _SHA-224_, _SHA-256_, _SHA-384_, _SHA-512_, etc), **ciphers** (_AES-256_, _DES_, _Triple-DES_, _RC4_, etc), **ROT13**, **HMAC**, **CRC** (_CRC-8_, _CRC 16_), for a given input. You can also convert timestamps to human readable formats, convert numbers from different bases (hex, binary, dec), encode or decode strings and convert between _ASCII_, _HEX_, _UTF-8_, etc.
   - Google Chrome link: https://chrome.google.com/webstore/detail/hasher/kignjplbjlocolcfldfhbonmbblpfbjb
-
-# Further Reading
-
-- [1] Metropolia University of Applied Sciences - Applied Web Application Security Course
-- [2] https://en.wikipedia.org/wiki/HTTP_cookie
-- [3] https://stackoverflow.com/questions/11142882/what-are-cookies-and-sessions-and-how-do-they-relate-to-each-other
-- [4] https://docs.python-requests.org/en/master/user/advanced/
-- [5] https://stackoverflow.com/questions/11142882/what-are-cookies-and-sessions-and-how-do-they-relate-to-each-other
-- [6] https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg
-- [7] https://danielmiessler.com/study/encoding-encryption-hashing-obfuscation/
-- [8] https://searchsecurity.techtarget.com/tip/How-to-encrypt-and-secure-a-website-using-HTTPS
-- [9] https://www.linkedin.com/learning/asp-dot-net-core-identity-authentication-management
-- [10] https://techterms.com/definition/authentication
-- [11] https://www.bugcrowd.com/blog/how-to-find-idor-insecure-direct-object-reference-vulnerabilities-for-large-bounty-rewards/
-- [12] https://portswigger.net/web-security/file-path-traversal
-- [13] https://www.amazon.com/Google-Hacking-Penetration-Testers-1/dp/1931836361
-- [14] https://securitytrails.com/blog/google-hacking-techniques
-- [15] https://www.acunetix.com/websitesecurity/google-hacking/
-- [16] https://www.sciencedirect.com/science/article/pii/B9781931836364500087
-
-# Activities
-
-**1.** [Nobody loves me](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
-**2.** [Do you need glasses?](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
-**3.** [Chef hacky mchack](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
-**4.** [Santa](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
-**5.** [Great Names](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
-**6.** [Mind your own business](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
-**7.** [Beep Beep Boop](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
-**8.** [Let's traverse the universe](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)  
-**9.** [Color](https://sss-ctf.security.cs.pub.ro/challenges?category=web-sessions)

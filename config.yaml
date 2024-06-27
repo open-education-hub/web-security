@@ -13,7 +13,7 @@ make_assets:
     command: make
     locations:
       - chapters/web-application-security/web-basics/slides
-      # - chapters/web-application-security/cookies-and-session-management/slides
+      - chapters/web-application-security/cookies-and-session-management/slides
       # - chapters/web-application-security/sql-injection/slides
       # - chapters/web-application-security/cross-site-scripting/slides
       # - chapters/web-application-security/exotic-attacks/slides
@@ -35,7 +35,7 @@ embed_reveal:
     extension: mdx
     build:
       web-basics: web-basics
-      # cookies-and-session-management: cookies-and-session-management
+      cookies-and-session-management: cookies-and-session-management
       # securring-communication: securring-communication
       # sql-injection: sql-injection
       # cross-site-scripting: cross-site-scripting
@@ -63,10 +63,20 @@ docusaurus:
                     subsections:
                       - Introduction: README.md
                 - Slides: /build/embed_reveal/web-basics
+          - Cookies and Session Management:
+              path: chapters/web-application-security/cookies-and-session-management/
+              extra:
+                - media/
+              subsections:
+                - Reading:
+                    path: reading/
+                    subsections:
+                      - Introduction: README.md
+                - Slides: /build/embed_reveal/cookies-and-session-management
 
     static_assets:
       - web-basics: /build/make_assets/chapters/web-application-security/web-basics/slides/_site
-      # - cookies-and-session-management: /build/make_assets/chapters/web-application-security/cookies-and-session-management/slides/_site
+      - cookies-and-session-management: /build/make_assets/chapters/web-application-security/cookies-and-session-management/slides/_site
       # - sql-injection: /build/make_assets/chapters/web-application-security/sql-injection/slides/_site
       # - cross-site-scripting: /build/make_assets/chapters/web-application-security/cross-site-scripting/slides/_site
       # - exotic-attacks: /build/make_assets/chapters/web-application-security/exotic-attacks/slides/_site

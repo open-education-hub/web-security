@@ -1,11 +1,4 @@
----
-title: "SSS: Cookies session management and Access Control"
-revealOptions:
-  background-color: 'aquamarine'
-  transition: 'none'
----
-
-# Cookies session management and Access Control
+# Cookies and Session Management
 
 Security Summer School
 
@@ -36,14 +29,12 @@ Security Summer School
 - session hijacking
 - authorization
 
-
 ---
 
 ## Vulnerabilities
 
 - path traversal
 - insecure direct object references
-
 
 ---
 

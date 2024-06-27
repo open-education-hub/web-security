@@ -1,0 +1,10 @@
+---
+title: "Cookies and Session Management"
+revealOptions:
+  background-color: 'aquamarine'
+  transition: 'none'
+  slideNumber: true
+  autoAnimateDuration: 0.0
+---
+
+!INCLUDE "cookies-and-session-management.md"
