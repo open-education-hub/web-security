@@ -40,7 +40,7 @@ penetration testing / pentester
 
 ## Nmap
 
-<img data-src="../assets/nmap_output.png" />
+<img data-src="../media/nmap_output.png" />
 
 ----
 

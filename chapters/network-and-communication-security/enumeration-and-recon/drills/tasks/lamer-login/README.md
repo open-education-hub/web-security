@@ -12,4 +12,4 @@ After you find the right one, based on what the server responds, try to brutefor
 
 Finally, login.
 
-Exploit in `../sol/solution.sh`.
+Exploit in `./solution/solution.sh`.

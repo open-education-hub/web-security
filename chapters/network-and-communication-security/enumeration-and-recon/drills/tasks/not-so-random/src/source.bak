@@ -1,0 +1,3 @@
+if (isset($_GET['random_numberrr']) && intval($_GET['random_numberrr']) === $random_number) {
+	echo $flag;
+}
