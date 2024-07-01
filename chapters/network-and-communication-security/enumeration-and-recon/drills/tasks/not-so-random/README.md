@@ -14,4 +14,4 @@ Find the `source.bak` file. This tells you that you have to make a request with 
 
 Enumerate the number until you find the correct one.
 
-Exploit in `../sol/solution.sh`.
+Exploit in `./solution/solution.sh`.
