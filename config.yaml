@@ -22,7 +22,7 @@ make_assets:
       # - chapters/system-and-data-security/privilege-escalation/slides
       # - chapters/system-and-data-security/end-to-end-attack/slides
       # - chapters/system-and-data-security/overview/slides
-      # - chapters/network-and-communication-security/enumeration-and-recon/slides
+      - chapters/network-and-communication-security/enumeration-and-recon/slides
       - chapters/network-and-communication-security/securing-communication/slides
       # - chapters/network-and-communication-security/overview/slides
     args:
