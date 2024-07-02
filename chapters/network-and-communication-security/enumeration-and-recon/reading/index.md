@@ -92,7 +92,7 @@ Customizing attacks requires that we specify one or more payloads and the positi
 * I navigated to https://sss-ctf.security.cs.pub.ro/home and tried to log in using the email **a@a.com** and the password **abc123**.
 * The POST request can be found in HTTP history. Right click on it to send it to Intruder.
 
-![Send request to Burp Intruder](../amedia/send_to_intruder.png)
+![Send request to Burp Intruder](../media/send_to_intruder.png)
 
 * Let's say we want to try all the passwords from **abc1**, **abc3**, **abc5**... to **abc100**. Navigate to the **Positions** tab - the payload position is specified with a pair of these characters: **§** called **payload markers**.
 
