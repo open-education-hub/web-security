@@ -36,7 +36,7 @@ embed_reveal:
     build:
       web-basics: web-basics
       cookies-and-session-management: cookies-and-session-management
-      # securring-communication: securring-communication
+      securing-communication: securing-communication
       # sql-injection: sql-injection
       # cross-site-scripting: cross-site-scripting
       # enumeration-and-recon: enumeration-and-recon
@@ -86,7 +86,7 @@ docusaurus:
       # - end-to-end-attack: /build/make_assets/chapters/system-and-data-security/end-to-end-attack/slides/_site
 
       # - enumeration-and-recon: /build/make_assets/chapters/network-and-communication-security/enumeration-and-recon/slides/_site
-      # - securring-cummunication: /build/make_assets/chapters/network-and-communication-security/securring-cummunication/slides/_site
+      - securing-communication: /build/make_assets/chapters/network-and-communication-security/securing-communication/slides/_site
     config_meta:
       title: Web Security
       url: http://localhost/
