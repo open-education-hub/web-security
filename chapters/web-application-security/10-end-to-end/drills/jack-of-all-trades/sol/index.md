@@ -91,7 +91,7 @@
 
 ![13](images/jackspassw.jpg?raw=true "jacks")
 
-+ **Firstly, we need to download the** ``jacks_password_list`` **file to our machine. Open a python server on the Jack box and we're gonna get the file on our's**
++ **Firstly, we need to download the** ``jacks_password_list`` **file to our machine. Open a python server on the Jack box and we're gonna get the file on ours**
 
 **The Jack box**
 

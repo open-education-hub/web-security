@@ -24,7 +24,7 @@
 
 ![3](images/dirbuster.jpg?raw=true "gobuster")
 
-+ **We found a mail directory, so let's check it out into the web browser. It seems to be like a mail message left on the website to notify a future migration. The mail was writen with the intention to arrive to the admin of the page**
++ **We found a mail directory, so let's check it out into the web browser. It seems to be like a mail message left on the website to notify a future migration. The mail was written with the intention to arrive to the admin of the page**
 
 ![4](images/mail_page.png?raw=true "mail_page")
 
@@ -92,7 +92,7 @@
 
 ![14](images/sudola.jpg?raw=true "sudo -l")
 
-+ **Exploiting the apt-get vulnerability, we can use the tool to gain a root access, using the update option and simultanously invoking the bash into the root account**
++ **Exploiting the apt-get vulnerability, we can use the tool to gain a root access, using the update option and simultaneously invoking the bash into the root account**
 
 ``sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/bash``
 

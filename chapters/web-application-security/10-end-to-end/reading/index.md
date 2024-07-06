@@ -85,7 +85,7 @@ Knowing that [WSO2](https://wso2.com) the default HTTP and HTTPS ports of a WSO2
 ![shodan_finding_2-2.png](../media/shodan_finding_2-2.png)
 
 Another way to find vulnerable targets is the **favicon hash**.
-Favicon is the shortand for favourite icon. It is used as a shortcut to other webpages.
+Favicon is the shorthand for favourite icon. It is used as a shortcut to other webpages.
 Browsers that use these icons usually display them in the address bar, as well as in the history.
 
 ![favicon.png](../media/favicon.png)
@@ -266,7 +266,7 @@ curl -X "GET" http://<IP>:8080/?doAs=`<command_to_execute>`
 ```
 
 The backtick is the start of an instruction to bash to evaluate what you type as a command. Everything you type between backticks (`) is evaluated  by the shell before the main command and the output of that execution is used by that command, just as if you'd type that output at that place in the command line.
-So, the command between the backticks inside the URL will be firstly intepreted by our shell and then by the target shell.
+So, the command between the backticks inside the URL will be firstly interpreted by our shell and then by the target shell.
 
 To read the output of the command and to check if that command was executed on the vulnerable server, we will send a request to [RequestBin](https://requestbin.io).
 [RequestBin](https://requestbin.io) gives you a URL that will collect requests made to it and let you inspect them in a human-friendly way.

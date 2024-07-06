@@ -64,7 +64,7 @@
 
 # Root escalation
 
-+ **Let's run a ``sudo -l`` command to see what commands cand www-data user can run**
++ **Let's run a ``sudo -l`` command to see what commands www-data user can run**
 
 # ![sudol](images/sudol.jpg?raw=true "sudol")
 

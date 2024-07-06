@@ -23,7 +23,7 @@
 ``get note_to_jake.txt``
 # ![3](images/change_password.jpg?raw=true "cp")
 
-+ **Looks that Jake need to change his password. Because jake is using a very weak password, maybe we can bruteforce his login to some service. Let's use hydra to bruteforce the ssh serice - i'm using the rockyou.txt wordlist**
++ **Looks that Jake need to change his password. Because jake is using a very weak password, maybe we can brute-force his login to some service. Let's use hydra to brute-force the ssh service - I'm using the rockyou.txt wordlist**
 
 ``hydra -l jake -P /usr/share/wordlists/rockyou.txt 10.10.244.52 -t 4 ssh``
 
@@ -35,7 +35,7 @@
 
 # ![5](images/less.jpg?raw=true "less")
 
-**It looks like jake can run the less command with su privillege. Less is a command which can display content of a file and we can navigate both forward and backward through the file. Let's try to read the user flag**
+**It looks like jake can run the less command with su privilege. Less is a command which can display content of a file and we can navigate both forward and backward through the file. Let's try to read the user flag**
 
 ``sudo less /home/holt/user.txt``
 

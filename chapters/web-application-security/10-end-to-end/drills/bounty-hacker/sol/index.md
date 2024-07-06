@@ -36,7 +36,7 @@ R3dDRaG0Nsynd1c@T3
 ...
 ```
 
-+ **Let's try to use this password file to connect on the ssh service, using simultanously the user found in the previous task. The Hydra tool has a brute-force option to crack the login of the ssh service, so we can use it**
++ **Let's try to use this password file to connect on the ssh service, using simultaneously the user found in the previous task. The Hydra tool has a brute-force option to crack the login of the ssh service, so we can use it**
 
 ``hydra -l lin -P locks.txt 10.10.229.13 -t 4 ssh``
 
@@ -57,7 +57,7 @@ R3dDRaG0Nsynd1c@T3
 
 # ![5](images/whoami.jpg?raw=true "whoami")
 
-+ **Tar is a linux utilitary, used by a lot of unix system administrators to create compressed archive files or to extract them. Looking into the tar manual, we can see that it has an option that can execute a command during the compress-program**
++ **Tar is a linux archiving utility, used by a lot of unix system administrators to create compressed archive files or to extract them. Looking into the tar manual, we can see that it has an option that can execute a command during the compress-program**
 
 # ![6](images/tar.jpg?raw=true "tar manual")
 
