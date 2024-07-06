@@ -12,7 +12,7 @@
 
 # ![nmap](images/nmap_dirb_scan.jpg?raw=true "nmap")
 
-+ **Let's run a gobuster search too and see our results. It seems that a webdav service is runnning**
++ **Let's run a gobuster search too and see our results. It seems that a webdav service is running**
 
 ``gobuster dir -u http://10.10.62.166/ -w /usr/share/wordlists/dirb/common.txt``
 

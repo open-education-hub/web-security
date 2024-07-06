@@ -94,7 +94,7 @@ async function login() {
 
 + **What if we can run our own script on this machine? If we modify the overpass.thm domain into our local machine domain, we can host locally a python server and upload maybe a python script which get us a reverse shell. The respective script is executed by root so we're gonna get a root shell**
 
-# ![12](images/modfiy.jpg?raw=true "modify")
+# ![12](images/modify.jpg?raw=true "modify")
 
 **Next step is to create a similar path with the /etc/crontab curl get request from the host - */downloads/src/buildscript.sh*. Let's do this into our local machine and we're gonna host the server into our home directory**
 

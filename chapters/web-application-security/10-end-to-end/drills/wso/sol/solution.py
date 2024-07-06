@@ -1,4 +1,5 @@
-import requests, urllib3, sys
+#  SPDX-License-Identifier: BSD-3-Clause
+import requests, sys
 
 if len(sys.argv) != 3:
     print(f"Usage: python3 {sys.argv[0]} https://host shell.jsp")
