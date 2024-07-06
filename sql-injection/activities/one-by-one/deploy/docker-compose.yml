@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  sss-web-04_one-by-one_app:
+    build: .
+    environment:
+      - "DB_USERNAME=root"
+      - "DB_PASSWORD=wXmr6YuT86XpU2qX"
+      - "DB_HOST=sss-web-04_one-by-one_db"
+      - "DB_NAME=flags"
+    ports:
+      - "8010:80"
+    volumes:
+      - ../public:/var/www/html
+    depends_on:
+      - "sss-web-04_one-by-one_db"
+    restart: unless-stopped
+
+  sss-web-04_one-by-one_db:
+    image: mariadb:10.1
+    environment:
+      - "MYSQL_ROOT_PASSWORD=wXmr6YuT86XpU2qX"
+      - "MYSQL_DATABASE=flags"
+    restart: unless-stopped

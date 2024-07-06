@@ -1,0 +1,24 @@
+version: "3.3"
+
+services:
+  database:
+    image: mysql:5.7
+    container_name: blacklist_mysql
+    environment:
+      MYSQL_DATABASE: "blacklist"
+      MYSQL_USER: "sss"
+      MYSQL_PASSWORD: "sss"
+      MYSQL_ROOT_PASSWORD: "root"
+    volumes:
+      - "../public/mysql/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql"
+
+  web:
+    build: .
+    image: sss-web-sql-injection_blacklist_mysql
+    container_name: sss-web-sql-injection_blacklist_mysql
+    ports:
+      - "13000:80"
+    volumes:
+      - "../public:/var/www/html"
+    links:
+      - database
