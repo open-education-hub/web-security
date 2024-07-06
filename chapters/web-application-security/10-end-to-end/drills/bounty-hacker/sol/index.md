@@ -1,6 +1,9 @@
 # 'Bounty Hacker' box writeup
-## Bounty Hacker is a CTF box written by Sevuhl and available on the [TryHackMe platform](https://tryhackme.com).
-## Read about [Tar in Linux](https://www.freecodecamp.org/news/tar-in-linux-example-tar-gz-tar-file-and-tar-directory-and-tar-compress-commands/) and [Breaking restricted environment with tar](https://gtfobins.github.io/gtfobins/tar/).
+
+## Bounty Hacker is a CTF box written by Sevuhl and available on the [TryHackMe platform](https://tryhackme.com)
+
+## Read about [Tar in Linux](https://www.freecodecamp.org/news/tar-in-linux-example-tar-gz-tar-file-and-tar-directory-and-tar-compress-commands/) and [Breaking restricted environment with tar](https://gtfobins.github.io/gtfobins/tar/)
+
 ## ![bg](images/background.jpg?raw=true "Title")
 
 + **We deploy the machine and start with an nmap scan for open ports**
@@ -21,7 +24,7 @@
 
 + **Reading the task.txt file, we can find out who wrote the task list, giving us the first task answer. We list the second txt file, named locks.txt, and we can see multiple strings which seems to be some passwords kept in the ftp server**
 
-```
+```text
 rEddrAGON
 ReDdr4g0nSynd!cat3
 Dr@gOn$yn9icat3
@@ -42,7 +45,7 @@ R3dDRaG0Nsynd1c@T3
 
 + **After we execute the brute-force process, Hydra give us the needed user password**
 
-# ![3](images/hydra_brute.jpg?raw=true "Hydra")
+![3](images/hydra_brute.jpg?raw=true "Hydra")
 
 + **With the given credentials, we will connect to the ssh service**
 
@@ -50,19 +53,19 @@ R3dDRaG0Nsynd1c@T3
 
 + **We land on the wanted system so we can read our first user flag**
 
-# ![4](images/first_flag.jpg?raw=true "first_flag")
+![4](images/first_flag.jpg?raw=true "first_flag")
 
 + **Running the** ``sudo -l`` **command on @lin user and listing the allowed commands, we can see that user @lin may run the following commands on bountyhacker:**
       ``(root) /bin/tar``
 
-# ![5](images/whoami.jpg?raw=true "whoami")
+![5](images/whoami.jpg?raw=true "whoami")
 
 + **Tar is a linux archiving utility, used by a lot of unix system administrators to create compressed archive files or to extract them. Looking into the tar manual, we can see that it has an option that can execute a command during the compress-program**
 
-# ![6](images/tar.jpg?raw=true "tar manual")
+![6](images/tar.jpg?raw=true "tar manual")
 
 + **That being said, let's try to break our environment and spawn a shell using privilege escalation, getting access to the @root user**
 
 ``sudo tar xf /dev/null -I '/bin/sh -c "sh <&2 1>&2"'``
 
-# ![Alt text](images/root_flag.jpg?raw=true "root_flag")
+![Alt text](images/root_flag.jpg?raw=true "root_flag")

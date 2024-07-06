@@ -1,7 +1,10 @@
 # 'Jack-of-All-Trades' box writeup
-## Jack of All Trades is a CTF box originally designed for Securi-Tay 2020 and written by MuirlandOracle, available on the [TryHackMe platform](https://tryhackme.com).
+
+## Jack of All Trades is a CTF box originally designed for Securi-Tay 2020 and written by MuirlandOracle, available on the [TryHackMe platform](https://tryhackme.com)
+
 ## Read about [How to allow restricted ports](https://support.mozilla.org/en-US/questions/1083282#answer-780274), [SUID files](https://www.tecmint.com/how-to-find-files-with-suid-and-sgid-permissions-in-linux/) and [Steghide](http://steghide.sourceforge.net/)
-## ![bg](images/backgroundjack.jpeg?raw=true "Title")
+
+![bg](images/backgroundjack.jpeg?raw=true "Title")
 
 ## Foothold
 
@@ -23,7 +26,7 @@
 
 ![4](images/welcome.png?raw=true "welcome")
 
-**We can see our main page, with the box title and some images in there. Let's scan with gobuster too**
+**We can see our main page, with the box title and some images in there. Let's scan with gobuster too.**
 
 ``gobuster dir -u http://10.10.252.248:22/ -w /usr/share/wordlists/dirb/common.txt``
 
@@ -37,19 +40,19 @@
 
 ``steghide --extract -sf stego.jpg``
 
-**A passphrase is requested, so we cannot immediately decrypt the image, but we can continue to enumerate the http page. Let's take a look into the source code of the page**
+**A passphrase is requested, so we cannot immediately decrypt the image, but we can continue to enumerate the http page. Let's take a look into the source code of the page.**
 
 + **We can spot a message left in the source code of the page: a recovery message which tells us we can connect on the /recovery.php page and there's also a base64 encoded message**
 
 ![7](images/base64.jpg?raw=true "base64")
 
-**Let's try to decrypt our message**
+**Let's try to decrypt our message.**
 
 ``echo "UmVtZW1iZXIgdG8gd2lzaCBxxxxxxxxxx" | base64 -d``
 
 ![8](images/decrypt.jpg?raw=true "base64")
 
-**We got a message and a password too! Let's use it to decrypt the image with steghide**
+**We got a message and a password too! Let's use it to decrypt the image with steghide.**
 
 ![9](images/first_steg.jpg?raw=true "first_steg")
 
@@ -59,7 +62,7 @@
 
 ``steghide --extract -sf header.jpg``
 
-**Bingo! We got a username and a password inside the header.jpg image. Let's go to the /recovery.php page and try to login with the credentials**
+**Bingo! We got a username and a password inside the header.jpg image. Let's go to the /recovery.php page and try to login with the credentials.**
 
 + **Logging in with our credentials on the page, we are redirected to a page with the message:**
 
@@ -83,7 +86,7 @@
 
 ## User escalation
 
-**Here we got our access into the system. Let's spawn an interactive shell with python and continue to enumerate**
+**Here we got our access into the system. Let's spawn an interactive shell with python and continue to enumerate.**
 
 ``python -c 'import pty; pty.spawn("/bin/bash")'``
 
@@ -93,11 +96,11 @@
 
 + **Firstly, we need to download the** ``jacks_password_list`` **file to our machine. Open a python server on the Jack box and we're gonna get the file on ours**
 
-**The Jack box**
+**The Jack box:**
 
 **``www-data@jack-of-all-trades:/home$``** ``python -m SimpleHTTPServer 6999``
 
-**Our machine**
+**Our machine:**
 
 **``{kali@kali:Jack of All Trades_0}$``** ``wget 10.10.252.248:6999/jacks_password_list``
 
@@ -107,7 +110,7 @@
 
 ![13](images/hydra.jpg?raw=true "hydra")
 
-**Let's connect into the ssh server with our credentials on the 80 port**
+**Let's connect into the ssh server with our credentials on the 80 port.**
 
 ``ssh jake@10.10.252.248 -p 80``
 
@@ -117,7 +120,7 @@
 
 **``{kali@kali:Jack of All Trades_0}$``** ``wget 10.10.252.248:6999/user.jpg``
 
-**Opening the user.jpg flag, we can see the Penguing recipe and the user flag**
+**Opening the user.jpg flag, we can see the Penguing recipe and the user flag.**
 
 ![14](images/user.flag.jpg?raw=true "user")
 
@@ -127,7 +130,7 @@
 
 ``Sorry, user jack may not run sudo on jack-of-all-trades.``
 
-**Let's check for some advanced linux file permissions - suid**
+**Let's check for some advanced linux file permissions - suid.**
 
 ``find / -type f -user root -perm -4000 -print 2>/dev/null``
 
@@ -135,7 +138,7 @@
 
 ![15](images/suid.jpg?raw=true "suid")
 
-**Knowing this, let's try to use strings on our root.txt flag**
+**Knowing this, let's try to use strings on our root.txt flag.**
 
 ``strings /root/root.txt``
 
