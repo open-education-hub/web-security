@@ -22,24 +22,32 @@
 
 ![2](images/ftp.jpg)
 
-**We successfully connected and we can see a** note_to_jake.txt **file inside the ftp server. We can get that file and read it**
+**We successfully connected and we can see a** `note_to_jake.txt` **file inside the ftp server.**
+**We can get that file and read it**
 
 ``get note_to_jake.txt``
 ![3](images/change_password.jpg)
 
-+ **Looks that Jake need to change his password. Because jake is using a very weak password, maybe we can brute-force his login to some service. Let's use hydra to brute-force the ssh service - I'm using the rockyou.txt wordlist**
++ **Looks that Jake need to change his password.**
+**Because jake is using a very weak password, maybe we can brute-force his login to some service.**
+**Let's use hydra to brute-force the ssh service - I'm using the `rockyou.txt` wordlist**
 
-``hydra -l jake -P /usr/share/wordlists/rockyou.txt 10.10.244.52 -t 4 ssh``
+```console
+hydra -l jake -P /usr/share/wordlists/rockyou.txt 10.10.244.52 -t 4 ssh
+```
 
 ![4](images/hydra.jpg)
 
 ## User escalation
 
-+ **So here we got some ssh credentials. Let's connect on the ssh service and run a** ``sudo -l`` **command on the jake user**
++ **So here we got some ssh credentials.**
+**Let's connect on the ssh service and run a** ``sudo -l`` **command on the jake user**
 
 ![5](images/less.jpg)
 
-**It looks like jake can run the less command with su privilege. Less is a command which can display content of a file and we can navigate both forward and backward through the file. Let's try to read the user flag.**
+**It looks like jake can run the less command with su privilege.**
+**Less is a command which can display content of a file and we can navigate both forward and backward through the file.**
+**Let's try to read the user flag.**
 
 ``sudo less /home/holt/user.txt``
 
@@ -47,7 +55,9 @@
 
 ## Root escalation
 
-+ **And here it is our first flag. We can also use less to get a privesc and get root access. Let's read a file with less**
++ **And here it is our first flag.**
+**We can also use less to get a privesc and get root access.**
+**Let's read a file with less**
 
 ``less /etc/passwd``
 

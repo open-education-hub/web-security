@@ -18,11 +18,12 @@
 
 ![2](images/ftp_login.jpg?raw=true "Ftp_login")
 
-+ **Listing the directory, we can observe two .txt files uploaded so let's get them**
++ **Listing the directory, we can observe two `.txt` files uploaded so let's get them**
 
 ``mget *.txt``
 
-+ **Reading the task.txt file, we can find out who wrote the task list, giving us the first task answer. We list the second txt file, named locks.txt, and we can see multiple strings which seems to be some passwords kept in the ftp server**
++ **Reading the `task.txt` file, we can find out who wrote the task list, giving us the first task answer.**
+**We list the second txt file, named `locks.txt`, and we can see multiple strings which seems to be some passwords kept in the ftp server.**
 
 ```text
 rEddrAGON
@@ -39,9 +40,12 @@ R3dDRaG0Nsynd1c@T3
 ...
 ```
 
-+ **Let's try to use this password file to connect on the ssh service, using simultaneously the user found in the previous task. The Hydra tool has a brute-force option to crack the login of the ssh service, so we can use it**
++ **Let's try to use this password file to connect on the ssh service, using simultaneously the user found in the previous task.**
+**The Hydra tool has a brute-force option to crack the login of the ssh service, so we can use it**
 
-``hydra -l lin -P locks.txt 10.10.229.13 -t 4 ssh``
+```console
+hydra -l lin -P locks.txt 10.10.229.13 -t 4 ssh
+```
 
 + **After we execute the brute-force process, Hydra give us the needed user password**
 

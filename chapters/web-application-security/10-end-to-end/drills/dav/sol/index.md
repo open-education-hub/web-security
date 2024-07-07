@@ -22,7 +22,8 @@
 
 ![dirb](images/nmap_dirb_scan2.jpg?raw=true "dirb")
 
-**Navigating to the /webdav directory, the login page shows up. We need some credentials, and searching on google we can find some.**
+**Navigating to the /webdav directory, the login page shows up.**
+**We need some credentials, and searching on google we can find some.**
 
 [login](images/login.png?raw=true "login")
 
@@ -34,7 +35,10 @@
 
 [webdav](images/webdav.jpg?raw=true "webdav")
 
-+ **Reading the file, it seems to be some credentials with a hashed password. Trying to unhashed it, i realised it's nothing that we can do with it so i continued to read about WebDAV service. It has some similarities with the ftp, among with the cadaver: we can upload some files in that /webdav directory. Let's login with the cadaver, the WebDAV client, using the same default credentials**
++ **Reading the file, it seems to be some credentials with a hashed password.**
+**Trying to unhashed it, i realised it's nothing that we can do with it so i continued to read about WebDAV service.**
+**It has some similarities with the ftp, among with the cadaver: we can upload some files in that /webdav directory.**
+**Let's login with the cadaver, the WebDAV client, using the same default credentials**
 
 ``cadaver http://10.10.62.166/webdav/``
 
@@ -42,7 +46,9 @@
 
 ``Password: xampp``
 
-+ **Now, let's try to upload a reverse php shell. I use the [pentestmonkey reverse shell](https://github.com/pentestmonkey/php-reverse-shell). Get it and modify the $ip parameter with your tryhackme tunneled ip and then upload it on our webdav directory**
++ **Now, let's try to upload a reverse php shell.**
+**I use the [pentestmonkey reverse shell](https://github.com/pentestmonkey/php-reverse-shell).**
+**Get it and modify the $ip parameter with your tryhackme tunneled ip and then upload it on our webdav directory**
 
 ``put php-reverse-shell.php``
 
@@ -60,9 +66,12 @@
 
 ## User escalation
 
-**And we're in. Let's spawn an interactive shell and read our first flag, located inside the home directory of the merlin user.**
+**And we're in.**
+**Let's spawn an interactive shell and read our first flag, located inside the home directory of the merlin user.**
 
-``python -c 'import pty;pty.spawn("/bin/bash")'``
+```console
+python -c 'import pty;pty.spawn("/bin/bash")'
+```
 
 ![in](images/usermer.jpg)
 

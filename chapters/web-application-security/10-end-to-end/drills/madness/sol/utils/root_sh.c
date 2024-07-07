@@ -1,4 +1,5 @@
 //  SPDX-License-Identifier: BSD-3-Clause
+// Copyright 2024 Catalin Iovita
 #include <stdio.h>
 #include <sys/types.h>
 #include <unistd.h>

