@@ -38,13 +38,14 @@ embed_reveal:
       cookies-and-session-management: cookies-and-session-management
       securing-communication: securing-communication
       # sql-injection: sql-injection
+      enumeration-and-recon: enumeration-and-recon
       cross-site-scripting: cross-site-scripting
       enumeration-and-recon: enumeration-and-recon
       # framework-api-vulnerabilities: framework-api-vulnerabilities
       # exotic-attacks: exotic-attacks
       # privilege-escalation: privilege-escalation
       # end-to-end-attack: end-to-end-attack
-      #
+      
 docusaurus:
   plugin: docusaurus
   options:
@@ -87,6 +88,7 @@ docusaurus:
 
       - enumeration-and-recon: /build/make_assets/chapters/network-and-communication-security/enumeration-and-recon/slides/_site
       - securing-communication: /build/make_assets/chapters/network-and-communication-security/securing-communication/slides/_site
+      
     config_meta:
       title: Web Security
       url: http://localhost/
