@@ -1,0 +1,1 @@
+FROM cataiovita/sss_maverick:v0.1
