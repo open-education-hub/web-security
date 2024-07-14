@@ -28,4 +28,4 @@ A possible payload in POST data is:
 
 `username[]="8"&password[]=8&submit=Login`
 
-Exploit in `../sol/solution.sh`.
+Exploit in `../solution/solution.sh`.

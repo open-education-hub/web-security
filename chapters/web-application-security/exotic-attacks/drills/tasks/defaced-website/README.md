@@ -21,4 +21,4 @@ The final payload in POST data is:
 
 `username=QNKCDZO&password=&submit=Login`
 
-Exploit in `../sol/solution.sh`.
+Exploit in `../solution/solution.sh`.

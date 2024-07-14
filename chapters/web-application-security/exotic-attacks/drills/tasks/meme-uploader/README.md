@@ -23,4 +23,4 @@ Now navigate to: `/uploads/5c7dce216dceb5c1a61108e9db9fa835.php`.
 
 The flag should be in the page source (inspect it).
 
-Exploit in `../sol/solution.sh`.
+Exploit in `../solution/solution.sh`.
