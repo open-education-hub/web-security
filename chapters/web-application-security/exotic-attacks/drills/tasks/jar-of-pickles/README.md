@@ -46,4 +46,4 @@ Make the request again.
 You should have a shell now in the `nc` terminal.
 Find the flag file and perform a `cat` on it; it should be in `home/ctf/`: `cat /home/ctf/flag.txt`.
 
-Exploit in `../sol/solution.sh`.
+Exploit in `../solution/solution.sh`.
