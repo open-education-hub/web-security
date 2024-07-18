@@ -1,0 +1,10 @@
+---
+title: "Exotic attacks"
+revealOptions:
+  background-color: 'aquamarine'
+  transition: 'none'
+  slideNumber: true
+  autoAnimateDuration: 0.0
+---
+
+!INCLUDE "exotic-attacks.md"
