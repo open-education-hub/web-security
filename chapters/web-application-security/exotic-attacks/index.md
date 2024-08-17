@@ -92,7 +92,7 @@ The following tables showcase the difference between the two comparison modes:
 | ------------------- | ------------------- |
 | ![Loose comparison](./assets/loose-comparison.png) | ![Strict comparison](./assets/strict-comparison.png) |
 
-PHP 8 continues to encourage the use of strict comparisons (=== and !==) to avoid the pitfalls of type juggling. Using strict comparisons helps prevent unintended behavior that can arise from loose comparison. This version continues to encourage the use of strict comparisons (=== and !==) to avoid the pitfalls of type juggling. Using strict comparisons helps prevent unintended behavior that can arise from loose comparison.
+PHP 8 continues to encourage the use of strict comparisons (=== and !==) to avoid the pitfalls of type juggling. Using strict comparisons helps prevent unintended behavior that can arise from loose comparison.
 
 However, loose type comparison behavior like the one presented above is pretty common in PHP and many built-in functions work in the same way.
 You can probably already see how this can be very problematic, but how exactly can hackers exploit this behavior?
