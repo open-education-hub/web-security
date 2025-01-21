@@ -1,0 +1,23 @@
+name: Build Web Basics Drills Workflow
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - main
+    paths:
+      - "chapters/web-application-security/web-basics/drills/**"
+
+jobs:
+  build-cockroack:
+    name: Build cockroach drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/cockroach/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/cockroach/deploy/Dockerfile"
+      image: "web-basics/cockroach"
+      image_tag: "latest"
