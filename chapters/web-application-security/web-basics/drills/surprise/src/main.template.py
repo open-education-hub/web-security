@@ -8,14 +8,12 @@ app = Flask(__name__)
 
 @app.route("/surprise", methods=["PUT"])
 def put_method_with_content_type():
-
     flag = "__TEMPLATE__"
 
     if not request.content_type:
         return "I don't understand you :("
 
     if request.content_type == "application/json":
-
         if "name" in request.json:
             name = request.json["name"]
             return "\n".join(
