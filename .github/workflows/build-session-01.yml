@@ -22,3 +22,4 @@ jobs:
       context: "chapters/web-application-security/web-basics/drills/cockroach"
       image: "cockroach"
       image_tag: "latest"
+    secrets: inherit
