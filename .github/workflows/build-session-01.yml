@@ -19,5 +19,6 @@ jobs:
     with:
       makefile: "chapters/web-application-security/web-basics/drills/cockroach/deploy"
       dockerfile: "chapters/web-application-security/web-basics/drills/cockroach/deploy/Dockerfile"
-      image: "web-basics/cockroach"
+      context: "chapters/web-application-security/web-basics/drills/cockroach"
+      image: "cockroach"
       image_tag: "latest"
