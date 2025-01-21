@@ -11,7 +11,7 @@ Score: 50
 
 ## Vulnerability
 
-The flag is displayed only if the `PUT` method is called with contenty-type `application/json` and a JSON body with the `name` key for the exposed route.
+The flag is displayed only if the `PUT` method is called with content-type `application/json` and a JSON body with the `name` key for the exposed route.
 
 ## Exploit
 
