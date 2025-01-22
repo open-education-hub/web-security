@@ -1,1 +1,1 @@
-../../../../common/activity.mk
+../../../../../../common/activity.mk
