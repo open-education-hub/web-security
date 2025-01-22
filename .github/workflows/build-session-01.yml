@@ -20,6 +20,138 @@ jobs:
       makefile: "chapters/web-application-security/web-basics/drills/cockroach/deploy"
       dockerfile: "chapters/web-application-security/web-basics/drills/cockroach/deploy/Dockerfile"
       context: "chapters/web-application-security/web-basics/drills/cockroach"
-      image: "cockroach"
+      image: "web-basics/cockroach"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-eyes:
+    name: Build eyes drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/eyes/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/eyes/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/eyes"
+      image: "web-basics/eyes"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-gimme:
+    name: Build gimme drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/gimme/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/gimme/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/gimme"
+      image: "web-basics/gimme"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-give-to-get:
+    name: Build give-to-get drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/give-to-get/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/give-to-get/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/give-to-get"
+      image: "web-basics/give-to-get"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-give-to-post:
+    name: Build give-to-post drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/give-to-post/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/give-to-post/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/give-to-post"
+      image: "web-basics/give-to-post"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-king-kong:
+    name: Build king-kong drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/king-kong/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/king-kong/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/king-kong"
+      image: "web-basics/king-kong"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-lame-login:
+    name: Build lame-login drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/lame-login/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/lame-login/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/lame-login"
+      image: "web-basics/lame-login"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-my-special-name:
+    name: Build my-special-name drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/my-special-name/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/my-special-name/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/my-special-name"
+      image: "web-basics/my-special-name"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-name:
+    name: Build name drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/name/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/name/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/name"
+      image: "web-basics/name"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-one-by-one:
+    name: Build one-by-one drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/one-by-one/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/one-by-one/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/one-by-one"
+      image: "web-basics/one-by-one"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-produce-consume:
+    name: Build produce-consumedrill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/produce-consume/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/produce-consume/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/produce-consume"
+      image: "web-basics/produce-consume"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-readme:
+    name: Build readme drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/readme/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/readme/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/readme"
+      image: "web-basics/readme"
+      image_tag: "latest"
+    secrets: inherit
+
+  build-surprise:
+    name: Build surprise drill
+    uses: open-education-hub/actions/.github/workflows/build.yml@main
+    with:
+      makefile: "chapters/web-application-security/web-basics/drills/surprise/deploy"
+      dockerfile: "chapters/web-application-security/web-basics/drills/surprise/deploy/Dockerfile"
+      context: "chapters/web-application-security/web-basics/drills/surprise"
+      image: "web-basics/surprise"
       image_tag: "latest"
     secrets: inherit
