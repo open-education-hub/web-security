@@ -1,0 +1,126 @@
+---
+title: "SSS: Session: End-to-End Attack"
+revealOptions:
+  background-color: 'aquamarine'
+  transition: 'none'
+---
+
+# End-to-End Attack
+
+----
+
+# End-to-End Attack
+
+* Why is web so prevalent?
+* What represents each end in the title?
+
+---
+
+# Phases
+
+* Reconnaissance
+* Weaponization and Gaining Access (RCE)
+* Maintaining access
+* Clearing tracks
+
+---
+
+## Reconnaissance
+
+* Obtaining as much information as possible about the target
+* What types of mechanisms the target has in place, and also where the target is located
+
+----
+
+## Passive Reconnaissance
+
+* Shodan, Censys, PublicWWW, Zoomeye, Google Dorks
+* Social Media for information about employees, their roles and daily habits
+* WHOIS lookup: collect domain registration info and IP addresses
+* SSL certificates lookup
+
+----
+
+## Active Reconnaissance
+
+* nmap - mapping the topology of various hosts, servers, routers
+* gobuster - bruteforce URLs, DNS subdomains, virtual host names
+* wfuzz - bruteforce Web Applications, find dirs, servlets, scripts
+* openvas-scanner - vulnerability scanner
+
+---
+
+
+## Weaponization
+
+Start developing techninques to penetrate the target:
+
+* phishing
+* software and hardware exploits
+* acquiring new malware
+
+---
+
+## Gaining Access
+
+* An employee who fell into a phishing atack
+* Triggering known vulnerabilities
+
+----
+
+## Gaining Access
+
+got root?
+
+---
+
+## Maintaining access
+
+* creating new user accounts
+* editing firewall settings
+* turning on remote desktop access (RDP, VNC)
+* installing a backdoor (rootkits)
+* injecting existing running code (be creative)
+
+---
+
+## Clearing trakcs
+
+* ALWAYS use **at least one** VPN, preferably with TOR
+* Change MAC address
+* Delete any files created, clear logs, modify timestamps
+
+---
+
+
+## Finding targets in the wild
+
+* Shodan, Censys, Zoomeye, etc.
+* Queries can be made to match ports, chunks of text in the response, response codes, etc.
+* Can use favicons to search, when you don't know what else to do (or there are a lot of honeypots)
+
+---
+
+## Testing hundreds of targets with one command
+
+* One can use Nuclei to test hundred of targets with just one command
+* Directly redirect the output from sites like Shodan to Nuclei for complete automation
+* Use all their templates, or just the ones you want
+
+---
+
+## DEMO Time!
+
+----
+
+## Instance Vulnerable to a CVE
+
+* Get initial access
+* Get root access
+* Gain persistence
+
+---
+
+## Q&A
+
+Thank you for participating!

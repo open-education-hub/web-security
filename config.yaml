@@ -20,7 +20,7 @@ make_assets:
       # - chapters/web-application-security/overview/slides
       # - chapters/system-and-data-security/framework-api-vulnerabilities/slides
       # - chapters/system-and-data-security/privilege-escalation/slides
-      # - chapters/system-and-data-security/end-to-end-attack/slides
+      - chapters/system-and-data-security/end-to-end-attack/slides
       # - chapters/system-and-data-security/overview/slides
       - chapters/network-and-communication-security/enumeration-and-recon/slides
       - chapters/network-and-communication-security/securing-communication/slides
@@ -43,8 +43,8 @@ embed_reveal:
       # framework-api-vulnerabilities: framework-api-vulnerabilities
       # exotic-attacks: exotic-attacks
       # privilege-escalation: privilege-escalation
-      # end-to-end-attack: end-to-end-attack
-      
+      end-to-end-attack: end-to-end-attack
+
 docusaurus:
   plugin: docusaurus
   options:
@@ -73,6 +73,17 @@ docusaurus:
                     subsections:
                       - Introduction: README.md
                 - Slides: /build/embed_reveal/cookies-and-session-management
+      - System and Data Security:
+          - End to End Attack:
+              path: chapters/system-and-data-security/end-to-end-attack
+              extra:
+                - media/
+              subsections:
+                - Reading:
+                    path: reading/
+                    subsections:
+                      - Introduction: index.md
+                - Slides: /build/embed_reveal/end-to-end-attack
 
     static_assets:
       - web-basics: /build/make_assets/chapters/web-application-security/web-basics/slides/_site
@@ -83,7 +94,7 @@ docusaurus:
 
       # - framework-api-vulnerabilities: /build/make_assets/chapters/system-and-data-security/framework-api-vulnerabilities/slides/_site
       # - privilege-escalation: /build/make_assets/chapters/system-and-data-security/privilege-escalation/slides/_site
-      # - end-to-end-attack: /build/make_assets/chapters/system-and-data-security/end-to-end-attack/slides/_site
+      - end-to-end-attack: /build/make_assets/chapters/system-and-data-security/end-to-end-attack/slides/_site
 
       - enumeration-and-recon: /build/make_assets/chapters/network-and-communication-security/enumeration-and-recon/slides/_site
       - securing-communication: /build/make_assets/chapters/network-and-communication-security/securing-communication/slides/_site
