@@ -7,6 +7,7 @@ LFI + PHP Object Injection / PHP Insecure Object Deserialization + RCE
 ## Exploit
 
 The exploit involves opening a reverse shell. You'll need to:
+
 1. Create an account on [ngrok](https://ngrok.com/) (also confirm your email address).
 2. Install `ngrok` on you machine.
 3. Forward your 1234 port using: `ngrok tcp 1234`. A ngrok host and IP will be forwarded to your local port.
@@ -26,8 +27,9 @@ You guessed it, the handy one is **Unserialize**.
 
 After inspecting the source code in the archive, you see what the serialized input object should look like.
 It has to be a PHP class with two attributes:
- * `$condition` - boolean with the value `true`
- * `$prop` - a string you can use for remote code execution on the server
+
+* `$condition` - boolean with the value `true`
+* `$prop` - a string you can use for remote code execution on the server
 
 Since the actual output of the command is not shown, only the unserialized string, you should try to create a reverse shell.
 
@@ -91,4 +93,4 @@ Now access `/backdoor.php` in the browser and you should have a shell in the `nc
 
 Find the flag file and perform a `cat` on it; it should be in `home/ctf/`: `cat /home/ctf/flag.txt`.
 
-Exploit in `../sol/solution.sh`.
+Exploit in `../solution/solution.sh`.
