@@ -1,0 +1,10 @@
+---
+title: "Securing Communication"
+revealOptions:
+  background-color: 'aquamarine'
+  transition: 'none'
+  slideNumber: true
+  autoAnimateDuration: 0.0
+---
+
+!INCLUDE "securing-communication.md"
