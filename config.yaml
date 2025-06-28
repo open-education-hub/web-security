@@ -76,25 +76,25 @@ docusaurus:
       - Network and communication security:
           - Overview: chapters/network-and-communication-security/overview/README.md
           - Securing communication:
-            path: chapters/network-and-communication-security/securing-communication/
-            extra:
-              - media/
-            subsections:
-              - Reading:
-                path: reading/
-                subsections:
-                  - Introduction: README.md
-              - Slides: /build/embed_reveal/securing-communication
+              path: chapters/network-and-communication-security/securing-communication/
+              extra:
+                - media/
+              subsections:
+                - Reading:
+                    path: reading/
+                    subsections:
+                      - Introduction: README.md
+                - Slides: /build/embed_reveal/securing-communication
           - Enumeration and Recon:
-            path: chapters/network-and-communication-security/enumeration-and-recon/
-            extra:
-              - media/
-            subsections:
-              - Reading:
-                path: reading/
-                subsections:
-                  - Introduction: README.md
-              - Slides: /build/embed_reveal/enumeration-and-recon
+              path: chapters/network-and-communication-security/enumeration-and-recon/
+              extra:
+                - media/
+              subsections:
+                - Reading:
+                    path: reading/
+                    subsections:
+                      - Introduction: README.md
+                - Slides: /build/embed_reveal/enumeration-and-recon
 
     static_assets:
       - web-basics: /build/make_assets/chapters/web-application-security/web-basics/slides/_site

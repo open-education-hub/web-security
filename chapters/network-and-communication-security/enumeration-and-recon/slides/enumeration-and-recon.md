@@ -1,10 +1,3 @@
----
-title: "SSS: Session: Recon & Enumeration"
-revealOptions:
-  background-color: 'aquamarine'
-  transition: 'none'
----
-
 # Recon & Enumeration & Recap
 
 Security Summer School

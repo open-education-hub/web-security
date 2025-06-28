@@ -93,7 +93,7 @@ There are mainly two types of encryption: symmetric and public-key encryption.
 
 In symmetric encryption, a key is shared among the two ends in the communication.
 
-![symmetric encryption](assets/symmetric-encryption.svg)
+![symmetric encryption](../media/symmetric-encryption.svg)
 
 That same key is used for both encrypting and decrypting data.
 AES (*Advanced Encryption Standard*) is the standard symmetric encryption algorithm.
@@ -116,7 +116,7 @@ The private key is generated as a random set of bytes and the public key is gene
 The private key is only available to the owner, whereas the public key is available to everyone.
 Anyone can encrypt a message using the public key, but only the owner can decrypt the message using the private key, as shown below.
 
-![public-key encryption](assets/public-key-encryption.svg)
+![public-key encryption](../media/public-key-encryption.svg)
 
 Because of this, public-key encryption is considered more secure than symmetric encryption, as it doesn't require the passing of a shared key between parties, an act that may be intercepted.
 At the same time, public-key encryption is much slower than symmetric encryption.
@@ -137,7 +137,7 @@ The signed message is provided publicly.
 Then, the public key is used to verify the message.
 This is called a **digital signature**, as shown below:
 
-![digital signature](assets/digital-signature.svg)
+![digital signature](../media/digital-signature.svg)
 
 In HTTPS, this means that the web server will sign the message with its private key and web clients will verify the message with the public key.
 
@@ -147,7 +147,7 @@ A certificate is a file that consists of a public key and an identity.
 A certificate itself is also signed to ensure its validity.
 This means that a certificate will also be verified using a public key, found as part of another certificate, as shown below:
 
-![digital certificate](assets/digital-certificate.png)
+![digital certificate](../media/digital-certificate.png)
 
 This dependency between certificates creates a **public-key infrastructure** (PKI), on top of which self-signed root certificates are located.
 Self-signed root certificates part of **Certification Authorities**.
@@ -165,13 +165,13 @@ To get a better understanding of how certificates work, let's take a look at one
 In order to get a certificate to inspect, it is easiest to export a root certificate from a browser.
 In Firefox, we can use the Certificate Manager, as shown in the image below to export a certificate:
 
-![Firefox Certificate Manager](assets/firefox-certificate-manager.png)
+![Firefox Certificate Manager](../media/firefox-certificate-manager.png)
 
-The CA (root) certificate from Verisign is located in `assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt`.
+The CA (root) certificate from Verisign is located in `media/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt`.
 The certificate, as most certificates, is exported in PEM (*Privacy Enhanced Mail*) format, a Base64 encoding:
 
 ```
-$ cat assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
+$ cat media/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
 -----BEGIN CERTIFICATE-----
 MIIEGjCCAwICEQCLW3VWhFSFCwDPrzhIzrGkMA0GCSqGSIb3DQEBBQUAMIHKMQsw
 CQYDVQQGEwJVUzEXMBUGA1UEChMOVmVyaVNpZ24sIEluYy4xHzAdBgNVBAsTFlZl
@@ -205,7 +205,7 @@ The PEM format is also used for storing private and public SSH keys, so it may s
 We can inspect the certificate with `openssl`:
 
 ```
-$ openssl x509 -noout -text -in assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
+$ openssl x509 -noout -text -in media/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
 Certificate:
     Data:
         Version: 1 (0x0)
@@ -284,10 +284,10 @@ The `openssl` utility has command-line options to only print parts of the certif
 For example, to only print the issuer or the public key, we would use the `-issuer` or `-pubkey` options:
 
 ```
-$ openssl x509 -noout -issuer -in assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
+$ openssl x509 -noout -issuer -in media/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
 issuer=C = US, O = "VeriSign, Inc.", OU = VeriSign Trust Network, OU = "(c) 1999 VeriSign, Inc. - For authorized use only", CN = VeriSign Class 1 Public Primary Certification Authority - G3
 
-$ openssl x509 -noout -pubkey -in assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
+$ openssl x509 -noout -pubkey -in media/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
 -----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3YTUubT5p9jzBHic3j3c
 bBMW2XrdJFFmwMcmWQ2sBgjClNEzH/CDNR9uG8jeqm4VTlQn78RtGuwL4w7wRKVX
@@ -304,8 +304,7 @@ PQIDAQAB
 As the VeriSign certificate is self-signed, we can use it to verify itself:
 
 ```
-$ openssl verify -CAfile assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt
-assets/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt: OK
+$ openssl verify -CAfile media/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt media/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt media/VerisignClass1PublicPrimaryCertificationAuthority-G3.crt: OK
 ```
 
 The `-CAfile` option points to the CA certificate to verify the current one.
@@ -585,28 +584,28 @@ A **certificate chain** is when the CA signs and intermediate certificate which 
 Or multiple intermediate certificates.
 This is used to decentralize the certificate signing process, creating the hierarchical public key infrastructure with self signed root CAs at the top.
 
-We store the three certificates from Google in the `assets/` folder.
+We store the three certificates from Google in the `media/` folder.
 We inspect the subject and issuer of each:
 
 ```
-$ openssl x509 -noout -subject -issuer -in assets/google.crt
+$ openssl x509 -noout -subject -issuer -in media/google.crt
 subject=CN = www.google.com
 issuer=C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
 
-$ openssl x509 -noout -subject -issuer -in assets/google_interm2.crt
+$ openssl x509 -noout -subject -issuer -in media/google_interm2.crt
 subject=C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
 issuer=C = US, O = Google Trust Services LLC, CN = GTS Root R1
 
-$ openssl x509 -noout -subject -issuer -in assets/google_interm1.crt
+$ openssl x509 -noout -subject -issuer -in media/google_interm1.crt
 subject=C = US, O = Google Trust Services LLC, CN = GTS Root R1
 issuer=C = BE, O = GlobalSign nv-sa, OU = Root CA, CN = GlobalSign Root CA
 ```
 
 The server certificate is for `www.google.com` and is issued and signed by `C = US, O = Google Trust Services LLC, CN = GTS CA 1C3`, who in turn is signed by `C = US, O = Google Trust Services LLC, CN = GTS Root R1`, who in turn is signed by the GlobalSign Root CA.
-We extracted the GlobalSign Root CA from Firefox and placed it in the `assets/` folder as well:
+We extracted the GlobalSign Root CA from Firefox and placed it in the `media/` folder as well:
 
 ```
-$ openssl x509 -noout -subject -issuer -in assets/GlobalSignRootCA.crt
+$ openssl x509 -noout -subject -issuer -in media/GlobalSignRootCA.crt
 subject=C = BE, O = GlobalSign nv-sa, OU = Root CA, CN = GlobalSign Root CA
 issuer=C = BE, O = GlobalSign nv-sa, OU = Root CA, CN = GlobalSign Root CA
 ```
@@ -802,7 +801,7 @@ Connect via HTTPS to a https://141.85.224.117:31443.
 Use client certificate authentication to retrieve the flag.
 
 The client certificate needs to be signed by the same certification authority as that of the server.
-See the files and scripts in the `securing-communication/assets/ca/` folder in the repository.
+See the files and scripts in the `securing-communication/media/ca/` folder in the repository.
 
 Submit flag to: https://sss-web.cyberedu.ro/challenge/c8d977d0-fc9c-11ec-80d9-0de38261593f
 
@@ -827,7 +826,7 @@ curl https://<hostname>
 
 Packet capture in Wireshark will not show decrypted content, similar to the image below.
 
-![HTTPS not decrypted](https-capture-decrypt/wireshark-no-decrypt.png)
+![HTTPS not decrypted](../media/https-capture-decrypt/wireshark-no-decrypt.png)
 
 This is because, by default, the connection uses SSL / TLS ciphers with [PFS](https://en.wikipedia.org/wiki/Forward_secrecy) (*Perfect Forward Secrecy*) usually enabled with DHE (*Diffie-Hellman Exchange*).
 Don't bother with the acronyms and their significance, we use them to let you know the terms and maybe look for additional information later on.
@@ -843,7 +842,7 @@ curl --ciphers AES256-SHA https://<hostname>
 
 Now, the packet capture shows actual decrypted HTTP content, similar to the image below.
 
-![HTTPS decrypted](https-capture-decrypt/wireshark-decrypt.png)
+![HTTPS decrypted](../media/https-capture-decrypt/wireshark-decrypt.png)
 
 You can use `Right click` -> `Follow` -> `HTTP stream` to extract the HTTP traffic only.
 
