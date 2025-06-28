@@ -14,8 +14,8 @@ make_assets:
     locations:
       - chapters/web-application-security/web-basics/slides
       - chapters/web-application-security/cookies-and-session-management/slides
-      - chapters/web-application-security/sql-injection/slides
-      - chapters/web-application-security/cross-site-scripting/slides
+      # - chapters/web-application-security/sql-injection/slides
+      # - chapters/web-application-security/cross-site-scripting/slides
       # - chapters/web-application-security/exotic-attacks/slides
       # - chapters/web-application-security/overview/slides
       # - chapters/system-and-data-security/framework-api-vulnerabilities/slides
@@ -37,14 +37,14 @@ embed_reveal:
       web-basics: web-basics
       cookies-and-session-management: cookies-and-session-management
       securing-communication: securing-communication
-      sql-injection: sql-injection
-      cross-site-scripting: cross-site-scripting
+      # sql-injection: sql-injection
+      # cross-site-scripting: cross-site-scripting
       enumeration-and-recon: enumeration-and-recon
       # framework-api-vulnerabilities: framework-api-vulnerabilities
       # exotic-attacks: exotic-attacks
       # privilege-escalation: privilege-escalation
       # end-to-end-attack: end-to-end-attack
-      
+
 docusaurus:
   plugin: docusaurus
   options:
@@ -77,8 +77,8 @@ docusaurus:
     static_assets:
       - web-basics: /build/make_assets/chapters/web-application-security/web-basics/slides/_site
       - cookies-and-session-management: /build/make_assets/chapters/web-application-security/cookies-and-session-management/slides/_site
-      - sql-injection: /build/make_assets/chapters/web-application-security/sql-injection/slides/_site
-      - cross-site-scripting: /build/make_assets/chapters/web-application-security/cross-site-scripting/slides/_site
+      # - sql-injection: /build/make_assets/chapters/web-application-security/sql-injection/slides/_site
+      # - cross-site-scripting: /build/make_assets/chapters/web-application-security/cross-site-scripting/slides/_site
       # - exotic-attacks: /build/make_assets/chapters/web-application-security/exotic-attacks/slides/_site
 
       # - framework-api-vulnerabilities: /build/make_assets/chapters/system-and-data-security/framework-api-vulnerabilities/slides/_site

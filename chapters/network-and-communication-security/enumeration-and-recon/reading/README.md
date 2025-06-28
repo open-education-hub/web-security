@@ -1,9 +1,3 @@
----
-linkTitle: 06. Recon & Enumeration
-type: docs
-weight: 10
----
-
 # Recon & Enumeration & Recap
 
 When it comes to hacking, knowledge is power.
