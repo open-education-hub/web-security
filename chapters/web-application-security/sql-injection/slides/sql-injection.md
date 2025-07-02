@@ -1,10 +1,3 @@
----
-title: "SSS: Session: SQL Injection"
-revealOptions:
-  background-color: 'aquamarine'
-  transition: 'none'
----
-
 # SQL Injection
 
 * code injection technique
