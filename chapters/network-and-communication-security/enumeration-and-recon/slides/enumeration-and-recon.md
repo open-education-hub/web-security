@@ -25,13 +25,15 @@ penetration tester / pentester
 
 ## Ports - like holes in a system
 
-* 0 - 65535, 0-1023 well-known ports
+* 0 - 65535
+* 0 - 1023 well-known ports
 
 ----
 
 ## Ports - like holes in a system
 
-* 0 - 65535, 0-1023 well-known ports
+* 0 - 65535
+* 0 - 1023 well-known ports
 * http://example.com ⇔ example.com:80
 * https://example.com ⇔ example.com:443
 * 22 - SSH
