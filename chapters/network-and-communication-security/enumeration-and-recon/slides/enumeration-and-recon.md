@@ -8,7 +8,7 @@ Security Summer School
 
 penetration tester / pentester
 
-1. **reconnaissance** - gather information about the target: tech, subdomains, open ports, osint
+1. **reconnaissance** - gather information about the target: tech, subdomains, open ports, OSINT
 2. **scanning** - manual/automatic discovery (XSS, SQLi)
 3. **gaining access** - exploiting the vulns discovered
 4. ***maintaining access** - backdoors
