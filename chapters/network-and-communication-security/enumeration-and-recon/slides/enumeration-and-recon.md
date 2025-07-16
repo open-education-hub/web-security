@@ -13,7 +13,7 @@ penetration tester / pentester
 3. **gaining access** - exploiting the vulns discovered
 4. ***maintaining access** - backdoors
 5. ***covering tracks** - remove evidence of the attack
-6. **reporting** - report findings by severity(critical-low)
+6. **reporting** - report findings by severity (critical-low)
 
 ----
 
