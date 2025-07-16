@@ -269,7 +269,7 @@ https://github.com/projectdiscovery/public-bugbounty-programs/blob/master/chaos-
 - lamer-login
 - not-so-random
 
-for further practice:
+For further practice:
 - ginandjuice.shop
 - DVWA
 
