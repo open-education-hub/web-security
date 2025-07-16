@@ -8,12 +8,12 @@ Security Summer School
 
 penetration tester / pentester
 
-1. **reconnaissance** - gather information about the target: tech, subdomains, open ports, osint
+1. **reconnaissance** - gather information about the target: tech, subdomains, open ports, OSINT
 2. **scanning** - manual/automatic discovery (XSS, SQLi)
 3. **gaining access** - exploiting the vulns discovered
 4. ***maintaining access** - backdoors
 5. ***covering tracks** - remove evidence of the attack
-6. **reporting** - report findings by severity(critical-low)
+6. **reporting** - report findings by severity (critical-low)
 
 ----
 
@@ -271,7 +271,7 @@ https://github.com/projectdiscovery/public-bugbounty-programs/blob/master/chaos-
 - lamer-login
 - not-so-random
 
-for further practice:
+For further practice:
 - ginandjuice.shop
 - DVWA
 
