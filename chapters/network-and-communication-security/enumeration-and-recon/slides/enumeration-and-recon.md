@@ -4,7 +4,7 @@ Security Summer School
 
 ---
 
-## Penetration Testing
+## Penetration Testing - Phases of an Attack
 
 penetration tester / pentester
 
