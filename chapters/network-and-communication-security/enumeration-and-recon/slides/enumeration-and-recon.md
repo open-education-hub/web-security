@@ -86,7 +86,7 @@ https://www.shodan.io
 
 https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt
 
-https://github.com/trickest/wordlists 
+https://github.com/trickest/wordlists
 
 ----
 
