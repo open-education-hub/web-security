@@ -179,7 +179,7 @@ Try: user1:pass1, user2:pass2
 - usually GET/HEAD requests
 - input wordlist: Common config filenames etc.
 - goal: finding (hidden/useful) files/resources on the server
-- ffuf, dirsearch demo
+- dirb, dirsearch, ffuf demo
 
 ----
 
