@@ -25,25 +25,36 @@ Security Summer School
 
 ---
 
-## Phases of Penetration Testing
+## Penetration Testing - Phases of an Attack
 
-penetration testing / pentester
+penetration tester / pentester
 
-1. reconnaissance - gathering information about the target system: technologies, subdomains, open ports, Google hacking
-2. scanning - manually or automatically to discover vulnerabilities (XSS, SQLi)
-3. gaining access - exploiting the found vulnerabilities using enumeration
-4. maintaining access - backdoors
-5. covering tracks - remove any evidence of the attack
+1. **reconnaissance** - gather information about the target: tech, subdomains, open ports, OSINT
+2. **scanning** - manual/automatic discovery (XSS, SQLi)
+3. **gaining access** - exploiting the vulns discovered
+4. ***maintaining access** - backdoors
+5. ***covering tracks** - remove evidence of the attack
+6. **reporting** - report findings by severity (critical-low)
 
 ----
 
 ## Reconnaissance
+- Attack surface
+- Automatic & Manual discovery
 
 ----
 
 ## Ports - like holes in a system
 
-* 0 - 65535, 0-1023 well-known ports
+* 0 - 65535
+* 0 - 1023 well-known ports
+
+----
+
+## Ports - like holes in a system
+
+* 0 - 65535
+* 0 - 1023 well-known ports
 * http://example.com ⇔ example.com:80
 * https://example.com ⇔ example.com:443
 * 22 - SSH
@@ -55,6 +66,8 @@ penetration testing / pentester
 ## Nmap
 
 <img data-src="../media/nmap_output.png" />
+
+DEMO
 
 ----
 
@@ -76,7 +89,7 @@ https://www.shodan.io
 
 - OWASP Top 10
 
-- OWASP ZAP
+- OWASP ZAP # DEMO
 
 ----
 
@@ -93,6 +106,8 @@ https://www.shodan.io
 - Wordlists are your best friend
 
 https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt
+
+https://github.com/trickest/wordlists
 
 ----
 
@@ -170,12 +185,22 @@ Try: user1:pass1, user2:pass2
 
 ----
 
-## Web Content Enumeration / Web Content Discovery / Web Content Scanning / Dirbusting
+## Subdomain Enumeration
+- find other interesting targets
+- subfinder, assetfinder demo
+
+----
+
+## Web Content Enumeration / Discovery / Scanning / Dirbusting
+
+----
+
+## Web Content Enumeration / Discovery / Scanning / Dirbusting
 
 - usually GET/HEAD requests
 - input wordlist: Common config filenames etc.
 - goal: finding (hidden/useful) files/resources on the server
-- Demo: DIRB
+- dirb, dirsearch, ffuf demo
 
 ----
 
@@ -250,6 +275,28 @@ https://hackerone.com/bug-bounty-programs
 
 https://github.com/projectdiscovery/public-bugbounty-programs/blob/master/chaos-bugbounty-list.json
 
+----
+
+## SUMMARY
+- get target in **scope**
+- map **attack surface**
+- automated scanning + manual validation
+- find "hidden" content
+- try targeted **wordlists**
+- reading documentation gives you superpowers
+- **verify** tool source code & output
+
+----
+
+## Challenges
+- lamer-login
+- not-so-random
+
+For further practice:
+- ginandjuice.shop
+- DVWA
+
+----
           </textarea>
         </section>
       </div>
