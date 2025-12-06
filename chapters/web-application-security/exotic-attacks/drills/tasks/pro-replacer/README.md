@@ -33,4 +33,4 @@ Haystack: `m`
 
 Output: the flag
 
-Exploit in `../sol/solution.sh`.
+Exploit in `../solution/solution.sh`.
