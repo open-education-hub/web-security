@@ -141,4 +141,3 @@ if __name__ == "__main__":
             connection.commit()
 
     app.run() # runs on machine ip address to make it visible on netowrk
-

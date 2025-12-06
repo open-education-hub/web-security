@@ -11,7 +11,7 @@ services:
     ports:
       - "8010:80"
     volumes:
-      - ../public:/var/www/html
+      - ../src:/var/www/html
     depends_on:
       - "sss-web-04_one-by-one_db"
     restart: unless-stopped
