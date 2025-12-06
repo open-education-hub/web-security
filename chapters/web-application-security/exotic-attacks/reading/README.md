@@ -13,14 +13,14 @@ The most common server-side language on the web today is still **PHP**.
 There are lots of legacy websites which used this language to begin with, and a complete refactor is just not worth it.
 Today, even if there are better options for the server-side choice, PHP is still pretty popular.
 
-![Server Side Languages Popularity](./media/language-stats.png)
+![Server Side Languages Popularity](../media/language-stats.png)
 
 Source [here](https://w3techs.com/technologies/overview/programming_language).
 
 There are also lots of different PHP versions, each with its own vulnerabilities.
 A small insight into the distribution of versions across the web is:
 
-![PHP Versions Popularity](./media/version-stats.png)
+![PHP Versions Popularity](../media/version-stats.png)
 
 Source [here](https://w3techs.com/technologies/details/pl-php).
 
@@ -39,7 +39,7 @@ But this kind of flexibility sometimes causes unexpected errors in the program f
 
 In this section we will discuss **PHP type juggling** and how this can lead to authentication bypass vulnerabilities.
 
-![Type Juggling examples](./media/type-juggling.png)
+![Type Juggling examples](../media/type-juggling.png)
 
 PHP 8 introduces more consistent comparison behavior by making improvements to how strings and numbers are compared. The changes mainly affect how PHP treats numbers in scientific notation when using loose comparisons. Now, "0e1234" == "0" evaluates to false in PHP 8 because each string is treated as a distinct entity rather than automatically converting to a number.
 
@@ -90,7 +90,7 @@ The following tables showcase the difference between the two comparison modes:
 
 | Loose comparison    | Strict comparison   |
 | ------------------- | ------------------- |
-| ![Loose comparison](./media/loose-comparison.png) | ![Strict comparison](./media/strict-comparison.png) |
+| ![Loose comparison](../media/loose-comparison.png) | ![Strict comparison](../media/strict-comparison.png) |
 
 PHP 8 continues to encourage the use of strict comparisons (=== and !==) to avoid the pitfalls of type juggling. Using strict comparisons helps prevent unintended behavior that can arise from loose comparison.
 
@@ -399,7 +399,7 @@ Potential web security consequences of a successful **RFI** attack range from **
 **Remote file inclusion** attacks usually occur when an application receives a path to a file as input for a web page and does not properly sanitize it.
 This allows an external URL to be supplied to the include function.
 
-![RFI Attack](./media/what-is-rfi-attack.png)
+![RFI Attack](../media/what-is-rfi-attack.png)
 
 The above definitions are very similar, so what is the exact difference between the two of them and how does an exploit affect the web application in each case?
 
