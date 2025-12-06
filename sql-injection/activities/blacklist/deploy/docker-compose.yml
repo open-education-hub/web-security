@@ -10,7 +10,7 @@ services:
       MYSQL_PASSWORD: "sss"
       MYSQL_ROOT_PASSWORD: "root"
     volumes:
-      - "../public/mysql/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql"
+      - "../src/mysql/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql"
 
   web:
     build: .
@@ -19,6 +19,6 @@ services:
     ports:
       - "13000:80"
     volumes:
-      - "../public:/var/www/html"
+      - "../src:/var/www/html"
     links:
       - database

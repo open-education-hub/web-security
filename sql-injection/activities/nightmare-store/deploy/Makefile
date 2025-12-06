@@ -1,4 +1,5 @@
 build:
+	cd ../src && $(MAKE) generate
 	docker build -f Dockerfile -t sss-web-04_nightmare-store ..
 
 run: build

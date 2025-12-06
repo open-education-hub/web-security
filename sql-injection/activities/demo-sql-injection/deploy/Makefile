@@ -1,4 +1,5 @@
 build:
+	cd ../src && $(MAKE) generate
 	docker-compose build
 
 run: build
