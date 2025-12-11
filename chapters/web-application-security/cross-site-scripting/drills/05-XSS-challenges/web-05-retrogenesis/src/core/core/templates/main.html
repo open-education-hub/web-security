@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Retrogenesis</title>
+  <style type="text/css">
+
+    .fieldWrapper {
+    display: inline-block;
+    justify-content: space-evenly;
+    }
+  </style>
+</head>
+<body>
+  <h1>Retrogenesis {{invalid}}</h1>
+
+  <hr>
+
+  <div class="content">
+    <form action="/" method="post">
+      {% csrf_token %}
+      {% for field in r11 %}
+      <div class="fieldWrapper">
+          {{ field.label_tag }} {{ field }}
+      </div>
+      {% endfor %}
+      {{ result | safe}}
+      {% if script %}
+        {{ script }}
+      {% endif %}
+    </form>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="content">
+    <form action="/" method="post">
+      {% csrf_token %}
+      {% for field in r21 %}
+      <div class="fieldWrapper">
+          {{ field.label_tag }} {{ field }}
+      </div>
+      {% endfor %}
+    </form>
+
+    <form action="/" method="post">
+      {% csrf_token %}
+      {% for field in r22 %}
+      <div class="fieldWrapper">
+          {{ field.label_tag }} {{ field }}
+      </div>
+      {% endfor %}
+    </form>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="content">
+    <form action="/" method="post">
+      {% csrf_token %}
+      {% for field in r31 %}
+      <div class="fieldWrapper">
+          {{ field.label_tag }} {{ field }}
+      </div>
+      {% endfor %}
+    </form>
+
+    <form action="/" method="post">
+      {% csrf_token %}
+      {% for field in r32 %}
+      <div class="fieldWrapper">
+          {{ field.label_tag }} {{ field }}
+      </div>
+      {% endfor %}
+    </form>
+
+    <form action="/" method="post">
+      {% csrf_token %}
+      {% for field in r33 %}
+      <div class="fieldWrapper">
+          {{ field.label_tag }} {{ field }}
+      </div>
+      {% endfor %}
+    </form>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="content">
+    <form action="/" method="post">
+      {% csrf_token %}
+     
+      <div class="fieldWrapper">
+        {% for field in r41 %}
+          {{ field.label_tag }} {{ field }}
+        {% endfor %}
+      </div>
+      <br>
+      
+     
+      <div class="fieldWrapper">
+        {% for field in r42 %}
+          {{ field.label_tag }} {{ field }}
+        {% endfor %}
+      </div>
+      <br>
+     
+      <div class="fieldWrapper">
+        {% for field in r43 %}
+          {{ field.label_tag }} {{ field }}
+        {% endfor %}
+      </div>
+      <br>
+
+      <div class="fieldWrapper">
+        {% for field in r44 %}
+          {{ field.label_tag }} {{ field }}
+        {% endfor %}
+      </div>
+      <br>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+
+
+</body>
+</html>

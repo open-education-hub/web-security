@@ -1,0 +1,26 @@
+from django import forms
+
+class Dissaray(forms.Form):
+
+    field1 = forms.CharField(max_length=5, required=False)
+    field2 = forms.CharField(max_length=5, required=False)
+    field3 = forms.CharField(max_length=5, required=False)
+    field4 = forms.CharField(max_length=5, required=False)
+    field5 = forms.CharField(max_length=5, required=False)
+    field6 = forms.CharField(max_length=5, required=False)
+    field7 = forms.CharField(max_length=5, required=False)
+    field8 = forms.CharField(max_length=5, required=False)
+    field9 = forms.CharField(max_length=5, required=False)
+    field10 = forms.CharField(max_length=5, required=False)
+    field11 = forms.CharField(max_length=5, required=False)
+    field12 = forms.CharField(max_length=5, required=False)
+    field13 = forms.CharField(max_length=5, required=False)
+    field14 = forms.CharField(max_length=5, required=False)
+    field14 = forms.CharField(max_length=5, required=False)
+    field15 = forms.CharField(max_length=5, required=False)
+    field16 = forms.CharField(max_length=5, required=False)
+    field17 = forms.CharField(max_length=5, required=False)
+    field18 = forms.CharField(max_length=5, required=False)
+    field19 = forms.CharField(max_length=5, required=False)
+    field20 = forms.CharField(max_length=5, required=False)
+    field21 = forms.CharField(max_length=5, required=False)

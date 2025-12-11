@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "sqlite",
+            "group": "sqlite",
+            "database": "C:\\Users\\user1\\Desktop\\SSS\\sss-web-internal\\05-XSS-challenges\\web-05_god_complex\\deploy\\core\\db.sqlite3"
+        }
+    ]
+}

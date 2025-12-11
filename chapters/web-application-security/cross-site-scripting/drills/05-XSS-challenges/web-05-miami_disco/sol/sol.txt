@@ -1,0 +1,1 @@
+<something:script xmlns:something="http://www.w3.org/1999/xhtml">alert(document.cookie)</something:script>

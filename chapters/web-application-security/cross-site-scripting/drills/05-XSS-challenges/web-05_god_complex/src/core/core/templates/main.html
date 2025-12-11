@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <title>God Complex</title>
+  <style type="text/css">
+    body {
+      width: 800px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>God Complex</h1>
+  <hr>
+  
+  <form action="/" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

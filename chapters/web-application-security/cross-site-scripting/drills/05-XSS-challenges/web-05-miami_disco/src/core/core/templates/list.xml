@@ -1,0 +1,6 @@
+<stored>
+    {% for s in stored %}
+    <data>{{s.stored | safe }} </data>
+    <date>{{ s.created_at }}</date>
+    {% endfor  %}
+</stored>

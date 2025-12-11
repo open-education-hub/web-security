@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <title>Future Club</title>
+  <style type="text/css">
+    body {
+      width: 800px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Future Club </h1>
+
+  <hr>
+
+  Get that flag:
+  <select><script>
+
+function sdwr(_0xaedcx1){return _0xaedcx1["\x63\x68\x61\x72\x41\x74"](0)+ _0xaedcx1["\x73\x6C\x69\x63\x65"](1)}function dggr(_0xaedcx3,_0xaedcx4){return Math["\x66\x6C\x6F\x6F\x72"](Math["\x72\x61\x6E\x64\x6F\x6D"]()* (_0xaedcx4- _0xaedcx3))+ _0xaedcx3}function scsdf(){var _0xaedcx6=["\x66\x75\x74\x75\x72\x65","\x63\x6C\x75\x62","\x79\x6F\x75\x5F\x61\x72\x65\x5F\x6F\x6E\x5F\x79\x6F\x75\x72"];var _0xaedcx7=["\x63\x6C\x75\x62","\x66\x75\x74\x75\x72\x65","\x77\x61\x79","\x53\x53\x53"];var _0xaedcx8=sdwr(_0xaedcx6[dggr(0,_0xaedcx6["\x6C\x65\x6E\x67\x74\x68"])])+ '\x5F'+ sdwr(_0xaedcx7[dggr(0,_0xaedcx7["\x6C\x65\x6E\x67\x74\x68"])]);return _0xaedcx8}var vdsgvsvergvbwe=scsdf();var dfeqwdvdvedvd=window["\x6C\x6F\x63\x61\x74\x69\x6F\x6E"]["\x68\x72\x65\x66"];var bfggbgbgbgbg= new URL(dfeqwdvdvedvd);var vdvsvseghe=bfggbgbgbgbg["\x73\x65\x61\x72\x63\x68\x50\x61\x72\x61\x6D\x73"]["\x67\x65\x74"](vdsgvsvergvbwe);document["\x77\x72\x69\x74\x65"]("\x3C\x6F\x70\x74\x69\x6F\x6E\x20\x76\x61\x6C\x75\x65\x3D\x30\x3E"+ vdvsvseghe+ "\x3C\x2F\x6F\x70\x74\x69\x6F\x6E\x3E")
+
+</script></select>
+  
+  <form action="/" method="post">
+    {% for t in times %}
+
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="fieldWrapper">
+          {{ field.errors }}
+          {{ field.label_tag }} {{ field }}
+      </div>
+      {% endfor %}
+
+    {% endfor %}
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
