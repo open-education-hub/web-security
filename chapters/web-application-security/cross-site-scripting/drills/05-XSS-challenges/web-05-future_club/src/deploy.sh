@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 docker stop fc
 docker rm fc
 docker build -t fc .

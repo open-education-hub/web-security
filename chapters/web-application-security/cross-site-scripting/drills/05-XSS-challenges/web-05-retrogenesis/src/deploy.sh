@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 docker stop retro
 docker rm retro
 docker build -t retro .

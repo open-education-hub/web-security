@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 docker stop md
 docker rm md
 docker build -t md .

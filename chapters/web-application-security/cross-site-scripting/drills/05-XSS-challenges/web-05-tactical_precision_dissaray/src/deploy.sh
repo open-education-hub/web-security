@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 docker stop tpd
 docker rm tpd
 docker build -t tpd .

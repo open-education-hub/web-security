@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 docker stop gc
 docker rm gc
 docker build -t gc .
