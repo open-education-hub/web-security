@@ -15,7 +15,7 @@ Score: 10
 Vulnerability
 -------------
 
-Contructed payload for xml.
+Constructed payload for xml.
 
 Exploit
 -------

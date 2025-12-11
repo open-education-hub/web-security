@@ -15,7 +15,7 @@ Score: 50
 Vulnerability
 -------------
 
-Contructed payload by multiple fields.
+Constructed payload by multiple fields.
 
 
 Exploit

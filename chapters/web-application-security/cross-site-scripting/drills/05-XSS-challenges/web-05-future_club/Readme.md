@@ -18,7 +18,7 @@ Score: 100
 Vulnerability
 -------------
 
-vulenarable get parameter
+vulnerable get parameter
 
 Exploit
 -------

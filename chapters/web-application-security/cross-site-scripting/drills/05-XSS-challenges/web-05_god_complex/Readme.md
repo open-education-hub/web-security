@@ -7,7 +7,7 @@ Description
 -----------
 A more complex challenge for reflected XSS, derived from the tactical precision disarray.
 
-Hint: programmming a solution get the right order.
+Hint: programming a solution get the right order.
 
 No instrument or programming should be needed to solve this challenge.
 
@@ -17,7 +17,7 @@ Score: 150
 Vulnerability
 -------------
 
-Contructed payload by multiple fields.
+Constructed payload by multiple fields.
 
 
 Exploit
