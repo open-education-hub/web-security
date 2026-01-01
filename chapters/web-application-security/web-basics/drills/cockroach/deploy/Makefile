@@ -1,20 +1,19 @@
 EXTERNAL_PORT := 8080
 INTERNAL_PORT := 80
-IMG_NAME := sss-web-01_cockroach
-CONT_NAME := $(IMG_NAME)
+NAME := web-basics_cockroach
 FLAG := $(shell cat ../flag)
 
 run: build
-	docker run -d -p $(EXTERNAL_PORT):$(INTERNAL_PORT) --name $(CONT_NAME) -t $(IMG_NAME)
+	docker run -d -p $(EXTERNAL_PORT):$(INTERNAL_PORT) --name $(NAME) -t $(NAME)
 
 build:
-	docker build --build-arg FLAG=$(FLAG) -t $(IMG_NAME) -f Dockerfile ..
+	docker build --build-arg FLAG=$(FLAG) -t $(NAME) -f Dockerfile ..
 
 stop:
-	docker stop $(CONT_NAME)
+	docker stop $(NAME)
 
 clean: stop
-	docker rm $(CONT_NAME)
-	docker image rm $(IMG_NAME):latest
+	docker rm $(NAME)
+	docker image rm $(NAME):latest
 
 .PHONY: run build stop clean
