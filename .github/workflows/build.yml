@@ -1,6 +1,13 @@
 name: Build and Push Docker Images
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/deploy/Dockerfile'
+      - '**/src/**'
+      - '**/flag'
   workflow_dispatch:
     inputs:
       challenge_path:
@@ -12,7 +19,7 @@ env:
 
 jobs:
   build-and-push:
-    name: Build ${{ inputs.challenge_path }}
+    name: Build Challenge
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -21,28 +28,59 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine challenge path
+        id: path
+        run: |
+          if [ -n "${{ inputs.challenge_path }}" ]; then
+            CHALLENGE_PATH="${{ inputs.challenge_path }}"
+          else
+            # Push: detect changed challenge (first one found)
+            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || git ls-files)
+            CHALLENGE_PATH=$(echo "$CHANGED_FILES" | \
+              grep -E "(deploy/|src/|flag)" | \
+              sed -E 's|(.*)/deploy/.*|\1|; s|(.*)/src/.*|\1|; s|(.*)/flag|\1|' | \
+              sort -u | \
+              while read -r dir; do
+                if [ -f "$dir/deploy/Dockerfile" ]; then
+                  echo "$dir"
+                fi
+              done | head -1)
+          fi
+          echo "challenge_path=$CHALLENGE_PATH" >> $GITHUB_OUTPUT
 
       - name: Validate challenge path
         run: |
-          if [ ! -f "${{ inputs.challenge_path }}/deploy/Dockerfile" ]; then
-            echo "Error: Dockerfile not found at ${{ inputs.challenge_path }}/deploy/Dockerfile"
+          CHALLENGE_PATH="${{ steps.path.outputs.challenge_path }}"
+          if [ -z "$CHALLENGE_PATH" ]; then
+            echo "Error: No challenge path found"
             exit 1
           fi
-          if [ ! -f "${{ inputs.challenge_path }}/flag" ]; then
-            echo "Error: flag file not found at ${{ inputs.challenge_path }}/flag"
+          if [ ! -f "$CHALLENGE_PATH/deploy/Dockerfile" ]; then
+            echo "Error: Dockerfile not found at $CHALLENGE_PATH/deploy/Dockerfile"
+            exit 1
+          fi
+          if [ ! -f "$CHALLENGE_PATH/flag" ]; then
+            echo "Error: flag file not found at $CHALLENGE_PATH/flag"
             exit 1
           fi
 
-      - name: Extract challenge name
+      - name: Extract challenge info
         id: challenge-info
         run: |
-          CHALLENGE_NAME=$(basename "${{ inputs.challenge_path }}")
+          CHALLENGE_PATH="${{ steps.path.outputs.challenge_path }}"
+          CHALLENGE_NAME=$(basename "$CHALLENGE_PATH")
+          # Extract chapter (e.g., web-basics from chapters/web-application-security/web-basics/drills/cockroach)
+          CHAPTER=$(echo "$CHALLENGE_PATH" | sed -E 's|.*/([^/]+)/drills/.*|\1|')
           echo "name=$CHALLENGE_NAME" >> $GITHUB_OUTPUT
+          echo "chapter=$CHAPTER" >> $GITHUB_OUTPUT
 
       - name: Read flag
         id: flag
         run: |
-          FLAG=$(cat "${{ inputs.challenge_path }}/flag" | tr -d '\n')
+          FLAG=$(cat "${{ steps.path.outputs.challenge_path }}/flag" | tr -d '\n')
           echo "flag=$FLAG" >> $GITHUB_OUTPUT
 
       - name: Log in to Container Registry
@@ -59,7 +97,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ steps.challenge-info.outputs.name }}
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ steps.challenge-info.outputs.chapter }}/${{ steps.challenge-info.outputs.name }}
           tags: |
             type=sha
             type=raw,value=latest
@@ -67,8 +105,9 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ${{ inputs.challenge_path }}
-          file: ${{ inputs.challenge_path }}/deploy/Dockerfile
+          context: ${{ steps.path.outputs.challenge_path }}
+          file: ${{ steps.path.outputs.challenge_path }}/deploy/Dockerfile
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
