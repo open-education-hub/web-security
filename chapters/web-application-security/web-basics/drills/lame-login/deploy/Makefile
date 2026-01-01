@@ -1,6 +1,19 @@
 EXTERNAL_PORT := 8087
-IMG_NAME := sss-web-01_lame-login
-FILE_TEMPLATE := ../src/main.template.py
-FILE_SRC := ../src/main.py
+INTERNAL_PORT := 80
+NAME := web-basics_lame-login
+FLAG := $(shell cat ../flag)
 
-include activity.mk
+run: build
+	docker run -d -p $(EXTERNAL_PORT):$(INTERNAL_PORT) --name $(NAME) -t $(NAME)
+
+build:
+	docker build --build-arg FLAG=$(FLAG) -t $(NAME) -f Dockerfile ..
+
+stop:
+	docker stop $(NAME)
+
+clean: stop
+	docker rm $(NAME)
+	docker image rm $(NAME):latest
+
+.PHONY: run build stop clean
