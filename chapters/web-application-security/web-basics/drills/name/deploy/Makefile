@@ -1,6 +1,19 @@
 EXTERNAL_PORT := 8089
-IMG_NAME := sss-web-01_name
-FILE_TEMPLATE := ../src/the_flag.template.html
-FILE_SRC := ../src/the_flag.html
+INTERNAL_PORT := 80
+NAME := web-basics_name
+FLAG := $(shell cat ../flag)
 
-include activity.mk
+run: build
+	docker run -d -p $(EXTERNAL_PORT):$(INTERNAL_PORT) --name $(NAME) -t $(NAME)
+
+build:
+	docker build --build-arg FLAG=$(FLAG) -t $(NAME) -f Dockerfile ..
+
+stop:
+	docker stop $(NAME)
+
+clean: stop
+	docker rm $(NAME)
+	docker image rm $(NAME):latest
+
+.PHONY: run build stop clean
