@@ -1,0 +1,78 @@
+name: Build and Push Docker Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      challenge_path:
+        description: 'Path to challenge directory (e.g., chapters/web-application-security/web-basics/drills/cockroach)'
+        required: true
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  build-and-push:
+    name: Build ${{ inputs.challenge_path }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate challenge path
+        run: |
+          if [ ! -f "${{ inputs.challenge_path }}/deploy/Dockerfile" ]; then
+            echo "Error: Dockerfile not found at ${{ inputs.challenge_path }}/deploy/Dockerfile"
+            exit 1
+          fi
+          if [ ! -f "${{ inputs.challenge_path }}/flag" ]; then
+            echo "Error: flag file not found at ${{ inputs.challenge_path }}/flag"
+            exit 1
+          fi
+
+      - name: Extract challenge name
+        id: challenge-info
+        run: |
+          CHALLENGE_NAME=$(basename "${{ inputs.challenge_path }}")
+          echo "name=$CHALLENGE_NAME" >> $GITHUB_OUTPUT
+
+      - name: Read flag
+        id: flag
+        run: |
+          FLAG=$(cat "${{ inputs.challenge_path }}/flag" | tr -d '\n')
+          echo "flag=$FLAG" >> $GITHUB_OUTPUT
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Extract metadata (tags, labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ steps.challenge-info.outputs.name }}
+          tags: |
+            type=sha
+            type=raw,value=latest
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ inputs.challenge_path }}
+          file: ${{ inputs.challenge_path }}/deploy/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            FLAG=${{ steps.flag.outputs.flag }}
