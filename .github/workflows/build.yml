@@ -97,7 +97,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ steps.challenge-info.outputs.chapter }}/${{ steps.challenge-info.outputs.name }}
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ steps.challenge-info.outputs.chapter }}/${{ steps.challenge-info.outputs.name }}
           tags: |
             type=sha
             type=raw,value=latest
