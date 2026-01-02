@@ -1,0 +1,25 @@
+namespace: web-basics
+
+challenge:
+  name: readme
+  category: web-basics
+
+image:
+  repository: sss-web-01_readme
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30013
+
+healthCheck:
+  enabled: true
+  path: /readme/
+  initialDelaySeconds: 5
+  periodSeconds: 10
