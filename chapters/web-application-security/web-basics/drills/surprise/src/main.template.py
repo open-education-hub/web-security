@@ -24,3 +24,12 @@ def put_method_with_content_type():
 
     else:
         return "Good! But we should start using same language"
+
+
+@app.route("/_healthcheck", methods=["GET"])
+def healthcheck():
+    return "OK", 200
+
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1")
