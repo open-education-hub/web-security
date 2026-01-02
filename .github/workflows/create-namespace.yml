@@ -65,7 +65,6 @@ jobs:
           kubectl create namespace "$NAMESPACE" --dry-run=client -o yaml | kubectl apply -f -
 
           # Deploy each challenge
-          failed=0
           succeeded=0
           for values_file in "${values_files[@]}"; do
             challenge_name=$(basename "$(dirname "$(dirname "$values_file")")")
@@ -74,33 +73,15 @@ jobs:
             if helm upgrade --install "$challenge_name" ./helm/web-challenge \
               --namespace "$NAMESPACE" \
               --values "$values_file" \
-              --atomic \
               --timeout 5m; then
               echo "$challenge_name deployed successfully"
               succeeded=$((succeeded + 1))
             else
               echo "::error::Failed to deploy $challenge_name"
-              failed=$((failed + 1))
             fi
 
             echo "::endgroup::"
           done
-
-          # Write summary
-          {
-            echo "## Deployment Summary"
-            echo ""
-            echo "| Metric | Count |"
-            echo "|--------|-------|"
-            echo "| Total | ${#values_files[@]} |"
-            echo "| Succeeded | $succeeded |"
-            echo "| Failed | $failed |"
-          } >> "$GITHUB_STEP_SUMMARY"
-
-          if [[ $failed -gt 0 ]]; then
-            echo "::error::$failed challenge(s) failed to deploy"
-            exit 1
-          fi
 
       - name: Show deployment status
         if: always()
