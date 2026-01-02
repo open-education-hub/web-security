@@ -1,0 +1,37 @@
+name: Clean environment by deleting namespace
+
+on:
+  workflow_dispatch:
+    inputs:
+      namespace:
+        description: "Namespace to delete"
+        required: true
+        default: ""
+
+jobs:
+  delete:
+    runs-on: sss-node-01
+    env:
+      NAMESPACE: ${{ inputs.namespace }}
+      KUBECONFIG: /home/ubuntu/.kube/config
+
+    steps:
+      - name: Ensure kubectl exists
+        shell: bash
+        run: |
+          set -e
+          command -v kubectl >/dev/null || { echo "kubectl missing"; exit 1; }
+          kubectl get nodes -o wide
+
+      - name: Delete namespace
+        shell: bash
+        run: |
+          set -e
+
+          if kubectl get ns "$NAMESPACE" >/dev/null 2>&1; then
+            echo "Deleting namespace $NAMESPACE ..."
+            kubectl delete ns "$NAMESPACE" --wait=true --timeout=240s
+            echo "Namespace deleted."
+          else
+            echo "Namespace does not exist. Nothing to delete."
+          fi
