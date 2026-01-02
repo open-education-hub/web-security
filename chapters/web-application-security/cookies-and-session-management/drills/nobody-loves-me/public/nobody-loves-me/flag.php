@@ -1,3 +1,0 @@
-<?php
-$flag = 'SSS{did_y0u_just_c4ll_m3_h3r3_qu3sti0n_m4rk}';
-?>

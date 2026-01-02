@@ -2,7 +2,7 @@
 
 ## Description
 
-Get the flag from http://141.85.224.115:8001/nobody-loves-me.
+Get the flag from http://141.85.224.115:8001.
 
 Score: 25
 
