@@ -2,7 +2,7 @@
 
 ## Description
 
-Get the flag from http://141.85.224.115:8083/santa.
+Get the flag from http://141.85.224.101:30021/santa.
 
 Score: 50
 
