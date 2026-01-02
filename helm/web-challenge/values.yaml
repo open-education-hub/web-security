@@ -1,0 +1,39 @@
+namespace: web-basics
+
+challenge:
+  name: ""
+  category: "web-basics"
+
+image:
+  repository: ""
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: ""  # Leave empty for auto-assign (30000-32767) or specify a port
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+healthCheck:
+  enabled: false
+  path: "/"
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+nodeSelector: {}
+
+tolerations: []
+ 
+affinity: {}
