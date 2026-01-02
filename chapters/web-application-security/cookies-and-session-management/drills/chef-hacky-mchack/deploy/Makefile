@@ -1,16 +1,19 @@
-FILE	:=../flag
-FLAG	:=$(shell cat $(FILE))
-
-build:
-	docker build -f Dockerfile -t sss-web-02_check-hacky-mchack ..
+EXTERNAL_PORT := 8087
+INTERNAL_PORT := 80
+NAME := cookies-and-session-management_chef-hacky-mchack
+FLAG := $(shell cat ../flag)
 
 run: build
-	docker run -d -p 8087:80 --name sss-web-02_check-hacky-mchack sss-web-02_check-hacky-mchack
+	docker run -d -p $(EXTERNAL_PORT):$(INTERNAL_PORT) --name $(NAME) -t $(NAME)
+
+build:
+	docker build --build-arg FLAG="$(FLAG)" -t $(NAME) -f Dockerfile ..
 
 stop:
-	docker stop sss-web-02_check-hacky-mchack
+	docker stop $(NAME)
 
 clean: stop
-	docker rm sss-web-02_check-hacky-mchack
+	docker rm $(NAME)
+	docker image rm $(NAME):latest
 
-.PHONY: build run stop clean
+.PHONY: run build stop clean
