@@ -2,7 +2,7 @@
 
 ## Description
 
-Get the flag from http://141.85.224.115:8087.
+Get the flag from http://141.85.224.101:30015.
 
 Score: 25
 
