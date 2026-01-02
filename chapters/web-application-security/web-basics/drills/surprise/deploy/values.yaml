@@ -1,0 +1,23 @@
+namespace: web-basics
+
+challenge:
+  name: surprise
+  category: web-basics
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/web-basics/surprise
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30012
+
+healthCheck:
+  enabled: true
+  path: "/surprise"
+  initialDelaySeconds: 10
+  periodSeconds: 15

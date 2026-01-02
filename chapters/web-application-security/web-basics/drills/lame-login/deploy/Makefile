@@ -1,4 +1,4 @@
-EXTERNAL_PORT := 8087
+EXTERNAL_PORT := 30007
 INTERNAL_PORT := 80
 NAME := web-basics_lame-login
 FLAG := $(shell cat ../flag)

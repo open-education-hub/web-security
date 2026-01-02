@@ -1,0 +1,23 @@
+namespace: web-basics
+
+challenge:
+  name: one-by-one
+  category: web-basics
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/web-basics/one-by-one
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30010
+
+healthCheck:
+  enabled: true
+  path: "/one-by-one/"
+  initialDelaySeconds: 10
+  periodSeconds: 15

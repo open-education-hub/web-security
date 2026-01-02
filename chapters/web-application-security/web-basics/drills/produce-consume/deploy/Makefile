@@ -1,4 +1,4 @@
-EXTERNAL_PORT := 8091
+EXTERNAL_PORT := 30011
 INTERNAL_PORT := 80
 NAME := web-basics_produce-consume
 FLAG := $(shell cat ../flag)

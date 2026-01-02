@@ -4,7 +4,7 @@ Web: Web basics and browser security model: Gimme
 
 ## Description
 
-Get the flag from [gimme](http://141.85.224.157:8082/gimme) (now it’s safe! no more cockroaches :D).
+Get the flag from [gimme](http://141.85.224.157:30003/gimme) (now it’s safe! no more cockroaches :D).
 Try to add a new resource.
 
 Score: 25

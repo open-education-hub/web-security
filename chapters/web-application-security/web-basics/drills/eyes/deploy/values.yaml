@@ -1,0 +1,23 @@
+namespace: web-basics
+
+challenge:
+  name: eyes
+  category: web-basics
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/web-basics/eyes
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30002
+
+healthCheck:
+  enabled: true
+  path: "/eyes"
+  initialDelaySeconds: 10
+  periodSeconds: 15

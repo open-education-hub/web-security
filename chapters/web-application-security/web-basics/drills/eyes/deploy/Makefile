@@ -1,4 +1,4 @@
-EXTERNAL_PORT := 8081
+EXTERNAL_PORT := 30002
 INTERNAL_PORT := 80
 NAME := web-basics_eyes
 FLAG := $(shell cat ../flag)

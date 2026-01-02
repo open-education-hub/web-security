@@ -1,5 +1,5 @@
 #!/bin/bash
-PORT=8086
+PORT=30006
 
 if [[ $1 == "local" ]]
 then

@@ -1,4 +1,4 @@
-EXTERNAL_PORT := 8080
+EXTERNAL_PORT := 30001
 INTERNAL_PORT := 80
 NAME := web-basics_cockroach
 FLAG := $(shell cat ../flag)

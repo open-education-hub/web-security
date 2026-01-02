@@ -4,7 +4,7 @@ Web: Web basics and browser security model: Lame Login
 
 ## Description
 
-Get the flag from [lame-login](http://141.85.224.157:8087/lamelogin).
+Get the flag from [lame-login](http://141.85.224.157:30007/lamelogin).
 
 Score: 50
 

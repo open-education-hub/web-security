@@ -1,4 +1,4 @@
-EXTERNAL_PORT := 8088
+EXTERNAL_PORT := 30008
 INTERNAL_PORT := 80
 NAME := web-basics_my-special-name
 FLAG := $(shell cat ../flag)

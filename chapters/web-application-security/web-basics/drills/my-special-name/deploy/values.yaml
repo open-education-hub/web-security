@@ -1,0 +1,23 @@
+namespace: web-basics
+
+challenge:
+  name: my-special-name
+  category: web-basics
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/web-basics/my-special-name
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30008
+
+healthCheck:
+  enabled: true
+  path: "/my-special-name"
+  initialDelaySeconds: 10
+  periodSeconds: 15

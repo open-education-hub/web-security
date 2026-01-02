@@ -1,0 +1,23 @@
+namespace: web-basics
+
+challenge:
+  name: name
+  category: web-basics
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/web-basics/name
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30009
+
+healthCheck:
+  enabled: true
+  path: "/name/"
+  initialDelaySeconds: 10
+  periodSeconds: 15

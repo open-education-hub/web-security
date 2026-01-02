@@ -1,0 +1,23 @@
+namespace: web-basics
+
+challenge:
+  name: lame-login
+  category: web-basics
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/web-basics/lame-login
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30007
+
+healthCheck:
+  enabled: true
+  path: "/login"
+  initialDelaySeconds: 10
+  periodSeconds: 15

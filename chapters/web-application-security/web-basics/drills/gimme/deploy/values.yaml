@@ -1,0 +1,23 @@
+namespace: web-basics
+
+challenge:
+  name: gimme
+  category: web-basics
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/web-basics/gimme
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30003
+
+healthCheck:
+  enabled: true
+  path: "/gimme"
+  initialDelaySeconds: 10
+  periodSeconds: 15

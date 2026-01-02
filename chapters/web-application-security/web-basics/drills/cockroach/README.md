@@ -4,7 +4,7 @@ Web: Web basics and browser security model: Cockroach
 
 ## Description
 
-Get the flag from [cockroach](http://141.85.224.157:8080/cockroach/).
+Get the flag from [cockroach](http://141.85.224.157:30001/cockroach/).
 What happened?
 Get the flag!
 

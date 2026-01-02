@@ -1,0 +1,23 @@
+namespace: web-basics
+
+challenge:
+  name: produce-consume
+  category: web-basics
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/web-basics/produce-consume
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30011
+
+healthCheck:
+  enabled: true
+  path: "/produce-consume/"
+  initialDelaySeconds: 10
+  periodSeconds: 15

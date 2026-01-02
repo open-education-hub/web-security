@@ -1,4 +1,4 @@
-EXTERNAL_PORT := 8086
+EXTERNAL_PORT := 30006
 INTERNAL_PORT := 80
 NAME := web-basics_king-kong
 FLAG := $(shell cat ../flag)

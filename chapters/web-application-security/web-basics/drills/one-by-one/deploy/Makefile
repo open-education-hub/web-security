@@ -1,4 +1,4 @@
-EXTERNAL_PORT := 8090
+EXTERNAL_PORT := 30010
 INTERNAL_PORT := 80
 NAME := web-basics_one-by-one
 FLAG := $(shell cat ../flag)

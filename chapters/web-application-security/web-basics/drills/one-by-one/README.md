@@ -4,7 +4,7 @@ Web: Web basics and browser security model: One-by-One
 
 ## Description
 
-Get the flag from [one-by-one](http://141.85.224.118:8090/one-by-one/).
+Get the flag from [one-by-one](http://141.85.224.118:30010/one-by-one/).
 
 Score: 50
 
