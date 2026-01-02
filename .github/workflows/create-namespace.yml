@@ -1,0 +1,113 @@
+name: Deploy challenges by namespace
+
+on:
+  workflow_dispatch:
+    inputs:
+      chapter:
+        description: "Chapter to deploy (e.g., web-application-security)"
+        required: true
+        default: "web-application-security"
+      namespace:
+        description: "Namespace to deploy (e.g., web-basics)"
+        required: true
+        default: "web-basics"
+
+concurrency:
+  group: deploy-${{ inputs.namespace }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: sss-node-01
+    timeout-minutes: 30
+    env:
+      CHAPTER: ${{ inputs.chapter }}
+      NAMESPACE: ${{ inputs.namespace }}
+      KUBECONFIG: /home/ubuntu/.kube/config
+
+    defaults:
+      run:
+        shell: bash -euo pipefail {0}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify prerequisites
+        run: |
+          command -v kubectl >/dev/null || { echo "::error::kubectl not found"; exit 1; }
+          command -v helm >/dev/null || { echo "::error::helm not found"; exit 1; }
+          kubectl cluster-info
+          helm version --short
+
+      - name: Deploy all challenges in namespace
+        run: |
+          DRILLS_PATH="chapters/${CHAPTER}/${NAMESPACE}/drills"
+
+          if [[ ! -d "$DRILLS_PATH" ]]; then
+            echo "::error::Namespace path not found: $DRILLS_PATH"
+            exit 1
+          fi
+
+          # Check if any challenges exist
+          shopt -s nullglob
+          values_files=("$DRILLS_PATH"/*/deploy/values.yaml)
+          shopt -u nullglob
+
+          if [[ ${#values_files[@]} -eq 0 ]]; then
+            echo "::error::No challenges found in $DRILLS_PATH"
+            exit 1
+          fi
+
+          echo "Found ${#values_files[@]} challenge(s) to deploy"
+
+          # Create namespace
+          kubectl create namespace "$NAMESPACE" --dry-run=client -o yaml | kubectl apply -f -
+
+          # Deploy each challenge
+          failed=0
+          succeeded=0
+          for values_file in "${values_files[@]}"; do
+            challenge_name=$(basename "$(dirname "$(dirname "$values_file")")")
+            echo "::group::Deploying $challenge_name"
+
+            if helm upgrade --install "$challenge_name" ./helm/web-challenge \
+              --namespace "$NAMESPACE" \
+              --values "$values_file" \
+              --atomic \
+              --timeout 5m; then
+              echo "$challenge_name deployed successfully"
+              succeeded=$((succeeded + 1))
+            else
+              echo "::error::Failed to deploy $challenge_name"
+              failed=$((failed + 1))
+            fi
+
+            echo "::endgroup::"
+          done
+
+          # Write summary
+          {
+            echo "## Deployment Summary"
+            echo ""
+            echo "| Metric | Count |"
+            echo "|--------|-------|"
+            echo "| Total | ${#values_files[@]} |"
+            echo "| Succeeded | $succeeded |"
+            echo "| Failed | $failed |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [[ $failed -gt 0 ]]; then
+            echo "::error::$failed challenge(s) failed to deploy"
+            exit 1
+          fi
+
+      - name: Show deployment status
+        if: always()
+        run: |
+          echo "::group::Resources in $NAMESPACE"
+          kubectl get all -n "$NAMESPACE"
+          echo "::endgroup::"
+          echo "::group::Helm releases"
+          helm list -n "$NAMESPACE"
+          echo "::endgroup::"
