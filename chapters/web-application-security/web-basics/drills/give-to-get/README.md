@@ -4,7 +4,7 @@ Web: Web basics and browser security model: Give to get
 
 ## Description
 
-Get the flag from [give-to-get](http://141.85.224.118:30004/give-to-get/).
+Get the flag from [give-to-get](http://141.85.224.101:30004/give-to-get/).
 
 Score: 50
 

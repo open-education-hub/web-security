@@ -4,7 +4,7 @@ Web: Web basics and browser security model: My Special Name
 
 ## Description
 
-Get the flag from [special-name](http://141.85.224.157:30008/my-special-name).
+Get the flag from [special-name](http://141.85.224.101:30008/my-special-name).
 Retrieve all the names and you will get the flag.
 Use the **name-id** parameter.
 

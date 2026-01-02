@@ -4,7 +4,7 @@ Web: Web basics and browser security model: King-Kong
 
 ## Description
 
-Get the flag from [king-kong](http://141.85.224.118:30006/king-kong/).
+Get the flag from [king-kong](http://141.85.224.101:30006/king-kong/).
 
 Score: 25
 

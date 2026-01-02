@@ -4,7 +4,7 @@ Web: Web basics and browser security model: Surprise
 
 ## Description
 
-Get the flag from [surprise](http://141.85.224.157:30012/surprise/).
+Get the flag from [surprise](http://141.85.224.101:30012/surprise/).
 Try to modify an existing resource at this location.
 
 Score: 50

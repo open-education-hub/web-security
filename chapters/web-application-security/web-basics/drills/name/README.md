@@ -4,7 +4,7 @@ Web: Web basics and browser security model: Name
 
 ## Description
 
-Get the flag from [name](http://141.85.224.118:30009/name/).
+Get the flag from [name](http://141.85.224.101:30009/name/).
 
 Score: 25
 

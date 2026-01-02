@@ -4,7 +4,7 @@ Web: Web basics and browser security model: Eyes
 
 ## Description
 
-Get the flag from [eyes](http://141.85.224.118:30002/eyes).
+Get the flag from [eyes](http://141.85.224.101:30002/eyes).
 
 Score: 25
 
