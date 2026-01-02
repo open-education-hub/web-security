@@ -1,1 +1,0 @@
-<?php header('location: planetarium/index.php'); ?>
