@@ -1,0 +1,23 @@
+namespace: cookies-and-session-management
+
+challenge:
+  name: do-you-need-glasses
+  category: cookies-and-session-management
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/cookies-and-session-management/do-you-need-glasses
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30017
+
+healthCheck:
+  enabled: true
+  path: "/"
+  initialDelaySeconds: 5
+  periodSeconds: 15
