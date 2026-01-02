@@ -18,6 +18,6 @@ service:
 
 healthCheck:
   enabled: true
-  path: "/my-special-name"
+  path: "/_healthcheck"
   initialDelaySeconds: 10
   periodSeconds: 15
