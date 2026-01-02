@@ -19,5 +19,5 @@ service:
 healthCheck:
   enabled: true
   path: "/name/"
-  initialDelaySeconds: 10
+  initialDelaySeconds: 5
   periodSeconds: 15
