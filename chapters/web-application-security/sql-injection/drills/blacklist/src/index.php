@@ -3,7 +3,7 @@ if (isset($_GET['source'])) {
     die(highlight_file(__FILE__));
 }
 
-require("conf/conf.php"); 
+require("db_conn.php"); 
 error_reporting(0);
 
 

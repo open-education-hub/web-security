@@ -1,14 +1,16 @@
-build:
-	cd ../src && $(MAKE) generate
-	docker-compose build
+FILE    :=../flag
+FLAG    :=$(shell cat $(FILE))
 
-run: build
-	docker-compose up -d
+run: generate
+	docker-compose up -d 
+
+generate:
+	sed 's/__TEMPLATE__/$(FLAG)/g' ./init-db.template.sql > ./init-db.sql
 
 stop:
 	docker-compose stop
 
 clean: stop
-	docker-compose down
+	docker-compose down -v
 
-.PHONY: build run stop clean
+.PHONY: generate build run stop clean
