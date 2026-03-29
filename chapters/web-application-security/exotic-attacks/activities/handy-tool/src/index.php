@@ -7,33 +7,13 @@ class PHPClass {
 
     }
     function __wakeup() {
-        /**
-         * IMPROVED COMMAND FILTER - Issue #87
-         * Blocks creative bypass techniques including:
-         * - strings, od, xxd, hexdump commands
-         * - Wildcard bypasses: /bin/c?t, /bin/c*t, /bin/c[^^]t
-         * - Path-based execution
-         * - Command substitution
-         * - Escape sequences
-         */
-        
-        // Expanded forbidden commands list
         $forbbiden_commands = [
-            // Original commands
             "cat", "head", "grep", "tail", "tac", "rev", 
             "awk", "sed", "more", "cut", "nl", "less", "sort",
             "python", "perl", "m4",
-            
-            // NEW: Binary/hex viewers (Issue #87)
             "strings", "od", "xxd", "hexdump", "hd",
-            
-            // NEW: Additional file readers
             "vim", "vi", "nano", "emacs", "ed",
-            
-            // NEW: Encoders
             "base64", "base32", "uuencode", "iconv",
-            
-            // NEW: Other dangerous commands
             "find", "xargs", "dd", "file",
             "curl", "wget", "nc", "netcat",
             "bash", "sh", "zsh", "dash", "ksh",
@@ -41,80 +21,60 @@ class PHPClass {
             "tar", "zip", "unzip", "gzip"
         ];
 
-        // Validate properties exist
         if (!isset($this->prop) || !isset($this->condition) || !$this->condition) {
             return;
         }
 
         // Normalize for case-insensitive checking
-        $prop_lower = strtolower($this->prop);
+        $this->prop = strtolower($this->prop);
         
-        // 1. CHECK BLACKLISTED COMMANDS
         foreach ($forbbiden_commands as $cmd) {
             // Word boundary check to prevent false positives
             if (preg_match('/\b' . preg_quote($cmd, '/') . '\b/i', $this->prop)) {
-                error_log("Blocked command: $cmd in " . $this->prop);
                 return;
             }
         }
         
-        // 2. BLOCK WILDCARD CHARACTERS (Issue #87)
-        // Prevents: /bin/c?t, /bin/c*t, /bin/c[^^]t
+        // Block wildcard characters. Prevents: /bin/c?t, /bin/c*t, /bin/c[^^]t
         if (preg_match('/[*?{}\[\]]/', $this->prop)) {
-            error_log("Blocked wildcard in: " . $this->prop);
             return;
         }
         
-        // 3. BLOCK PATH-BASED EXECUTION (Issue #87)
-        // Prevents: /bin/cat, /usr/bin/strings
+        // Block path-based execution. Prevents: /bin/cat, /usr/bin/strings
         if (preg_match('/\/(?:bin|usr|sbin|etc|opt|tmp)\//', $this->prop)) {
-            error_log("Blocked path execution: " . $this->prop);
             return;
         }
         
-        // 4. BLOCK COMMAND SUBSTITUTION
-        // Prevents: $(cat flag), `cat flag`
+        // Block command substitution. Prevents: $(cat flag), `cat flag`
         if (preg_match('/\$\(|`/', $this->prop)) {
-            error_log("Blocked command substitution: " . $this->prop);
             return;
         }
         
-        // 5. BLOCK ESCAPE SEQUENCES
-        // Prevents: \x63\x61\x74 (hex encoding of "cat")
+        // Block escape sequences. Prevents: \x63\x61\x74 (hex encoding of "cat")
         if (preg_match('/\\\\x[0-9a-fA-F]{2}/', $this->prop)) {
-            error_log("Blocked hex escape: " . $this->prop);
             return;
         }
         
-        // 6. BLOCK OCTAL SEQUENCES
-        // Prevents: \143\141\164 (octal encoding of "cat")
+        // Block octal sequences. Prevents: \143\141\164 (octal encoding of "cat")
         if (preg_match('/\\\\[0-7]{3}/', $this->prop)) {
-            error_log("Blocked octal escape: " . $this->prop);
             return;
         }
         
-        // 7. BLOCK PIPING AND REDIRECTION
-        // Prevents command chaining
+        // Block piping and redirection. Prevents command chaining
         if (preg_match('/[|><&;]/', $this->prop)) {
-            error_log("Blocked piping/redirection: " . $this->prop);
             return;
         }
         
-        // 8. BLOCK VARIABLE TRICKS
-        // Prevents: $CMD where CMD=cat
+        // Block variable tricks. Prevents: $CMD where CMD=cat
         if (preg_match('/\$[A-Z_][A-Z0-9_]*/', $this->prop)) {
-            error_log("Blocked variable substitution: " . $this->prop);
             return;
         }
         
-        // 9. BLOCK QUOTE CONCATENATION
-        // Prevents: ca''t or c"a"t
+        // Block quote concatenation. Prevents: ca''t or c"a"t
         if (preg_match('/[\'"][\'"]/', $this->prop)) {
-            error_log("Blocked quote concatenation: " . $this->prop);
             return;
         }
 
-        // If all checks pass, execute the property
         eval($this->prop);
     }
 }
@@ -169,21 +129,9 @@ class PHPClass {
                             ?>
                             <input type="submit" class="btn btn-primary" name="submit" value="Submit" />
                         </form>
-
-
-                        <hr class="mt-5">
-                        <small class="text-muted">
-                            <strong>Challenge Improvements (Issue #87):</strong><br>
-                            ✅ Blocked wildcard bypasses (?, *, [], {})<br>
-                            ✅ Blocked path-based execution (/bin/, /usr/)<br>
-                            ✅ Blocked dangerous commands (strings, od, xxd)<br>
-                            ✅ Blocked command substitution and escape sequences<br>
-                            ✅ Enhanced security filters
-                        </small>
                     </div>
                 </div>
             </div>
         </div>
     </body>
-
 </html>
