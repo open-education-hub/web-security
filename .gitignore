@@ -6,7 +6,7 @@
 *.lib
 *.dll
 a.out
-*.zip
+# *.zip
 *.rar
 *gz
 *bz2
