@@ -1,13 +1,19 @@
+EXTERNAL_PORT := 30001
+INTERNAL_PORT := 80
+NAME := sss-web-08_jar-of-pickles
+FLAG := $(shell cat ../flag)
+
 run: build
-	docker run -d -p 8007:80 --name sss-web-08_jar-of-pickles sss-web-08_jar-of-pickles
+	docker run -d -p $(EXTERNAL_PORT):$(INTERNAL_PORT) --name $(NAME) -t $(NAME)
 
 build:
-	docker build -f Dockerfile -t sss-web-08_jar-of-pickles ..
+	docker build --build-arg FLAG=$(FLAG) -t $(NAME) -f Dockerfile ..
 
 stop:
-	docker stop sss-web-08_jar-of-pickles
+	docker stop $(NAME)
 
 clean: stop
-	docker rm sss-web-08_jar-of-pickles
+	docker rm $(NAME)
+	docker image rm $(NAME):latest
 
-.PHONY: build run stop clean
+.PHONY: run build stop clean
