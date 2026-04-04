@@ -1,20 +1,22 @@
-FILE	:= ../flag
-FLAG	:= $(shell cat $(FILE))
+EXTERNAL_PORT := 30002
+INTERNAL_PORT := 80
+NAME := sss-web-08_breaking-hashes
 
-run: generate build
-	docker run -d -p 8000:80 --name sss-web-08_breaking-hashes sss-web-08_breaking-hashes
+FILE := ../flag
+FLAG := $(shell cat $(FILE))
 
-build: generate
-	docker build -f Dockerfile -t sss-web-08_breaking-hashes ..
+run: build
+	docker run -d -p $(EXTERNAL_PORT):$(INTERNAL_PORT) --name $(NAME) -t $(NAME)
 
-generate:
-	sed 's/__TEMPLATE__/$(FLAG)/g' ../src/index-template.php > ../src/index.php
+build:
+	docker build --build-arg FLAG=$(FLAG) -t $(NAME) -f Dockerfile ..
 
 stop:
-	docker stop sss-web-08_breaking-hashes
+	docker stop $(NAME)
 
 clean: stop
-	docker rm sss-web-08_breaking-hashes
-	rm ../src/index.php
+	docker rm $(NAME)
+	docker image rm $(NAME):latest
 
-.PHONY: build run stop clean
+
+.PHONY: build run stop clean 
