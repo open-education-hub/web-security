@@ -1,6 +1,6 @@
 <?php
 
-$flag = '__TEMPLATE__';
+$flag = 'SSS{arr4ys_c4n_b3_n4sty_if_n0t_ch3ck3d}';
 $error = '';
 
 if (isset($_POST['submit'])) {

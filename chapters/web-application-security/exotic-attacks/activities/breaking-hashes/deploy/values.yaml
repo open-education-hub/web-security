@@ -1,0 +1,24 @@
+namespace: exotic-attacks
+
+challenge:
+  name: breaking-hashes
+  category: exotic-attacks
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/exotic-attacks/breaking-hashes
+  # TODO - add correct repo
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30002
+
+healthCheck:
+  enabled: true
+  path: "/healthcheck.php"
+  initialDelaySeconds: 5
+  periodSeconds: 15
