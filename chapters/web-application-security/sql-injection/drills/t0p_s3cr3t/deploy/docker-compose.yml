@@ -1,23 +1,36 @@
-version: "3.7"
-
 services:
   database:
+    platform: linux/x86_64
     image: mysql:5.7
-    container_name: t0p_s3cr3t_mysql
+    container_name: sss-web-sql-injection_t0p_s3cr3t_mysql
     environment:
       MYSQL_DATABASE: "secrets"
       MYSQL_USER: "sss"
       MYSQL_PASSWORD: "sss"
       MYSQL_ROOT_PASSWORD: "root"
+    networks:
+      - sss-web-sql-injection_t0p_s3cr3t-network
     volumes:
-      - "../src/mysql/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql"
+      - "./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      timeout: 5s
+      retries: 10
 
-  web:
-    build: .
-    container_name: sss-web-04-sql-injection_t0p_s3cr3t
+  sss-web-sql-injection_t0p_s3cr3t-app:
+    build:
+      context: ..
+      dockerfile: ./deploy/Dockerfile
+    container_name: sss-web-sql-injection_t0p_s3cr3t
     ports:
       - "12000:80"
     volumes:
       - "../src:/var/www/html"
-    links:
-      - database
+    networks:
+      - sss-web-sql-injection_t0p_s3cr3t-network
+    depends_on:
+      database:
+        condition: service_healthy
+
+networks:
+  sss-web-sql-injection_t0p_s3cr3t-network:

@@ -1,14 +1,14 @@
+run: build
+	docker-compose up -d
+	
 build:
 	cd ../src && $(MAKE) generate
 	docker-compose build
-
-run: build
-	docker-compose up -d
 
 stop:
 	docker-compose stop
 
 clean: stop
-	docker-compose down
+	docker-compose down -v
 
 .PHONY: build run stop clean

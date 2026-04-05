@@ -6,7 +6,7 @@ $dbname = $_ENV["DB_NAME"];
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
 if (!$conn) {
-    die('Could not connect: ' . mysqli_error());
+  die('Could not connect to MySQL');
 }
 
 $sql = "CREATE TABLE flags (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, flag VARCHAR(100) NOT NULL)";

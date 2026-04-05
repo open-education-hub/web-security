@@ -1,24 +1,30 @@
-version: "3"
-
 services:
-  sss-web-04_one-by-one_app:
+  sss-web-sql-injection_one-by-one_app:
     build: .
     environment:
       - "DB_USERNAME=root"
       - "DB_PASSWORD=wXmr6YuT86XpU2qX"
-      - "DB_HOST=sss-web-04_one-by-one_db"
+      - "DB_HOST=sss-web-sql-injection_one-by-one_db"
       - "DB_NAME=flags"
     ports:
       - "8010:80"
     volumes:
       - ../src:/var/www/html
     depends_on:
-      - "sss-web-04_one-by-one_db"
+      - "sss-web-sql-injection_one-by-one_db"
+    networks:
+      - sss-web-sql-injection_one-by-one-network
     restart: unless-stopped
 
-  sss-web-04_one-by-one_db:
+  sss-web-sql-injection_one-by-one_db:
+    platform: linux/x86_64
     image: mariadb:10.1
     environment:
       - "MYSQL_ROOT_PASSWORD=wXmr6YuT86XpU2qX"
       - "MYSQL_DATABASE=flags"
     restart: unless-stopped
+    networks:
+      - sss-web-sql-injection_one-by-one-network
+
+networks:
+  sss-web-sql-injection_one-by-one-network:
