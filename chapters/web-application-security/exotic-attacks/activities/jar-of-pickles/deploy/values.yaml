@@ -1,0 +1,23 @@
+namespace: exotic-attacks
+
+challenge:
+  name: jar-of-flies
+  category: exotic-attacks
+
+image:
+  repository: ghcr.io/open-education-hub/web-security/exotic-attacks/jar-of-flies
+  tag: latest
+  pullPolicy: Always
+
+containerPort: 80
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30001
+
+healthCheck:
+  enabled: true
+  path: "/_healthcheck"
+  initialDelaySeconds: 5
+  periodSeconds: 15
