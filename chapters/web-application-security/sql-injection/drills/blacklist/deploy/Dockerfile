@@ -1,3 +1,5 @@
-FROM php:7.0-apache
+FROM php:7.4-apache
 
-RUN docker-php-ext-install mysqli
+RUN apt-get update && apt-get install -y libmysqli-dev && \
+    docker-php-ext-install mysqli && \
+    docker-php-ext-enable mysqli
