@@ -2,7 +2,7 @@ services:
   database:
     platform: linux/x86_64
     image: mysql:5.7
-    container_name: blacklist_mysql
+    container_name: sss-web-sql-injection_blacklist-db
     hostname: database
     environment:
       MYSQL_DATABASE: blacklist
@@ -10,7 +10,7 @@ services:
       MYSQL_PASSWORD: sss
       MYSQL_ROOT_PASSWORD: root
     networks:
-      - db-network
+      - sss-web-sql-injection_blacklist-network
     volumes:
       - "./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql"
     healthcheck:
@@ -18,20 +18,20 @@ services:
       timeout: 5s
       retries: 10
 
-  web:
+  sss-web-sql-injection_blacklist-app:
     build:
       context: ..
       dockerfile: ./deploy/Dockerfile
-    container_name: sss-web-sql-injection_blacklist_mysql
+    container_name: sss-web-sql-injection_blacklist-app
     ports:
       - "13000:80"
     volumes:
       - "../src:/var/www/html"
     networks:
-      - db-network
+      - sss-web-sql-injection_blacklist-network
     depends_on:
       database:
         condition: service_healthy
 
 networks:
-  db-network:
+  sss-web-sql-injection_blacklist-network:

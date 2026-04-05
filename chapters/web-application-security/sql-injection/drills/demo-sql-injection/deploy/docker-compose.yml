@@ -1,22 +1,36 @@
-version: "3.3"
-
 services:
   database:
+    platform: linux/x86_64
     image: mysql:5.7
+    container_name: sss-web-sql-injection_demo-db
     environment:
       MYSQL_DATABASE: "demo"
       MYSQL_USER: "sss"
       MYSQL_PASSWORD: "sss"
       MYSQL_ROOT_PASSWORD: "root"
-
     volumes:
       - "../src/mysql/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql"
+    networks:
+      - sss-web-sql-injection_demo-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      timeout: 5s
+      retries: 10
 
-  web:
-    build: .
+  sss-web-sql-injection_demo-app:
+    build:
+      context: ..
+      dockerfile: ./deploy/Dockerfile
+    container_name: sss-web-sql-injection_demo
     ports:
       - "8083:80"
     volumes:
       - ../src:/var/www/html
-    links:
-      - database
+    networks:
+      - sss-web-sql-injection_demo-network
+    depends_on:
+      database:
+        condition: service_healthy
+
+networks:
+  sss-web-sql-injection_demo-network:

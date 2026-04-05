@@ -1,4 +1,4 @@
-FROM php:7.4-apache as web
+FROM php:7.4-apache AS web
 
 RUN apt-get update -y && apt-get install -y  \
 	mariadb-client \

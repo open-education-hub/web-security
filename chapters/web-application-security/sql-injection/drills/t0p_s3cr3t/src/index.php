@@ -4,7 +4,7 @@ if (isset($_GET['source'])) {
 	die(highlight_file(__FILE__));
 }
 
-require("conf/conf.php");
+require("conf.php");
 error_reporting(0);
 
 session_start();
