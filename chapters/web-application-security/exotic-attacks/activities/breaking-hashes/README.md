@@ -1,4 +1,11 @@
-# Name: Web: Exotic Attacks: Breaking Hashes
+# Name: 
+
+Web: Exotic Attacks: Breaking Hashes
+
+## Description
+
+Get the flag from [breaking hashes](http://141.85.224.105:30002/). 
+Good luck!
 
 ## Vulnerability
 
@@ -14,18 +21,4 @@ If you input the correct combination of username and password that matches the c
 
 ## Exploit
 
-Inspect the source page and see this comment: `<!-- TODO: Remove source.phar -->`.
-
-Request the resource `/source.bak` and download the file. Inspect its contents.
-
-You notice that you have to find an username and a password that are not equal (in the context of PHP loose comparison), but their sha256 hashes are the same.
-
-Since collisions in sha256 hashes are not known, we have to work with the username and password.
-
-We can pass the parameters as arrays and make one of the values a string, and the other the integer equivalent.
-
-A possible payload in POST data is:
-
-`username[]="8"&password[]=8&submit=Login`
-
-Exploit in `../sol/solution.sh`.
+Solution in ./sol/solution.sh.
