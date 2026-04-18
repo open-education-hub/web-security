@@ -461,7 +461,6 @@ In order to get root access on the machine, further **privilege escalation** met
 ?>
 ```
 
-<<<<<<<< HEAD:chapters/web-application-security/exotic-attacks/index.md
 ### Type Juggling with Union Types
 
 PHP 8 introduced union types, which allow a variable to be one of multiple specified types. However, improper validation of these types can lead to vulnerabilities, such as type juggling, which attackers can exploit to perform LFI or RFI attacks.
@@ -488,8 +487,6 @@ openFile($filePath);
 
 In this example, an attacker could exploit type juggling by passing an array as an argument, which might lead to unintended file inclusions if each file path is not properly validated.
 
-========
->>>>>>>> 308efd0 (modified exotic attacks to new version):chapters/web-application-security/exotic-attacks/reading/index.md
 # Python Insecure Deserialization / `pickle` module
 
 We have looked at so many PHP vulnerabilities in this session, but you shouldn't be left with the impression that PHP is the only vulnerable language.
