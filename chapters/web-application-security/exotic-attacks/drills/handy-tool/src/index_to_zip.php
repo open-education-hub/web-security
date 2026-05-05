@@ -5,7 +5,7 @@ class PHPClass {
 
     function __construct() { }
 
-    function __wakeup() {
+    public function __wakeup() {
         $forbbiden_commands = ["..."];
 
         if (!isset($this->prop) or !isset($this->condition) or !$this->condition == true) {
