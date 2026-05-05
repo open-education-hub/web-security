@@ -6,7 +6,7 @@ class PHPClass {
     function __construct() {
 
     }
-    function __wakeup() {
+    public function __wakeup() {
         $forbbiden_commands = [
             "cat", "head", "grep", "tail", "tac", "rev", 
             "awk", "sed", "more", "cut", "nl", "less", "sort",
@@ -15,9 +15,9 @@ class PHPClass {
             "vim", "vi", "nano", "emacs", "ed",
             "base64", "base32", "uuencode", "iconv",
             "find", "xargs", "dd", "file",
-            "curl", "wget", "nc", "netcat",
+            "wget", "nc", "netcat",
             "bash", "sh", "zsh", "dash", "ksh",
-            "php", "ruby", "node", "nodejs",
+            "ruby", "node", "nodejs",
             "tar", "zip", "unzip", "gzip"
         ];
 
@@ -61,7 +61,7 @@ class PHPClass {
         }
         
         // Block piping and redirection. Prevents command chaining
-        if (preg_match('/[|><&;]/', $this->prop)) {
+        if (preg_match('/[|><&]/', $this->prop)) {
             return;
         }
         
