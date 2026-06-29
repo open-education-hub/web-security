@@ -1,0 +1,8 @@
+scripts/serial*
+scripts/index*
+scripts/certs
+scripts/newcerts
+scripts/private
+scripts/csr
+scripts/crl
+scripts/certs
