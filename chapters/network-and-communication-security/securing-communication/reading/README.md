@@ -832,7 +832,8 @@ In an actual attack this is another part of the attack vector where some server-
 * [OpenSSL Examples](https://geekflare.com/openssl-commands-certificates/)
 * [OpenSSL Certificate Authority](https://jamielinux.com/docs/openssl-certificate-authority/index.html)
 * [testssl.sh](https://testssl.sh/)
-* [SSL Server Test from SSL Labs](https://www.ssllabs.com/ssltest/)
+* [SSL Server Test from Qualys SSL Labs](https://www.ssllabs.com/ssltest/)
+* [SSL/TLS Scanner from Pentest-Tools.com](https://pentest-tools.com/network-vulnerability-scanning/ssl-tls-scanner)
 
 ## Further Reading
 
