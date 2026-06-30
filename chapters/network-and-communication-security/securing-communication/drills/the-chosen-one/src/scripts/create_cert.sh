@@ -20,7 +20,7 @@ openssl genrsa -out private/"$cert_name".key 2048
 openssl req -config openssl_"$ca_name".cnf -key private/"$cert_name".key -subj "/C=RO/ST=Bucharest/L=Bucharest/O=University POLITEHNICA of Bucharest/OU=Computer Science and Engineering Department/CN=$flag" -new -sha256 -out csr/"$cert_name".csr
 
 # Create certificate (with CA).
-yes y | openssl ca -config openssl_"$ca_name".cnf -passin pass:sss-web-"$ca_name" -days 375 -notext -md sha256 -in csr/"$cert_name".csr -out certs/"$cert_name".crt
+yes y | openssl ca -config openssl_"$ca_name".cnf -passin pass:sss-web-"$ca_name" -days 3750 -notext -md sha256 -in csr/"$cert_name".csr -out certs/"$cert_name".crt
 
 # Verify certificate.
 openssl verify -CAfile certs/"$ca_name".crt certs/"$cert_name".crt
