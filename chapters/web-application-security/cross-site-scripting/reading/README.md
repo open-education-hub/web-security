@@ -137,6 +137,7 @@ The payload is stored safely in the database and is not executed immediately. La
 #### Drill
 
 Create a simple web application where user feedback is stored in a database. Imagine that the feedback is later viewed by an administrator. Explain how a Blind XSS payload could execute in the administrator's browser and describe how proper output encoding and Content Security Policy (CSP) can prevent the attack.
+
 ## Note
 The three types of XSS presented above are the ones that historically speaking were categorised, but in order to do a categorization a criteria is needed. The types above have no criteria on which they are sepparated, so let's split XSS vulnerabilities by the place where data is used:
 * Server XSS
