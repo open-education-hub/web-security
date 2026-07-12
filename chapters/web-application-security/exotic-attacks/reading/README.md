@@ -241,7 +241,8 @@ Below is a table of such hashes discovered so far:
 Even though you won't find such examples on a daily basis, it's important to know that there is such a possibility and beware of using loose comparison.
 It's just another example of how dangerous it is.
 
-PHP 8 introduces the `hash_equals()` function for secure hash comparisons. It compares two strings in constant time to prevent timing attacks, ensuring safer hash verification.
+The `hash_equals()` function (available since PHP 5.6) performs a constant-time, byte-for-byte string comparison.
+Because it compares the strings literally instead of juggling them into numbers, using it in place of `==` prevents both timing attacks and the loose-comparison magic-hash trick shown above.
 
 ## Bypassing `strcmp()` function
 
