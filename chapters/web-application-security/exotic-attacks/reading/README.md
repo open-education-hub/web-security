@@ -41,7 +41,10 @@ In this section we will discuss **PHP type juggling** and how this can lead to a
 
 ![Type Juggling examples](../media/type-juggling.png)
 
-PHP 8 introduces more consistent comparison behavior by making improvements to how strings and numbers are compared. The changes mainly affect how PHP treats numbers in scientific notation when using loose comparisons. Now, "0e1234" == "0" evaluates to false in PHP 8 because each string is treated as a distinct entity rather than automatically converting to a number.
+The behavior of these loose comparisons is one of the biggest differences between PHP versions, so it is worth keeping the running version in mind.
+On **PHP 7 and earlier**, a loose comparison between a number and a string always converted the string to a number first, which is what most of the examples below rely on.
+PHP 8 changed this through the ["Saner string to number comparisons" RFC](https://wiki.php.net/rfc/string_to_number_comparison): when a number is compared with a *non-numeric* string, PHP now converts the number to a string and compares the two as strings instead.
+Comparisons between two *numeric* strings are still performed numerically, so `"0e1234" == "0"` remains **True** and `0`-valued tricks such as magic hashes keep working.
 
 ## How PHP compares values
 
@@ -65,15 +68,19 @@ This behavior is very helpful when you want your program to be flexible in deali
 
 However, it is also important to note that this behavior is also a major source of bugs and security vulnerabilities.
 
-For example, when PHP needs to compare the string `"7 puppies"` to the integer `7`, PHP will attempt to extract the integer from the string.
-So this comparison will evaluate to **True**.
+On **PHP 7 and earlier**, when PHP needed to compare the string `"7 puppies"` to the integer `7`, it would attempt to extract the integer from the string, so the comparison evaluated to **True**:
 
 `("7 puppies" == 7) -> True`
 
-But what if the string that is being compared does not contain an integer? The string will then be converted to a `"0"`.
-So the following comparison will also evaluate to **True**:
+And if the string did not contain a leading integer, it was converted to `0`, so the following comparison also evaluated to **True**:
 
 `("Puppies" == 0) -> True`
+
+On **PHP 8 and later**, both comparisons instead evaluate to **False**.
+Because `"7 puppies"` and `"Puppies"` are not numeric strings, PHP converts the integer to a string and compares `"7"` with `"7 puppies"` (and `"0"` with `"Puppies"`), which are plainly different strings:
+
+`("7 puppies" == 7) -> False`
+`("Puppies" == 0) -> False`
 
 You can try this yourself using an online PHP sandbox, such as [this one](http://www.writephponline.com/).
 
@@ -110,9 +117,15 @@ Let’s say the PHP code that handles authentication looks like this:
 ?>
 ```
 
-Then, simply submitting an integer input of `0` would successfully log you in as admin, since this will evaluate to **True**:
+On **PHP 7 and earlier**, simply submitting an integer input of `0` would successfully log you in as admin, since this evaluated to **True**:
 
 `(0 == "Admin_Password") -> True`
+
+On **PHP 8 and later** this particular bypass no longer works: `"Admin_Password"` is not a numeric string, so PHP compares `"0"` with `"Admin_Password"` and the check returns **False**:
+
+`(0 == "Admin_Password") -> False`
+
+The technique is not dead, though — on PHP 8 the loose comparison still bypasses the check when the value being compared is itself a numeric string, most notably a magic-hash password hash (see the *Magic hashes* section below).
 
 ### Conditions of exploitation
 
@@ -133,6 +146,7 @@ This way, it would be possible for the end-user to specify the type of input pas
 Consider the above JSON blobs.
 The first one would cause the password parameter to be treated as a string whereas the second one would cause the input to be interpreted as an integer by PHP.
 This gives an attacker fine-grained control of the input data type and therefore the ability to exploit type juggling issues.
+On **PHP 8**, remember that controlling the type only leads to a bypass when the value being compared is a numeric string; for a non-numeric secret such as `"Admin_Password"`, sending an integer is no longer enough.
 
 ## Avoiding type juggling issues in PHP code
 
