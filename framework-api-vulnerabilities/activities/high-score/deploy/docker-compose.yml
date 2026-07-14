@@ -1,4 +1,3 @@
-version: '3'
 services:
     mysql:
         container_name: mysql
@@ -6,17 +5,22 @@ services:
         image: mysql:5.7
         environment:
             MYSQL_ROOT_PASSWORD: secure-password
-            MYSQL_USER: rootsss
+            MYSQL_USER: sss_user
             MYSQL_PASSWORD: secure-password
             MYSQL_DATABASE: db
         networks:
             - db-network
         volumes:
             - ./mysql-init.sql:/docker-entrypoint-initdb.d/mysql-init.sql
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-psecure-password"]
+            timeout: 5s
+            retries: 5
     php:
         container_name: sss-web-07_high-score
         depends_on:
-            - mysql
+            mysql:
+              condition: service_healthy
         build:
             context: ..
             dockerfile: ./deploy/Dockerfile
@@ -27,3 +31,4 @@ services:
 
 networks:
     db-network:
+      driver: bridge

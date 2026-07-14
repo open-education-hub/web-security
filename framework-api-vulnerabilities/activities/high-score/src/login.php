@@ -5,18 +5,12 @@
   <body>
 <?php
 
-$hostname="localhost";
-$username="rootsss";
-$password="uz6geeX5ahph5ya7";
-
-$dbhandle=mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL");
-
-$selected = mysql_select_db("db", $dbhandle) or die("Could not select db users");
+require_once 'db.php';
 
 $query = "SELECT * from users WHERE name='" . $_POST["username"] ."' AND password='" . $_POST["password"] ."'";
 
-$result = mysql_query( $query );
-$row = mysql_fetch_array($result);
+$result = mysqli_query($dbhandle, $query);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 if( !$row ) echo "<p>User/password combination not found!</p>";
 else {
 	echo "<p>User: " . $row{'name'}. "</p>";
