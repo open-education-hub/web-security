@@ -11,11 +11,11 @@ Security Summer School
 
 ---
 
-* Library vs Framework (Django, Laravel, ASP.NET)
-
-* CMS (WordPress, Drupal, Joomla, Shopify)
-
 * API
+
+* Frameworks
+
+* CMS
 
 ---
 
@@ -77,6 +77,8 @@ Security Summer School
 
 ## Framework Vulnerabilities
 
+* Library vs Framework (Django, Laravel, ASP.NET)
+
 * Deciding to use a certain framework implies relying on its security
 
 * A new vulnerability may be discovered at some point, therefore regular updates are a good practice
@@ -84,6 +86,10 @@ Security Summer School
 ---
 
 ## CVEs
+
+---
+
+* CMS (WordPress, Drupal, Joomla, Shopify)
 
 ---
 
