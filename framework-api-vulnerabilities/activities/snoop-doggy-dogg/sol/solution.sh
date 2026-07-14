@@ -16,7 +16,7 @@ then
     echo $0" <ip> <port>"
     exit 1
 else
-    url=$1':'$2
+    URL='http://'$1':'$2
 fi
 
 # Snoop Doggy Dog
