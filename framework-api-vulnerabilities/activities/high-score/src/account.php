@@ -5,18 +5,6 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] != 1) {
 	header('location: index.php');
 }
 
-/*
-$db_host = "localhost";
-$db_user = "root";
-$db_pass = "secure-password";
-
-$dbhandle = mysql_connect($db_host, $db_user, $db_pass) or die("Unable to connect to MySQL");
-
-$selected = mysql_select_db("db", $dbhandle) or die("Could not select db users");
-
-$error = "";
-$message = "";
-*/
 setcookie('isAdmin', 'false');
 
 /*

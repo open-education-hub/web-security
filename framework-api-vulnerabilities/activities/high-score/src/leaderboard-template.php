@@ -2,43 +2,33 @@
 session_start();
 
 if (!isset($_SESSION['logged']) || $_SESSION['logged'] != 1) {
-	header('location: index.php');
+    header('location: index.php');
+    exit;
 }
 
-$db_host = "mysql";
-$db_user = "rootsss";
-$db_pass = "secure-password";
-
-$dbhandle = mysql_connect($db_host, $db_user, $db_pass) or die("Unable to connect to MySQL");
-
-$selected = mysql_select_db("db", $dbhandle) or die("Could not select db users");
-
+require_once 'db.php';
 
 $sql = "SELECT username, score FROM users ORDER BY score DESC LIMIT 5;";
-$result = mysql_query($sql);
+$result = mysqli_query($dbhandle, $sql);
 $results = array();
-
 $i = 0;
-while($row = mysql_fetch_assoc($result)) {
+while($row = mysqli_fetch_assoc($result)) {
 	$results[$i]['username'] = $row['username'];
 	$results[$i]['score'] = $row['score'];
 	$i++;
 }
 
 $sql = "SELECT * FROM users WHERE id = ".$_SESSION['id']." LIMIT 1";
-$result = mysql_query($sql);
-
-$row = mysql_fetch_array($result);
+$result = mysqli_query($dbhandle, $sql);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $myscore = $row['score'];
 
 $sql = "SELECT * FROM users WHERE id != ".$_SESSION['id']." ORDER BY score DESC LIMIT 1";
-$result = mysql_query($sql);
-
-$row = mysql_fetch_array($result);
-$maxscore = $row['score'];
+$result = mysqli_query($dbhandle, $sql);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+$maxscore = $row['score'] ?? 0;
 
 $flag = '';
-
 if (isset($_COOKIE['isAdmin']) && $_COOKIE['isAdmin'] == 'true' && $myscore > $maxscore) {
 	$flag = '__TEMPLATE__';
 }

@@ -1,60 +1,55 @@
 <?php
 session_start();
 
-$db_host = "mysql";
-$db_user = "rootsss";
-$db_pass = "secure-password";
-
-$dbhandle = mysql_connect($db_host, $db_user, $db_pass, 9906) or die("Unable to connect to MySQL");
-
-$selected = mysql_select_db("db", $dbhandle) or die("Could not select db users");
+require_once 'db.php';
 
 $error_1 = "";
 $error_2 = "";
 $message = "";
 
 if (isset($_POST['login'])) {
-	if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1)
-		$error_1 = 'You are already logged in';
-	else {
-		$user = mysql_real_escape_string(htmlspecialchars($_POST['username']));
-		$pass = mysql_real_escape_string(htmlspecialchars($_POST['password']));
-		$sql = "SELECT * FROM users WHERE username = '".$user."' AND password = '" . md5($pass) . "';";
-		$result = mysql_query($sql);
+    if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1)
+        $error_1 = 'You are already logged in';
+    else {
+        $user = mysqli_real_escape_string($dbhandle, htmlspecialchars($_POST['username']));
+        $pass = mysqli_real_escape_string($dbhandle, htmlspecialchars($_POST['password']));
+        $sql = "SELECT * FROM users WHERE username = '".$user."' AND password = '" . md5($pass) . "';";
+        $result = mysqli_query($dbhandle, $sql);
 
-		$row = mysql_fetch_array($result);
-		if(!$row) $error_1 = "Incorrect username or password.";
-		else {
-			$_SESSION['id'] = $row['id'];
-			$_SESSION['logged'] = 1;
-			$_SESSION['user'] = $user;
-			$_SESSION['score'] = $row['score'];
-			$_SESSION['email'] = $row['email'];
-			$_SESSION['university'] = $row['university'];
-			$_SESSION['faculty'] = $row['faculty'];
-			header("location: account.php");
-		}
-	}
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        if(!$row) $error_1 = "Incorrect username or password.";
+        else {
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['logged'] = 1;
+            $_SESSION['user'] = $user;
+            $_SESSION['score'] = $row['score'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['university'] = $row['university'];
+            $_SESSION['faculty'] = $row['faculty'];
+            header("location: account.php");
+            exit;
+        }
+    }
 }
 
 if (isset($_POST['register'])) {
-	if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1)
-		$error_2 = 'You are already logged in';
-	else {
-		$user = mysql_real_escape_string(htmlspecialchars($_POST['username']));
-		$pass = mysql_real_escape_string(htmlspecialchars($_POST['password']));
-		$faculty = mysql_real_escape_string(htmlspecialchars($_POST['faculty']));
-		$email = mysql_real_escape_string(htmlspecialchars($_POST['email']));
-		$university = mysql_real_escape_string(htmlspecialchars($_POST['university']));
-		if (strlen($user) < 3 || strlen($pass) < 3)
-			$error_2 = 'Username and password must be at least 3 characters!';
-		else {
-			$sql = "INSERT INTO users (username, password, score, university, faculty, email) VALUES ('".$user."', '" . md5($pass) . "', 0, '".$university."', '".$faculty."', '".$email."');";
-			$result = mysql_query($sql);
-			if (!$result) $error_2 = mysql_error(); //"There was an unexpected error. Try again later.";
-			else $message = 'Success! You can now log in using the above form!';
-		}
-	}
+    if (isset($_SESSION['logged']) && $_SESSION['logged'] == 1)
+        $error_2 = 'You are already logged in';
+    else {
+        $user = mysqli_real_escape_string($dbhandle, htmlspecialchars($_POST['username']));
+        $pass = mysqli_real_escape_string($dbhandle, htmlspecialchars($_POST['password']));
+        $faculty = mysqli_real_escape_string($dbhandle, htmlspecialchars($_POST['faculty']));
+        $email = mysqli_real_escape_string($dbhandle, htmlspecialchars($_POST['email']));
+        $university = mysqli_real_escape_string($dbhandle, htmlspecialchars($_POST['university']));
+        if (strlen($user) < 3 || strlen($pass) < 3)
+            $error_2 = 'Username and password must be at least 3 characters!';
+        else {
+            $sql = "INSERT INTO users (username, password, score, university, faculty, email) VALUES ('".$user."', '" . md5($pass) . "', 0, '".$university."', '".$faculty."', '".$email."');";
+            $result = mysqli_query($dbhandle, $sql);
+            if (!$result) $error_2 = mysqli_error($dbhandle);
+            else $message = 'Success! You can now log in using the above form! '.$user;
+        }
+    }
 }
 
 ?>
