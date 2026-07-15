@@ -6,7 +6,7 @@ Security Summer School
 
 ## Server Side Languages Popularity
 
-![Server Side Languages Popularity](assets/language-stats.png)
+![Server Side Languages Popularity](./assets/language-stats.png)
 
 ---
 
@@ -90,7 +90,7 @@ Reminder: usually, we store in the database, and then compare, hashes of the pas
 
 ## Magic hashes discovered so far
 
-![Examples of magic hashes](assets/magic-hashes.png)
+![Examples of magic hashes](./assets/magic-hashes.png)
 
 ---
 
