@@ -19,8 +19,8 @@ else
     URL='http://'$1':'$2
 fi
 
-echo "Step 1: Forward your 1234 port using ngrok."
-echo "Use the instructions from here: https://securiumsolutions.com/blog/reverse-shell-using-tcp/"
+echo "Step 1: Forward your 1234 port using ngrok: ngrok tcp 1234"
+echo "If you have issues, see the instructions from here: https://securiumsolutions.com/blog/reverse-shell-using-tcp/"
 echo "Press any key to continue if you've done this."
 echo
 while [ true ] ; do
