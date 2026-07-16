@@ -1,5 +1,5 @@
 ---
-title: "SQL Injection"
+title: "Framework & API Vulnerabilities"
 revealOptions:
   background-color: 'aquamarine'
   transition: 'none'
@@ -7,4 +7,4 @@ revealOptions:
   autoAnimateDuration: 0.0
 ---
 
-!INCLUDE "sql-injection.md"
+!INCLUDE "framework-api-vulnerabilities.md"

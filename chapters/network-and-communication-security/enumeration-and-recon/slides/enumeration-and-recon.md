@@ -15,20 +15,20 @@ penetration tester / pentester
 5. ***covering tracks** - remove evidence of the attack
 6. **reporting** - report findings by severity (critical-low)
 
-----
+---
 
 ## Reconnaissance
 - Attack surface
 - Automatic & Manual discovery
 
-----
+---
 
 ## Ports - like holes in a system
 
 * 0 - 65535
 * 0 - 1023 well-known ports
 
-----
+---
 
 ## Ports - like holes in a system
 
@@ -40,7 +40,7 @@ penetration tester / pentester
 * 20/21 - FTP
 * 25 - SMTP
 
-----
+---
 
 ## Nmap
 
@@ -48,7 +48,7 @@ penetration tester / pentester
 
 DEMO
 
-----
+---
 
 ## Shodan Search Engine
 
@@ -58,11 +58,11 @@ https://www.shodan.io
 
 - Various search filters: port, city, IP etc.
 
-----
+---
 
 ## Scanning
 
-----
+---
 
 ## OWASP
 
@@ -70,7 +70,7 @@ https://www.shodan.io
 
 - OWASP ZAP # DEMO
 
-----
+---
 
 ## Gaining access through enumeration
 
@@ -78,7 +78,7 @@ https://www.shodan.io
 
 - Demo: Burp Intruder
 
-----
+---
 
 ## Wordlists
 
@@ -88,13 +88,13 @@ https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credenti
 
 https://github.com/trickest/wordlists
 
-----
+---
 
 ## Default credentials
 
 https://github.com/ihebski/DefaultCreds-cheat-sheet/
 
-----
+---
 
 ## Types of brute force attacks
 
@@ -106,7 +106,7 @@ https://github.com/ihebski/DefaultCreds-cheat-sheet/
 
 - and others
 
-----
+---
 
 ## Dictionary Attack
 
@@ -123,7 +123,7 @@ passwords = [pass1, pass2]
 Try: user1:pass1, user1:pass2, user2:pass1, user2:pass2
 </code></pre>
 
-----
+---
 
 ## Password-Spray Attack
 
@@ -146,7 +146,7 @@ Try: pass1:user1, pass1:user2, pass1:user3,
 sleep(5), pass2:user1, ...
 </code></pre>
 
-----
+---
 
 ## Credential Stuffing Attack
 
@@ -162,17 +162,17 @@ passwords = [pass1, pass2]
 Try: user1:pass1, user2:pass2
 </code></pre>
 
-----
+---
 
 ## Subdomain Enumeration
 - find other interesting targets
 - subfinder, assetfinder demo
 
-----
+---
 
 ## Web Content Enumeration / Discovery / Scanning / Dirbusting
 
-----
+---
 
 ## Web Content Enumeration / Discovery / Scanning / Dirbusting
 
@@ -181,7 +181,7 @@ Try: user1:pass1, user2:pass2
 - goal: finding (hidden/useful) files/resources on the server
 - dirb, dirsearch, ffuf demo
 
-----
+---
 
 ## Common configuration files publicly available
 
@@ -193,18 +193,18 @@ E.g.:
 * /package.json => file created for Node.js projects
 * /php.ini (inside cgi-bin/) => sensitive information about the server, database credentials
 
-----
+---
 
 ## Hard 404 vs Soft 404
 
-----
+---
 
 ## Hard 404
 
 https://website.com/randomidheowuhfgy => 404 Not Found => Hard 404
 + Also 410 Gone
 
-----
+---
 
 ## Soft 404
 
@@ -217,7 +217,7 @@ Examples:
 4. Redirect e.g. to login page, or to home page
 5. ...
 
-----
+---
 
 ## Web Fuzzing (Dirbusting++)
 
@@ -227,7 +227,7 @@ Examples:
 e.g. ;#, foreign language, very long words
 - goal: find resources on the server + trigger unexpected behaviour?
 
-----
+---
 
 ## Tools
 
@@ -236,15 +236,23 @@ e.g. ;#, foreign language, very long words
 * DirBuster - GUI, not maintained anymore
 * DirSearch - there are better alternatives
 
+---
+
+## Tools
+
 ### Fuzzers:
 * FFUF
 * Wfuzz
 * GoBuster
 
+---
+
+## Tools
+
 ### Commercial:
 * Burp Intruder
 
-----
+---
 
 ## Bug Bounty
 
@@ -254,7 +262,7 @@ https://hackerone.com/bug-bounty-programs
 
 https://github.com/projectdiscovery/public-bugbounty-programs/blob/master/chaos-bugbounty-list.json
 
-----
+---
 
 ## SUMMARY
 - get target in **scope**
@@ -265,14 +273,4 @@ https://github.com/projectdiscovery/public-bugbounty-programs/blob/master/chaos-
 - reading documentation gives you superpowers
 - **verify** tool source code & output
 
-----
-
-## Challenges
-- lamer-login
-- not-so-random
-
-For further practice:
-- ginandjuice.shop
-- DVWA
-
-----
+---
