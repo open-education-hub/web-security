@@ -47,7 +47,7 @@ if (isset($_POST['register'])) {
             $sql = "INSERT INTO users (username, password, score, university, faculty, email) VALUES ('".$user."', '" . md5($pass) . "', 0, '".$university."', '".$faculty."', '".$email."');";
             $result = mysqli_query($dbhandle, $sql);
             if (!$result) $error_2 = mysqli_error($dbhandle);
-            else $message = 'Success! You can now log in using the above form! '.$user;
+            else $message = 'Success! You can now log in using the above form!';
         }
     }
 }
