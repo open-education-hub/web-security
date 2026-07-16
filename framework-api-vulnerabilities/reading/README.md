@@ -1,10 +1,6 @@
----
-linkTitle: 07. Framework & API Vulnerabilities
-type: docs
-weight: 10
----
+# Framework & API Vulnerabilities
 
-# Introduction
+## Introduction
 
 Application programming interfaces (APIs) and frameworks have become a critical part of almost every business.
 APIs are responsible for transferring information between systems within a company or to external companies.
@@ -20,13 +16,13 @@ However, given the sensitive data being transferred through APIs, it’s critica
 Moreover, from time to time people find vulnerabilities for versions of widely used frameworks, which puts numerous web apps at risk.
 Therefore, it's best to be up to date and apply security patches as soon as a new vulnerability arises.
 
-# API Vulnerabilities
+## API Vulnerabilities
 
 By nature, APIs expose application logic and sensitive data such as Personally Identifiable Information (PII) and because of this have increasingly become a target for attackers.
 PII is any data that could potentially be used to identify a particular person.
 Examples include a full name, Social Security number, driver's license number, bank account number, passport number, and email address.
 
-## Broken Object Level Authorization
+### Broken Object Level Authorization
 
 An object refers to a data source that is associated with an authenticated entity.
 Object-level authorization is all about controlling access based on the scope of permissible user data and object access.
@@ -42,7 +38,7 @@ The platform provides an API used to gain access to revenue charts for each of t
 However, while inspecting the client request from a single store that wants to gain access to their own revenue charts, an attacker can identify (find) the API endpoint for those revenue charts and identify the URL in use, for example `/shops/{shop name}/revenue_data.json`.
 Using the names of other stores being hosted on the e-commerce platform, an attacker can create a simple script to modify the `{shop name}` ID object in subsequent requests, and gain access to the revenue charts of every other store.
 
-## Broken Authentication
+### Broken Authentication
 
 Being different from Authorization discussed above, Authentication on the other hand is a complex and confusing mechanism concerning APIs.
 Since authentication endpoints are exposed to anyone by design, the endpoints that are responsible for user-authentication must be treated differently from regular API endpoints and implement extra layers of protection for credential stuffing attempts, in addition to brute force password and token guessing attacks.
@@ -52,7 +48,7 @@ Since authentication endpoints are exposed to anyone by design, the endpoints th
 Suppose that an attacker obtained a list of leaked username/password combinations as the result of a data breach from another organization.
 If the API endpoint handling authentication does not implement brute force or credential stuffing protections like CAPTCHA, rate-limiting, account lockout, etc., an attacker can repeatedly attempt to gain access using the list of username/password combinations to determine what combination(s) work.
 
-## Excessive Data Exposure
+### Excessive Data Exposure
 
 By design, API endpoints often expose sensitive data since they frequently rely on the client app to perform data filtering.
 Attackers exploit this issue by sniffing the traffic to analyze the responses, looking for sensitive data that should not be exposed.
@@ -66,7 +62,7 @@ The newly hired security guard’s mobile app makes an API request to an endpoin
 Although the mobile app only shows the cameras the guard can access, the actual API response contains a full list of all the cameras.
 Using the sniffed traffic, an attacker can manipulate the API request to show all cameras, bypassing the filtering on the mobile app.
 
-## Lack of Resources & Rate Limiting
+### Lack of Resources & Rate Limiting
 
 It is common to find API endpoints that do not implement any sort of rate limiting on the number of API requests, or they do not limit the type of requests that can consume considerable network, CPU, memory, and storage resources.
 The amount of resources required to satisfy a request greatly depends on the user input and endpoint business logic.
@@ -81,7 +77,7 @@ In this case, the request would return with the first page and the first 100 use
 If the attacker changed the size parameter from 100 to 200000, it could cause a performance issue on the backend database, since the size parameter in use is so large.
 As a result, the API becomes unresponsive and is unable to handle further requests from this or any other client.
 
-## Broken Function Level Authorization
+### Broken Function Level Authorization
 
 Although different from Broken Object Level Authorization (described above), exploitation of this issue requires the attacker to send API requests to endpoints that they should not have access to, yet are exposed to anonymous users or regular, non-privileged users.
 These types of flaws are often easy to find and can allow attackers to access unauthorized functionality.
@@ -98,7 +94,7 @@ POST is a HTTP method used to send information to create or update a resource.
 The URL would look like this: `POST /api/invites/new/{“email”:”hugo@malicious.com”,”role”:”admin”}`.
 In this case, the attacker easily exploits this issue and sends himself an email invite to create an admin account.
 
-## Mass Assignment
+### Mass Assignment
 
 Modern frameworks encourage developers to use functions that automatically bind input from the client into code variables and internal objects.
 What this means is that users should have the ability to update their username, contact details, etc. (within their profiles for example), but they should not be able to change their user-level permissions, adjust account balances, and other administrative-like functions.
@@ -123,7 +119,7 @@ The attacker desires to increase their credit balance on their own and replays t
 
 Since the endpoint is vulnerable to mass assignment, the attacker can easily adjust their own `credit_balance` at will, for example changing it from 10 credits to 99999 as shown above.
 
-## Security Misconfiguration
+### Security Misconfiguration
 
 Attackers will often attempt to find unpatched flaws, common endpoints, or unprotected files and directories to gain unauthorized access or knowledge of the system they want to attack.
 Security misconfigurations can not only expose sensitive user data, but also system details that may lead to full server compromise.
@@ -134,7 +130,7 @@ Say for instance that an attacker uses a popular search engine like Shodan to se
 The attacker found a server running a popular database management system, listening on the default TCP port.
 The database management system was using the default configuration, which has authentication disabled by default, and the attacker gained access to millions of records with PII, personal preferences, and authentication data.
 
-## Injection
+### Injection
 
 Injection flaws, such as SQL, NoSQL, command injection, etc., occur when untrusted data is sent to an interpreter as part of a command or query.
 Injection vulnerabilities cause computing systems to potentially process malicious data that attackers introduce.
@@ -155,7 +151,7 @@ Then the attacker replays the request with a different payload:
 By adding the `;WAITFOR DELAY ‘0:0:5’–”` the attacker observes that the response from the API took ~5 seconds longer, which helps confirm the API is vulnerable to SQL injection.
 Exploiting the injection vulnerability, the attacker was able to gain unauthorized access to the system.
 
-## Improper Assets Management
+### Improper Assets Management
 
 Old API versions are often unpatched and can become an easy way to compromise systems without having to fight state-of-the-art security systems, which might be in place to protect the most recent API versions.
 Attackers may gain access to sensitive data, or even take over the server through old, unpatched API versions connected to the same database.
@@ -166,7 +162,7 @@ Say for instance that an organization redesigning their applications forgot abou
 While targeting one of the latest released applications, an attacker found the API address (api.someservice.com/v2).
 Replacing v2 with v1 in the URL gave the attacker access to the old, unprotected API, exposing the personal identifiable information (PII) of millions of users.
 
-## Insufficient Logging & Monitoring
+### Insufficient Logging & Monitoring
 
 Without logging and monitoring, or with insufficient logging and monitoring, it is almost impossible to track suspicious activities targeting APIs and respond to them in a timely fashion.
 Without visibility over ongoing malicious activities, attackers have plenty of time to potentially compromise systems and steal data.
@@ -179,7 +175,7 @@ Despite failed logins being logged, no alerts were triggered during the timespan
 As a reaction to user complaints about a possible breach, API logs were analyzed and the attack was detected, way after the fact.
 The company had to make a public announcement asking users to reset their passwords, and report the incident to their regulatory authorities.
 
-# Framework Vulnerabilities
+## Framework Vulnerabilities
 
 Web application framework is a collection of pieces of software designed to ease the development of web applications.
 Web application frameworks provide common solutions for a wide variety of tasks such as database access, input filtering for security purposes, authentication, session handling and templates for website development.
@@ -204,7 +200,7 @@ However, from time to time vulnerabilities are found and attackers have numerous
 
 The rest of the section contains examples of vulnerabilities found in various framework versions.
 
-## Laravel
+### Laravel
 
 Laravel is one of the [most preferred](https://customerthink.com/what-makes-laravel-the-most-preferred-php-framework-for-web-development/) PHP Frameworks for Web Development.
 
@@ -248,42 +244,9 @@ The final command:
 Laravel 5.6/5.7/5.8 with Laravel-query-builder < v1.17.1
 Laravel 5.5 with Laravel-query-builder < v1.16.1
 
-## Drupal
+## CMS
 
-Drupal is a free and open-source web content management framework written in PHP.
-Drupal provides a back-end framework for at least 2.3% of all websites worldwide – ranging from personal blogs to corporate, political, and government sites.
-According to builtwith.com, 473 of the Quantcast top 10,000 websites use Drupal, and that number jumps up to 4,341 when you look at the top 100,000.
-
-Drupal introduced a Form API in Drupal 6 which allowed alteration of the form data during the form rendering process.
-In 2018, Drupal released a patch adding just a single class, _RequestSanitizer_, with a _stripDangerousValues_ method that resets all the items in an input array for keys that start with a hash sign.
-This method sanitizes input data in `$_GET`, `$_POST` and `$_COOKIES` during the very early stages of Drupal’s bootstrap (immediately after loading the site configurations).
-It can be assumed that the reason why the patch was released is to make an existing vulnerability harder to find.
-
-The vulnerability was found in the forms.
-The user registration form which requires no authentication and can be accessed anonymously contains multiple input fields and can be exploited.
-
-![Form Fields](./assets/drupal1.png)
-
-It was highly probable that injecting a renderable array would exploit the vulnerability, the question was where?
-
-As it turns out, the “Email Address” field doesn’t sanitize the type of input it receives which allows hackers to inject the renderable array to the form array structure.
-Renderable arrays contain metadata that is used in the rendering process.
-
-![Injected Array](./assets/drupal2.png)
-
-Since Drupal treats the injected array as a value and not as an element, attackers need to trick Drupal into rendering it.
-Drupal renders an array on page load events or via Drupal AJAX API.
-
-The "Picture" field of the user registration form uses Drupal’s AJAX API to upload a picture and replace it with a thumbnail of the uploaded image.
-
-What's more important about this attack is that a Russian Security Researcher posted a [POC](https://github.com/a2u/CVE-2018-7600/blob/master/exploit.py) on Github and soon after numerous people started using it to install cryptocurrency miners and malware backdoors.
-
-**Vulnerable versions:**
-
-Drupal < 8.3.9 / < 8.4.6 / < 8.5.1 ~ user/register URL, attacking account/mail & #post_render parameter, using PHP's passthru function
-Drupal < 7.58 ~ user/password URL, attacking triggering_element_name form & #post_render parameter, using PHP's passthru function
-
-## WordPress
+### WordPress
 
 Details of a serious Denial of Service (DoS) vulnerability in WordPress have been published by an Israeli security researcher named Barak Tawily.
 This vulnerability can be used to take down a website in a matter of minutes.
@@ -324,9 +287,43 @@ He posted a [video](https://www.youtube.com/watch?v=nNDsGTalXS0&feature=youtu.be
 The [WPScan](https://wpscan.com/wordpress-security-scanner) CLI tool is a free, for non-commercial use, black box WordPress security scanner written for security professionals and blog maintainers to test the security of their sites.
 The WPScan CLI tool uses a database of WordPress vulnerabilities - from WordPress versions, plugins, themes etc.
 
-# Further Reading
+### Drupal
 
-* Metropolia University of Applied Sciences
+Drupal is a free and open-source web content management framework written in PHP.
+Drupal provides a back-end framework for at least 2.3% of all websites worldwide – ranging from personal blogs to corporate, political, and government sites.
+According to builtwith.com, 473 of the Quantcast top 10,000 websites use Drupal, and that number jumps up to 4,341 when you look at the top 100,000.
+
+Drupal introduced a Form API in Drupal 6 which allowed alteration of the form data during the form rendering process.
+In 2018, Drupal released a patch adding just a single class, _RequestSanitizer_, with a _stripDangerousValues_ method that resets all the items in an input array for keys that start with a hash sign.
+This method sanitizes input data in `$_GET`, `$_POST` and `$_COOKIES` during the very early stages of Drupal’s bootstrap (immediately after loading the site configurations).
+It can be assumed that the reason why the patch was released is to make an existing vulnerability harder to find.
+
+The vulnerability was found in the forms.
+The user registration form which requires no authentication and can be accessed anonymously contains multiple input fields and can be exploited.
+
+![Form Fields](../media/drupal1.png)
+
+It was highly probable that injecting a renderable array would exploit the vulnerability, the question was where?
+
+As it turns out, the “Email Address” field doesn’t sanitize the type of input it receives which allows hackers to inject the renderable array to the form array structure.
+Renderable arrays contain metadata that is used in the rendering process.
+
+![Injected Array](../media/drupal2.png)
+
+Since Drupal treats the injected array as a value and not as an element, attackers need to trick Drupal into rendering it.
+Drupal renders an array on page load events or via Drupal AJAX API.
+
+The "Picture" field of the user registration form uses Drupal’s AJAX API to upload a picture and replace it with a thumbnail of the uploaded image.
+
+What's more important about this attack is that a Russian Security Researcher posted a [POC](https://github.com/a2u/CVE-2018-7600/blob/master/exploit.py) on Github and soon after numerous people started using it to install cryptocurrency miners and malware backdoors.
+
+**Vulnerable versions:**
+
+Drupal < 8.3.9 / < 8.4.6 / < 8.5.1 ~ user/register URL, attacking account/mail & #post_render parameter, using PHP's passthru function
+Drupal < 7.58 ~ user/password URL, attacking triggering_element_name form & #post_render parameter, using PHP's passthru function
+
+## Further Reading
+
 * https://blog.papertrailapp.com/common-api-vulnerabilities-and-how-to-secure-them/
 * https://techterms.com/definition/framework
 * https://owasp.org/www-project-api-security/
@@ -338,10 +335,10 @@ The WPScan CLI tool uses a database of WordPress vulnerabilities - from WordPres
 * https://blog.threatpress.com/wordpress-vulnerability-dos/
 * https://freek.dev/1317-an-important-security-release-for-laravel-query-builder
 
-# Activities
+## Activities
 
-* [Clean up](https://sss-web.cyberedu.ro/challenge/ca1512a0-0616-11ed-be56-0fec9572decd)
-* [High Score](https://sss-web.cyberedu.ro/challenge/f2efab30-0616-11ed-bb34-19a4ff512c6d)
-* [Snoop Doggy Dogg](https://sss-web.cyberedu.ro/challenge/0cb44c00-0617-11ed-80ab-4758bca0c77e)
-* [The Accountant](https://sss-web.cyberedu.ro/challenge/2026cea0-0617-11ed-8d3f-19288a331f73)
 * [Damn Vulnerable WordPress](https://github.com/vavkamil/dvwp)
+* Clean up
+* High Score
+* Snoop Doggy Dogg
+* The Accountant
