@@ -1,0 +1,10 @@
+version: '3'
+
+services: 
+  escalation:
+    container_name: "escalation"
+    hostname: "escalation"
+    build: .
+    ports:
+      - "5555:1234"
+

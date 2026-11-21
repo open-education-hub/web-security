@@ -1,0 +1,5 @@
+All hail the privilege escalation master!
+
+Here's the last flag: SSS{at_least_y0u_d1dnt_h1jacked_a_plane}
+
+Do you think this is enough?
