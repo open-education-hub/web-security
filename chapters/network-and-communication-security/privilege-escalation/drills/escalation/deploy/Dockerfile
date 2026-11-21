@@ -1,7 +1,8 @@
 FROM php:7.2-apache as web
 
 # setup web stuff
-RUN apt update && apt install -y net-tools vim sudo python3 gdb ltrace && \
+RUN sed -i 's|deb.debian.org/debian|archive.debian.org/debian|g; s|security.debian.org/debian-security|archive.debian.org/debian-security|g; /buster-updates/d' /etc/apt/sources.list && \
+    apt update && apt install -y net-tools vim sudo python3 gdb ltrace && \
     groupadd -g 3000 www && \
     useradd -u 1000 -g www -s /usr/sbin/nologin -d /var/www www && \
     sed -i 's/Options Indexes FollowSymLinks/Options -Indexes/g' /etc/apache2/apache2.conf && \
@@ -73,10 +74,10 @@ RUN chown user5:user5 /usr/bin/gdb && \
     chmod g+s /usr/bin/gdb
 
 # Adding flags
-COPY --chown=root:user2 ../flag1.txt /home/user2/flag1.txt
-COPY --chown=root:user3 ../flag2.txt /home/user3/flag2.txt
-COPY --chown=root:user4 ../flag3.txt /home/user4/flag3.txt
-COPY --chown=root:user5 ../flag4.txt /home/user5/flag4.txt
+COPY --chown=root:user2 ./flag1.txt /home/user2/flag1.txt
+COPY --chown=root:user3 ./flag2.txt /home/user3/flag2.txt
+COPY --chown=root:user4 ./flag3.txt /home/user4/flag3.txt
+COPY --chown=root:user5 ./flag4.txt /home/user5/flag4.txt
 # Permissions time
 RUN chmod -R 750 /home/user2 && \
     chmod -R 750 /home/user3 && \

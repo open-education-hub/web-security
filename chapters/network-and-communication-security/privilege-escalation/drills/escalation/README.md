@@ -1,7 +1,7 @@
 # How to run
 
 ```bash
-docker-compose up --build
+cd deploy && docker-compose up --build
 ```
 
 # Challenge name
