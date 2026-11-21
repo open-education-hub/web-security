@@ -35,7 +35,7 @@ RUN mkdir /tmp/apache2 && chown www. /tmp/apache2
 # setup the users
 RUN groupadd -g 1001 user1 && \
     groupadd -g 1002 user2 && \
-	groupadd -g 1003 user3 && \
+    groupadd -g 1003 user3 && \
     groupadd -g 1004 user4 && \
     groupadd -g 1005 user5 && \
     useradd -rm -d /home/user1 -s /bin/bash -g user1 -u 1001 user1 && echo "user1:Unbr3ak@bl3p@SSw0rd3458097345" | chpasswd && \
@@ -50,7 +50,7 @@ RUN chown root:www /var/www/html/note.txt
 RUN mkdir -p /opt/...
 COPY --chown=root:www shadow.bak /opt/.../shadow.bak
 RUN chmod -R 750 /opt && \
-	chown -R root:www /opt
+    chown -R root:www /opt
 
 # Privesc from user2 to user3
 COPY --chown=root:root ./sudoers /etc/sudoers
@@ -73,10 +73,10 @@ RUN chown user5:user5 /usr/bin/gdb && \
     chmod g+s /usr/bin/gdb
 
 # Adding flags
-COPY --chown=root:user2 ./flag1.txt /home/user2/flag1.txt
-COPY --chown=root:user3 ./flag2.txt /home/user3/flag2.txt
-COPY --chown=root:user4 ./flag3.txt /home/user4/flag3.txt
-COPY --chown=root:user5 ./flag4.txt /home/user5/flag4.txt
+COPY --chown=root:user2 ../flag1.txt /home/user2/flag1.txt
+COPY --chown=root:user3 ../flag2.txt /home/user3/flag2.txt
+COPY --chown=root:user4 ../flag3.txt /home/user4/flag3.txt
+COPY --chown=root:user5 ../flag4.txt /home/user5/flag4.txt
 # Permissions time
 RUN chmod -R 750 /home/user2 && \
     chmod -R 750 /home/user3 && \
@@ -86,9 +86,9 @@ RUN chmod -R 750 /home/user2 && \
     chown -R root:user3 /home/user3 && \
     chown -R root:user4 /home/user4 && \
     chown -R root:user5 /home/user5 && \
-	chmod 440 /home/user2/flag1.txt && \
-	chmod 440 /home/user3/flag2.txt && \
-	chmod 440 /home/user4/flag3.txt && \
+    chmod 440 /home/user2/flag1.txt && \
+    chmod 440 /home/user3/flag2.txt && \
+    chmod 440 /home/user4/flag3.txt && \
     chmod 440 /home/user5/flag4.txt
 
 #USER www
